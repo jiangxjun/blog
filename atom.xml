@@ -237,26 +237,6 @@
   </entry>
   
   <entry>
-    <title>概率神经网络和粒子群算法</title>
-    <link href="https://jiangxj.top/blog/2020/05/20/%E6%A6%82%E7%8E%87%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-%E7%B2%92%E5%AD%90%E7%BE%A4%E7%AE%97%E6%B3%95/"/>
-    <id>https://jiangxj.top/blog/2020/05/20/概率神经网络-粒子群算法/</id>
-    <published>2020-05-19T16:00:00.000Z</published>
-    <updated>2020-05-15T02:32:42.172Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\blog\assets\css\APlayer.min.css"><script src="\blog\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="概率神经网络"><a href="#概率神经网络" class="headerlink" title="概率神经网络"></a>概率神经网络</h1><p>Specht.D.F根据已有的神经网络理论同时融入概率学的相关知识，提出了概率神经网络的理论。概率神经网络是一种前馈神经网络，充分利用贝叶斯准则理论，能够进行较为准确的数据分类。在贝叶斯决策中，引用了概率密度函数的知识，同时充分结合了贝叶斯最小风险准则，实现了对数据的分类研究。概率神经网络已广泛应用于数据分类、模式识别、图像或语音识别等领域。</p><p>概率神经网络参数较少且内部的隐藏层不需要人为的设定，便于构建网络模型。同时使用贝叶斯准则大大提高了模式分类的准确性。在训练数据充足的情况下，能够很好地表达输入数据与输出数据的内在联系，即使在网络工作的过程中需要加入新的训练样本，网络的整体结构亦不需改进。</p><p><strong>概率神经网络与BP网络比较</strong>：</p><p>概率神经网络采用了 贝叶斯最小风险准则，在模式分类上具有较高的正确率，在故障诊断上有明显优势。</p><p>概率神经网络结构简单，需要调节的参数较少，更容易收敛。</p><p>根据贝叶斯理论，在一般情况下，概率神经网络的收敛值较为固定，达到了对故障知识的充分利用，结果的可信程度较高，而BP网络的输入到输出的过程中，存在不可预知的规则，受主观影响较大，结果存在不稳定的情况。</p><p>概率神经网络在工作过程中，增加或删除某些样本，网络的整体结构不会发生过大的变化，仅仅就是对某一层节点数的增加或删除。对于BP网络，增加或减少训练数据后，网络层与层之间的权值很可能发生改变，如不及时进行更新，输出结果很可能会偏离期望值。BP网络的训练数据的改变意味着整个网络的改变。</p><h1 id="粒子群算法"><a href="#粒子群算法" class="headerlink" title="粒子群算法"></a>粒子群算法</h1><p>粒子群算法(Particle Swarm Optimization)属于仿生学的优化算法。核心思想是从人为设定的随机解出发，通过不断的迭代寻找最优的适应度值。PSO没有像遗传算法那样的变异、交叉等复杂过程。</p><p><strong>算法原理</strong>：</p><p>在一个$D$维空间内，种群由$n$个粒子组成$X=(X_1,X_2,\dots,X_n)$，第$i$个粒子表示为1个$D$维的向量$Xi = (X_{i1},X_{i2},\dots,X_{iD})^T$，表示第$i$个粒子在$D$维空间中的位置，即问题的一个潜在解，由目标函数可以求出每个粒子的适应度值。第$i$个粒子的速度为$Vi = (V_{i1},V_{i2},\dots,V_{iD})^T$,其个体极值为$Pi = (P_{i1},P_{i2},\dots,P_{iD})^T$，群体极值为$P_g = (P_{g1},P_{g2},\dots,P_{gD})^T$。</p><p>在每次迭代过程中，粒子通过个体极值与群体极值更新自身的速度和位置，即：<br>$$<br>V_{id}^{k+1} = wV_{id}^k +c_1r_1(P_{id}^k - X_{id}^k) +c_2r_2(P_{gd}^k -X_{id}^k)<br>$$</p><p>$$<br>X_{id}^{k+1} = X_{id}^k + V_{id}^{k+1}<br>$$</p><p>其中：$i =1,2,\dots,n$，$n$表示群体的粒子数目</p><p>​           $d=1,2,\dots,D$,$D$是解空间维数</p><p>​           $k$表示当前迭代次数</p><p>​           $w$表示惯性权重</p><p>​           $X_{id}^k$为当前粒子在迭代到第$k$次的位置分量</p><p>​           $V_{id}^k$为当前粒子在迭代到第$k$次的速度分量</p><p>​          $P_{id}^k$为当前粒子在迭代到第$k$次的个体历史最优分量</p><p>​          $P_{gd}^k$为当前粒子在迭代到第$k$次的群体历史最优分量</p><p>​          $r_1,r_2$为[0,1]之间的随机数</p><p>​          $c_1,c_2$为非负的常数，称为学习因子。分别调节自身的认知能力和对群体的认知能力，对粒子寻找到最优值有重要作用。</p><p>在粒子在寻优过程中可能出现盲目搜索的现象，需要将粒子搜索的速度和位置限定在一定的区间内保证粒子在可行解空间内有目的的搜索。</p><p><strong>算法流程</strong>：</p><p>主要包括：初始化粒子、更新粒子的位置和速度、最优值的确定以及结束情况的判断。</p><ol><li>种群初始化。主要是在可行的解空间内设置：种群规模、学习因子、粒子的位置和速度、最大迭代次数、粒子执行搜索的空间范围和速度范围等参数。</li><li>适应度函数的建立。结合优化类型确定适应度函数，然后计算每一个粒子当前的适应度值，通过适应度值，确定粒子的群体极值与个体极值</li><li>对粒子的位置和速度进行更新</li><li>个体极值的确定，对于群体的每一个粒子，将当前适应度值与粒子自身历史适应度值进行比较。若优于历史适应度值，将当前适应度值作为个体极值，反之历史极值仍为个体极值</li><li>群体极值的确定。对于群体中的每一个粒子，将当前的适应度值与整个种群的最优适应度值进行比较。若优于群体最优适应度值，则将当前适应度值作为群体极值，反之，原群体极值仍为群体最优适应度值</li><li>对迭代是否结束进行判定，若达到预先设定的误差或者达到了最大的迭代次数，循环结束，输出得到最优值，反之，返回2继续执行。</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">st=&gt;start: 开始</span><br><span class="line">op0=&gt;operation: 粒子群的初始化</span><br><span class="line">op1=&gt;operation: 计算粒子的适应度值</span><br><span class="line">op2=&gt;operation: 根据适应度值更新个体的极值和群体极值</span><br><span class="line">op3=&gt;operation: 更新粒子的速度和位置</span><br><span class="line">cond=&gt;condition: 满足终止条件</span><br><span class="line"></span><br><span class="line">e=&gt;end: 结束</span><br><span class="line"></span><br><span class="line">st-&gt;op0-&gt;op1-&gt;op2-&gt;op3-&gt;cond</span><br><span class="line">cond(yes)-&gt;e</span><br><span class="line">cond(no) -&gt;op1</span><br></pre></td></tr></table></figure><p><strong>粒子群算法在解空间内存有如下特点</strong>：</p><ol><li>算法无论在初始化还是寻优等方面都有一定的随机性，这样可以使得找到的结果尽可能地接近最优值，利于解决复杂问题。</li><li>对初值地设定随机，其变化不影响最终地结果</li><li>目标函数是粒子群算法地寻优依据，函数包括多种类型，包括不可微地函数</li><li>粒子群算法作为一种群体智能优化算法，过程易理解，适应性强</li><li>与GA的“优胜劣汰”不同，粒子群算法不遵循此项规则，从算法开始到结束，种群中的每一个粒子都参与算法寻优的全过程，使粒子群算法能够很好的表达种群的信息，寻优结果要优于遗传算法。</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      概率神经网络和粒子群算法原理简介
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://jiangxj.top/blog/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>Anaconda教程</title>
     <link href="https://jiangxj.top/blog/2020/05/20/Anaconda%E6%95%99%E7%A8%8B/"/>
     <id>https://jiangxj.top/blog/2020/05/20/Anaconda教程/</id>
@@ -272,6 +252,26 @@
     </summary>
     
       <category term="教程" scheme="https://jiangxj.top/blog/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>概率神经网络和粒子群算法</title>
+    <link href="https://jiangxj.top/blog/2020/05/20/%E6%A6%82%E7%8E%87%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-%E7%B2%92%E5%AD%90%E7%BE%A4%E7%AE%97%E6%B3%95/"/>
+    <id>https://jiangxj.top/blog/2020/05/20/概率神经网络-粒子群算法/</id>
+    <published>2020-05-19T16:00:00.000Z</published>
+    <updated>2020-05-15T02:32:42.172Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\blog\assets\css\APlayer.min.css"><script src="\blog\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="概率神经网络"><a href="#概率神经网络" class="headerlink" title="概率神经网络"></a>概率神经网络</h1><p>Specht.D.F根据已有的神经网络理论同时融入概率学的相关知识，提出了概率神经网络的理论。概率神经网络是一种前馈神经网络，充分利用贝叶斯准则理论，能够进行较为准确的数据分类。在贝叶斯决策中，引用了概率密度函数的知识，同时充分结合了贝叶斯最小风险准则，实现了对数据的分类研究。概率神经网络已广泛应用于数据分类、模式识别、图像或语音识别等领域。</p><p>概率神经网络参数较少且内部的隐藏层不需要人为的设定，便于构建网络模型。同时使用贝叶斯准则大大提高了模式分类的准确性。在训练数据充足的情况下，能够很好地表达输入数据与输出数据的内在联系，即使在网络工作的过程中需要加入新的训练样本，网络的整体结构亦不需改进。</p><p><strong>概率神经网络与BP网络比较</strong>：</p><p>概率神经网络采用了 贝叶斯最小风险准则，在模式分类上具有较高的正确率，在故障诊断上有明显优势。</p><p>概率神经网络结构简单，需要调节的参数较少，更容易收敛。</p><p>根据贝叶斯理论，在一般情况下，概率神经网络的收敛值较为固定，达到了对故障知识的充分利用，结果的可信程度较高，而BP网络的输入到输出的过程中，存在不可预知的规则，受主观影响较大，结果存在不稳定的情况。</p><p>概率神经网络在工作过程中，增加或删除某些样本，网络的整体结构不会发生过大的变化，仅仅就是对某一层节点数的增加或删除。对于BP网络，增加或减少训练数据后，网络层与层之间的权值很可能发生改变，如不及时进行更新，输出结果很可能会偏离期望值。BP网络的训练数据的改变意味着整个网络的改变。</p><h1 id="粒子群算法"><a href="#粒子群算法" class="headerlink" title="粒子群算法"></a>粒子群算法</h1><p>粒子群算法(Particle Swarm Optimization)属于仿生学的优化算法。核心思想是从人为设定的随机解出发，通过不断的迭代寻找最优的适应度值。PSO没有像遗传算法那样的变异、交叉等复杂过程。</p><p><strong>算法原理</strong>：</p><p>在一个$D$维空间内，种群由$n$个粒子组成$X=(X_1,X_2,\dots,X_n)$，第$i$个粒子表示为1个$D$维的向量$Xi = (X_{i1},X_{i2},\dots,X_{iD})^T$，表示第$i$个粒子在$D$维空间中的位置，即问题的一个潜在解，由目标函数可以求出每个粒子的适应度值。第$i$个粒子的速度为$Vi = (V_{i1},V_{i2},\dots,V_{iD})^T$,其个体极值为$Pi = (P_{i1},P_{i2},\dots,P_{iD})^T$，群体极值为$P_g = (P_{g1},P_{g2},\dots,P_{gD})^T$。</p><p>在每次迭代过程中，粒子通过个体极值与群体极值更新自身的速度和位置，即：<br>$$<br>V_{id}^{k+1} = wV_{id}^k +c_1r_1(P_{id}^k - X_{id}^k) +c_2r_2(P_{gd}^k -X_{id}^k)<br>$$</p><p>$$<br>X_{id}^{k+1} = X_{id}^k + V_{id}^{k+1}<br>$$</p><p>其中：$i =1,2,\dots,n$，$n$表示群体的粒子数目</p><p>​           $d=1,2,\dots,D$,$D$是解空间维数</p><p>​           $k$表示当前迭代次数</p><p>​           $w$表示惯性权重</p><p>​           $X_{id}^k$为当前粒子在迭代到第$k$次的位置分量</p><p>​           $V_{id}^k$为当前粒子在迭代到第$k$次的速度分量</p><p>​          $P_{id}^k$为当前粒子在迭代到第$k$次的个体历史最优分量</p><p>​          $P_{gd}^k$为当前粒子在迭代到第$k$次的群体历史最优分量</p><p>​          $r_1,r_2$为[0,1]之间的随机数</p><p>​          $c_1,c_2$为非负的常数，称为学习因子。分别调节自身的认知能力和对群体的认知能力，对粒子寻找到最优值有重要作用。</p><p>在粒子在寻优过程中可能出现盲目搜索的现象，需要将粒子搜索的速度和位置限定在一定的区间内保证粒子在可行解空间内有目的的搜索。</p><p><strong>算法流程</strong>：</p><p>主要包括：初始化粒子、更新粒子的位置和速度、最优值的确定以及结束情况的判断。</p><ol><li>种群初始化。主要是在可行的解空间内设置：种群规模、学习因子、粒子的位置和速度、最大迭代次数、粒子执行搜索的空间范围和速度范围等参数。</li><li>适应度函数的建立。结合优化类型确定适应度函数，然后计算每一个粒子当前的适应度值，通过适应度值，确定粒子的群体极值与个体极值</li><li>对粒子的位置和速度进行更新</li><li>个体极值的确定，对于群体的每一个粒子，将当前适应度值与粒子自身历史适应度值进行比较。若优于历史适应度值，将当前适应度值作为个体极值，反之历史极值仍为个体极值</li><li>群体极值的确定。对于群体中的每一个粒子，将当前的适应度值与整个种群的最优适应度值进行比较。若优于群体最优适应度值，则将当前适应度值作为群体极值，反之，原群体极值仍为群体最优适应度值</li><li>对迭代是否结束进行判定，若达到预先设定的误差或者达到了最大的迭代次数，循环结束，输出得到最优值，反之，返回2继续执行。</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">st=&gt;start: 开始</span><br><span class="line">op0=&gt;operation: 粒子群的初始化</span><br><span class="line">op1=&gt;operation: 计算粒子的适应度值</span><br><span class="line">op2=&gt;operation: 根据适应度值更新个体的极值和群体极值</span><br><span class="line">op3=&gt;operation: 更新粒子的速度和位置</span><br><span class="line">cond=&gt;condition: 满足终止条件</span><br><span class="line"></span><br><span class="line">e=&gt;end: 结束</span><br><span class="line"></span><br><span class="line">st-&gt;op0-&gt;op1-&gt;op2-&gt;op3-&gt;cond</span><br><span class="line">cond(yes)-&gt;e</span><br><span class="line">cond(no) -&gt;op1</span><br></pre></td></tr></table></figure><p><strong>粒子群算法在解空间内存有如下特点</strong>：</p><ol><li>算法无论在初始化还是寻优等方面都有一定的随机性，这样可以使得找到的结果尽可能地接近最优值，利于解决复杂问题。</li><li>对初值地设定随机，其变化不影响最终地结果</li><li>目标函数是粒子群算法地寻优依据，函数包括多种类型，包括不可微地函数</li><li>粒子群算法作为一种群体智能优化算法，过程易理解，适应性强</li><li>与GA的“优胜劣汰”不同，粒子群算法不遵循此项规则，从算法开始到结束，种群中的每一个粒子都参与算法寻优的全过程，使粒子群算法能够很好的表达种群的信息，寻优结果要优于遗传算法。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      概率神经网络和粒子群算法原理简介
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://jiangxj.top/blog/categories/%E7%AC%94%E8%AE%B0/"/>
     
     
   </entry>
