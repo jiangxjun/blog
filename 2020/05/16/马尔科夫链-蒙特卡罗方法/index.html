@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Ataraxia" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="马尔科夫链-蒙特卡罗方法原理简介">
+<meta property="og:type" content="article">
+<meta property="og:title" content="马尔科夫链-蒙特卡罗方法">
+<meta property="og:url" content="https://jiangxjun.github.io/blog/2020/05/16/马尔科夫链-蒙特卡罗方法/index.html">
+<meta property="og:site_name" content="Ataraxia">
+<meta property="og:description" content="马尔科夫链-蒙特卡罗方法原理简介">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/16/马尔科夫链-蒙特卡罗方法/1.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/16/马尔科夫链-蒙特卡罗方法/2.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/16/马尔科夫链-蒙特卡罗方法/3.png">
+<meta property="og:updated_time" content="2020-06-18T01:17:12.457Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="马尔科夫链-蒙特卡罗方法">
+<meta name="twitter:description" content="马尔科夫链-蒙特卡罗方法原理简介">
+<meta name="twitter:image" content="https://jiangxjun.github.io/2020/05/16/马尔科夫链-蒙特卡罗方法/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiangxjun.github.io/blog/2020/05/16/马尔科夫链-蒙特卡罗方法/">
+
+
+
+
+
+  <title>马尔科夫链-蒙特卡罗方法 | Ataraxia</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ataraxia</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Hi, I'm Jiang.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.js"></script> </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jiangxjun.github.io/blog/2020/05/16/马尔科夫链-蒙特卡罗方法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jiangxj">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ataraxia">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">马尔科夫链-蒙特卡罗方法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-16T00:00:00+08:00">
+                2020-05-16
+              </time>
+            
+			
+			
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  4.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  18
+                </span>
+              
+            </div>
+          
+
+          
+              <div class="post-description">
+                  马尔科夫链-蒙特卡罗方法原理简介
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>MCMC(markov chain monte carlo)马尔科夫链蒙特卡洛随机采样方法，是很多复杂算法求解的基础，用作一些复杂运算的近似求解。</p>
+<h2 id="蒙特卡洛方法部分"><a href="#蒙特卡洛方法部分" class="headerlink" title="蒙特卡洛方法部分"></a>蒙特卡洛方法部分</h2><p><strong>概述</strong></p>
+<p>通过大量的随机样本，去了解一个系统，进而得到所要计算的值。是以概率为基础的方法，与之对应的是确定性算法。</p>
+<p><strong>基本思想</strong></p>
+<p>​          所求解的问题是某随机事件A出现的概率（或者是某随机变量B的期望值）。通过某种“实验方法”，得出A事件出现的概率，以此估计出A事件出现的概率（或者得到随机变量B的某些数字特征，得出B的期望值）。</p>
+<p><strong>工作过程</strong></p>
+<p>​          Monte Carlo方法模拟某一个过程时，需要产生各种概率分布的随机变量，用统计方法把模拟的数字特征估计出来，从而得到实际问题的数值解。</p>
+<p><strong>分类</strong></p>
+<p>一类是所求解的问题具有内在的随机性，借助计算机的运算能力可以直接模拟这种随机过程。如分析中子在反应堆中的传输过程，依据其概率随机抽样得到裂变位置、速度和方向，模拟大量中子的行为后，经过统计得到中子传输的范围，作为堆设计的依据。</p>
+<p>一类是所求解问题可以转化为某种随机分布的特征数，如随机事件发生的概率，或者随机变量的期望值，通过随机抽样，以随机事件出现的频率估计其概率，或者以抽样的数字特征估算随机变量的数字特征，作为问题的解。多用于求解复杂的多维积分问题。</p>
+<p><strong>举例</strong></p>
+<p>求解积分：$ \theta = \int_a^b f(x)dx $</p>
+<p>一个简单近似求解方法是在$[a,b]$之间随机采样一个点，如$x_0$，然后用$f(x_0)$代表在这个区间上所有的$f(x)$的值，近似求解为：<br>$$<br>(b-a)f(x_0)<br>$$<br>在区间$[a,b]$上采样n个值：$x_0,x_1,\dots,x_{n-1}$，用其均值来代表区间上所有的$f(x)$的值，近似求解为：<br>$$<br>\frac{b-a}{n}\sum\limits_{i=0}^{n-1}f(x_i)<br>$$<br>上述是在假设$x$是在$[a,b]$上均匀分布的情况下，若不是均匀分布，则可以采用：如果得到$x$在$[a,b]$上的概率分布函数$p(x)$，有<br>$$<br>\theta = \int_{a}^b f(x)dx = \int_a^b \frac{f(x)}{p(x)} p(x)dx \approx \frac{1}{n}\sum\limits_{i=0}^{n-1}\frac{f(x_i)}{p(x_i)}<br>$$<br>上式最右边为蒙特卡洛方法的一般形式，此处是连续函数形式的。</p>
+<p>可见，当假设$x$在区间内均匀分布时候，即：$p(x_i) = 1/(b-a)$，带入上式可以得到：<br>$$<br>\frac{1}{n}\sum\limits_{i=0}^{n-1}\frac{f(x_i)}{1/(b-a)} =\frac{b-a}{n}\sum\limits_{i=0}^{n-1}f(x_i)<br>$$<br><strong>概率分布采样</strong></p>
+<p>如何基于概率分布去采样基于该概率分布的$n$个$x$样本集问题：</p>
+<p>对于常见的均匀分布uniform（0，1）是非常容易采样的，一般是通过线性同余发生器可以生成(0,1)之间的伪随机数样本。</p>
+<p>其他常见的概率分布，可以通过uniform(0,1)的样本转换得到，如二维的正太分布样本$(Z_1,Z_2)$可以通过独立采样得到uniform(0,1)样本对$(X_1,X_2)$。</p>
+<p>其他的常见的连续分布，如$t$分布，$F$分布等，都可以通过类似得方式转换为uniform(0,1)得到的采样样本转化得到，在python中的numpy，scikit-learn等类库中，有生成这些常用分布样本的函数可以使用。</p>
+<p><strong>接受-拒绝采样</strong></p>
+<p>对于不常见的概率分布，一个可行的解决办法是：接受——拒绝采样。</p>
+<p>设定一个程序可采样的分布$q(x)$，如高斯分布，然后按照一定的方法拒绝某些样本，以达到接近$p(x)$分布的目的，其中$q(x)$成为proposal distribution。</p>
+<img src="/2020/05/16/马尔科夫链-蒙特卡罗方法/1.png" title="高斯分布">
+<p>具体采用过程为：</p>
+<p>设定一个方便采样的常用概率分布函数$q(x)$,以及一个常量$k$，使得$p(x)$总在$kq(x)$的下方。</p>
+<p>采样得到的$q(x)$的一个样本$z_0$，然后，从均匀分布$(0,kq(z_0))$中采样得到一个值$u$，若$u$落在上图中的灰色区域，则拒绝抽样，否则接受这个样本$z_0$，重复以上过程得到$n$个接受的样本$z_0,z_1,\dots,z_{n-1}$，最后的蒙特卡罗方法求解结果为：<br>$$<br>\frac{1}{n}\sum\limits_{i=0}^{n-1}\frac{f(x_i)}{p(x_i)}<br>$$<br>通过一系列的接受拒绝决策来达到用$q(x)$模拟$p(x)$概率分布。</p>
+<h2 id="马尔科夫链部分"><a href="#马尔科夫链部分" class="headerlink" title="马尔科夫链部分"></a>马尔科夫链部分</h2><p><strong>概述</strong></p>
+<p>假设某一个时刻状态转移的概率只依赖于它的前一个状态，这样做可以大大简化模型的复杂度，因此马尔科夫链在很多时间序列模型中得到广泛的应用，如循环神经网络RNN，隐式马尔科夫链HMM等。</p>
+<p>数学定义描述为：</p>
+<p>假设序列状态是$\dots X_{t-2},    X_{t-1},X_{t},X_{t+1},\dots$，那么在时刻$X_{t+1}$的状态的条件概率仅仅依赖于时刻$X_t$，即：<br>$$<br>P(X_{t+1} | \dots X_{t-2},    X_{t-1},X_{t})= P(X_{t+1}|X_t)<br>$$<br>因为某一时刻状态转移的概率只依赖于它的前一个状态，因而只能求出系统中任意两个状态之间的转换概率。</p>
+<p><strong>举例</strong></p>
+<img src="/2020/05/16/马尔科夫链-蒙特卡罗方法/2.png" title="股市模型">
+<p>表示股市模型，共三种状态：牛市、熊市和横盘(stagnant market)。每一个状态都以一定的概率转化到下一个状态。如，牛市以0.025概率转化为横盘的状态。</p>
+<p>上图可以表示为矩阵的形式，如果定义矩阵$P$某一个位置$P(i,j)$的值为$P(j|i)$，即从状态$i$转化为状态$j$的概率，定义牛市状态为0，熊市状态为1，横盘为2，得到马尔科夫链模型的状态转移矩阵为：<br>$$<br>P = \pmatrix{0.9 &amp; 0.075&amp;0.025 \ 0.15 &amp; 0.8 &amp; 0.05 \ 0.25 &amp; 0.25 &amp; 0.5}<br>$$<br><strong>状态转移矩阵的性质</strong></p>
+<p>马尔科夫链模型的状态转移矩阵收敛到稳定概率分布与初始状态概率分布无关，即</p>
+<p>得到稳定分布对应的马尔科夫链模型的状态转移矩阵，可以用任意的概率分布样本开始，带入马尔科夫链模型的状态转移矩阵，经过一系列的转换，最终可以得到符合对应稳定概率分布的样本。</p>
+<p>对于一个确定的状态转移矩阵$P$，$P^n$在$n$大于一定的值的时候也可以发现是确定的。</p>
+<p>马尔科夫链性质数学描述：</p>
+<p>如果一个非周期的马尔科夫链有状态转移矩阵$P$，并且它的任意两个状态是连通的，$\lim \limits_{n \rightarrow \infty} P_{ij}^n$与$i$无关，有：</p>
+<ul>
+<li>$\lim \limits_{n \rightarrow \infty} P_{ij}^n =\pi(j)$</li>
+<li>$\lim\limits_{n \rightarrow \infty} P^n = \pmatrix{\pi(1) &amp; \pi(2) &amp; \dots &amp; \pi(j) &amp; \dots \ \pi(1) &amp; \pi(2) &amp; \dots &amp; \pi(j) &amp; \dots \ \dots \ \pi(1) &amp; \pi(2) &amp; \dots &amp; \pi(j) &amp; \dots \ \dots}$</li>
+<li>$\pi(j) = \sum\limits_{i=0}^{\infty}\pi(i) P_{ij}$</li>
+<li>$\pi$是方程$\pi P = \pi$的唯一非负解，其中：$\pi = [\pi(1),\pi(2),\dots,\pi(j), \dots]\sum\limits_{i=0}^{\infty}\pi(i) =1$</li>
+</ul>
+<p>（1）非周期性的马尔科夫链：这个主要是指马尔科夫链的状态转化不是循环的，如果是循环的则永远不会收敛。对于任意某一个状态$i,d$为集合$\{n|n \ge 1, P_{ii}^n &gt; 0\}$的最大公约数，如果$d=1$，则状态为非周期的。</p>
+<p>（2）任何两个状态是连通的：从任意一个状态可以通过有限步到达其他的任意一个状态，不会出现条件概率一直为0导致不可达的情况。</p>
+<p>（3）马尔科夫链的状态数是有限的，也可以是无限的，可以用于连续概率分布和离散概率分布</p>
+<p>（4）$\pi$通常是马尔科夫链的平稳分布</p>
+<p><strong>基于马尔科夫链采样</strong></p>
+<p>得到了某个平稳分布所对应的马尔科夫链状态转移矩阵，很容易采样出这个平稳分布的样本集。</p>
+<p>假设任意初始的概率分布为$\pi_0(x)$，经过第一轮马尔科夫链状态转移后的概率分布是$\pi_1(x)$，第$i$轮的概率分布是$\pi_i(x)$。经过$n$轮后的马尔科夫链收敛到平稳分布$\pi(x)$，即：<br>$$<br>\pi_n(x) = \pi_{n+1}(x)= \dots = \pi(x)<br>$$<br>对于每个分布$\pi_i(x)$，有：<br>$$<br>\pi_i(x) = \pi_{i-1}(x)P = \pi_{i-2}(x)P^2 = \pi_0(x)P^{i}<br>$$<br>采样过程：</p>
+<p>首先，基于初始简单概率分布（如高斯分布）$\pi_0(x)$采样得到状态值$\pi_0$，基于条件概率分布$P(x|x_0)$采样状态值$x_1$，一直进行下去，当状态转移进行到一定的次数时，如$n$次，认为此时的样本集$(x_n,x_{n+1},x_{n+2},\dots)$即是符合平稳分布的对应的样本集，可以用来做蒙特卡洛模拟求和。</p>
+<ol>
+<li>输入马尔科夫链状态转移矩阵P，设定状态转移次数阈值$n_1$，需要样本个数$n_2$</li>
+<li>从任意简答概率分布采样得到初始状态值$x_0$</li>
+<li>for $t=0$ to $n_1+n_2 -1$：从条件概率分布$P(x|x_t)$中采样得到样本$x_{t+1}$样本集$(x_{n_1},x_{n_1+1},\dots,x_{n_1+n_2-1})$即为需要的平稳分布对应的样本集。</li>
+</ol>
+<p><strong>问题</strong>：随意给定一个平稳分布$\pi$，如何得到它所对应的马尔科夫链状态转移矩阵$P$。</p>
+<p><strong>解决办法</strong>：MCMC采样和其易用版M-H采样。</p>
+<h2 id="MCMC采样和M-H采样"><a href="#MCMC采样和M-H采样" class="headerlink" title="MCMC采样和M-H采样"></a>MCMC采样和M-H采样</h2><p><strong>马尔科夫链的细致平稳条件</strong></p>
+<p>定义：</p>
+<p>如果非周期的马尔科夫链的状态转移矩阵P和概率分布$\pi(x)$对于所有的$i,j$满足：<br>$$<br>\pi(i)P(i,j) = \pi(j)P(i,j)<br>$$<br>称概率分布$\pi(x)$是状态转移矩阵$P$的平稳分布。其中，$P(i,j)$表示从状态$i$到状态$j$的转化概率。</p>
+<p>证明：<br>$$<br>\sum\limits_{i=1}^{\infty}\pi(i)P(i,j) = \sum\limits_{i=1}^{\infty}\pi(j)P(i,j) =\pi(j)\sum\limits_{i=1}^{\infty}P(j,i)=\pi(j)<br>$$<br>写成矩阵形式为：<br>$$<br>\pi P = \pi<br>$$<br>满足马尔科夫链的收敛性质，即只要找打可以使得概率分布$\pi(x)$满足细致平稳分布的矩阵P即可。</p>
+<p><strong>MCMC采样</strong></p>
+<p>一般情况下，目标平稳分布$\pi(x)$和某一个马尔科夫链状态转移矩阵Q不满足细致平稳条件，即：<br>$$<br>\pi(i)Q(i,j) \ne \pi(j)Q(j,i)<br>$$<br>引入$\alpha(i,j)$，使得上式成立，即：<br>$$<br>\pi(i)Q(i,j)\alpha(i,j) = \pi(j)Q(j,i)\alpha(j,i)<br>$$<br>其中：<br>$$<br>\alpha(i,j) = \pi(j)Q(j,i)<br>$$</p>
+<p>$$<br>\alpha(j,i) = \pi(i)Q(i,j)<br>$$</p>
+<p>得到分布$\pi(x)$对应的马尔科夫链状态转移矩阵P，满足：<br>$$<br>P(i,j) = Q(i,j)\alpha(i,j)<br>$$<br>即：目标矩阵P可以通过任意一个马尔科夫链状态转移矩阵Q乘以$\alpha(i,j)$得到，$\alpha(i,j)$称为<strong>接受率</strong>。取值$[0,1]$之间，相当于一个概率值。</p>
+<p>MCMC采样过程：</p>
+<ol>
+<li><p>输入任意选定的马尔科夫链状态转移矩阵Q，平稳分布$\pi(x)$，设定状态转移次数阈值$n_1$，需要样本个数$n_2$</p>
+</li>
+<li><p>从任意简单概率分布采样得到初始状态值$x_0$</p>
+</li>
+<li><p>for $t=0$ to $n_1+n_2-1$:</p>
+<p>(a)从条件概率分布$Q(x|x_t)$中采样得到样本$x_*$</p>
+<p>(b)从均匀分布采样u~uniform[0,1]</p>
+<p>(c)如果$u &lt; \alpha(x_t,x_<em>) = \pi(x_</em>)Q(x_<em>,x_t)$，则接受转移$x_t \rightarrow x_</em>$，即$x_{t+1} = x_*$</p>
+<p>(d)否则不接受转移，即$x_{t+1} = x_t$</p>
+</li>
+</ol>
+<p>样本集$(x_{n_1}，x_{n_1+1},\dots,x_{n_1+n_2-1})$即为所需要的平稳分布对应的样本集。</p>
+<p><strong>问题</strong>：(c)步骤中，采样接受率$\alpha(x_t,x_*)$可能非常小，如0.1，导致大部分的采样值都被拒绝转移，采样效率很低，有可能采样百万次马尔科夫链还没有收敛，即$n_1$阈值次数需要设置的非常大。此时需要M-H采样。</p>
+<p><strong>解决办法</strong>： M-H采样，解决MCMC采样接受率过低问题</p>
+<p><strong>M-H采样</strong></p>
+<p>Metropolis-Hastings采样的简称。</p>
+<p>对接受率改造如下：<br>$$<br>\alpha(i,j) = \min \left\{ \frac{\pi(j)Q(j,i)}{\pi(i)Q(i,j)},1   \right\}<br>$$<br>M-H采样过程：</p>
+<ol>
+<li><p>输入任意选定的马尔科夫链状态转移矩阵Q，平稳分布$\pi(x)$，设定状态转移次数阈值$n_1$，需要样本个数$n_2$</p>
+</li>
+<li><p>从任意简单概率分布采样得到初始状态值$x_0$</p>
+</li>
+<li><p>for $t=0$ to $n_1+n_2-1$:</p>
+<p>(a)从条件概率分布$Q(x|x_t)$中采样得到样本$x_*$</p>
+<p>(b)从均匀分布采样u~uniform[0,1]</p>
+<p>(c)如果$u &lt; \alpha(x_t,x_<em>) =\min \left\{ \frac{\pi(j)Q(j,i)}{\pi(i)Q(i,j)},1   \right\} $，则接受转移$x_t \rightarrow x_</em>$，即$x_{t+1} = x_*$</p>
+<p>(d)否则不接受转移，即$x_{t+1} = x_t$</p>
+</li>
+</ol>
+<p>样本集$(x_{n_1}，x_{n_1+1},\dots,x_{n_1+n_2-1})$即为所需要的平稳分布对应的样本集。</p>
+<p>如果选择的马尔科夫链状态转移矩阵$Q$是对称的，即满足$Q(i,j) = Q(j,i)$，此时，接受率可以进一步简化为：<br>$$<br>\alpha(i,j) = \min \left\{ \frac{\pi(j)}{\pi(i)},1   \right\}<br>$$<br><strong>问题</strong>：</p>
+<p>（1）大数据时代，数据特征非常多，M-H采样由于接受率计算式$\frac{\pi(j)Q(j,i)}{\pi(i)Q(i,j)}$的存在，在高维需要的计算时间非常可观，算法效率低，同时，由于接受率小于1，计算得到的结果会被拒绝。</p>
+<p>（2）特征维度大，很多时候很难求出目标的各特征维度联合分布，但是可以方便的求出各个特征之间的条件概率分布，需要考虑的是  能否只有各维度之间条件概率分布的情况下方便的采样。</p>
+<p><strong>解决办法</strong>： Gibbs采样。</p>
+<h2 id="Gibbs采样"><a href="#Gibbs采样" class="headerlink" title="Gibbs采样"></a>Gibbs采样</h2><p><strong>重新寻找合适的细致平稳条件</strong></p>
+<p>假设$\pi(x_1,x_2)$是一个二维联合分布，观察第一个特征维度相同的两个点$A(x_1^{(1)},x_2^{(2)}),B(x_1^{(1)},x_2^{(2)})$，有：<br>$$<br>\pi(x_1^{(1)},x_2^{(1)})\pi(x_2^{(2)}|x_1^{(1)}) = \pi(x_1^{(1)})\pi(x_2^{(1)}|x_1^{(1)})\pi(x_2^{(2)}|x_1^{(1)})<br>$$</p>
+<p>$$<br>\pi(x_1^{(1)},x_2^{(2)})\pi(x_2^{(1)}|x_1^{(1)}) = \pi(x_1^{(1)})\pi(x_2^{(2)}|x_1^{(1)})\pi(x_2^{(1)}|x_1^{(1)})<br>$$</p>
+<p>根据条件概率公式可得。</p>
+<p>右侧相等，可得：<br>$$<br>\pi(x_1^{(1)},x_2^{(1)})\pi(x_2^{(2)}|x_1^{(1)}) =\pi(x_1^{(1)},x_2^{(2)})\pi(x_2^{(1)}|x_1^{(1)})<br>$$</p>
+<p>$$<br>\pi(A)\pi(x_2^{(2)}|x_1^{(1)}) =\pi(B)\pi(x_2^{(1)}|x_1^{(1)})<br>$$</p>
+<blockquote>
+<p>如果非周期的马尔科夫链的状态转移矩阵P和概率分布$\pi(x)$对于所有的$i,j$满足：<br>$$<br>\pi(i)P(i,j) = \pi(j)P(i,j)<br>$$<br>称概率分布$\pi(x)$是状态转移矩阵$P$的平稳分布。其中，$P(i,j)$表示从状态$i$到状态$j$的转化概率。</p>
+</blockquote>
+<p>对比可见，在$x_1 = x_1^{(1)}$这条直线上，如果用条件概率分布$\pi(x_2|x_1^{(1)})$作为马尔科夫链的状态转移概率，则任意两点之间的转移满足细致平稳条件。同理，在直线$x_2 = x_2^{(1)}$上。</p>
+<p>构造新的满足细致平稳条件：<br>$$<br>\pi(E)  P(E \rightarrow F) = \pi(F)  P(F \rightarrow E)<br>$$<br><strong>二维Gibbs采样</strong></p>
+<p>需要两个维度之间的条件概率，具体过程如下：</p>
+<p>(1)输入平稳分布$\pi(x_1,x_2)$，设定状态转移次数阈值$n_1$，需要样本个数$n_2$</p>
+<p>(2)随机初始化初始状态值$x_1^{(0)},x_2^{(0)}$</p>
+<p>(3)for $t=0$ to $n_1+n_2-1$：</p>
+<p>​     (a)从条件概率分布$P(x_2|x_1^{(t)})$中采样得到样本$x_2^{t+1}$</p>
+<p>​     (a)从条件概率分布$P(x_1|x_2^{(t+1)})$中采样得到样本$x_1^{t+1}$</p>
+<p>样本集$\{(x_1^{(n_1)},x_2^{(n_1)}), (x_1^{(n_1+1)},x_2^{(n_1+1)}),\dots,(x_1^{(n_1+n_2-1)},x_2^{(n_1+n_2-1)})  \}$即为需要的平稳分布对应的样本集。</p>
+<p>整个采样过程中，通过轮换坐标轴，采样的过程为：<br>$$<br>\left(x_1^{(1)},x_2^{(1)}\right) \rightarrow \left(x_1^{(1)},x_2^{(2)}\right) \rightarrow \left(x_1^{(2)},x_2^{(2)}\right) \rightarrow \dots \rightarrow \left(x_1^{(n_1+n_2-1)},x_2^{(n_1+n_2-1)}\right)<br>$$<br><img src="/2020/05/16/马尔科夫链-蒙特卡罗方法/3.png" title="Gibbs采样"></p>
+<p>采样是在两个坐标轴上不停的轮换，也可以每次随机选择一个坐标轴进行采样。常用的Gibbs采样实现都是基于坐标轴轮换的。</p>
+<p><strong>多维Gibbs采样</strong></p>
+<p>一个n维概率分布$\pi(x_1,x_2,\dots,x_n)$，可以通过在n个坐标轴上轮换采样，来得到新的样本，对于轮换到的任意一个坐标轴$x_i$上的转移，马尔科夫链的状态转移概率为$P(x_i | x_1,x_2,\dots,x_{i-1},x_{i+1},\dots,x_n)$，即固定$n-1$个坐标轴，在某一个坐标轴上移动。</p>
+<p>整个采样过程和<strong>Lasso回归的坐标轴下降法算法</strong>  非常类似，只不过Lasso回归是固定n−1个特征，对某一个特征求极值。而Gibbs采样是固定n−1个特征在某一个特征采样。</p>
+<p>Gibbs采样在高维特征的优势，采样要求数据至少两个维度，一维概率分布的采样无法用Gibbs采样的，此时M-H采样仍然成立。</p>
+<p>Gibbs采样获取概率分布的样本集，蒙特卡罗方法用样本集模拟求和，奠定MCMC算法在大数据时代高维数据模拟求和时的作用。</p>
+<p><a href="https://www.cnblogs.com/pinard/p/6625739.html" target="_blank" rel="noopener">MCMC方法参考资料</a></p>
+<p><a href="https://blog.csdn.net/xiaozhu_1024/article/details/80585151" target="_blank" rel="noopener">Lasso回归</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/15/计算机控制系统/" rel="next" title="计算机控制系统">
+                <i class="fa fa-chevron-left"></i> 计算机控制系统
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/18/迁移学习/" rel="prev" title="迁移学习和深度迁移学习原理">
+                迁移学习和深度迁移学习原理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+    <!--MOB SHARE BEGIN-->
+                                <div class="-mob-share-ui-button -mob-share-open">分享</div>
+                                <div class="-mob-share-ui -mob-share-ui-theme -mob-share-ui-theme-slide-left" style="display: none">
+                                    <ul class="-mob-share-list">
+                                        <li class="-mob-share-weibo"><p>新浪微博</p></li>
+                                       
+                                        <li class="-mob-share-qzone"><p>QQ空间</p></li>
+                                        <li class="-mob-share-qq"><p>QQ好友</p></li>
+                                        <li class="-mob-share-weixin"><p>微信</p></li>
+                                        <li class="-mob-share-douban"><p>豆瓣</p></li>
+                                   
+                                        <li class="-mob-share-facebook"><p>Facebook</p></li>
+                                        <li class="-mob-share-twitter"><p>Twitter</p></li>
+                                       
+                                    </ul>
+                                    <div class="-mob-share-close">取消</div>
+                                </div>
+                                <div class="-mob-share-ui-bg"></div>
+                                <script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=2aeca9171540c"></script>
+                                <!--MOB SHARE END-->
+
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="jiangxj">
+            
+              <p class="site-author-name" itemprop="name">jiangxj</p>
+              <p class="site-description motion-element" itemprop="description">岁月对坐，落子无悔</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jiangxjun" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:jiangxj0530@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.linkedin.com/in/xuejun-j-8b04a0180/" target="_blank" title="LinkedIn">
+                      
+                        <i class="fa fa-fw fa-linkedin"></i>LinkedIn</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/wan-si-qing-qian/activities" target="_blank" title="Zhihu">
+                      
+                        <i class="fa fa-fw fa-heart-o"></i>Zhihu</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                link
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.biglong.top/" title="yanglong" target="_blank">yanglong</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://redstonewill.com/" title="RedStone" target="_blank">RedStone</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+		  
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="360" height="86" src="//music.163.com/outchain/player?type=2&id=419877515&auto=0&height=66"></iframe>
+		  
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#蒙特卡洛方法部分"><span class="nav-number">1.</span> <span class="nav-text">蒙特卡洛方法部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#马尔科夫链部分"><span class="nav-number">2.</span> <span class="nav-text">马尔科夫链部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MCMC采样和M-H采样"><span class="nav-number">3.</span> <span class="nav-text">MCMC采样和M-H采样</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gibbs采样"><span class="nav-number">4.</span> <span class="nav-text">Gibbs采样</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jiangxj</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">211.7k</span>
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/meting@1.1.0/dist/Meting.min.js"></script>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

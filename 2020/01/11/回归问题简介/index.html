@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Ataraxia" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="线性回归、维数灾难、逻辑回归等">
+<meta property="og:type" content="article">
+<meta property="og:title" content="回归问题简介">
+<meta property="og:url" content="https://jiangxjun.github.io/blog/2020/01/11/回归问题简介/index.html">
+<meta property="og:site_name" content="Ataraxia">
+<meta property="og:description" content="线性回归、维数灾难、逻辑回归等">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/01/11/回归问题简介/1.jfif">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/01/11/回归问题简介/2.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/01/11/回归问题简介/3.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/01/11/回归问题简介/6.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/01/11/回归问题简介/7.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/01/11/回归问题简介/8.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/01/11/回归问题简介/9.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/01/11/回归问题简介/4.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/01/11/回归问题简介/5.png">
+<meta property="og:updated_time" content="2020-06-18T01:49:19.594Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="回归问题简介">
+<meta name="twitter:description" content="线性回归、维数灾难、逻辑回归等">
+<meta name="twitter:image" content="https://jiangxjun.github.io/2020/01/11/回归问题简介/1.jfif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiangxjun.github.io/blog/2020/01/11/回归问题简介/">
+
+
+
+
+
+  <title>回归问题简介 | Ataraxia</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ataraxia</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Hi, I'm Jiang.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.js"></script> </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jiangxjun.github.io/blog/2020/01/11/回归问题简介/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jiangxj">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ataraxia">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">回归问题简介</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-01-11T00:00:00+08:00">
+                2020-01-11
+              </time>
+            
+			
+			
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  2.3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+              <div class="post-description">
+                  线性回归、维数灾难、逻辑回归等
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h2><p>假设函数：$h_{\theta}(x) = \theta_0x_0+ \theta_1 x_1 + \dots + \theta_n x_n$</p>
+<p>损失函数：$J(\theta) = \frac{1}{2m}\sum\limits_{i=1}^m\left(h_{\theta}(x^{(i)})-y^{(i)}\right)^2$</p>
+<p>目标函数：$\min J(\theta_0,\theta_1,\dots,\theta_n)$</p>
+<p>线性回归中可能遇到的问题：</p>
+<ul>
+<li>求解损失函数的最小值的两种方法：梯度下降法和正规方程。</li>
+<li>特征缩放：对特征数据进行归一化操作，一是能够提升模型的收敛速度，二是能提升模型精度。</li>
+<li>学习率$\alpha$的选取：过小，导致迭代次数变多，收敛速度变慢；过大，可能会跳过最优解，最终导致无法收敛。</li>
+</ul>
+<p>过拟合问题：</p>
+<img src="/2020/01/11/回归问题简介/1.jfif" title="过拟合问题形式化图解">
+<p>解决方法：1）丢弃一些对最终预测影响不大的特征，可以通过PCA算法实现。</p>
+<p>​                    2）使用正则化，保留所有特征，但是减少特征前面的参数$\theta$的大小，具体即修改线性回归中的损失函数形式。岭回归和Lasso回归即如此。</p>
+<h2 id="岭回归和Lasso回归"><a href="#岭回归和Lasso回归" class="headerlink" title="岭回归和Lasso回归"></a>岭回归和Lasso回归</h2><p>是为了解决线性回归出现的过拟合问题以及在通过正规方程求解$\theta$过程中出现的X转置乘以X转置不可逆这两类问题。</p>
+<p>这两种回归均通过在损失函数中引入正则化项来达到目的。</p>
+<p>线性回归损失函数：$J(\theta) = \frac{1}{2m}\sum\limits_{i=1}^m\left(h_{\theta}(x^{(i)})-y^{(i)}\right)^2$</p>
+<p>岭回归损失函数：$J(\theta) = \frac{1}{2m}\sum\limits_{i=1}^m\left(h_{\theta}(x^{(i)})-y^{(i)}\right)^2 + \lambda\sum\limits_{j=1}^n \theta_j^2$</p>
+<p>Lasso回归损失函数：$J(\theta) = \frac{1}{2m}\sum\limits_{i=1}^m\left(h_{\theta}(x^{(i)})-y^{(i)}\right)^2 + \lambda \sum\limits_{j=1}^n|\theta_j|$</p>
+<p>其中$\lambda$是正则化参数，过大，会使得所有参数$\theta$均最小化，造成欠拟合；过小，会导致对过拟合处理不当。</p>
+<p>两者主要区别：</p>
+<p>岭回归引入的是L2范数惩罚项，Lasso回归引入的是L1范数惩罚项，Lasso回归能够使得损失函数中许多的$\theta$均变为0，岭回归要求所有的$\theta$均存在，    Lasso回归的计算量要远远小于岭回归。</p>
+<img src="/2020/01/11/回归问题简介/2.png" title="Ridge岭回归">
+<img src="/2020/01/11/回归问题简介/3.png" title="Lasso回归">
+<p>数学描述：</p>
+<img src="/2020/01/11/回归问题简介/6.png" title="数学描述">
+<p>惩罚方法：</p>
+<img src="/2020/01/11/回归问题简介/7.png" title="惩罚方法">
+<p>Lasso方法：</p>
+<img src="/2020/01/11/回归问题简介/8.png" title="Lasso方法">
+<p>Ridge方法：</p>
+<img src="/2020/01/11/回归问题简介/9.png" title="Ridge方法">
+<p>图像比较：</p>
+<img src="/2020/01/11/回归问题简介/4.png" title="图像比较">
+<p>以二维数据为例，左图对应Lasso方法，右图对应Ridge方法，红色部分代表随着$\lambda$的变化所得到的残差平方和。$\hat{\beta}$为椭圆的中心点，对应普通线性模型的最小二乘估计。</p>
+<p>两图的区别在于蓝色区域（约束域），等高线和约束域的切点就是目标函数的最优解，Ridge方法对应的约束域是圆，切点只会存在于圆周上，不会和坐标轴相切，在任一维度上的取值都不会为0，因此没有稀疏。</p>
+<p>Lasso方法，约束域是正方形，会存在与坐标轴的切点，使得部分维度特征权重为0，容易产生稀疏的结果。</p>
+<p>对比可知，Lasso方法可以达到变量选择的效果，</p>
+<h2 id="维数灾难"><a href="#维数灾难" class="headerlink" title="维数灾难"></a>维数灾难</h2><p>高维数据：数据维度远大于样本量的个数。</p>
+<p><strong>维数灾难的特征</strong></p>
+<p>在空间中数据是非常稀疏的，与空间的维数相比样本量总是显得非常少</p>
+<p>随着维数的增长，分析所需要的空间样本数会呈指数增长</p>
+<p>在高维数据空间，预测将变得不再容易</p>
+<p>导致模型过拟合。</p>
+<img src="/2020/01/11/回归问题简介/5.png" title="维数灾难特征">
+<p>curse of dimensionality，“维数灾难”，分类器的性能随着特征的个数的变化不断的增加，过了某个值后，性能不升反降。</p>
+<p>特征数量越多，训练样本会越稀疏，分类器的参数估计越不准确，更加容易出现过拟合问题；“维数灾难”的另一个影响是训练样本的稀疏性并不是均匀分布的，处于中心位置的训练样本比四周的训练样本更加稀疏。</p>
+<p>在高维特征空间内，大多数的训练样本位于超立方体的角落里。</p>
+<p>在高维特征空间内，对于样本距离的度量失去意义，由于分类器的性能基本依赖于如Euclidean距离、Manhattan距离等，所以在特征数量过大时，分类器性能降低。</p>
+<p><strong>维数灾难的解决办法</strong></p>
+<p>理论上，如果训练样本数足够大，不会出现维数灾难，可以采用任意多的特征来训练分类器。</p>
+<p>对于一些泛化能力不是很好的分类器，如Neural network ,knn,decision tree等，不应该采用过多的特征，这些需要精确的非线性决策边界。</p>
+<p>对于一些泛化能力较好的分类器，如naive bayes,linear classifier等，可以适当增加特征的数量。</p>
+<p>给定N个特征，从中选出M个最优的特征，有很多特征选择算法来帮助确定特征数量以及选择特征，有很多特征提取算法，如PCA等，交叉验证（cross-validation）也长被用于检测和避免过拟合问题。</p>
+<p><a href="https://www.linuxidc.com/Linux/2016-01/127857.htm" target="_blank" rel="noopener">机器学习中的维数灾难问题</a></p>
+<p><strong>数据降维</strong></p>
+<p>维数灾难带来的过拟合问题，解决思路：1）增加样本量；2）减少样本特征。</p>
+<p>主成分分析是保留所有原变量的基础上，通过原变量的线性组合得到主成分，选取少数主成分就可保留原变量的绝大部分信息，这样用几个主成分来代替原变量，从而达到降维的目的。</p>
+<p>主成分只适用于数据空间维度小于样本量的情况，当数据空间维度很高时，不再使用。</p>
+<h2 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h2><p>logistic regression（LR）主要用于解决分类问题，逻辑回归是一个非线性模型，sigmoid函数，又称为逻辑回归函数，但是本质上是一个线性回归模型，因为除去sigmoid映射函数关系，其他的步骤，算法都是线性回归。</p>
+<p>逻辑回归首先把样本映射到[0,1]之间的数值（归功于sigmoid，可以把任何连续的值映射到[0,1]之间，数越大越趋向于0，越小越趋近于1。）</p>
+<p>sigmoid函数为：$g(z)= \frac{1}{1+e^{-z}}$</p>
+<p>判定边界：对多元线性回归方程求sigmoid函数。$h_{\theta}(x)= g(\theta_0+\theta_1x_1+ \dots + \theta_n x_n)$找到一组θ，把样本分为两类，得到判定边界。</p>
+<p><strong>逻辑回归的损失函数</strong><br>$$<br>Cost(h_{\theta}(x),y) = \cases{-\log(h_{\theta}(x)), y=1 \ -\log(1-h_{\theta}(x)), y=0    }<br>$$<br>其中$h(x)$是一个概率值，$y=1$表示正样本，$y=0$表示负样本。当为正样本时，如果给定的概率特别小（预测为负样本），损失会很大；给定的概率很大（预测为正样本），损失会接近0。</p>
+<p><strong>正则化</strong></p>
+<p>使用正则化来避免过拟合，在经验风险最小化的基础上（训练误差最小化），尽可能采用简单的模型，可以有效提高泛化预测精度，如果模型过于复杂，变量值稍微有点变动，就会引起预测精度问题。</p>
+<p>正则化降低了特征的权重，使得模型更为简单，一般采用L1范式或者L2范式，形式分别为$\Phi(\omega) = ||x||_1$和$\Phi(x) = ||x||_2$。</p>
+<p>带L2正则项的损失函数为：<br>$$<br>J(\theta) = \left[-\frac{1}{m} \sum\limits_{i=1}^{m} y^{(i)} \log (h_{\theta}(x^{(i)})) + (1-y^{(i)}) \log (1-h_{\theta}(x^{(i)}))    \right] +\frac{\lambda}{m} \sum\limits_{j=1}^n \theta_j^2<br>$$</p>
+<p>给loss function加上正则项，能够使得优化目标函数$h = f + ||\omega||$，需要在两者之间做一个平衡，通过降低模型的复杂度，得到更小的泛化误差，降低过拟合程度。</p>
+<p>L1正则化是在loss function后边加正则项为L1范数，容易得到稀疏解（0比较多）。L2正则项所加的为L2范数的平方，加上L2正则项相比于L1，得到解比较平滑（不是稀疏），但是同样能够保证解接近于0（但不等于0，所以相对平滑）的维度比较多，降低模型的复杂度。</p>
+<p><a href="https://zhuanlan.zhihu.com/p/74874291" target="_blank" rel="noopener">逻辑回归</a></p>
+<p><strong>样本处理</strong></p>
+<p>如果样本太大，离散化后用one-hot编码处理成0，1值，再用LR处理会较快收敛，如果一定用连续值，可以scaling。</p>
+<p>如果样本不均衡，样本充足的情况下可以做 下采样——抽样。样本不足的情况下做 上采样——对样本少的及做重复。修改损失函数，给不同的权重。</p>
+<p><strong>特征处理</strong></p>
+<p>离散化优点：映射到高维空间，用linear的LR（快，且兼具更好的分割性）</p>
+<p>稀疏性：0，1向量内积乘法运算速度快，计算结果方便存储，容易扩展</p>
+<p>离散化后，给线性模型带来一定的非线性，模型稳定性，收敛性高，鲁棒性好，在一定程度上降低了过拟合风险。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/18/机器学习课程笔记_科大/" rel="next" title="机器学习笔记_科大">
+                <i class="fa fa-chevron-left"></i> 机器学习笔记_科大
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/21/马尔科夫随机场/" rel="prev" title="马尔科夫随机场原理简介">
+                马尔科夫随机场原理简介 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+    <!--MOB SHARE BEGIN-->
+                                <div class="-mob-share-ui-button -mob-share-open">分享</div>
+                                <div class="-mob-share-ui -mob-share-ui-theme -mob-share-ui-theme-slide-left" style="display: none">
+                                    <ul class="-mob-share-list">
+                                        <li class="-mob-share-weibo"><p>新浪微博</p></li>
+                                       
+                                        <li class="-mob-share-qzone"><p>QQ空间</p></li>
+                                        <li class="-mob-share-qq"><p>QQ好友</p></li>
+                                        <li class="-mob-share-weixin"><p>微信</p></li>
+                                        <li class="-mob-share-douban"><p>豆瓣</p></li>
+                                   
+                                        <li class="-mob-share-facebook"><p>Facebook</p></li>
+                                        <li class="-mob-share-twitter"><p>Twitter</p></li>
+                                       
+                                    </ul>
+                                    <div class="-mob-share-close">取消</div>
+                                </div>
+                                <div class="-mob-share-ui-bg"></div>
+                                <script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=2aeca9171540c"></script>
+                                <!--MOB SHARE END-->
+
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="jiangxj">
+            
+              <p class="site-author-name" itemprop="name">jiangxj</p>
+              <p class="site-description motion-element" itemprop="description">岁月对坐，落子无悔</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jiangxjun" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:jiangxj0530@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.linkedin.com/in/xuejun-j-8b04a0180/" target="_blank" title="LinkedIn">
+                      
+                        <i class="fa fa-fw fa-linkedin"></i>LinkedIn</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/wan-si-qing-qian/activities" target="_blank" title="Zhihu">
+                      
+                        <i class="fa fa-fw fa-heart-o"></i>Zhihu</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                link
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.biglong.top/" title="yanglong" target="_blank">yanglong</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://redstonewill.com/" title="RedStone" target="_blank">RedStone</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+		  
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="360" height="86" src="//music.163.com/outchain/player?type=2&id=419877515&auto=0&height=66"></iframe>
+		  
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#线性回归"><span class="nav-number">1.</span> <span class="nav-text">线性回归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#岭回归和Lasso回归"><span class="nav-number">2.</span> <span class="nav-text">岭回归和Lasso回归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#维数灾难"><span class="nav-number">3.</span> <span class="nav-text">维数灾难</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑回归"><span class="nav-number">4.</span> <span class="nav-text">逻辑回归</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jiangxj</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">211.7k</span>
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/meting@1.1.0/dist/Meting.min.js"></script>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

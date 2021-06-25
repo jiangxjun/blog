@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Ataraxia" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="马尔科夫性随机场">
+<meta property="og:type" content="article">
+<meta property="og:title" content="马尔科夫随机场原理简介">
+<meta property="og:url" content="https://jiangxjun.github.io/blog/2020/03/21/马尔科夫随机场/index.html">
+<meta property="og:site_name" content="Ataraxia">
+<meta property="og:description" content="马尔科夫性随机场">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/03/21/马尔科夫随机场/img.jpg">
+<meta property="og:updated_time" content="2020-06-18T02:45:12.449Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="马尔科夫随机场原理简介">
+<meta name="twitter:description" content="马尔科夫性随机场">
+<meta name="twitter:image" content="https://jiangxjun.github.io/2020/03/21/马尔科夫随机场/img.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiangxjun.github.io/blog/2020/03/21/马尔科夫随机场/">
+
+
+
+
+
+  <title>马尔科夫随机场原理简介 | Ataraxia</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ataraxia</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Hi, I'm Jiang.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.js"></script> </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jiangxjun.github.io/blog/2020/03/21/马尔科夫随机场/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jiangxj">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ataraxia">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">马尔科夫随机场原理简介</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-21T00:00:00+08:00">
+                2020-03-21
+              </time>
+            
+			
+			
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  3.7k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  14
+                </span>
+              
+            </div>
+          
+
+          
+              <div class="post-description">
+                  马尔科夫性随机场
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在机器视觉领域，一个图像分析问题通常被定义为建模问题，图像分析的过程就是从计算的观点求解模型的过程。一个模型除了可以表示成图像的形式外，通常使用一个<strong>目标函数</strong>来表示，建模的过程就是定义目标函数的过程，模型的求解过程就是利用各种优化工具或者知识来求解目标函数的过程。使用各种优化工具是因为处理过程中存在各种各样的不确定性，使用优化工具可以比较客观真实的模拟模型解。</p>
+<p>在解释视觉信息式，contextual constraints（<strong>上下文约束</strong>）是必须的，可以从图像中的像素的空间和视觉上下文来理解场景；也可可以利用low-level来制作feature描述物体，再利用feature的上下文语义识别物体；高层特征可以通过对底层特征的抽象得到，底层特征可以通过图像中像素间最基本的位置关系得到。</p>
+<p>马尔科夫随机场(Markov Random Field，MRF)理论提供了一个方便且具有一致性的建模方法，不管是上下文依赖关系的实体（如图像像素），还是具有内在联系的feature，MRF都可以实现。</p>
+<h2 id="图像分析中的labeling问题"><a href="#图像分析中的labeling问题" class="headerlink" title="图像分析中的labeling问题"></a>图像分析中的labeling问题</h2><h3 id="labeling-problem"><a href="#labeling-problem" class="headerlink" title="labeling problem"></a>labeling problem</h3><p>labeling问题是机器视觉和图像分析领域的基本问题。图像分割，目标识别等问题都可以看成是labeling问题的延伸，labeling问题就是将一组标签(label)赋给图像中的每个像素。</p>
+<p>令$L$代表所有的标签集合(label set)，$S$代表需要被赋予标签的元素的集合，如一张图像。当需要进行边缘检测时，问题转化为从$L = \{\rm{edge,nonedge}\}$中选择一个标签赋予$S$中的任意一个元素$s$，其中$s$可以看看成是图像中的某个像素。</p>
+<p>这样得到由$S$中所有像素$s$的标签构成的集合$f = \{f_1,\dots,f_n\}$，$n$为$S$中的像素个数。$f$的取值生成过程，可以看做是一个函数在离散定义域$S$上的求值过程：$f: S \rightarrow L$，即是一个映射(mapping)过程。</p>
+<p>作为随机场的术语，labeling也被称为“configuration（配置，结构）”。</p>
+<h3 id="使用contextual-constraints进行labeling"><a href="#使用contextual-constraints进行labeling" class="headerlink" title="使用contextual constraints进行labeling"></a>使用contextual constraints进行labeling</h3><p>contextual constraints常被用来建模成条件概率，比如$P(f_i | f_i’)$，$f_i’$代表$i’$位置的label。因为局部信息更容易被直接观察到，可以使用局部属性(local properties)来做全局推理。</p>
+<p>当所有的label都相互独立时，全局label的联合概率可以写成：<br>$$<br>P(f) = P(f_1) \dots P(f_n)<br>$$<br>这样一个全局的labeling问题$f$可以通过局部的labeling$f_i$来计算得到，这是contextual constraints优势。</p>
+<h3 id="基于优化的方法"><a href="#基于优化的方法" class="headerlink" title="基于优化的方法"></a>基于优化的方法</h3><p>优化（optimization）能处理成像和视觉领域内众多的不确定性，一个问题可以表述为一些指标的优化过程。</p>
+<p>优化可以隐式执行，如Hough transform常用来检测直线和曲线，是通过检测累积函数的峰值；模板匹配(template matching)将问题转化为最大化似然概率；边缘检测还被定义为使用一些简单算子，如Gaussian算子。Sobel算子等。</p>
+<p>传感器成像和传输信号时，出现的不确定的噪声和干扰，利用优化模型可以解决这个问题。</p>
+<p>优化包括三件事：<strong>问题表述、目标函数和优化算法</strong>。</p>
+<p>问题表述：包括描述和形式化计算。描述重点在于如何表述(represent)图像的特征和物体形状；形式化计算主要关注解决方案，和S，L的选择有关。</p>
+<p>目标函数：将解决方案映射到实际计算空间，并且可以衡量解决方案的损益。</p>
+<p>优化目标：在问题空间寻找优化的解决方案，（1）局部极小值存在于非凸函数的问题；（2）算法的空间复杂度和时间复杂度。</p>
+<h3 id="能量函数"><a href="#能量函数" class="headerlink" title="能量函数"></a>能量函数</h3><p>作为解决方案的全局质量评价的衡量标准；作为一个最小化的解决方案的搜索过程的guide。</p>
+<p>能量函数通常期望是一个最小又最全局的解决方案。这样设计能量函数的应朝着简单小巧方向。</p>
+<p>鉴别两种不同类的问题，调试模型，如一个优化程序的输出不是期望，可能有两个原因：（1）目标函数不正确；（2）局部最小化时出错。</p>
+<p>在实空间最小化时，如果能量函数是平滑的凸函数，全局最小化等价为局部极小能量函数的梯度。非凸，没有通用的方法获得有效解。</p>
+<p>在模式识别领域，能量函数大致有两种形式：<strong>参数和非参数</strong>。</p>
+<p>参数形式：基础分部的类型是已知的，并且分布的参数是有限固定，参数设定，能量函数的形式可以公式化描述。</p>
+<p>非参数形式：分布树（distribution tree）方法，分布未知。分布要么根据数据估计，要么根据预先设定的具有若干未知参数的基函数估计得到。</p>
+<p>因此，能量函数两个重要要素是：形式和参数。形式依赖于解$f$和观察数据$d$，记作$E(f|d)$，参数集合记作$\theta$，能量函数可以写成$E(f|d,\theta)$。</p>
+<p>目标解记作$f^<em>$，当参数作为能量函数定义的一部分时，目标解的求解过程看成是$f^</em> = \arg \min  E(f|d)$，当参数不确定时，这个形式不完整。<strong>这些参数应当提前被设定或者在计算过程中能够通过某些方法估计</strong>。</p>
+<h3 id="目标函数的形式化表述"><a href="#目标函数的形式化表述" class="headerlink" title="目标函数的形式化表述"></a>目标函数的形式化表述</h3><p>成像系统的不确定性，当有关数据的一些分布知道，但是先验知识不知道时，可以使用$\rm{maximum  likehood}$（ML，最大似然）准则。$f^* = \arg \max  P(d|f)$。</p>
+<p>若只有先验知识，则$\rm{maximun  entropy}$（最大熵）更适合：<br>$$<br>f^* = \arg \max P(d|f) - \sum\limits_{i=1}^{m} P(f_i) \ln P(f_i)<br>$$<br>最大熵的准则是：熵越大，可能性越大。</p>
+<p>当先验知识和似然分布都已知时，可以通过贝叶斯准则来获得最好的结果。</p>
+<h3 id="Bayes估计"><a href="#Bayes估计" class="headerlink" title="Bayes估计"></a>Bayes估计</h3><p>通常使用最小化风险的方法来获得优化估计，目标解$f^<em>$的贝叶斯风险(Bayes risk)可以定义为：<br>$$<br>R(f^</em>) = \int_\left\{f \in \mathbb{F}\right\} C(f^<em> ,f)P(f|d)df<br>$$<br>$d$是观测数据，$C(f^</em>,f)$是代价函数，$p(f|d)$是后验分布。</p>
+<p>首先需要根据先验知识和似然分布计算后验分布，用到贝叶斯定理：$P(f|d) = \frac{p(d|f)P(f)}{p(d)}$，其中$P(f)$是labeling f的先验概率，$p(d|f)$是观测数据$d$的条件概率密度函数(PDF)，也称为$f$对$d$的似然函数；$p(d)$是$d$的密度，给定$d$，则是一个常量。</p>
+<p>代价函数$C(f^<em>,f)$决定了当truth是$f^</em>$时估计$f$的代价，$C$可以使用$f^<em>$和$f$之间的距离作为度量：<br>$$<br>C(f^</em>,f) =||f^<em> - f|| ^2<br>$$<br>通常，可以使用$\delta$作为阈值，如果$||f^</em> -f|| &lt; \delta$，则$C(f^<em>,f) = 0$；反之，等于1。这样，贝叶斯风险可以记作：<br>$$<br>R(f^</em>) = 1-\int_{f:||f^<em> -f|| \le \delta} P(f|d) df<br>$$<br>因此，最小化上式等价于：<br>$$<br>f^</em> = \arg \max  P(f|d)<br>$$<br>即，最大化后验概率（MAP）估计。由于$p(d)$在$d$是固定时是常量，因此$P(f|d)$正比于联合概率分布P(f,d)。最终MAP公式化描述可以写成：<br>$$<br>f^<em> = \arg \max_\left\{f \in \mathbb{F}\right\} \left\{  p(d|f) </em>P(f) \right\}<br>$$</p>
+<h3 id="MAP-MRF-labeling"><a href="#MAP-MRF-labeling" class="headerlink" title="MAP-MRF labeling"></a>MAP-MRF labeling</h3><p>在MAP-MRF标记问题中，$P(f|d)$是MRF的后验分布，$f$一个典型的先验分布可以写成：<br>$$<br>P(f) = \frac{1}{Z} e ^{-U(f)}<br>$$<br>其中，$U(f) = \sum\limits_i \sum\limits_\left\{i’ \in \{i-1,i+1\}\right\} (f_i - f_{i’})^2 $ 是能量函数的先验。</p>
+<p>假设观测值还需要加上一个高斯噪声，$d_i = f_i + e_i$,$e_i \sim     \mathcal{N}(\mu,\sigma^2)$。<br>$$<br>p(d|f) = \frac{1}{\prod_{i=1}^{m} \sqrt\{2\pi\sigma^2}\} e^{-U(d|f)}<br>$$</p>
+<p>$$<br>U(d|f) = \sum\limits_{i=1}^m (f_i - d_i)^2 /2\sigma^2 是先验能量<br>$$</p>
+<p>后验概率可记作：<br>$$<br>P(f|d)  \propto e^{-U(f|d)}<br>$$</p>
+<p>$$<br>U(f|d) =U(d|f) + U(f) = \sum\limits_{i=1}^m (f_i -d_i)^2/2\sigma_i^2 + \sum\limits_{i=1}^m(f_i - f_{i-1})^2是后验能量<br>$$</p>
+<p>这样，MAP估计等价为寻找最小的后延能量函数：$f^*= \arg \min  U(f|d) $。这里只需要一个参数估计$\sigma_i$。当参数确定，$U(f|d)$确定，MAP-MRF的解确定。</p>
+<p>MAP-MRF方法解决机器视觉问题的主要步骤如下：</p>
+<p>   \1. 将视觉问题转换为labeling的问题，并确定是属于LP1-LP4中的哪一种，然后选择正确的MRF表示f。</p>
+<p>   \2. 定义MAP解的后验能量函数。</p>
+<p>   \3. 寻找MAP解。</p>
+<h2 id="MRF"><a href="#MRF" class="headerlink" title="MRF"></a>MRF</h2><h3 id="领域系统"><a href="#领域系统" class="headerlink" title="领域系统"></a>领域系统</h3><p>把一幅图像看作是PGM模型，图像中的每一个像素代表模型的顶点，PGM模型中的顶点之间的边的表示：领域系就是针对这种相邻位之间的概率依赖而设计的。</p>
+<p><strong>马尔科夫性</strong>是指一个事件当前的状态只与它直接的原因(cause)有关，而与其他事件无关。转移到随机场(Random Field)中，利用领域系统可以分析空间上的马尔科夫性。</p>
+<p>即：一个像素点的特性，更可能与它周围的像素的影响，与它距离越远的像素，对它的特性影响越小。</p>
+<p>领域系统建模，定义了图像中的一个中心像素，受周围哪些像素(Neighbourhood)影响。中心像素和相邻像素一起构成集合，称为“Cliques”（组团）。</p>
+<img src="/2020/03/21/马尔科夫随机场/img.jpg" title="领域系统模型">
+<p>对于图像$X$中任意像素$x$，$X$的领域系统记作$N$，$N = \{N_x , x \in X\}$，$N_x$代表$x$的相邻像素的集合，同时，相邻的关系还满足如下约束：</p>
+<p>（1）$x$不属于$N_x$</p>
+<p>（2）相邻关系是相互的，即对于像素$x,y$，$y \in N_x,x \in N_y$。</p>
+<p>相邻像素的集合可以定义为：</p>
+<p>$N_x = \{y \in X |dis(x,y) &lt; \tau,y \ne x\}$，$dis(x,y)$通常采用欧式距离。上图紫色代表4领域系统，N1-N7称为8领域系统。图像$X$和领域系统$N$一一对应，$X$包含所有的顶点，$N$根据相邻关系决定顶点的连线。</p>
+<p>“Clique”是与x有关的属于X的一个子集，更多的分析的是Nx里的几种依赖关系：（1）单点，x；（2）成对点，x和y，比如x和N1；（3）三相邻点组：x，y，z，例如x，N1，N2。一般来说这三种情况形成的集合被记作C1，C2，C3：<br>       $C_1={x | x∈X}；$<br>        $C_2=\{(x , y)|y∈N_x, x∈X\}；$<br>        $C3=\{(x , y , z)|x,y,z∈X,并且三者互相邻近\}$。并且，由于x的邻域与y的邻域不完全相等，因此${x,y}$与${y,x}$不等价，以此类推。<br>        综上所述，对于$(X , N)$的所有Clique为：<br>       $C=C1 \cup C2 \cup C3…..$</p>
+<h3 id="MRF定义"><a href="#MRF定义" class="headerlink" title="MRF定义"></a>MRF定义</h3><p>令$F = \{F_1 ,\dots,F_m\}$是一组定义在集合$S$上的随机变量，其中$F_i$代表在标签集L上的一个取值$f_i$，$F_i = f_i$代表取值为$f_i$的事件。</p>
+<p>$(F_1 = f_1,\dots,F_m = f_m)$代表联合事件(joint event)。假设$f = \{f_1,\dots,f_m\}$，即$F =f$。</p>
+<p>对于离散的标签集合L，$F_i = f_i$的概率记作$P(F_i =f_i)$，简称$P(f_i)$；联合事件的概率记作$P(f)$。对于连续的标签集合L，知道条件概率密度函数PDF   $p(F_i = f_i)$和$p(F=f)$。</p>
+<p>对于一个领域系统$N$,如果满足一下两条性质：</p>
+<p>（1）$P(f) &gt; 0$，对任意的$f$。（非负性）</p>
+<p>（2）$P(f_i| f_{s-[i]}) = P(f_i | f_{N_i})$。（马尔科夫性）</p>
+<p>这样称$F$是一个马尔科夫随机场。</p>
+<p>其中，$s-{[i]}$表示除$i$之外的所有点。$f_{s-[i]}$表示$s-[i]$的所有点的标签集合，$f_{N_i} = \{f_{i’} |i’ \in N_i\}$表示点$i$的领域的点的标签集合。</p>
+<p>在利用MRF建模解决实际问题时，往往使用多个MRF，如在边缘检测时，一般会用两个MRF模型，一个对像素建模，一个对边缘建模。</p>
+<h2 id="GRF"><a href="#GRF" class="headerlink" title="GRF"></a>GRF</h2><p>Gibbs Distribution是一个概率分布，公式化定义为：<br>$$<br>P(f) = Z^{-1} \times e^{-\frac{1}{T} U(f)} \ Z = \sum\limits_{ f \in F} e^{-\frac{1}{T} U(f)}是一个归一化常数，称为配分函数(\rm{partition  function})<br>$$<br>$T$一般取值为1。</p>
+<p>$U(f)$是能量函数，等于所有可能的Clique的集合C的潜在能量的和，这个潜在能量的大小根据具体设定有所不同。是MRF的核心。</p>
+<p>两个label之间的上下文约束（Contextual constraints）可以算作是传递上下文信息的最低阶约束。这种约束，形式简单且计算量小。这种约束可以变成Gibbs的能量函数，一般被叫做“pair-site clique potentials”。之所以叫做这个名字，是因为：（1）这种约束的主要对象有两个；（2）对两个对象建模符合PGM对关系建模的思想；（3）以能量表示两个对象之间的关系，适用于GRF。</p>
+<h2 id="CRF"><a href="#CRF" class="headerlink" title="CRF"></a>CRF</h2><p>MRF的核心思想：针对标签集合F中的任意元素$f_i$，其满足马尔科夫性$P(f_i| f_{s-[i]}) = P(f_i | f_{N_i})$，即$f_i$只和其领域系统的取值有关。</p>
+<p>CRF核心思想：不仅考虑马尔科夫性，同时将抽象信息作为一个观察层，对于观察数据集合$D$中的任意元素$d$，标签集合$F$中任意元素$f_i$，如果每个$f_i$都满足马尔科夫性：<br>$$<br>P(f_i | d, f_{s-[i]}) = P(f_i |d, f_\left\{\mathcal{N_i}\right\})<br>$$<br>称$F$是一个条件随机场(Conditional Random Fields，CRF)。CRF更多是对后验建模，而不是对先验或者似然建模。根据Gibbs等价性，可以将CRF写成：<br>$$<br>P(f|d) = \frac{1}{Z} \exp \left( -\frac{1}{T} E(f|d)\right)<br>$$</p>
+<p>$$<br>P(f|d) = \frac{1}{Z} \exp \left\{ -\sum\limits_{i \in S}V_1(f_i |d) - \sum\limits_{i \in S}\sum\limits_{i’ \in N_i}V_2(f_i ,f_{i’} |d)           \right\}<br>$$</p>
+<p>CRF和MRF的主要区别：</p>
+<p>（1）对于单点势能(unary potential)，CRF包含所有的观测数据建模，而MRF仅对当前点计算；</p>
+<p>（2）对于成对点势能(pairwise potential)，CRF依旧包含所有点，而MRF仅包含观察数据$d_i$及其领域系统内点$d_{i’}$。</p>
+<h2 id="DRF"><a href="#DRF" class="headerlink" title="DRF"></a>DRF</h2><p>判别随机场(Discriminative Random Fields，DRF)是CRF的延伸，一方面，DRF只用于二维场景，如图像；另一方面，DRF通过局部判别式分类器计算单点势能与成对点势能。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/01/11/回归问题简介/" rel="next" title="回归问题简介">
+                <i class="fa fa-chevron-left"></i> 回归问题简介
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/04/20/python3_教程/" rel="prev" title="python3教程">
+                python3教程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+    <!--MOB SHARE BEGIN-->
+                                <div class="-mob-share-ui-button -mob-share-open">分享</div>
+                                <div class="-mob-share-ui -mob-share-ui-theme -mob-share-ui-theme-slide-left" style="display: none">
+                                    <ul class="-mob-share-list">
+                                        <li class="-mob-share-weibo"><p>新浪微博</p></li>
+                                       
+                                        <li class="-mob-share-qzone"><p>QQ空间</p></li>
+                                        <li class="-mob-share-qq"><p>QQ好友</p></li>
+                                        <li class="-mob-share-weixin"><p>微信</p></li>
+                                        <li class="-mob-share-douban"><p>豆瓣</p></li>
+                                   
+                                        <li class="-mob-share-facebook"><p>Facebook</p></li>
+                                        <li class="-mob-share-twitter"><p>Twitter</p></li>
+                                       
+                                    </ul>
+                                    <div class="-mob-share-close">取消</div>
+                                </div>
+                                <div class="-mob-share-ui-bg"></div>
+                                <script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=2aeca9171540c"></script>
+                                <!--MOB SHARE END-->
+
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="jiangxj">
+            
+              <p class="site-author-name" itemprop="name">jiangxj</p>
+              <p class="site-description motion-element" itemprop="description">岁月对坐，落子无悔</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jiangxjun" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:jiangxj0530@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.linkedin.com/in/xuejun-j-8b04a0180/" target="_blank" title="LinkedIn">
+                      
+                        <i class="fa fa-fw fa-linkedin"></i>LinkedIn</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/wan-si-qing-qian/activities" target="_blank" title="Zhihu">
+                      
+                        <i class="fa fa-fw fa-heart-o"></i>Zhihu</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                link
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.biglong.top/" title="yanglong" target="_blank">yanglong</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://redstonewill.com/" title="RedStone" target="_blank">RedStone</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+		  
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="360" height="86" src="//music.163.com/outchain/player?type=2&id=419877515&auto=0&height=66"></iframe>
+		  
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#图像分析中的labeling问题"><span class="nav-number">1.</span> <span class="nav-text">图像分析中的labeling问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#labeling-problem"><span class="nav-number">1.1.</span> <span class="nav-text">labeling problem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用contextual-constraints进行labeling"><span class="nav-number">1.2.</span> <span class="nav-text">使用contextual constraints进行labeling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于优化的方法"><span class="nav-number">1.3.</span> <span class="nav-text">基于优化的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#能量函数"><span class="nav-number">1.4.</span> <span class="nav-text">能量函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目标函数的形式化表述"><span class="nav-number">1.5.</span> <span class="nav-text">目标函数的形式化表述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bayes估计"><span class="nav-number">1.6.</span> <span class="nav-text">Bayes估计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MAP-MRF-labeling"><span class="nav-number">1.7.</span> <span class="nav-text">MAP-MRF labeling</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MRF"><span class="nav-number">2.</span> <span class="nav-text">MRF</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#领域系统"><span class="nav-number">2.1.</span> <span class="nav-text">领域系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MRF定义"><span class="nav-number">2.2.</span> <span class="nav-text">MRF定义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GRF"><span class="nav-number">3.</span> <span class="nav-text">GRF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CRF"><span class="nav-number">4.</span> <span class="nav-text">CRF</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DRF"><span class="nav-number">5.</span> <span class="nav-text">DRF</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jiangxj</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">211.7k</span>
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/meting@1.1.0/dist/Meting.min.js"></script>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

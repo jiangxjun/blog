@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Ataraxia" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="概率图模型原理简介">
+<meta property="og:type" content="article">
+<meta property="og:title" content="概率图模型">
+<meta property="og:url" content="https://jiangxjun.github.io/blog/2020/05/12/概率图模型/index.html">
+<meta property="og:site_name" content="Ataraxia">
+<meta property="og:description" content="概率图模型原理简介">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://jiangxjun.github.io/blog/2020/05/12/概率图模型/1.jfif">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/12/概率图模型/1.jfif">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/12/概率图模型/2.jfif">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/12/概率图模型/3.gif">
+<meta property="og:updated_time" content="2020-06-18T01:52:03.377Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="概率图模型">
+<meta name="twitter:description" content="概率图模型原理简介">
+<meta name="twitter:image" content="https://jiangxjun.github.io/blog/2020/05/12/概率图模型/1.jfif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiangxjun.github.io/blog/2020/05/12/概率图模型/">
+
+
+
+
+
+  <title>概率图模型 | Ataraxia</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ataraxia</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Hi, I'm Jiang.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.js"></script> </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jiangxjun.github.io/blog/2020/05/12/概率图模型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jiangxj">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ataraxia">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">概率图模型</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-12T00:00:00+08:00">
+                2020-05-12
+              </time>
+            
+			
+			
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  3.9k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  13
+                </span>
+              
+            </div>
+          
+
+          
+              <div class="post-description">
+                  概率图模型原理简介
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="概率图模型"><a href="#概率图模型" class="headerlink" title="概率图模型"></a>概率图模型</h2><p>概率图模型(graphical model)是概率论和图论之间的桥梁，概率图模型的基本想法来自模块的概念，即一个复杂的系统是由简单的部分所联合而成，概率部分告诉我们哪些部分是耦合在一起的，然后提供推断模型的方法，图论的作用是给出一个直观的认识，把拥有相互关系的变量看成是数据结构，从而导出一般化的方法来解决问题。</p>
+<p>概率图模型刻画模型的随机变量在变量层面的依赖关系，反映问题的概率结构以及推理的难易程度，为推理算法提供可操作的数据结构。概率图模型的表示方法常用的有贝叶斯网络、马尔科夫网络、因子图等。</p>
+<p>在概率图模型中，点代表随机变量，点与点之间边的存在与否代表点与点之间存在条件依赖，点与边的组合描绘了联合概率分布的特征结构。假设有$N$个二元随机变量，在没有任何信息的帮助下，联合分布$P(X_1,\dots,X_N)$，需要$O(2^N)$个参数。而通过概率图描绘点与点之间的条件关系之后，表示联合分布，所需要的参数会减少很多，利于之后模型的推断和学习。</p>
+<p>基本的概率图模型可以分为两类：贝叶斯网络(bayesian network)和马尔科夫随机场(markov random field)。</p>
+<p>贝叶斯网络采用有向无环图(directed acyclic graph)来表示因果关系，马尔科夫随机场采用无向图(undirected graph)来表达变量间的相互作用。无向图多用于物理和图像领域，有向图多用于机器学习。</p>
+<p>贝叶斯网络的每一个节点都对应于一个先验概率分布或者条件概率分布，因此整体的联合分布可以直接分解为所有的单个节点所对应的分布的乘积；马尔科夫场，变量之间没有明确的因果关系，它的联合概率分布通常会表示为一系列的势函数(potential function)的乘积。通常情况下，还需要对这些乘积进行归一化，形成一个有效的概率分布——这给参数估计造成很大的困难。</p>
+<p>在实际使用的模型，很多时候是它们的某种形式的结合，如一个马尔科夫随机场可以整体成为一个更大的贝叶斯网络的节点，或者，多个贝叶斯网络可以通过马尔科夫随机场联系，构建混合模型。</p>
+<p><a href="https://blog.csdn.net/yangliuy/article/details/9335697" target="_blank" rel="noopener">PGM综述-by MIT 林达华博士</a></p>
+<p><a href="http://www.cs.cmu.edu/~epxing/Class/10708-14/lecture.html" target="_blank" rel="noopener">CMU概率图模型课程</a></p>
+<p><a href="https://blog.csdn.net/thither_shore/article/details/52185758" target="_blank" rel="noopener">概率图模型资源分享</a></p>
+<h3 id="PGM概述"><a href="#PGM概述" class="headerlink" title="PGM概述"></a>PGM概述</h3><p><strong>PGM应用场景</strong></p>
+<p>一个是用于医学诊断。医生根据掌握的病人的相当数量的信息、各种测试结果、症状等，推断出病人的病情，不同的治疗方案会有怎样的结果等。</p>
+<p>另一个是图像分割。给图像中的每个像素贴上类别标签。</p>
+<p>这两个问题的共同点是：</p>
+<p>1、都具有大量的我们需要从中推理的变量，在图像分割中，不同的像素或者像素构成的小区域的标签称为superpixels。</p>
+<p>2、不管算法设计如何清晰，但是正确的结果仍然具有不确定性。</p>
+<p><strong>Model是什么</strong></p>
+<p>模型是我们理解世界的形象化表示(Declarative representation)。是理解周围世界的声明或者表达方式，在计算机内，一个模型包括我们对若干变量的理解，如变量的含义、变量之间的交互。</p>
+<p>模型的特性使得我们能够将新的算法加入模型内部，同时加入新的外界知识，比如专家知识是知道模型，通过学习的方法改善模型。</p>
+<p><strong>Probability是什么</strong></p>
+<p>首先解释不确定性(uncertainty)，产生不确定性的原因主要有：</p>
+<p>1、对世界认知状态的不完整</p>
+<p>2、含有噪声的观测(Noisy observation)</p>
+<p>3、模型未能覆盖所有实际现象</p>
+<p>4、固有的随机性</p>
+<p>概率论，通常具有清晰的表达式，强推理模式，可建立的学习方法</p>
+<p><strong>Graphical是什么</strong></p>
+<p>是一种复杂的数据结构，通常包括顶点和连接顶点的边。</p>
+<p><strong>Graphical Models图模型</strong></p>
+<p>基本的概率图模型可以分为两类：贝叶斯网络(bayesian network)【有向无环图】和马尔科夫随机场(markov random field)【无向图】</p>
+<p>顶点表示随机变量，边表示随机变量之间的概率依赖关系。</p>
+<p><strong>分布(Distributions)</strong></p>
+<p>联合分布概率密度函数</p>
+<p>条件概率分布</p>
+<h3 id="PGM模型分类简介"><a href="#PGM模型分类简介" class="headerlink" title="PGM模型分类简介"></a>PGM模型分类简介</h3><h4 id="概率模型"><a href="#概率模型" class="headerlink" title="概率模型"></a>概率模型</h4><p>Probabilistic models常用来描述不同的随机变量之间的关系，主要针对变量或变量间的相互不确定性的概率关系建模。</p>
+<p>1、参数模型：由一堆有限维参数构成的分布集合$\mathcal{P} = \{\mathbb{P} _{\theta} : \theta \in \Theta\}$。$\theta$是参数，$\Theta \subseteq \mathbb{R}^d$是其可行欧几里得子空间。</p>
+<p>2、非参数模型：由一组无限维参数构成的概率分布函数集合，可表示为$\mathcal{P} = \{所有的分布\}$。</p>
+<p>PGM是概率模型的一种，通过利用有向图或者无向图来表示变量之间的概率关系，可以将复杂的概率模型转换为纯粹的代数运算。常见的PGM的分类有：<img src="//jiangxjun.github.io/blog/2020/05/12/概率图模型/1.jfif" alt="1"></p>
+<h4 id="PGM中的factor"><a href="#PGM中的factor" class="headerlink" title="PGM中的factor"></a>PGM中的factor</h4><p>factors影响因子，在PGM模型中，一个factor可以看成是graph中的一个节点，两个factor之间的联系用图的边来表示。</p>
+<p>一个PGM模型最终可以建模为所有factor的联合概率分布，然后根据factor之间的运算规则，可以将联合概率分布转化为可运算的概率分布的乘积。</p>
+<img src="/2020/05/12/概率图模型/1.jfif" title="PGM分类衍生">
+<img src="/2020/05/12/概率图模型/2.jfif" title="PGM概率分布">
+<h4 id="贝叶斯网络"><a href="#贝叶斯网络" class="headerlink" title="贝叶斯网络"></a>贝叶斯网络</h4><p>是一种典型的图模型，它对感兴趣变量(variables of interest)及变量之间的关系(relationship)进行建模。贝叶斯模型和统计技术一起使用，具有如下优势：</p>
+<p>(1)    贝叶斯学习能够方便的处理不完全数据。例如考虑具有相关关系的多个输入变量的分类或回归问题，对标准的监督学习算法而言，变量间的相关性并不是它们处理的关键因素，当这些变量中有某个缺值时，它们的预测结果就会出现很大的偏差。而贝叶斯学习则提供了较为直观的概率关联关系模型。</p>
+<p>(2)    贝叶斯学习能够学习变量间的因果关系。因果关系是数据挖掘中极为重要的模式。原因有二：在数据分析中，因果关系有利于对领域知识的理解；在干扰较多时，便于作出精确的预测。</p>
+<p>(3)    贝叶斯网络与贝叶斯统计相结合能够充分利用领域知识和样本数据的信息。任何从事过实际建模任务的人都会知道先验信息或领域知识在建模方面的重要性，尤其是在样本数据稀疏或数据较难获得的时候，一些商业方面的专家系统完全根据领域专家知识来构建就是一个很好的例证。贝叶斯网络用弧表示变量间的依赖关系，用概率分布表来表示依赖关系的强弱，将先验信息与样本知识有机结合起来。<br>贝叶斯学习理论在数据挖掘中获得了成功的应用。对贝叶斯学习理论研究最大的动力就是它在实际应用中的巨大作用和潜力。目前，贝叶斯学习理论已成功地应用到智能用户接口、信息滤波、车辆自动导航、武器制导、医疗诊断、经济预测和文本分类等诸多领域。</p>
+<p>(4)贝叶斯统计方法可以和贝叶斯网络一起使用，避免了数据过度拟合（the overfiting of data）。</p>
+<p><strong>基本概念</strong></p>
+<p>是有向无环图模型(directed acyclic graphical model)，是一种概率图型模型。通过有向无环图得知一组随机变量$\{X_1,\dots,X_n\}$及其$n$组条件概率分配(conditional probability distributions，CPDs)性质。</p>
+<p>例如，贝叶斯网络可以表示疾病和其相关症状间的概率关系，假若已知某种症状下，贝叶斯网络就可以用来计算各种可能罹患疾病的发生概率。</p>
+<p>一般而言，贝叶斯网络的有向无环图的节点表示随机变量，它们可以是可观察的变量或隐变量，未知参数等连接两个节点的箭头表示之间具有因果关系或是非条件独立。</p>
+<p>节点中变量之间若没有箭头相互连接，称变量彼此之间为条件独立；若以单箭头连接在一起，一个是因(parents)，另一个是果(descendants or children)。</p>
+<p>令$G =(I,E)$表示一个有向无环图(DAG)，其中$I$代表所有节点的集合，$E$代表有向连接线段的集合，令$X = X_i, i \in I$，为其有向无环图中的某一节点$i$代表的随机变量，若节点$X$的联合概率分布可以表示为：<br>$$<br>p(x) = \prod\limits_{i \in I} p(x_i |x_{pa(i)})<br>$$<br>称$X$为相对于一有向无环图$G$的贝叶斯网络，其中$x_{pa(i)}$表示节点$i$的 因</p>
+<p>对任意的随机变量，其联合分布可由各自的局部条件概率分配相乘得出：<br>$$<br>P(X_1 = x_1,\dots, X_n = x_n) = \prod_{i=1}^n P(X_i = x_i | X_{i+1} = x_{i+1},\dots,X_n = x_n)<br>$$<br>对于贝叶斯网络的联合概率而言：<br>$$<br>P(X_1 = x_1,\dots, X_n = x_n) = \prod_{i=1}^n P(X_i = x_i | X_{j} = x_{j},对比每个相对于X_i的 因变量X_j而言)<br>$$<br>主要区别在于<em>在贝叶斯网络中，若已知因变量下，某些节点会与其因变量条件独立，只有与因变量有关的节点才会有条件概率的存在。</em></p>
+<p><strong>独立与分割</strong></p>
+<p>独立：令$X,Y,Z$代表概率事件，如果$X,Y$满足$P(X,Y) = P(X) \times P(Y)$，称相互独立(independent)；如果$P(X,Y,Z)$正比于$\phi_1(X,Z)\times \phi_2(Y,Z)$，称$X,Y$在条件$Z$下独立。</p>
+<p>有向分割(D-Separated)：对于变量集合$Z$中任意一个变量，如果$X,Y$之间没有活动路径，称$X,Y$为有向分割。</p>
+<p><strong>推理(inference)</strong></p>
+<p>贝叶斯网络可以利用变量之间的条件独立对联合分布进行分解，降低参数个数，推理是通过计算回答查询的过程。</p>
+<p>（1）变量消元算法(Variable elimination)</p>
+<p>利用概率分解降低推理的复杂度。</p>
+<p>使用运算局部化。消元过程实质上就是一个边缘化的过程。</p>
+<p>最优消元顺序：最大势搜索，最小缺边搜索。</p>
+<p>（2）团树传播算法</p>
+<p>利用步骤共享来加快推理的算法。团树（clique tree）是一种无向树，其中每一个节点代表一个变量集合，称为团（clique）。团树必须满足变量的连通性，即包含同一变量的所有团所导出的子图必须是连通的。</p>
+<p>基本步骤：</p>
+<blockquote>
+<p>将贝叶斯网络转化为团树</p>
+<p>团树初始化</p>
+<p>在团树中选一个团作为枢纽</p>
+<p>全局概率传播：collect_message;distribute_message</p>
+<p>边缘化，归一化</p>
+</blockquote>
+<p><strong>构建贝叶斯网络</strong></p>
+<p>包括（1）变量的定义；（2）结构学习；（3）参数学习</p>
+<p>包含两个任务：</p>
+<p>一是在领域专家的指导下选取合适的研究问题领域内的变量，同时在有些情况下也需要一定的策略，从专家提供的变量中选择重要因子。</p>
+<p>二是构建出一个有向无环图并给出图中每个结点的分布参数，即每个节点都对应一个条件概率分布表(CPT)。</p>
+<p>一般情况下，有两种不同方式构造贝叶斯网络：</p>
+<p>（1）完整学习：完全由人主观定义网络的结构和参数，有领域专家确定贝叶斯网络的变量，通过专家知识确定贝叶斯网络的结构，并指定分布参数。这样构建的网络，会因为人的知识的有限性，导致出现很大的偏差。</p>
+<p>（2）部分学习：由人主观定义网络的节点变量，然后通过大量的训练数据来学习网络的结构和参数。这完全是一种数据驱动的方法，具有很强的适应性。</p>
+<h3 id="朴素贝叶斯分类器"><a href="#朴素贝叶斯分类器" class="headerlink" title="朴素贝叶斯分类器"></a>朴素贝叶斯分类器</h3><p>朴素贝叶斯分类器(Naive Bayes Classifier)特别适用于输入数据维数较高的情况。</p>
+<img src="/2020/05/12/概率图模型/3.gif" title="朴素贝叶斯分类器">
+<p>先验知识：知道一个球要么是红色要么是绿色。假定红球20，绿球40个</p>
+<p>任务：当有新的输入(new cases)时，给出的新输入的物体的类别（红或绿），即贝叶斯分类器的标签-label。</p>
+<p>图中，绿球的数量明显大于红球，有理由认为，新输入更有可能是绿球。<br>$$<br>\rm{ prior  probability  for  GREEN  = } \frac{ \rm{ number  of  GREEN  objects}}{\rm{Total  number  of  objects}} = \frac{40}{60}<br>$$</p>
+<p>$$<br>\rm{ prior  probability  for  RED  = } \frac{ \rm{ number  of  RED  objects}}{\rm{Total  number  of  objects}} = \frac{20}{60}<br>$$</p>
+<p>似然(likehood)：有了先验知识，可以对新的输入(白色圈表示)进行分类，如果要取得比较准确的分类结果，猜测是绿色比较保险，即新物体与绿球的likehood比与红球的likehood更大。<br>$$<br>\rm{ Likehood  of  X  given    GREEN  = } \frac{ \rm{ number  of  GREEN  in  the vicinity  of  X}}{\rm{Total  number  of  GREEN  cases}} =\frac{1}{40}<br>$$</p>
+<p>$$<br>\rm{ Likehood  of  X  given    RED  = } \frac{ \rm{ number  of  RED  in  the vicinity  of  X}}{\rm{Total  number  of  RED  cases}} = \frac{3}{20}<br>$$</p>
+<p>存在情况是：对于先验知识，$X$是绿球的可能性比红球更大，但是似然(likehood)的表现是相反的</p>
+<p>在贝叶斯分析中，最后的类别是上述两个概率（先验和似然），即：<br>$$<br>\rm{ posterior  probability  of  X  being  GREEN =} \frac{ \rm{ prior  probability  for  GREEN} \times \rm{Likehood  of  X  given    GREEN}}{在圈内球的概率 = \frac{4}{60}} = \frac{1}{4}<br>$$</p>
+<p>$$<br>\rm{ posterior  probability  of  X  being  RED =} \frac{ \rm{ prior  probability  for  RED} \times \rm{Likehood  of  X  given    RED}}{在圈内球的概率 = \frac{4}{60}} = \frac{3}{4}<br>$$</p>
+<p>实际使用过程中，需要进行<strong>归一化(normalized)处理</strong>。</p>
+<h3 id="Factor之间的推理"><a href="#Factor之间的推理" class="headerlink" title="Factor之间的推理"></a>Factor之间的推理</h3><p>Factor之间的推理（Reasoning Patterns）可以分类为：</p>
+<p>1、causal reasoning：因果推理</p>
+<p>2、evidential reasoning：证据推理</p>
+<p>也称为D-S推理。将假设看成一个集合，引入信任函数、似信度函数、类概率函数等描述命题的精确信任程度、信任程度和估计信任程度，对命题的不确定性作多角度的描述。</p>
+<p>对从不同性质的数据源中提取证据，利用正交求和方法综合证据，通过证据的积累缩小集合，从而获得问题的解。</p>
+<p>3、intercausal reasoning：混合推理</p>
+<p>结合因果推理和证据推理。</p>
+<p><a href="https://blog.csdn.net/polly_yang/article/category/1243538" target="_blank" rel="noopener">PGM课程笔记-coursera</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/11/makefile/" rel="next" title="makefile简介">
+                <i class="fa fa-chevron-left"></i> makefile简介
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/14/信号处理涉及到的几种变换/" rel="prev" title="信号处理涉及的几种变换">
+                信号处理涉及的几种变换 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+    <!--MOB SHARE BEGIN-->
+                                <div class="-mob-share-ui-button -mob-share-open">分享</div>
+                                <div class="-mob-share-ui -mob-share-ui-theme -mob-share-ui-theme-slide-left" style="display: none">
+                                    <ul class="-mob-share-list">
+                                        <li class="-mob-share-weibo"><p>新浪微博</p></li>
+                                       
+                                        <li class="-mob-share-qzone"><p>QQ空间</p></li>
+                                        <li class="-mob-share-qq"><p>QQ好友</p></li>
+                                        <li class="-mob-share-weixin"><p>微信</p></li>
+                                        <li class="-mob-share-douban"><p>豆瓣</p></li>
+                                   
+                                        <li class="-mob-share-facebook"><p>Facebook</p></li>
+                                        <li class="-mob-share-twitter"><p>Twitter</p></li>
+                                       
+                                    </ul>
+                                    <div class="-mob-share-close">取消</div>
+                                </div>
+                                <div class="-mob-share-ui-bg"></div>
+                                <script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=2aeca9171540c"></script>
+                                <!--MOB SHARE END-->
+
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="jiangxj">
+            
+              <p class="site-author-name" itemprop="name">jiangxj</p>
+              <p class="site-description motion-element" itemprop="description">岁月对坐，落子无悔</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jiangxjun" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:jiangxj0530@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.linkedin.com/in/xuejun-j-8b04a0180/" target="_blank" title="LinkedIn">
+                      
+                        <i class="fa fa-fw fa-linkedin"></i>LinkedIn</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/wan-si-qing-qian/activities" target="_blank" title="Zhihu">
+                      
+                        <i class="fa fa-fw fa-heart-o"></i>Zhihu</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                link
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.biglong.top/" title="yanglong" target="_blank">yanglong</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://redstonewill.com/" title="RedStone" target="_blank">RedStone</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+		  
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="360" height="86" src="//music.163.com/outchain/player?type=2&id=419877515&auto=0&height=66"></iframe>
+		  
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概率图模型"><span class="nav-number">1.</span> <span class="nav-text">概率图模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PGM概述"><span class="nav-number">1.1.</span> <span class="nav-text">PGM概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PGM模型分类简介"><span class="nav-number">1.2.</span> <span class="nav-text">PGM模型分类简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概率模型"><span class="nav-number">1.2.1.</span> <span class="nav-text">概率模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PGM中的factor"><span class="nav-number">1.2.2.</span> <span class="nav-text">PGM中的factor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#贝叶斯网络"><span class="nav-number">1.2.3.</span> <span class="nav-text">贝叶斯网络</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#朴素贝叶斯分类器"><span class="nav-number">1.3.</span> <span class="nav-text">朴素贝叶斯分类器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Factor之间的推理"><span class="nav-number">1.4.</span> <span class="nav-text">Factor之间的推理</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jiangxj</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">211.7k</span>
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/meting@1.1.0/dist/Meting.min.js"></script>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

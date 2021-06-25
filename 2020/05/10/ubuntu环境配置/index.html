@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Ubuntu,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Ataraxia" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="包括基本操作，nVidia驱动，pytorch，tensorflow环境配置等">
+<meta name="keywords" content="Ubuntu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ubuntu使用教程">
+<meta property="og:url" content="https://jiangxjun.github.io/blog/2020/05/10/ubuntu环境配置/index.html">
+<meta property="og:site_name" content="Ataraxia">
+<meta property="og:description" content="包括基本操作，nVidia驱动，pytorch，tensorflow环境配置等">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190819221921944.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1RZVVRfeGlhb21pbmc=,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2020-05-18T03:16:23.175Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ubuntu使用教程">
+<meta name="twitter:description" content="包括基本操作，nVidia驱动，pytorch，tensorflow环境配置等">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190819221921944.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1RZVVRfeGlhb21pbmc=,size_16,color_FFFFFF,t_70">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiangxjun.github.io/blog/2020/05/10/ubuntu环境配置/">
+
+
+
+
+
+  <title>ubuntu使用教程 | Ataraxia</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ataraxia</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Hi, I'm Jiang.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.js"></script> </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jiangxjun.github.io/blog/2020/05/10/ubuntu环境配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jiangxj">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ataraxia">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ubuntu使用教程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-10T00:00:00+08:00">
+                2020-05-10
+              </time>
+            
+			
+			
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/教程/" itemprop="url" rel="index">
+                    <span itemprop="name">教程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  2.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+              <div class="post-description">
+                  包括基本操作，nVidia驱动，pytorch，tensorflow环境配置等
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Ubuntu磁盘操作"><a href="#Ubuntu磁盘操作" class="headerlink" title="Ubuntu磁盘操作"></a>Ubuntu磁盘操作</h2><p>需要root权限</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="keyword">su</span></span><br><span class="line"><span class="keyword">su</span> ***</span><br></pre></td></tr></table></figure>
+<p>用命令<code>fdisk -l</code>查看系统识别磁盘情况</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Device     Boot     <span class="keyword">Start</span>       <span class="keyword">End</span>   Sectors   <span class="keyword">Size</span> <span class="keyword">Id</span> <span class="keyword">Type</span></span><br><span class="line">/dev/sda1  *         <span class="number">2048</span> <span class="number">960335871</span> <span class="number">960333824</span> <span class="number">457.9</span>G <span class="number">83</span> Linux</span><br><span class="line">/dev/sda2       <span class="number">960337918</span> <span class="number">976771071</span>  <span class="number">16433154</span>   <span class="number">7.9</span>G  <span class="number">5</span> <span class="keyword">Extended</span></span><br><span class="line"></span><br><span class="line">Disk /dev/sdb: <span class="number">2.7</span> TiB, <span class="number">3000592982016</span> <span class="keyword">bytes</span>, <span class="number">5860533168</span> sectors</span><br><span class="line">Units: sectors <span class="keyword">of</span> <span class="number">1</span> * <span class="number">512</span> = <span class="number">512</span> <span class="keyword">bytes</span></span><br><span class="line">Sector <span class="keyword">size</span> (<span class="keyword">logical</span>/<span class="keyword">physical</span>): <span class="number">512</span> <span class="keyword">bytes</span> / <span class="number">4096</span> <span class="keyword">bytes</span></span><br><span class="line">I/O <span class="keyword">size</span> (<span class="keyword">minimum</span>/<span class="keyword">optimal</span>): <span class="number">4096</span> <span class="keyword">bytes</span> / <span class="number">4096</span> <span class="keyword">bytes</span></span><br><span class="line">Disklabel <span class="keyword">type</span>: gpt</span><br><span class="line">Disk identifier: <span class="number">1</span>AB82561-C5FD<span class="number">-47</span>A9<span class="number">-9</span>A29<span class="number">-31835617</span>EBD3</span><br><span class="line"></span><br><span class="line">Device     <span class="keyword">Start</span>        <span class="keyword">End</span>    Sectors  <span class="keyword">Size</span> <span class="keyword">Type</span></span><br><span class="line">/dev/sdb1   <span class="number">2048</span> <span class="number">5860532223</span> <span class="number">5860530176</span>  <span class="number">2.7</span>T Microsoft basic <span class="keyword">data</span></span><br></pre></td></tr></table></figure>
+<p>可以看到磁盘的挂载点。</p>
+<h2 id="ubuntu配置nVidia驱动"><a href="#ubuntu配置nVidia驱动" class="headerlink" title="ubuntu配置nVidia驱动"></a>ubuntu配置nVidia驱动</h2><p>一、禁用现有的开源驱动</p>
+<p>Ubuntu默认安装了一个开源的驱动：<code>nouveau</code>。安装官方的驱动需要先禁用这个开源驱动，依次执行：</p>
+<p><code>sudo bash -c &quot;echo blacklist nouveau &gt; /etc/modprobe.d/blacklist-nvidia-nouveau.conf&quot;</code></p>
+<p><code>sudo bash -c &quot;echo options nouveau modeset=0 &gt;&gt; /etc/modprobe.d/blacklist-nvidia-nouveau.conf&quot;</code></p>
+<p>执行完两条指令，使用命令：<code>cat /etc/modprobe.d/blacklist-nvidia-nouveau.conf</code>是否成功禁用了开源驱动，出现如下，表示成功：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">cat</span> /etc/modprobe.d/blacklist-nvidia-nouveau.<span class="keyword">conf</span></span><br><span class="line">blacklist nouveau</span><br><span class="line"><span class="keyword">options</span> nouveau modeset=<span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>二、获取显卡型号</p>
+<p>终端输入：<code>ubuntu-drivers devices</code>查看显卡硬件型号，会显示推荐安装驱动版本。</p>
+<p>三、获取对应显卡驱动</p>
+<p>去<a href="https://www.nvidia.com/Download/index.aspx" target="_blank" rel="noopener">NVIDIA driver search page</a>查看支持对应显卡的驱动的最新版本的版本号。</p>
+<p>为防止最新版本不稳定，可以从<a href="https://www.geforce.cn/drivers" target="_blank" rel="noopener">geforce drivers</a>处查询支持当前显卡的所有驱动版本。</p>
+<p>四、安装</p>
+<p>终端命令：<code>sudo apt-get install nvidia-384</code>（当前安装的是384版本）。</p>
+<p>如果命令出错，执行下面命令：</p>
+<p><code>sudo apt-get upgrade</code></p>
+<p><code>sudo apt-get update</code></p>
+<p>五、测试nvidia driver是否安装成功</p>
+<p>首先需要重新启动系统，然后在终端输入：<code>nvidia-smi</code>查看驱动是否安装成功。</p>
+<hr>
+<h2 id="Ubuntu16-04配置cuda9-0-cudnn7-0安装"><a href="#Ubuntu16-04配置cuda9-0-cudnn7-0安装" class="headerlink" title="Ubuntu16.04配置cuda9.0+cudnn7.0安装"></a>Ubuntu16.04配置cuda9.0+cudnn7.0安装</h2><p>GPU加速必须在cuda9以上才可以完成加速，cuda9以后的版本在Linux系统上只支持Ubuntu16.04和Ubuntu17.04。</p>
+<h3 id="一、设备要求"><a href="#一、设备要求" class="headerlink" title="一、设备要求"></a>一、设备要求</h3><p>系统：Ubuntu16.04及以上</p>
+<p>显卡驱动：NVIDIA系列（384以上）</p>
+<p>驱动检查：终端命令<code>nvidia-smi</code></p>
+<blockquote>
+<p>新安装的Ubuntu系统安装NVIDIA驱动步骤:</p>
+<p>a.删除旧驱动：</p>
+<p>`sudo apt-get remove –purge nvidia* </p>
+<p>b.禁用自带的nouveau nvidia驱动：</p>
+<p>看下Nouveau是否已经被禁用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; lsmod | grep nouveau  </span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>如果已经没有任何显示说明不用禁用了，否则继续下面操作</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> sudo vim /etc/modprobe.d/blacklist-nouveau.conf <span class="comment">#创建一个文件（注：按一下i键，表示现在进行内容插入）</span></span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash"></span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>并添加如下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; blacklist nouveau</span><br><span class="line">&gt; options nouveau modeset=0 </span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="二、安装cuda9-0"><a href="#二、安装cuda9-0" class="headerlink" title="二、安装cuda9.0"></a>二、安装cuda9.0</h3><p><a href="https://developer.nvidia.com/cuda-90-download-archive?target_os=Linux&amp;target_arch=x86_64&amp;target_distro=Ubuntu&amp;target_version=1604&amp;target_type=runfilelocal" target="_blank" rel="noopener">官网下载</a>。有对应的deb和.run文件，有具体的安装命令。</p>
+<p>推荐.run文件，因为deb文件安装，可能会修改已安装好的驱动和。</p>
+<p>进入下载目录，给文件添加运行权限：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x ./cuda_9.0.176_384.81_linux.run</span><br></pre></td></tr></table></figure>
+<p>运行安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ./cuda_9.0.176_384.81_linux.run</span><br></pre></td></tr></table></figure>
+<p>启动安装程序，一直按空格到最后（可以选择Ctrl+c跳过），不用担心，到99%的时候，输入accept接受条款</p>
+<p>注意：第一个提醒你是否安装驱动时，选“n”，其余都“y”，安装路径选择默认的路径。</p>
+<p><strong>以上为两种cuda的安装方法，不过并没有结束，安装完毕后必须添加环境</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gedit ~/.bashrc</span><br></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在文件末尾添加环境变量</span></span><br><span class="line">export LD_LIBRARY_PATH=<span class="variable">$LD_LIBRARY_PATH</span><span class="symbol">:/usr/local/cuda-</span><span class="number">9.0</span>/lib64</span><br><span class="line">export PATH=<span class="variable">$PATH</span><span class="symbol">:/usr/local/cuda-</span><span class="number">9.0</span>/bin</span><br><span class="line">export CUDA_HOME=<span class="variable">$CUDA_HOME</span><span class="symbol">:/usr/local/cuda-</span><span class="number">9.0</span></span><br></pre></td></tr></table></figure>
+<p>添加完后，终端命令：<code>source ～/.bashrc</code></p>
+<p>终端命令查看是否安装成功：<code>nvcc -V</code>，若出现nvcc未安装，</p>
+<p>执行了 sudo apt-get install nvidia-cuda-toolkit 命令，nvcc命令可以正常执行，但是运行nvcc –version发现版本为5.5，与原来安装的CUDA 10.0不匹配，这将会导致一系列不兼容问题（比如在python中使用sk-cuda库就报错，因为nvcc版本不一致），遂通过如下步骤解决：</p>
+<p>1、使用sudo apt-get autoremove nvidia-cuda-toolkit 卸载5.5版本</p>
+<p>2、查看/usr/local/cuda/bin下是否有nvcc可执行程序，如果没有说明cuda没有正常安装，需要重新安装。</p>
+<p>3、如果有nvcc可执行程序，切换到管理员权限，重新执行上面步骤，添加环境。</p>
+<h3 id="三、安装cudnn7-3-1"><a href="#三、安装cudnn7-3-1" class="headerlink" title="三、安装cudnn7.3.1"></a>三、安装cudnn7.3.1</h3><p>去<a href="https://developer.nvidia.com/rdp/cudnn-archive" target="_blank" rel="noopener">官网下载</a>，此处下载的是<code>cuDNN v7.3.1 Library for Linux</code>版本。是一个.tgz文件。</p>
+<p>下载完直接解压，解压会出现一个cuda文件夹，里面有两个文件include 和lib64，把里面的文件<code>copy到/usr/local/cuda-9.0</code>里面相应的目录里，具体命令如下：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo cp cuda<span class="regexp">/include/</span>cudnn.h <span class="regexp">/usr/</span>local<span class="regexp">/cuda-9.0/i</span>nclude</span><br><span class="line">sudo cp cuda<span class="regexp">/lib64/</span>libcudnn* <span class="regexp">/usr/</span>local<span class="regexp">/cuda-9.0/</span>lib64</span><br><span class="line">sudo chmod a+r <span class="regexp">/usr/</span>local<span class="regexp">/cuda-9.0/i</span>nclude<span class="regexp">/cudnn.h /u</span>sr<span class="regexp">/local/</span>cuda-<span class="number">9.0</span><span class="regexp">/lib64/</span>libcudnn*</span><br></pre></td></tr></table></figure>
+<p>查看cudnn版本，检查是否安装好：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cat</span> /usr/<span class="keyword">local</span>/cuda/<span class="keyword">include</span>/cudnn.<span class="keyword">h</span> | grep CUDNN_MAJOR -A 2</span><br></pre></td></tr></table></figure>
+<h3 id="四、卸载"><a href="#四、卸载" class="headerlink" title="四、卸载"></a>四、卸载</h3><p>（1）卸载CUDA</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /usr/local/cuda-9.0/bin/uninstall_cuda_9.0.pl</span><br></pre></td></tr></table></figure>
+<p>（2）卸载CUDNN</p>
+<p>删除原来的cudnn文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo rm -rf /usr/local/cuda-9.0/lib64/libcudnn*</span><br><span class="line">sudo rm -rf /usr/local/cuda-9.0/include/cudnn.h</span><br></pre></td></tr></table></figure>
+<p><a href="https://zhuanlan.zhihu.com/p/58114055" target="_blank" rel="noopener">Ubuntu16.04下cuda9.0+cudnn7.0安装参考教程1</a></p>
+<p><a href="https://www.jianshu.com/p/6a6fbce9073f" target="_blank" rel="noopener">Ubuntu 多版本Cuda(8.0,9.0)以及CuDnn安装参考教程2</a></p>
+<hr>
+<h2 id="pytorch-gpu环境配置"><a href="#pytorch-gpu环境配置" class="headerlink" title="pytorch_gpu环境配置"></a>pytorch_gpu环境配置</h2><p>前提是已经配置好cuda9.0和cudnn7.0</p>
+<p>在Anaconda环境下，新建一个pytorch-gpu环境，安装pytorch。</p>
+<p>一、创建新的虚拟环境</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda <span class="keyword">create</span> -n pytorch_gpu python=<span class="number">3.7</span></span><br><span class="line">conda <span class="keyword">activate</span> pytorch_gpu /<span class="keyword">source</span> <span class="keyword">activate</span> pytorch_gpu <span class="comment">#激动虚拟环境</span></span><br></pre></td></tr></table></figure>
+<p>二、安装对应的cuda和cudnn</p>
+<p>三、安装pytorch</p>
+<p><a href="https://pytorch.org/" target="_blank" rel="noopener">官网下载对应版本</a>的安装脚本，考虑操作系统、包、cuda版本、语言版本等。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install pytorch torchvision <span class="attribute">cudatoolkit</span>=9.0 -n pytorch_gpu -c pytorch</span><br></pre></td></tr></table></figure>
+<p><a href="https://blog.csdn.net/baidu_26646129/article/details/88380598" target="_blank" rel="noopener">Anaconda环境安装GPU版本Pytorch参考教程</a></p>
+<hr>
+<h2 id="tensorflow-gpu-keras环境配置"><a href="#tensorflow-gpu-keras环境配置" class="headerlink" title="tensorflow_gpu_keras环境配置"></a>tensorflow_gpu_keras环境配置</h2><p>Keras其实就是TensorFlow和Keras的接口（Keras作为前端，TensorFlow或theano作为后端），它也很灵活，且比较容易学。可以把keras看作为tensorflow封装后的一个API。</p>
+<p>目前Keras是tensorflow官方的API。</p>
+<h3 id="查看已经安装的Python版本"><a href="#查看已经安装的Python版本" class="headerlink" title="查看已经安装的Python版本"></a>查看已经安装的Python版本</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ls</span> | <span class="keyword">grep</span> <span class="keyword">python</span></span><br></pre></td></tr></table></figure>
+<h3 id="将pip服务器更换为国内的镜像服务器"><a href="#将pip服务器更换为国内的镜像服务器" class="headerlink" title="将pip服务器更换为国内的镜像服务器"></a>将pip服务器更换为国内的镜像服务器</h3><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果不存在此文件夹，则创建之</span></span><br><span class="line">mkdir ~<span class="string">/.pip</span></span><br><span class="line">vim ~<span class="string">/.pip/pip.conf</span></span><br></pre></td></tr></table></figure>
+<p>内容如下</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[global]</span></span><br><span class="line"><span class="attr">index-url</span>=http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line"><span class="section">[install]</span></span><br><span class="line"><span class="attr">trusted-host</span>=mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
+<h3 id="tensorflow-gpu和keras安装"><a href="#tensorflow-gpu和keras安装" class="headerlink" title="tensorflow-gpu和keras安装"></a>tensorflow-gpu和keras安装</h3><h4 id="一、新建虚拟环境"><a href="#一、新建虚拟环境" class="headerlink" title="一、新建虚拟环境"></a>一、新建虚拟环境</h4><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda <span class="keyword">create</span> -n tensorflow_gpu python=<span class="number">3.6</span> (ipykernel) <span class="meta">#选择加如jupyter notebook内核</span></span><br></pre></td></tr></table></figure>
+<p>找到环境支持的对应的版本：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190819221921944.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1RZVVRfeGlhb21pbmc=,size_16,color_FFFFFF,t_70" alt="img"></p>
+<h4 id="二、安装tensorflow-gpu"><a href="#二、安装tensorflow-gpu" class="headerlink" title="二、安装tensorflow-gpu"></a>二、安装tensorflow-gpu</h4><p>终端命令：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install --ignore-installed --upgrade https:<span class="regexp">//</span>storage.googleapis.com<span class="regexp">/tensorflow/</span>linux<span class="regexp">/gpu/</span>tensorflow_gpu-<span class="number">1.6</span>.<span class="number">0</span>-cp36-cp36m-linux_x86_64.whl</span><br></pre></td></tr></table></figure>
+<h4 id="三、测试tensorflow-gpu是否安装成功"><a href="#三、测试tensorflow-gpu是否安装成功" class="headerlink" title="三、测试tensorflow-gpu是否安装成功"></a>三、测试tensorflow-gpu是否安装成功</h4><p>测试代码如下：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import tensorflow as tf</span><br><span class="line">a = tf.constant([1.,2.,3.,4.,5.,6.], shape=[2,3], <span class="attribute">name</span>=<span class="string">'a'</span>)</span><br><span class="line">b = tf.constant([1.,2.,3.,4.,5.,6.], shape=[3,2], <span class="attribute">name</span>=<span class="string">'b'</span>)</span><br><span class="line">c = tf.matmul(a,b)</span><br><span class="line"></span><br><span class="line">with tf.Session(config= tf.ConfigProto(<span class="attribute">log_device_placement</span>=<span class="literal">True</span>)) as sess:</span><br><span class="line">    <span class="builtin-name">print</span>(sess.<span class="builtin-name">run</span>(c))</span><br></pre></td></tr></table></figure>
+<p>成功检测到GPU，表明安装成功，且可以调用GPU运行。</p>
+<p>GPU使用率：terminal下run：<code>nvidia-smi -q -g 0 -d UTILIZATION -l</code><br>or run：<code>watch -n 2 nvidia-smi</code></p>
+<p>注意可能会出现tensorflow-gpu版本和cuda，cudnn版本的不匹配问题，需要卸载</p>
+<p><a href="https://blog.csdn.net/linhai1028/article/details/79525507" target="_blank" rel="noopener">ubuntu下tensorflow-gpu环境搭建</a></p>
+<h4 id="四、查看tensorflow-gpu安装版本"><a href="#四、查看tensorflow-gpu安装版本" class="headerlink" title="四、查看tensorflow-gpu安装版本"></a>四、查看tensorflow-gpu安装版本</h4><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">在<span class="keyword">python</span>环境中输入：</span><br><span class="line"></span><br><span class="line">import tensorflow <span class="keyword">as</span> <span class="keyword">tf</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">tf</span>.__version__     (查看版本）</span><br><span class="line"></span><br><span class="line"><span class="keyword">tf</span>.__path__        （查看路径）</span><br></pre></td></tr></table></figure>
+<h4 id="五、卸载命令"><a href="#五、卸载命令" class="headerlink" title="五、卸载命令"></a>五、卸载命令</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo pip <span class="keyword">uninstall</span> tensorflow</span><br><span class="line">sudo pip3 <span class="keyword">uninstall</span> tensorflow</span><br></pre></td></tr></table></figure>
+<h4 id="六、安装Keras"><a href="#六、安装Keras" class="headerlink" title="六、安装Keras"></a>六、安装Keras</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip <span class="keyword">install</span> keras -U <span class="comment">--pre</span></span><br></pre></td></tr></table></figure>
+<h4 id="七、验证安装"><a href="#七、验证安装" class="headerlink" title="七、验证安装"></a>七、验证安装</h4><figure class="highlight elm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">进入python命令环境</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> keras</span><br></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Keras测试：</span><br><span class="line"></span><br><span class="line">Keras中mnist数据集测试 下载Keras开发包</span><br><span class="line"></span><br><span class="line">conda install git</span><br><span class="line"></span><br><span class="line">git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/fchollet/keras.git</span><br><span class="line"></span><br><span class="line"><span class="keyword">cd</span> keras/examples/</span><br><span class="line"></span><br><span class="line"><span class="keyword">python</span> mnist_mlp.<span class="keyword">py</span></span><br></pre></td></tr></table></figure>
+<p>在《Tensorflow技术解析与实战》一书中提到，keras安装后需要选择依赖的后端，在~/.Keras/keras.json下修改最后一行backend对应的值，（默认后端是tensorflow，不用修改）也就是：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">｛</span><br><span class="line"></span><br><span class="line"><span class="string">"image_dim_ordering"</span><span class="symbol">:<span class="string">"tf"</span></span>,</span><br><span class="line"></span><br><span class="line"><span class="string">"epsilon"</span><span class="symbol">:le-</span><span class="number">07</span>,</span><br><span class="line"></span><br><span class="line"><span class="string">"floatx"</span><span class="symbol">:<span class="string">"float32"</span></span></span><br><span class="line"></span><br><span class="line"><span class="string">"backend"</span>: <span class="string">"tensorflow"</span></span><br><span class="line"></span><br><span class="line">｝</span><br></pre></td></tr></table></figure>
+<h4 id="八、出现问题"><a href="#八、出现问题" class="headerlink" title="八、出现问题"></a>八、出现问题</h4><p>安装keras出现：<code>ImportError: cannot import name &#39;tf_utils&#39;</code></p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; <span class="keyword">import</span> tensorflow</span><br><span class="line">&gt;&gt;&gt; <span class="keyword">import</span> keras</span><br><span class="line">Using TensorFlow backend.</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  <span class="built_in">File</span> <span class="string">"&lt;stdin&gt;"</span>, <span class="built_in">line</span> <span class="number">1</span>, in &lt;<span class="keyword">module</span>&gt;</span><br><span class="line">  <span class="built_in">File</span> <span class="string">"/home/reyhan/project/.virtualenvs/keras_tf/lib/python3.6/site-packages/keras/__init__.py"</span>, <span class="built_in">line</span> <span class="number">3</span>, in &lt;<span class="keyword">module</span>&gt;</span><br><span class="line">from . <span class="keyword">import</span> utils</span><br><span class="line">  <span class="built_in">File</span> <span class="string">"/home/reyhan/project/.virtualenvs/keras_tf/lib/python3.6/site-packages/keras/utils/__init__.py"</span>, <span class="built_in">line</span> <span class="number">6</span>, in &lt;<span class="keyword">module</span>&gt;</span><br><span class="line">from . <span class="keyword">import</span> conv_utils</span><br><span class="line">  <span class="built_in">File</span> <span class="string">"/home/reyhan/project/.virtualenvs/keras_tf/lib/python3.6/site-packages/keras/utils/conv_utils.py"</span>, <span class="built_in">line</span> <span class="number">9</span>, in &lt;<span class="keyword">module</span>&gt;</span><br><span class="line">from .. <span class="keyword">import</span> backend as K</span><br><span class="line">  <span class="built_in">File</span> <span class="string">"/home/reyhan/project/.virtualenvs/keras_tf/lib/python3.6/site-packages/keras/backend/__init__.py"</span>, <span class="built_in">line</span> <span class="number">1</span>, in &lt;<span class="keyword">module</span>&gt;</span><br><span class="line">from .load_backend <span class="keyword">import</span> epsilon</span><br><span class="line">  <span class="built_in">File</span> <span class="string">"/home/reyhan/project/.virtualenvs/keras_tf/lib/python3.6/site-packages/keras/backend/load_backend.py"</span>, <span class="built_in">line</span> <span class="number">90</span>, in &lt;<span class="keyword">module</span>&gt;</span><br><span class="line">from .tensorflow_backend <span class="keyword">import</span> *</span><br><span class="line">  <span class="built_in">File</span> <span class="string">"/home/reyhan/project/.virtualenvs/keras_tf/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py"</span>, <span class="built_in">line</span> <span class="number">13</span>, in &lt;<span class="keyword">module</span>&gt;</span><br><span class="line">from tensorflow.python.keras.utils <span class="keyword">import</span> tf_utils</span><br><span class="line">ImportError: cannot <span class="keyword">import</span> name <span class="string">'tf_utils'</span></span><br></pre></td></tr></table></figure>
+<p>安装的keras版本是2.3.1的，卸载安装keras2.1.5版本，解决该问题，首先卸载现有keras版本：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">pip uninstall keras</span></span><br></pre></td></tr></table></figure>
+<p>安装keras2.1.5版本：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install keras==<span class="number">2.1</span><span class="number">.5</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Ubuntu/" rel="tag"><i class="fa fa-tag"></i> Ubuntu</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/20/RBM&DBN/" rel="next" title="受限玻尔兹曼机和深度置信网络">
+                <i class="fa fa-chevron-left"></i> 受限玻尔兹曼机和深度置信网络
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/11/makefile/" rel="prev" title="makefile简介">
+                makefile简介 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+    <!--MOB SHARE BEGIN-->
+                                <div class="-mob-share-ui-button -mob-share-open">分享</div>
+                                <div class="-mob-share-ui -mob-share-ui-theme -mob-share-ui-theme-slide-left" style="display: none">
+                                    <ul class="-mob-share-list">
+                                        <li class="-mob-share-weibo"><p>新浪微博</p></li>
+                                       
+                                        <li class="-mob-share-qzone"><p>QQ空间</p></li>
+                                        <li class="-mob-share-qq"><p>QQ好友</p></li>
+                                        <li class="-mob-share-weixin"><p>微信</p></li>
+                                        <li class="-mob-share-douban"><p>豆瓣</p></li>
+                                   
+                                        <li class="-mob-share-facebook"><p>Facebook</p></li>
+                                        <li class="-mob-share-twitter"><p>Twitter</p></li>
+                                       
+                                    </ul>
+                                    <div class="-mob-share-close">取消</div>
+                                </div>
+                                <div class="-mob-share-ui-bg"></div>
+                                <script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=2aeca9171540c"></script>
+                                <!--MOB SHARE END-->
+
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="jiangxj">
+            
+              <p class="site-author-name" itemprop="name">jiangxj</p>
+              <p class="site-description motion-element" itemprop="description">岁月对坐，落子无悔</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jiangxjun" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:jiangxj0530@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.linkedin.com/in/xuejun-j-8b04a0180/" target="_blank" title="LinkedIn">
+                      
+                        <i class="fa fa-fw fa-linkedin"></i>LinkedIn</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/wan-si-qing-qian/activities" target="_blank" title="Zhihu">
+                      
+                        <i class="fa fa-fw fa-heart-o"></i>Zhihu</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                link
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.biglong.top/" title="yanglong" target="_blank">yanglong</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://redstonewill.com/" title="RedStone" target="_blank">RedStone</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+		  
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="360" height="86" src="//music.163.com/outchain/player?type=2&id=419877515&auto=0&height=66"></iframe>
+		  
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu磁盘操作"><span class="nav-number">1.</span> <span class="nav-text">Ubuntu磁盘操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ubuntu配置nVidia驱动"><span class="nav-number">2.</span> <span class="nav-text">ubuntu配置nVidia驱动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu16-04配置cuda9-0-cudnn7-0安装"><span class="nav-number">3.</span> <span class="nav-text">Ubuntu16.04配置cuda9.0+cudnn7.0安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、设备要求"><span class="nav-number">3.1.</span> <span class="nav-text">一、设备要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、安装cuda9-0"><span class="nav-number">3.2.</span> <span class="nav-text">二、安装cuda9.0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、安装cudnn7-3-1"><span class="nav-number">3.3.</span> <span class="nav-text">三、安装cudnn7.3.1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、卸载"><span class="nav-number">3.4.</span> <span class="nav-text">四、卸载</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pytorch-gpu环境配置"><span class="nav-number">4.</span> <span class="nav-text">pytorch_gpu环境配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tensorflow-gpu-keras环境配置"><span class="nav-number">5.</span> <span class="nav-text">tensorflow_gpu_keras环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看已经安装的Python版本"><span class="nav-number">5.1.</span> <span class="nav-text">查看已经安装的Python版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将pip服务器更换为国内的镜像服务器"><span class="nav-number">5.2.</span> <span class="nav-text">将pip服务器更换为国内的镜像服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tensorflow-gpu和keras安装"><span class="nav-number">5.3.</span> <span class="nav-text">tensorflow-gpu和keras安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、新建虚拟环境"><span class="nav-number">5.3.1.</span> <span class="nav-text">一、新建虚拟环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、安装tensorflow-gpu"><span class="nav-number">5.3.2.</span> <span class="nav-text">二、安装tensorflow-gpu</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、测试tensorflow-gpu是否安装成功"><span class="nav-number">5.3.3.</span> <span class="nav-text">三、测试tensorflow-gpu是否安装成功</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、查看tensorflow-gpu安装版本"><span class="nav-number">5.3.4.</span> <span class="nav-text">四、查看tensorflow-gpu安装版本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五、卸载命令"><span class="nav-number">5.3.5.</span> <span class="nav-text">五、卸载命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六、安装Keras"><span class="nav-number">5.3.6.</span> <span class="nav-text">六、安装Keras</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#七、验证安装"><span class="nav-number">5.3.7.</span> <span class="nav-text">七、验证安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#八、出现问题"><span class="nav-number">5.3.8.</span> <span class="nav-text">八、出现问题</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jiangxj</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">211.7k</span>
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/meting@1.1.0/dist/Meting.min.js"></script>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

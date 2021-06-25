@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="对抗攻击,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Ataraxia" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="对抗攻击经典论文笔记整理">
+<meta name="keywords" content="对抗攻击">
+<meta property="og:type" content="article">
+<meta property="og:title" content="对抗攻击论文笔记整理">
+<meta property="og:url" content="https://jiangxjun.github.io/blog/2019/04/20/对抗攻击_论文笔记/index.html">
+<meta property="og:site_name" content="Ataraxia">
+<meta property="og:description" content="对抗攻击经典论文笔记整理">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://jiangxjun.github.io/2019/04/20/对抗攻击_论文笔记/1.jpg">
+<meta property="og:image" content="https://jiangxjun.github.io/2019/04/20/对抗攻击_论文笔记/2.jpg">
+<meta property="og:image" content="https://jiangxjun.github.io/2019/04/20/对抗攻击_论文笔记/3.jpg">
+<meta property="og:image" content="https://jiangxjun.github.io/2019/04/20/对抗攻击_论文笔记/4.jpg">
+<meta property="og:image" content="https://jiangxjun.github.io/2019/04/20/对抗攻击_论文笔记/5.jpg">
+<meta property="og:image" content="https://jiangxjun.github.io/2019/04/20/对抗攻击_论文笔记/6.jpg">
+<meta property="og:image" content="https://jiangxjun.github.io/2019/04/20/对抗攻击_论文笔记/7.jpg">
+<meta property="og:image" content="https://jiangxjun.github.io/2019/04/20/对抗攻击_论文笔记/8.jpg">
+<meta property="og:image" content="https://jiangxjun.github.io/blog/2019/04/20/对抗攻击_论文笔记/9.jpg">
+<meta property="og:image" content="https://jiangxjun.github.io/2019/04/20/对抗攻击_论文笔记/10.jpg">
+<meta property="og:image" content="https://jiangxjun.github.io/2019/04/20/对抗攻击_论文笔记/11.jpg">
+<meta property="og:image" content="https://jiangxjun.github.io/2019/04/20/对抗攻击_论文笔记/12.jpg">
+<meta property="og:image" content="https://jiangxjun.github.io/2019/04/20/对抗攻击_论文笔记/13.jpg">
+<meta property="og:image" content="https://jiangxjun.github.io/2019/04/20/对抗攻击_论文笔记/14.jpg">
+<meta property="og:image" content="https://jiangxjun.github.io/2019/04/20/对抗攻击_论文笔记/15.jpg">
+<meta property="og:image" content="https://jiangxjun.github.io/2019/04/20/对抗攻击_论文笔记/16.jpg">
+<meta property="og:image" content="https://jiangxjun.github.io/2019/04/20/对抗攻击_论文笔记/17.jpg">
+<meta property="og:updated_time" content="2020-06-18T02:02:10.882Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="对抗攻击论文笔记整理">
+<meta name="twitter:description" content="对抗攻击经典论文笔记整理">
+<meta name="twitter:image" content="https://jiangxjun.github.io/2019/04/20/对抗攻击_论文笔记/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiangxjun.github.io/blog/2019/04/20/对抗攻击_论文笔记/">
+
+
+
+
+
+  <title>对抗攻击论文笔记整理 | Ataraxia</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ataraxia</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Hi, I'm Jiang.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.js"></script> </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jiangxjun.github.io/blog/2019/04/20/对抗攻击_论文笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jiangxj">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ataraxia">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">对抗攻击论文笔记整理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-20T00:00:00+08:00">
+                2019-04-20
+              </time>
+            
+			
+			
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  13.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  50
+                </span>
+              
+            </div>
+          
+
+          
+              <div class="post-description">
+                  对抗攻击经典论文笔记整理
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Paper1-The-Limitations-of-Deep-Learning-in-Adversarial-Settings"><a href="#Paper1-The-Limitations-of-Deep-Learning-in-Adversarial-Settings" class="headerlink" title="Paper1_The Limitations of Deep Learning in Adversarial Settings"></a>Paper1_The Limitations of Deep Learning in Adversarial Settings</h1><p>本文主要介绍了一种新的对抗样本攻击方法，利用输入特征到输出值之间的对抗性显著图，达到只需要修改少量的输入值即可误分类的目的，属于targeted攻击。</p>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>深度学习利用大型数据集和计算效率高的训练算法，在各种机器学习任务中胜过其他方法。然而，深层神经网络训练阶段的不完善使它们容易受到敌对样本的攻击:对手精心设计的输入，目的是造成深层神经网络分类错误。在此工作中，我们将针对深度神经网络(DNNs)的对手空间形式化，并在精确理解输入和输出之间映射关系的基础上，引入一类新的算法来构造对抗性样本。</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>深度学习容易受到对抗样本的攻击，本文作者介绍了一种针对任何非循环前馈神经网络的攻击方法-<strong>JSMA</strong>(Jacobian Saliency Map)。该方法利用雅可比矩阵，计算从输入到输出的显著图，只需要修改一小部分的输入特征就能达到改变输出结构的目的。</p>
+<p>文章首先对深度学习的攻击模型进行了详细的分类，包括攻击目标和攻击能力；接着详细介绍了雅可比显著图的攻击样本生成方法，主要利用了雅克比矩阵和显著图等概念；最后，通过在MNIST数据集上进行评估测试，不仅验证了攻击方法的成功，而且提出了一系列度量攻击难易程度的metrics，提出了可能的防御方法。</p>
+<h2 id="深度学习攻击模型的分类"><a href="#深度学习攻击模型的分类" class="headerlink" title="深度学习攻击模型的分类"></a>深度学习攻击模型的分类</h2><p>论文详细介绍了深度学习系统攻击模型的目标与能力，并给出了相对应的参考文献。</p>
+<h3 id="攻击目标"><a href="#攻击目标" class="headerlink" title="攻击目标"></a>攻击目标</h3><p>深度学习应用系统中，模型的完整性(intergrity)非常重要，与模型的预测结果的准确性相关。深度学习的攻击模型主要攻击深度学习模型的完整性。具体来说，深度学习的攻击的就是努力找到一个输入样本$X^*$，从而导致分类结果出错。本文考虑以下四种影响模型完整性的攻击目标：</p>
+<ol>
+<li><strong>Confidence Reduction:</strong> 降低分类输出结果的置信度值，因此会引入分类歧义;</li>
+<li><strong>Misclassification:</strong> 将分类结果修改为除了原始标签外的其他任何标签值;</li>
+<li><strong>Targeted Misclassification:</strong> 产生输入，使得该输入的分类结果是一个特定的目标类;</li>
+<li><strong>Source/Target Misclassification:</strong> 针对一个原始样本和目标类，产生一个扰动量，使得当扰动量加到原始样本中，其分类结果是特定的目标类。</li>
+</ol>
+<h3 id="攻击能力"><a href="#攻击能力" class="headerlink" title="攻击能力"></a>攻击能力</h3><p>攻击者通常伴随着不同的攻击能力。对抗样本攻击发生在模型的预测阶段（非训练阶段，攻击时模型已经训练完成），根据攻击者的获得信息的不同，按照攻击能力的大体递减顺序，分为以下五类：</p>
+<ol>
+<li><strong>Training Data &amp; Network Architecture:</strong> 这是最强的攻击，可以同时模拟网络的结构和分析训练集数据。</li>
+<li><strong>Network Architecture:</strong> 这种攻击了解深度学习网络结构及其参数，包括网络层数、激活函数、层间权重、偏差等。本文的攻击假设属于此类。</li>
+<li><strong>Training Data:</strong> 攻击者可以收集替代数据集，这些替代数据集可以从用于训练DNN的原始数据的分布中采样。一种典型的攻击方法是攻击者使用太呆数据集来训练深度学习网络，用来近似原始的深度学习网络结构。</li>
+<li><strong>Oracle:</strong> 攻击者可以把神经网络当作一个“Oracle”。攻击者可以通过提供输入样本得到对应的输出预测值。原则上，攻击者通过观察输入和输出间的区别，从而自适应地构造对抗样本。</li>
+<li><strong>Samples:</strong> 攻击者可以有能力收集神经网络分类器的输入和对应的输出，但不同的是，攻击者不能通过修改输入来观察输出的差异。这是最差的攻击能力。</li>
+</ol>
+<h2 id="JSMA攻击方法"><a href="#JSMA攻击方法" class="headerlink" title="JSMA攻击方法"></a>JSMA攻击方法</h2><p>本文针对的是非循环前馈(acyclic feedforward)DNN网络，设计的一种新的基于雅可比显著图(Jacobian Saliency Map)的攻击样本生成方法。该方法需要计算前向导数，以便于构建一个<strong>对抗性显著图</strong>，从而确定输入特征子空间与攻击目标之间的关联性。通过这种方法扰动输入空间的特征值，可以很快达到使得攻击者误分类的目的。</p>
+<h3 id="直观理解"><a href="#直观理解" class="headerlink" title="直观理解"></a>直观理解</h3><p>假设考虑一个简单的一层神经网络，通过在训练集上训练，得到布尔AND函数，即输入样本$X=\{x_1,x_2\}$，输出为$F(X) = x_1 ∩ x_2$。当输入样本$X \in [0,1]^2$时，整个神经网络学习得到的函数$F$如下左图所示，输入值在0（蓝色）和1（黄色）之间有非常明显的断层。</p>
+<img src="/2019/04/20/对抗攻击_论文笔记/1.jpg" title="JSMA攻击方法直观理解">
+<p>进一步计算函数$F$对输入值每个特征$\{x_1,x_2\}$的前向导数，即为：</p>
+<p>$J_F(X) = \left [ \frac{\partial F(X)}{\partial x_1},\frac{\partial F(X)}{\partial x_2}\right]$</p>
+<p>前向倒数的示意图如上右图所示。直观上，前向导数越大的地方越容易构建对抗样本。如右图中$X=(1,0.37)$和$X^* =(1,0.43)$两点。距离非常近$\delta_{x_2} = 0.05$，但是两者在神经网络函数的输出完全不同。</p>
+<p>由此可以看出：</p>
+<ul>
+<li>输入值极小的扰动可以致使神经网络输出的不同；</li>
+<li>输入域不同region中找到对抗样本的难易程度不同；</li>
+<li>前向导数可以减少对抗样本的搜索范围。</li>
+</ul>
+<h3 id="推广到一般的神经网络"><a href="#推广到一般的神经网络" class="headerlink" title="推广到一般的神经网络"></a>推广到一般的神经网络</h3><p>限定在非循环的DNN，且其中每个激活函数都是可微分的。构造对抗样本的伪代码：</p>
+<img src="/2019/04/20/对抗攻击_论文笔记/2.jpg" title="对抗样本的伪代码">
+<p>构造算法的输入分别是：</p>
+<p>正常样本$X$，目标标签$Y^{*}$，非循环DNN输出$F$，最大的扰动量参数为$\gamma$，特征变量参数$\theta$。</p>
+<p>算法返回值为对抗样本$X^{*}$。</p>
+<p>算法的主要步骤如下：</p>
+<ol>
+<li>计算前向导数$J_F(X^{*})$</li>
+<li>基于前向导数构造显著图$S$</li>
+<li>利用参数$\theta$修改输入特征$i_{max}$</li>
+</ol>
+<p>详细步骤如下：</p>
+<p><strong>step1.计算DNN的前向导数</strong></p>
+<p>计算公式为：</p>
+<p>$\frac{\partial F_j(X)}{\partial x_i} = \left( W_{n+1,j}· \frac{\partial H_n}{\partial x_i}\right) \times \frac{f_{n+1,j}}{\partial x_i} (W_{n+1,j} ·H_n +b_{n+1,j})$</p>
+<p>其中$\frac{\partial H_n}{\partial x_i}$可以通过递归方式求解，其余参数已知。因此对于深度学习模型$F$和给定输入$X$而言，前向导数矩阵为：</p>
+<p>$J_F(x) = \frac{\partial F(X)}{\partial X} = \left[\frac{\partial F_j(X)}{\partial x_i} \right]_{i \in 1,\dots,M;j \in 1,\dots,N}$</p>
+<p><strong>step2.计算对抗性显著图</strong></p>
+<p>用来表示输入空间中哪些特征对输出结构影响最大。为了达到将对抗样本分为$t$类的目的，$F_t(X)$的概率必须不断增大，且当$j \neq t$时，$F_j(X)$应该不断减小，直到<br>$$<br>t= \rm arg  \max_j F_j(X)<br>$$<br>文章给出了一种显著图的计算方式：<br>$$<br>\begin{equation}<br>S(X,t)[i]=<br>\begin{cases}<br>0: \rm if  \frac{\partial F_t(X)}{\partial X_i}<0 \ \rm or\ \sum\limits_{j\neq t}\frac{\partial f_j(x)}{\partial x_i}>0\\<br>\left(\frac{\partial F_t(X)}{\partial X_i}\right)\left| \sum\limits_{j\neq t} \frac{\partial F_j(X)}{\partial X_i}\right|: \mbox{otherwise}<br>\end{cases}<br>\end{equation}<br>$$<br>其中$i$表示输入空间的第$i$个特征，$J_{ij}(x)$表示前向导数矩阵的元素。通过计算显著图，显著图数值$ S(X,t)[i]$ 越大，表示会增加分类器将其分为对应target类的概率或者减少分类为其他类别的概率。</0></p>
+<p><strong>step3.样本修改</strong></p>
+<p>通过对抗性显著图的确定需要修改的输入特征后，对应的特征(像素点)修改值，文章引入参数$\theta$表示输入特征的修改量。在MNIST实验中，参数$\theta = +1$。</p>
+<h2 id="MNIST数据集上的实验结果"><a href="#MNIST数据集上的实验结果" class="headerlink" title="MNIST数据集上的实验结果"></a>MNIST数据集上的实验结果</h2><p>实验主要从三方面评估JSMA攻击方法的效果:</p>
+<ul>
+<li>是否可以利用JSMA攻击任何样本？</li>
+<li>如何确定样本被攻击的难易程度?</li>
+<li>与DNN相比，人类是否可以正确认知JSMA攻击样本？</li>
+</ul>
+<p>问题一：</p>
+<p>作者分别从MNIST数据中training、validation和Testing数据中选择10000个样本，每个样本产生对应的9个targeted对抗样本，从而总共产生270000个对抗样本。实验结果如下图所示：</p>
+<img src="/2019/04/20/对抗攻击_论文笔记/3.jpg" title="实验结果">
+<p>实验表明，JSMA攻击对任何样本能够以97%以上的成功概率产生对抗样本，并且修改的输入特征平均百分比在4%左右。意味着，一个样本784个像素中平均只要32个像素点被修改就能达到生成对抗样本的目的。</p>
+<p>问题二：</p>
+<p>作者定义了Hardness measure $H(source,target)$来度量原类别source被扰动成target类的难易程度；定义Adversarial distance $A(X,target)$表示样本X到类别 target之间的距离，A距离越大表示越难将X误分类成target类。</p>
+<p>问题三：</p>
+<p>作者利用Mechanical Turk在线众包系统，分析人类判断JSMA对抗样本的结果。试验发现，人类不能发现无法发现JSMA对抗样本中添加的扰动，也就是满足了对抗样本“被DNN误分类，但是能被人类正确分类”的第二个条件。</p>
+<p><a href="/download/The Limitations of Deep Learning_in Adversarial Settings.pdf">原文链接</a></p>
+<hr>
+<h1 id="Paper2-Explaining-and-harnessing-adversarial-examples"><a href="#Paper2-Explaining-and-harnessing-adversarial-examples" class="headerlink" title="Paper2_Explaining and harnessing adversarial examples"></a>Paper2_Explaining and harnessing adversarial examples</h1><p>这篇文章主要提出与之前论文不同的线性假设来解释对抗样本的存在性。同时，论文提出了一种简单的对抗样本生成方法-FGSM，并且再利用该攻击方法产生的对抗样本进行对抗训练。这篇文章主要说明的对抗样本的三个方面：1.存在性、2.攻击方法、3.防御方法。</p>
+<h2 id="摘要-1"><a href="#摘要-1" class="headerlink" title="摘要"></a>摘要</h2><p>一些机器学习模型，包括神经网络，总是对来自数据集的反例输入进行错误的分类，这些反例输入是通过对数据集中的示例应用小的但有意为之的最坏情况的扰动而形成的，这样，扰动的输入导致模型以很高的可信度输出错误的答案。早期对这一现象的解释主要集中在非线性和过拟合上。相反，我们认为神经网络易受对抗性扰动的主要原因是它们的<strong>线性特性</strong>。</p>
+<p>这种解释得到了新的定量结果的支持，同时给出了关于它们最有趣的事实的第一个解释:它们在体系结构和训练集之间的泛化。此外，该视图提供了一种生成对抗性示例的简单而快速的方法。利用该方法为对抗训练提供了实例，减少了MNIST数据集上maxout网络的测试集误差。</p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>当前机器学习已经被广泛应用在日常生活各个领域，但是Szegedy等人于2014年首先发现当前的机器学习模型包括神经网络等模型容易受到对抗样本(Adversarial Examples)的攻击。所谓对抗样本，即攻击者通过轻微地扰动正常样本产生对抗样本，在且保证该攻击不影响人眼的识别的情况下，达到误导分类器的目的。</p>
+<p>在当前的研究中，对抗样本的原因产生的原因仍是一个谜。之前很多假设推测对抗样本的产生是因为深度神经网络的极度非线性，可能还结合了监督学习中正则化和模型均化不足等原因。但是本文的作者认为，这种非线性(Nonlinear)的推测解释没有必要，高维空间的线性(Linear Behavior)足够产生对抗样本。根据这个观点，作者设计了一种新的快速产生对抗样本的方法，并且使得对抗学习(Adversarial Training)更实用。这种对抗学习方法提供除了传统正则化方法(dropout, pre-training, model averaging等)外另外一种”正则化方法”。</p>
+<h2 id="对抗样本的线性解释"><a href="#对抗样本的线性解释" class="headerlink" title="对抗样本的线性解释"></a>对抗样本的线性解释</h2><p>因为样本输入特征(input feature)的精度有限(一般图像的每个像素是8bits, 样本中所有低于1/255的信息都会被丢弃)，所以当样本 $x$ 中每个元素值添加的扰动值 $\eta$ 小于样本输入特征精度时，分类器无法将样本$ x$ 和对抗样本 $\tilde{x} = x + \eta$ 区分开。也就是对一个分类良好的分类器而言，如果$ \epsilon $是一个足够小以至于被舍弃掉的值，那么只要$ ||\eta||_{\infty} &lt; \epsilon$ ，分类器将认为 $x$ 和$ \tilde{x} $属于同一个类。</p>
+<p>下面考虑权重向量$ \omega^{T} $和对抗样本 $\tilde{x} $的点积为$\omega^{T}\tilde{x} =\omega^{T}(x +\eta) = \omega^{T}x + \omega^{T}\eta$。可以看出，对抗扰动使得activation增加了 $ \omega^{T}\eta$，作者提出让$ \eta = sign(\omega) $从而使$  \omega^{T}\eta$ 最大化。假设权重向量 $\omega$有$ n $个维度，且权重向量中元素的平均量值是$ m$，那么activation将增加$\epsilon_{ m n} (\Rightarrow\omega^{T}\eta \le n\times m \times \epsilon )$。虽然$||\eta||_{\infty} $不会随着维度$n$的变化而变化，但是由$\eta$导致的activation的增加量$\epsilon_{ m n}$会随着维度$n$线性增长。那么对于一个高维度的问题，一个样本中大量维度的无限小的干扰加在一起就可以对输出造成很大的变化。</p>
+<p>所以对抗样本的线性解释表明，对线性模型而言，如果其输入样本有足够大的维度，那么线性模型也容易受到对抗样本的攻击。</p>
+<h2 id="非线性模型的线性扰动"><a href="#非线性模型的线性扰动" class="headerlink" title="非线性模型的线性扰动"></a>非线性模型的线性扰动</h2><p>作者利用对抗样本的线性解释提出了一个快速产生对抗样本的方式，也即Fast Gradient Sign Method(<strong>FGSM</strong>)方法。</p>
+<p>假设模型的参数值为$\theta$，模型的输入是$ x， y $是模型对应的label值， $J(\theta,x,y)$是训练神经网络的损失函数。对某个特定的模型参数 $\theta$ 而言，FGSM方法将损失函数近似线性化，从而获得保证无穷范数限制的最优的扰动(即$||\eta||_{\infty} &lt; \epsilon$ )，扰动值具体为：</p>
+<p>$ \eta = \epsilon · \rm sgn(\nabla_xJ(\theta,x,y))$</p>
+<p>FGSM攻击算法在ImageNet数据上的展示如下图所示：</p>
+<img src="/2019/04/20/对抗攻击_论文笔记/4.jpg" title="FGSM在ImageNet实验结果">
+<p>实验表明：</p>
+<p>FGSM这种简单的算法确实可以产生误分类的对抗样本，从而证明了作者假设的对抗样本的产生原因是由于模型的线性特性。同时，这种算法也可作为一种加速对抗训练的方法。</p>
+<h2 id="线性模型的对抗训练"><a href="#线性模型的对抗训练" class="headerlink" title="线性模型的对抗训练"></a>线性模型的对抗训练</h2><p>考虑最简单的逻辑回归模型上运用FGSM方法，理解如何在一个简单的设置中生成对抗样本。</p>
+<p>假设要训练一个逻辑回归的模型来识别标签$y \in \{-1,1\}$，预测函数为：</p>
+<p>$P(y=1) = \sigma(w^Tx+b)$</p>
+<p>即：$P(y=-1) = 1-\sigma(w^Tx+b)$。其中$\sigma$表示sigmoid函数。样本的损失函数为：</p>
+<p>$\mathbb{E}_{x,y \sim p_{data}} \varsigma(-y(w^Tx+b))$</p>
+<p>其中：$\varsigma(z) = \log (1+\exp(z))$是softplus函数。</p>
+<p>对该模型使用FSGM方法，扰动量为：</p>
+<p>$\eta = \epsilon· \rm sgn(\nabla_xJ(\theta,x,y))\ <br> = \epsilon· \rm sgn(\nabla_x\varsigma(-y(w^Tx+b)))\\<br> = \epsilon · \rm sgn(-w^T * \sigma(-(w^Tx+b))) \\<br> = \epsilon · \rm sgn(-w) \\<br> = - \epsilon · \rm sgn(w)$</p>
+<p>且$\rm w ^T \rm sgn(w) = ||w||_1$。逻辑回归的对抗形式为：</p>
+<p>$\mathbb{E}_{x,y \sim p_{data}} \varsigma(-y(w^T\tilde{x}+b)) = \mathbb{E}_{x,y \sim p_{data}} \varsigma(y(\epsilon||w||_1-w^Tx-b))$</p>
+<p>其中：</p>
+<p>$\tilde{x} = x+ \eta$ </p>
+<p>$\eta = \epsilon -sgn(w)$</p>
+<h2 id="深度网络的对抗训练"><a href="#深度网络的对抗训练" class="headerlink" title="深度网络的对抗训练"></a>深度网络的对抗训练</h2><p>相比于线性模型，深度网络至少可以在训练网络过程中来抵御对抗扰动攻击。文章给一种利用FGSM进行对抗训练的方法：</p>
+<p>$\tilde{J}(\theta,x,y) = \alpha J(\theta,x,y)+(1-\alpha)J(\theta,x+\epsilon \rm sign(\nabla_xJ(\theta,x,y)))$</p>
+<p>这种对抗训练的方法意味着在训练过程中不断更新对抗样本，从而使得当前模型可以抵御对抗样本。但是作者表示在训练集上对抗训练的错误率error rate没有达到过0%，作者主要从以下两个方面解决：</p>
+<ul>
+<li>增大模型，即使用1600个unit代替240个unit</li>
+<li>在validation set上也使用early stopping算法</li>
+</ul>
+<p>文章表明，在不进行对抗训练的情况下，模型识别FGSM攻击方法生成样本的错误率是89.4%，但是通过对抗训练，同样的模型识别对抗样本的错误率下降到17.9%。</p>
+<h2 id="对抗样本泛化原因"><a href="#对抗样本泛化原因" class="headerlink" title="对抗样本泛化原因"></a>对抗样本泛化原因</h2><p>对抗样本具有Transferability。具体来说，在一个特定模型上产生的对抗样本通常也容易被其他模型误分类，即使这些模型的结构不同或者模型在不同的训练集上训练。甚至，不同的模型对对抗样本误分类的结果相同！作者表明，非线性或者过拟合的假设不能解释上述的现象，即， 为什么拥有无限能力的极度非线性模型会以相同的方式标注数据分布点？</p>
+<p>在本文提出的线性解释下，作者认为对抗样本在广泛的子空间存在。</p>
+<img src="/2019/04/20/对抗攻击_论文笔记/5.jpg">
+<p>上图表明，在不同的 $\epsilon$ 下，可以看到FGSM可以<strong>在一维的连续子空间内产生对抗样本，而不是特定的区域</strong>。这就解释了为什么对抗样本特别多，以及对抗样本transferability存在的原因。</p>
+<p>另外，为了解释为什么不同的分类器将对抗样本误分类到同一个类，作者假设目前的方法训练神经网络都类似于在同一个训练集上学习的线性分类器。由于机器学习算法的泛化能力，所以线性分类器可以在训练集的不同子集上训练出大致相同的分类权重。底层分类权重的稳定性反过来又会导致对抗样本中的稳定性。</p>
+<h2 id="对抗样本存在性的其他假设"><a href="#对抗样本存在性的其他假设" class="headerlink" title="对抗样本存在性的其他假设"></a>对抗样本存在性的其他假设</h2><p>这一部分，作者通过实验及分析，反驳了其他两种对抗样本存在性的假设。</p>
+<p>假设1：生成训练可以在训练过程中提供更多的限制，或者是的模型学习如何分辨”real”或者”fake”的数据，并且对”real”的数据更加自信。</p>
+<p>文章表明，某些生成训练并不能达到假设的效果，但是不否认可能有其他形式的生成模型可以抵御攻击，但是确定的是生成训练的本身并不足够。</p>
+<p>假设2：对抗样本存在于单个奇怪的模型(models with strange quirks)，因此多个模型的平均可以使得模型防御性更好。</p>
+<p>文章通过实验说明，模型融合对于对抗样本的防御能力非常有限。</p>
+<p><a href="/download/Explaining and Harnessing Adversarial Examples.pdf">原文链接</a></p>
+<hr>
+<h1 id="Paper3-Practical-Black-Box-Attacks-Against-Machine-Learning"><a href="#Paper3-Practical-Black-Box-Attacks-Against-Machine-Learning" class="headerlink" title="Paper3_Practical Black-Box Attacks Against Machine Learning"></a>Paper3_Practical Black-Box Attacks Against Machine Learning</h1><p>本文提供了一个生成对抗样本的黑箱攻击方式，以前的对抗样本的生成是基于白盒的，即攻击必须要知道受攻击的模型的详细信息（包括模型结构参数，训练样本集等），但在实际应用中，这种理想的条件是几乎不存在的，攻击者几乎不可能的到模型的详细信息。本文不需要知道这些信息，只需要可以接触到受攻击模型的判别label即可完成对抗攻击。论文的作者提出了一种基于黑盒攻击的方式，训练一个跟想要攻击的目标模型完成同样任务的替代模型，基于当前的模型去生成对抗样本，这些对抗样本最终被用于攻击原目标模型。</p>
+<h2 id="摘要-2"><a href="#摘要-2" class="headerlink" title="摘要"></a>摘要</h2><p>机器学习模型，如DNNs，很容易受到反面例子的攻击：恶意的输入被修改以产生错误的输出，而在人类观察者看来没有被修改。潜在的攻击包括恶意软件等恶意内容识别为合法或控制车辆的问题。</p>
+<p>现在所有描述对抗示例攻击都需要了解内部模式或其训练数据。我们将介绍攻击者在不了解此类知识的情况下控制远程托管的DNN的第一个实际演示。实际上，我们的黑盒对手的唯一能力是观察DNN给所选输入的标签。我们的攻击策略包括训练一个局部模型来代替目标DNN，使用由目标DNN综合生成并标记的输入。我们使用局部替代的方法来构造对抗性的例子，发现它们被目标DNN错误分类。</p>
+<p>为了执行一个真实的、完全盲的评估，我们攻击了一个由MetaMind(一个在线深度学习API)托管的DNN。我们发现，他们的DNN错误分类了84.24%的与我们的替代品制作的对抗性的例子。我们使用逻辑回归替代方法对Amazon和谷歌承载的模型进行相同的攻击，从而演示了我们的策略对许多ML技术的一般适用性。</p>
+<h2 id="攻击限制"><a href="#攻击限制" class="headerlink" title="攻击限制"></a>攻击限制</h2><p>在不知道受攻击模型的网络结构，参数设置以及训练样本的情况下，来生成对抗样本使得受攻击的模型误判。</p>
+<p>以往大多数的方法是针对模型，猜测探索模型的误判方向，找到更容易产生偏差的方向，在这个方向上做扰动，从而达到迷惑模型的目的。现在除了知道接受到的输入打的标签，无法基于梯度的方法，有针对的探索模型特性。</p>
+<h2 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h2><p>无法接触到受攻击模型的信息，采用生成替代模型，来模拟近似受攻击模型的某些决策边界。替代模型不是用来学习判别最优的，而是学习能够模仿受攻击模型的决策边界的替代能力。</p>
+<h3 id="替代模型训练"><a href="#替代模型训练" class="headerlink" title="替代模型训练"></a>替代模型训练</h3><img src="/2019/04/20/对抗攻击_论文笔记/6.jpg" title="替代模型训练">
+<p>训练一个替代模型$F$来近似原始模型oracle O。存在以下问题：</p>
+<ul>
+<li>在不知道原始模型的结构信息的条件下为替代模型选择结构</li>
+<li>为了保证这个方法容易处理，需要限制向原始模型询问(输入输出)的次数，因为全部遍历真实输入是不可能的，query太多容易被封。</li>
+</ul>
+<p>作者给出一种<strong>合成数据生成技术</strong>(synthetic data generation technique)，这个方法是基于雅可比行列式对数据集进行扩充。</p>
+<h3 id="样本合成"><a href="#样本合成" class="headerlink" title="样本合成"></a>样本合成</h3><p>Jacobian-Based Dataset Augmentation:</p>
+<p>雅可比矩阵$\frac{\partial F(x,\theta)}{\partial x}$描述了输出$F$对输入$x$的敏感程度，即很小的输入会导致很大的输出值变化幅度。这些方向上，更能描述模型的分类边界的样本情况。如下图，梯度和边界样本：</p>
+<img src="/2019/04/20/对抗攻击_论文笔记/7.jpg" title="梯度和边界样本">
+<p>根据前面的一批合成样本，来生成后续的样本集，想要更有效的合成数据集，就要强化这些方向上的数据合成（即基于雅可比矩阵的数据集合成）。</p>
+<p>新样本合成如下：</p>
+<p>$S: = \{x+ \lambda ·  sgn(J_F[\tilde{O}(\vec{x})]):\vec{x} \in S_{\rho}\} \cup S_{\rho}$</p>
+<p>其中：$\tilde{O}(\vec{x})$表示$x$在受攻击模型下的label，$J_F= \frac{\partial F}{\partial x_i}$。$\lambda$是扩充的参数，定义由雅可比矩阵确定的方向上采取的步长大小。</p>
+<p>合成新数据多少条，就要query多少次受攻击模型。</p>
+<p>利用合成数据训练替代模型，学习到原始模型的决策边界，然后利用已经学习了分类边界识别能力的模型做迁移对抗。</p>
+<p>整个训练流程如下：</p>
+<p><strong>Initial Collection 收集输入数据:</strong> 攻击者收集代表输入域（input domain）的非常小的集合S_0。例如，原始模型用于分类手写体数字，则攻击者对从0-9的每个数字收集10张图片，并且，这个集合的分布不必与目标模型的训练集分布一致。</p>
+<p><strong>Architecture Selection 选择模型的结构:</strong> 为替代模型F选择一个结构。值得一提的是，模型的类型，层数，大小对攻击的成功与否影响很小。（当然前提是替代模型是work的，总不能说拿一个准确率30%的模型去替代一个准确率95%的模型）</p>
+<p><strong>Substitute Training 训练替代模型:</strong> 迭代的去训练替代模型F_ρ来提高其准确率（<strong>ρ是迭代轮数</strong>）</p>
+<img src="/2019/04/20/对抗攻击_论文笔记/8.jpg" title="Substitute DNN Training Algorithm">
+<ul>
+<li>Labeling 标数据：将初始的替代输入集合Sρ输入到模型O中，并将输出的结果作为样本的标签</li>
+<li>Training 训练模型F：用打好标签的替代训练集训练模型F_ρ</li>
+<li>Augmentation 数据集扩充：用之前提到的数据集扩充技术对当前的数据集$S_ρ$进行扩充，得到$S_ρ+1$，这个新的集合能够更好的代表模型的决策边界。用集合S_ρ+1重复上述的Labeling和Training过程。</li>
+</ul>
+<p>整个过程被重复多次，以提高$F$的准确率并让其决策边界和模型$O$更相似。</p>
+<h2 id="对抗样本生成"><a href="#对抗样本生成" class="headerlink" title="对抗样本生成"></a>对抗样本生成</h2><p>根据正常的样本$x$生成对抗样本$x^{<em>}$，使得模型误判$F(x^{</em>}) = y^{*} \neq y$</p>
+<p>对抗生成方法很多，大多数是基于梯度的，本文作者提及了两种方法。</p>
+<p>（1）GoodFellow方法(Fast Gradient Sign Method)</p>
+<p>$\delta_x = \epsilon·sgn\left[ \frac{\partial Cost(F,x,y)}{\partial x}\right] \rightarrow x^{*} = x+ \delta_x$</p>
+<p>主要想法是：代价函数在输入的某方向上变化率很大，那么也是最容易使得代价变化的方向，代价函数是用来指导优化的(这是以正确率为目标的)，也即是最容易使得误判发生。</p>
+<p>（2）Papernot方法：适合指定误导类别的对抗生成</p>
+<p>将样本$x$误导为类别:<br>$$<br>t= \rm arg  \max_j F_j(X),t \neq label(x)<br>$$<br>定义显著图（saliency map）：<br>$$<br>\begin{equation}<br>S(X,t)[i]=<br>\begin{cases}<br>0: \rm if  \frac{\partial F_t(X)}{\partial X_i}<0 \ \rm or\ \sum\limits_{j\neq t}\frac{\partial f_j(x)}{\partial x_i}>0\\<br>\left(\frac{\partial F_t(X)}{\partial X_i}\right)\left| \sum\limits_{j\neq t} \frac{\partial F_j(X)}{\partial X_i}\right|: \mbox{otherwise}<br>\end{cases}<br>\end{equation}<br>$$<br>选择$\frac{\partial F_t(X)}{\partial X_i}<0 \ \rm or\ \sum\limits_{j\neq t}\frac{\partial f_j(x)}{\partial x_i}>0$的输入维度，做扰动更新来生成对抗样本。</0></0></p>
+<p>主要想法是：雅可比矩阵$\frac{\partial F(x,\theta)}{\partial x}$表明了函数$F(x,\theta)$对$x$的敏感度，其绝对值越大的点，越更可能是分类的临界点，因此，根据雅可比矩阵值，可以缩小查找输入扰动有效点的范围。</p>
+<p>这两种方法：GoodFellow的算法生成快速但是干扰大，易被发现；Papernot算法干扰小但是计算代价大。在该论文中选择了选择FGSM（即Goodfellow et al. algorithm）。</p>
+<h2 id="黑盒攻击MetaMind"><a href="#黑盒攻击MetaMind" class="headerlink" title="黑盒攻击MetaMind"></a>黑盒攻击MetaMind</h2><p>作者在MetaMind网站上注册了改模型的API并上传了MNIST的50,000个样本作为训练集。作者强调整个过程都是自动的，他们无法得到训练的算法，模型结构和参数。</p>
+<p>在实验的过程中，作者选取了两组替代训练集：</p>
+<ul>
+<li>MNIST subset: 作者在MNIST数据集中选取了150个样本，并且这些样本和输入到MetaMind中的样本都不一样。</li>
+<li>Handcrafted set: 为了保证结果不是因为替代模型的训练样本和原始模型的训练样本很相似，作者还手工制作了另一组初始替代训练集——用笔记本触控板手工制作了100个样本（数字有10个样本）。 然后，将它们调整为28x28灰度像素的MNIST格式。 一些样本如下所示：<img src="//jiangxjun.github.io/blog/2019/04/20/对抗攻击_论文笔记/9.jpg" alt="9"></li>
+</ul>
+<p>模型$F$的训练结果：</p>
+<img src="/2019/04/20/对抗攻击_论文笔记/10.jpg" title="训练结果">
+<p>经过6轮训练，两个模型分别在MNIST数据集和Handcraft数据集上使得原始模型错误分类的成功率达到了81.2%和67%。</p>
+<p>在不同的$\epsilon$参数【FSGM方法，扰动量为：$ \eta = \epsilon· \rm sgn(\nabla_xJ(\theta,x,y))$】下，基于两个替代模型生成的对抗样本让原始模型错误分类的成功率和对抗样本的可移植性如下图所示：</p>
+<img src="/2019/04/20/对抗攻击_论文笔记/11.jpg">
+<p><a href="/download/Practical Black-Box Attacks against Machine Learning.pdf">原文链接</a></p>
+<hr>
+<h1 id="Paper4-A-Two-Pronged-Defense-against-Adversarial-Examples"><a href="#Paper4-A-Two-Pronged-Defense-against-Adversarial-Examples" class="headerlink" title="Paper4_A Two-Pronged Defense against Adversarial Examples"></a>Paper4_A Two-Pronged Defense against Adversarial Examples</h1><p>人工智能逐渐成为攻击者的目标。其中非常重要的一类攻击称为“<strong>对抗型攻击”</strong>，即攻击者通过精心地轻微扰动正常样本产生<strong>对抗样本</strong>，该攻击样本并不影响人眼识别，但是却可以导致学习系统的误分类，从而达到攻击深度学习系统的目的。在本文中，作者总结了当前针对神经网络分类的攻击与防御方法，发现当前防御方法都依赖对抗样本或者对抗样本的生成过程，泛化能力非常差。针对这一问题，文章提出了一种与攻击无关的（attack-independent）的防御框架，不依赖于对抗样本及其生成过程，而仅仅利用数据本身的特征。</p>
+<h2 id="深度学习中的“对抗样本”"><a href="#深度学习中的“对抗样本”" class="headerlink" title="深度学习中的“对抗样本”"></a>深度学习中的“对抗样本”</h2><p>深度学习是当前最热的一个研究方向，在很多领域都表现出非常好的效果，比如图像识别、自然语言处理，自动驾驶，人机交互等。但是，当前很多研究研究表明，通过向深度学习系统中输入精心构造的数据，很容易达到攻击的目的。具体来说，攻击者通过精心地轻微扰动正常样本产生<strong>对抗样本</strong>，该攻击样本并不影响人眼识别，但是却可以导致学习系统的误分类，从而达到攻击深度学习系统的目的。</p>
+<p><strong>对抗样本 V.S. 正常样本</strong></p>
+<p><strong>正常样本</strong></p>
+<p>对分类任务来说，正常样本$x$是“<strong>自然出现的</strong>”样本。也就是说，分类任务的物理过程是以不可忽略不计的概率生成正常样本$x$。</p>
+<blockquote>
+<p><strong>不可忽略不计</strong>(non-negligible)对应的是<strong>可忽略不计</strong>(negligible) ；<br><strong>可忽略不计</strong>的意义: 一个以可忽略不计的概率发生的事件几乎不可能发生，即使将这个实验重复进行多项式次数。</p>
+</blockquote>
+<p>举例来说，如果分类任务针对的是手写数字，那么数据的生成过程几乎不可能生成老虎的图像。</p>
+<p><strong>对抗样本</strong></p>
+<p>对分类任务来说，对抗样本$y$是”<strong>非自然出现的</strong>“样本，并且分类器对样本$y$的判断结果不同于一般人的判断。</p>
+<p>接下来，作者正式形式化地定义了对抗样本、防御方法及其评估标准。</p>
+<p><strong>形式化定义： 对抗样本、防御方法及其评估标准</strong></p>
+<p>首先定义如下集合：</p>
+<p>$S$: 样本空间内所有样本的集合;</p>
+<p>$C_t$: 对分类任务$t$的互斥类别的集合，例如如果$t$是手写字体分类模型，那么:</p>
+<p>$C=\{0,1,2,\dots,9\}$</p>
+<p>$N_t$:$N_t = \{x| x \in S 并且x是针对分类任务t的自然产生的\}$</p>
+<p>每个分类任务$t$都假定有一个数据产生过程，该过程中每个样本$x \in S$都是以概率函数$p(x)$生成的。如果该概率函数$p(x)$是不可忽略不计的(non-negaligible)，那么生成的$x$则是在分类任务$t$下自然产生的。通常研究认为：$N_t$构建的manifold的维度远远低于$S$。这是因为我们无法知道数据的真实生成过程，所以通常对$t$的自然数据集的联合来近似表示$N_t$。比如应用在图像识别的CIFAR和MNIST数据集。</p>
+<p><strong>定义1:</strong> 分类任务$t$的一个分类器表示为函数 $f_t: S  \rightarrow  C_t$;</p>
+<p><strong>定义2:</strong> 分类任务$t$的ground-truth分类器，表示的是一般人的判断标准。该ground-truth分类器可以表示为函数$g_t: S \rightarrow C_t \cup \{ \bot\} $，其中$\{\bot\}$对输入$x$的不同于任务$t$数据生成过程的其它分类判定，换言之，$\{\bot\}$表示针对对抗样本的分类判定结果。</p>
+<p><strong>定义3:</strong> 对分类任务$t$和分类器$f_t$而言的一个对抗样本$x$需要满足以下两个条件：</p>
+<p>（1）$f_t(x) \neq g_t(x)$</p>
+<p>（2）$x \in S/N_t$差集</p>
+<blockquote>
+<p>第一个条件表明，对对抗样本来说分类器的判断结果通常会出错。但这个并非唯一原因，因为任何的分类器都不是完美的，分类器对正常样本也会产生误差；<br>第二个条件将对抗样本限定为仅仅由攻击者人为产生的用来欺骗分类器的样本。</p>
+</blockquote>
+<p><strong>定义4:</strong> 针对分类器$f_t$中对抗样本的防御方法可以表示为函数$d_{f_t}: S \rightarrow C_t \cup\{\bot\}$</p>
+<p>那么，如何评估防御方法的效果呢？防御的目标是<strong>用来提升分类器在对抗样本上而非正常样本上的准确率</strong>。根据该想法，作者提出如下评估标准。</p>
+<p><strong>定义5:</strong> 如果以下任意一种情况满足，则表明防御方法$d_{f_t}$对样本$x$做出正确判断:</p>
+<p>(1) 当$x$是正常样本时，$d_{f_t}$于ground-truth分类器$g_t$的判断结果一致，即对任意$x \in N_t$，有$d_{f_t}(x) = g_t(x)$;</p>
+<p>(2) 当$x$是对抗样本时，或者有$d_{f_t}$直接判断$x$为对抗样本，或者$d_{f_t}$于$g_t$的判断结果一致，即对任意$x\in S/N_t$，有$d_{f_t} = \{\bot\}$或者$d_{f_t}(x) = g_t(x)$。</p>
+<h2 id="深度学习的攻击与防御"><a href="#深度学习的攻击与防御" class="headerlink" title="深度学习的攻击与防御"></a>深度学习的攻击与防御</h2><p>在本文中，作者主要总结了神经网络分类方法的攻击方法，即寻找符合条件且最合适的“对抗样本”，并且表明，所有的攻击最终都转化为优化问题的求解。</p>
+<p><strong>常见攻击类型：产生对抗样本的方法</strong></p>
+<p><strong>攻击类型1: Fast gradient sign method (FGSM)</strong></p>
+<p>对抗样本$x’$采用迭代求解方法：$x’=x+ \epsilon·sgn(\nabla_x Loss(x,l_x))$，其中$Loss(x,l_x)$函数表示将样本$x$分类成$l_x$的代价，并将其代价最大化。</p>
+<p><strong>攻击类型2: Iterative gradient sign method</strong></p>
+<p>该攻击是对FGSM攻击的改进，确保每一步更新的图像与原图像的距离在$\epsilon $范围内，可以增加FGSM的攻击成功率，即：</p>
+<p>$x_{i+1}’ = clip_{\epsilon ,x}(x_i’ + \alpha ·sgn((\nabla_x Loss(x,l_x)))$。</p>
+<p><strong>攻击类型3: DeepFool</strong></p>
+<p>该攻击的基本思路是：在图像空间中，找到距离正常样本$x$最接近的决策边界，然后跨过该边界去欺骗分类器，通常使用线性迭代的优化方法。</p>
+<p><strong>攻击类型4: Carlini Attack</strong></p>
+<p>该攻击是<strong>当前最有效且最小扰动的</strong>产生对抗样本的方法，可以用如下优化问题来表示:</p>
+<p>$\min\limits_{\delta} ||\delta||_2 + c \cdot f( x + \delta), 使得 x + \delta \in [0,1]^n$</p>
+<p><strong>防御方法总结</strong></p>
+<p>作者根据当前常见的针对对抗样本的防御方法，总结了如下<strong>三种常见的防御方法</strong>。</p>
+<p><strong>防御方法1: Adversarial training 对抗训练</strong></p>
+<p>一个非常直接的想法是在训练过程中包含对抗样本的信息，从而构建一个鲁棒性更好的分类器，该方法即称为<strong>对抗训练方法</strong>。该方法直观上有效，但是有个非常严重的问题是，对抗训练很难推断出攻击者的攻击方式，即对抗训练无法得知攻击者产生的对抗样本的模式、每种对抗样本的比重，从而很难在对抗训练中使用。</p>
+<p><strong>防御方法2: Detecting adversarial example</strong></p>
+<p>该方法主要是训练一个分类器来区分对抗样本与正常样本，与对抗训练方法不同的是：对抗训练只是改善了原有分类器的正确性，而该方法是额外增加一个分类器。</p>
+<p><strong>防御方法3: Defensive distillation</strong></p>
+<p>该方法在训练过程中通过各种方式隐藏梯度信息，从而使得攻击很难通过梯度求解方法攻击目标训练器，但是该防御方法很容易被各种攻击技巧绕过。</p>
+<p>然而这些防御方法都有<strong>局限性</strong>。方法1和方法2都需要对抗样本来训练防御方法，因此这些防御方法都是特定于产生这些对抗样本的过程，而对其他对抗样本不具有泛化能力；于方法3而言，Carlini等人表明distillation 方法并不能增加神经网络的鲁棒性，而且这种防御方法需要改变并重新训练目标分类器，增加了工程上的复杂性。</p>
+<p><strong>“对抗样本”及本文的解决思路</strong></p>
+<p><strong>误分类的原因 ——</strong> 根据深度学习的流形假设(Manifold Hypothesis)，对大多数的AI任务来说，样本空间是一个非常高维的空间，但是我们所能掌握的有效样本其实在一个维度远远低于高维度样本空间的一个流行(Manifold)空间内。</p>
+<p>因此，作者总结了一个<strong>分类器错分类对抗样本</strong>的原因，有如下两条：</p>
+<ol>
+<li>对抗样本远远地远离该任务的流行Manifold的边界。比如说，如果该任务是手写数字图像分类，那么不含有数字的其他图像都是对抗样本。因为分类器必须要对该图像分类，从而产生一个类标签，所以一定会导致错误分类；</li>
+<li>对抗样本非常接近于该任务的流行边界，如果此时该分类方法的泛化能力不好，那么也会发生误分类。</li>
+</ol>
+<p><strong>本文的解决思路 ——</strong> 本文中，作者设计实现了一个双管齐下的防御系统，针对上面两个误分类的原因，提出了对应的Detector和Reformer方法。针对第一个原因，Detector用来判断一个样本是否远远远离Manifold边界，如果是的话直接删除；接着针对第二个原因，对于一个样例，努力找到一个接近或者就在该任务Manifold之上的样例，其中是的近似表示，然后再交由分类器。</p>
+<h2 id="MagNet防御方案"><a href="#MagNet防御方案" class="headerlink" title="MagNet防御方案"></a>MagNet防御方案</h2><p>在本文中，作者提出了一个用于防御深度学习分类任务中对抗样本攻击的框架: MagNet。MagNet中包括一个或者多个Detector模块和一个Reformer模块，详细如下图所示。</p>
+  <img src="/2019/04/20/对抗攻击_论文笔记/12.jpg" title="MagNet Workflow in test phase">  
+<h3 id="Detector"><a href="#Detector" class="headerlink" title="Detector"></a>Detector</h3><p>Detector是一个判断样本是否是对抗样本的函数，即$d: S\rightarrow \{0,1\}$事实上，针对这个问题，当前主要做法是训练一个分类器来区分正常样本和对抗样本。但是因为这类方法都需要对抗样本数据集或者需要了解对抗样本的生成过程，对其他类型的对抗样本没有泛化能力，所以这类方法非常容易被稍微改动的攻击绕过。本文中，作者提出了两种新的检测对抗样本的方法：基于重构误差的检测和基于概率分歧的检测方法。</p>
+<p><strong>1. 基于重构误差（reconstruction error）的Detector</strong></p>
+<p>为了避免在检测的过程中需要对抗样本的数据集，Detector中的检测方法是通过对正常样本建模，估算对抗样本与正常样本Manifold边界的距离，从而达到检测对抗样本的目的。在本文中，作者称这类方法为基于重构误差的检测方法，其具体实现中主要利用的是Autoencoder。</p>
+<p>如下图2所示，一个Autoencoder可以表示为:$ae = d \circ e$ , 主要包括两部分: 一个encoder $e: S \rightarrow H$ 和 一个decoder$d: H \rightarrow S$其中$S$是输出空间，$H$是隐藏空间。</p>
+<img src="/2019/04/20/对抗攻击_论文笔记/13.jpg" title="Autoencoder示意图"> 
+<p>对于所有正常样本的训练集合，作者训练了一个autoencoder使得这个训练集的损失函数最小，其损失函数定义为：</p>
+<p>$L(X_{train}) = \frac{1}{X_{train}} \sum_{x \in X_{train}} ||x - ae(x)||_2$</p>
+<p>一旦训练得到一个autoencoder的模型，那么对于任意待测试的样本$x$，其重构误差为:</p>
+<p>$E(x) = ||x - ae(x)||_p$</p>
+<p>作者认为如果待测试的样本是正常样本，因为该样本与autoencoder的训练数据的生成过程相同，所以其重构误差很小，反之，如果带检测的样本是对抗样本，那么该样本的重构误差会很大。所以，在本文中作者用重构误差来衡量待检测样本与正常样本Manifold间的距离。但是，由于该距离是连续值，所以在本文中作者还利用验证集确定一个阈值 $r_{re}$，用来判断是否为对抗样本。</p>
+<p><strong>2.基于概率分歧/发散（probability divergence）的Detector</strong></p>
+<p>基于重构误差的Detector的适用于当样本的误差很大的时候，那么如果重构误差很小的时候呢？在本文中作者的解决方式是利用目标分类器来进一步检测。</p>
+<p>大多数的神经网络分类器在最后一层实现softmax函数，即: $softmax(l)_i = \frac{exp(l_i)}{\sum_{j=1}^n exp(l_j)}$</p>
+<p>本文定义 $f(x)$ 为神经网络softmax层对于输入 $x$ 的输出值， $ae(x)$ 为autoencoder $ae$ 接受输入 $x$ 时候产生的输出值，为输入 $x$ 先经过autoencoder然后再softmax函数后的输出值。在本文中作者认为，如果$x$是正常样本，$ae(x)$一般与$x$非常接近，那么$f(x)$与$f(ae(x))$的概率函数则非常接近；如果$x’$是对抗样本，$ae(x’)$一般与$x’$差别非常大，尽管两者的重构误差可能很小，$f(x)$与$f(ae(x))$的概率函数的差别也会很大。</p>
+<p>因此，作者利用 $f(x)$与$f(ae(x))$间的分歧来判断样本$x$是否为正常样本，分歧程度用Jensen-Shannon散度来衡量： $JSD(P||Q) = \frac{1}{2} D_{KL}(P||M) +\frac{1}{2} D_{KL}(Q||M)$其中  $D_{KL}(P||Q) = \sum_i P(i)log\frac{P(i)}{Q(i)}$，且 $M = \frac{1}{2}(P+Q)$</p>
+<h3 id="Reformer"><a href="#Reformer" class="headerlink" title="Reformer"></a>Reformer</h3><p>Reformer函数 $r: S \rightarrow N_t$用来重构测试输入样本，理想的reformer需要满足如下两个条件：</p>
+<ul>
+<li>不应该改变正常样本的分类结构；</li>
+<li>应该充分重构对抗样本，使得重构后的样本接近于正常样本。</li>
+</ul>
+<p>基于上述思路，作者主要利用autoencoder来实现Reformer。通过在正常样本上训练得到一个autoencoder，然后利用该autoencoder，不论是对抗样本还是正常样本，都会输出一个于正常样本Manifold接近的样本，从而达到了理想reformer的要求。本文中作者展示了Reformer的效果如图3所示。</p>
+<img src="/2019/04/20/对抗攻击_论文笔记/14.jpg" title="Reformer的效果图">
+<h2 id="MagNet的实验评估"><a href="#MagNet的实验评估" class="headerlink" title="MagNet的实验评估"></a>MagNet的实验评估</h2><p>文章中，作者主要基于MINST和CIFAR-10数据集，实验评估了MagNet防御方法针对常见的四种攻击(FGSM, Iterative, DeepFool和Carlini’s)的防御效果。另外，针对这四种攻击模型，作者总结了三种攻击场景：</p>
+<ol>
+<li>黑盒攻击：攻击者不知道防御方法的任何参数、神经网络结构、训练集等；</li>
+<li>灰盒攻击：攻击了除了不知道防御方法的参数外，其他一切信息都了解；</li>
+<li>白盒攻击：攻击者了解防御方法的一切参数、神经网络结构、训练集等。</li>
+</ol>
+<p>作者表明，针对白盒攻击，当前几乎没有任何防御方法，MagNet的防御效果也不理想。所以在本文中，作者主要展示了MagNet在黑盒攻击和灰盒攻击中的防御效果。</p>
+<p><strong>MagNet对黑盒攻击的性能</strong></p>
+<p>针对MINST和CIFAR-10数据集，文章显示了MagNet防御方法对黑盒攻击的防御效果，具体如下图4与图5所示。</p>
+<img src="/2019/04/20/对抗攻击_论文笔记/15.jpg" title="针对MINST数据集的黑盒攻击下MagNet的分类准确度"> 
+<img src="/2019/04/20/对抗攻击_论文笔记/16.jpg" title="针对CIFAR-10数据集的黑盒攻击下MagNet的分类准确度"> 
+<p>以最后一行为例，上述两图表明使用的Carlini攻击对两个数据集都能达到100%攻击成功效果（0%的分类成功），但是在MagNet的防御下，该分类准确度分别为92%和77.5%，表明攻击成功率只有8%和22.5%。所以，黑盒攻击下，MagNet的防御效果非常好！</p>
+<p><strong>如何防御灰盒攻击？</strong></p>
+<p>在灰盒攻击攻击下，攻击者不知道防御的具体参数，但是知道防御的具体结构、训练集合等，这样会极大地影响MagNet防御方法的效果。在本文中，作者认为即使我们不能完全消除对抗样本，我们也可能增加攻击者发现对抗样本的难度，从而增强训练器的鲁棒性。</p>
+<p>本文利用了密码学中随机性的思想，在防御过程中创建了不同的autoencoder作为候选的Detector和Reformer。MagNet对每一个场景、每一个测试集、甚至每个测试样本都随机选择一个autoencoder。因此，可以通过增加autoencoder集合的大小和多样性，从而使得攻击更难，到达更好的防御效果。图6显示了针对CIFAR-10数据集Carlini攻击产生的对抗样本在MagNet防御下的分类正确性。</p>
+<img src="/2019/04/20/对抗攻击_论文笔记/17.jpg" title="灰盒攻击产生对抗样本的分类准确性"> 
+<p>对角线上数据表明，当Carlini攻击中的autoencoder与MagNet在测试过程中使用的autoencoder相同时，MagNet的分类准确性大部分下降到0。但是当这两个autoencoder不同时，分类的准确度一般都在90%以上。最后一行表明，当攻击者在训练过程中随机选择一个autoencoder，并且MagNet在测试过程中也随机酸则一个autoencoder时候，MagNet的分类准确度保持在80%以上。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文提出一个针对神经网络中“对抗样本”的防御框架 — MagNet。MagNet框架中使用两种方法处理神经网络中的不可信的输入数据。该框架中首先使用Detector来检测所有样本中<strong>扰动量大的对抗样本，</strong>直接删除，然后针对<strong>扰动量小的对抗样本</strong>，努力找到一个接近正常样本的Manifold上的对应样本。这两种方法双管齐下共同提高神经网络的分类准确度。此外，通过使用autoencoder作为detector检测方法，MagNet在不需要任何对抗样本或者对抗样本产生过程知识的情况下达到检测对抗样本的目的，该检测方法具有更强的泛化能力。实验表明，MagNet可以有效地防御当前最新的对抗样本攻击手段。在攻击者知道MagNet训练样本的情况下，作者介绍了一个新的<strong>灰盒攻击</strong>模型，并利用随机化多样性来有效地抵御这种攻击。</p>
+<p>另外，文章表明针对对抗样本的防御方法应该是attack-independent的。也就是说，我们不能从特定的生成过程找到对抗样本的属性，而应该是通过在所有对抗样本的生成过程中找到内在的共同特性来使得防御方法的泛化能力更强。作者同时表明，MagNet知识解决该问题第一步，并证明了其良好的性能。</p>
+<h1 id="对抗攻击论文总结"><a href="#对抗攻击论文总结" class="headerlink" title="对抗攻击论文总结"></a>对抗攻击论文总结</h1><h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><p>机器学习的安全性《Can machine learning be secure?》</p>
+<p>对机器学习安全性的影响可以通过两方面：一是在学习过程中调节训练数据《Poisoning attacks against support vector machines》，二是在预测过程中操控输入数据《In Machine Learning and Knowledge Discovery in Databases）。</p>
+<hr>
+<h2 id="Attack"><a href="#Attack" class="headerlink" title="Attack"></a>Attack</h2><p>对抗问题最先由2013《Evasion attacks against machine learning at test time》提出，对抗攻击（Adversarial Attacks）的提出2014《Intriguing properties of neural networks》提出。</p>
+<p><strong>对抗攻击产生的原因</strong>，分为两个方面：深度神经网络模型的非线性加上不充分的模型平均和不充分的正则化导致的过拟合；《Explaining And Harnessing Adversarial Examples》提到高维空间中的线性性就足以造成对抗样本，深度模型对对抗样本的无力最主要的还是由于其线性部分的存在。</p>
+<p>针对对抗攻击在<strong>黑盒</strong>攻击中的应用《Practical black-box attacks against deep learning systems using adversarial examples》，（增强学习中的黑盒攻击）《Adversarial Attacks on Neural Network Policies》，《Universal adversarial perturbations》中的构造样本方法也能在黑盒前提下发挥作用。<br>通常的黑盒攻击都是在对抗攻击的transferability特性的情况下发挥作用，《Machine Learning as an Adversarial Service:Learning Black-Box Adversarial Examples》提出了直接采用对抗样本的方法进行黑盒攻击。</p>
+<p>对抗攻击的<strong>transferability特性</strong>《Intriguing properties of neural networks》（多种神经网络结构），《Adversarial Attacks on Neural Network Policies》（在多种增强学习策略下），</p>
+<p><strong>构建对抗样本</strong>的算法（优化算法）：<br>（<strong>围绕两个问题</strong>：difficult to find new methods that are both effective in jeopardizing a model and computationally affordable）<br>1.传统的梯度下降，牛顿法，BFGS，L-BFGS<br>2.Jacobian saliency map attack (JSMA) ：《The limitations of deep learning in adversarial settings<br>2.5 FGSM：《Explaining And Harnessing Adversarial Examples》<br>iterative version of FGSM：《Adversarial examples in the physical world》(smaller perturbation)<br>3.RP2： 《Robust Physical-World Attacks on Machine Learning Models》<br>4.Papernot Method：《 Adversarial perturbations against deep neural networks for malware classification》<br>5.Universal Perturbations （extend of DeepFool method）：《Analysis of universal adversarial perturbations》《Universal adversarial perturbations》（<strong>思考：能否根据universal原理将神经网络中的输入都加上同一个扰动，让对应的模型分类效果更好，从而得出置信度更高的分类结果</strong>）<br>6.DeepFool：《Deepfool: a simple and accurate method to fool deep neural networks. 》the first method to compute and apply the minimal perturbation necessary for misclassification under the L2 norm.（the approximation is more accurate than FGSM and faster than JSMA）（still computationally expensive）<br>7.《Towards evaluating the robustness of neural networks》（The authors cast the formulation of Szegedy et al. into a more efficient optimization problem, which allows them to craft efficient adversarial samples with low distortion.）（also very expensive）<br>\8. Virtual adversarial examples：《Virtual adversarial training: a regularization method for supervised and semi-supervised learning》</p>
+<p>对抗攻击<strong>应用在物理目标</strong>上：（面部识别）《Accessorize to a crime: Real and stealthy attacks on state-of-the-art face recognition》，（拍照图片）《Adversarial examples in the physical world》，（路标）《Robust Physical-World Attacks on Machine Learning Models》<br>，（自动汽车）《Concrete Problems for Autonomous Vehicle Safety:Advantages of Bayesian Deep Learning》，（恶意软件分类）《Adversarial Perturbations Against Deep Neural Networks for Malware Classification》</p>
+<p>在<strong>增强学习</strong>上的应用《Vulnerability of deep reinforcement learning to policy induction attacks.》，《Adversarial Attacks on Neural Network Policies》</p>
+<p><strong>增强攻击效果</strong>的方法：<br>《Adversarial Attacks on Image Recognition》提到可以通过PCA降维处理数据</p>
+<hr>
+<h2 id="Defence"><a href="#Defence" class="headerlink" title="Defence"></a>Defence</h2><p>defence的两个方向： 《Adversarial Attacks on Neural Network Policies》（作为future work提到）<br>\1. 将对抗样本加入到训练集中。即是可以手动生成对抗样本，并加入到训练集中。（但是生成对抗样本的代价比较大）<br>\2. 在测试模型时增加一个探测对抗输入的模块，判断输入是否有对抗攻击<br><strong>Defence</strong>的方法：</p>
+<ol>
+<li>Adversarial Training（augmenting the training data with perturbed examples）：《Intriguing properties of neural networks》（either feeding a model with both true and adversarial examples or learning it using the following modified objective function:<br>J ˆ(θ, x, y) = αJ(θ, x, y) + (1 − α)J(θ, x + ∆x, y)）</li>
+<li>Defensive distillation：《Distillation as a defense to adversarial perturbations against deep neural networks》–hardens the model in two steps: first, a classification model is trained and its softmax layer is smoothed by division with a constant T ; then, a second model is trained using the same inputs, but instead of feeding it the original labels, the probability vectors from the last layer of the first model are used as soft targets. （《Adversarial perturbations of deep neural networks》对这种方法进行了改动，只需要一步即可构成攻击）</li>
+<li>Feature squeezing：《Feature squeezing: Detecting adversarial examples in deep neural networks》《Feature squeezing mitigates and detects carlini/wagner adversarial examples》</li>
+<li>Detection systems:<br>performe statistical tests:《On the (statistical) detection of adversarial examples》<br>use an additional model for detection:《Adversarial and clean data are not twins》《On detecting adversarial perturbations》<br>apply dropout at test time:《Detecting adversarial samples from artifacts》</li>
+<li>PCA whitening ：《Early methods for detecting adversarial images》</li>
+</ol>
+<h2 id="研究点："><a href="#研究点：" class="headerlink" title="研究点："></a>研究点：</h2><ol>
+<li>各种攻击方式的优化</li>
+<li>defence策略的构建</li>
+<li>针对各种特定应用场景的对抗</li>
+<li>利用攻击和defence策略优化现有模型结构，增强机器学习模型的效果</li>
+<li>探究对抗攻击深层原理，理解其背后的数学本质，实际上就是理解深度神经网络的工作原理以及对抗攻击为什么能有作用。<br><strong>思考：对抗攻击的问题，好像神经网络泛化性能的限制问题，因为增加的很小的扰动就能让模型错误率比较高，说明模型的泛化能力不够强，针对其他样本的效果也不是很好，因此，增强神经网络模型的泛化能力也是defence策略的一个方向，尤其是在黑盒攻击方面</strong></li>
+</ol>
+<h2 id="意义-citing-from"><a href="#意义-citing-from" class="headerlink" title="意义  (citing from )"></a>意义  (citing from )</h2><ol>
+<li>Able to handle massive volumes of data</li>
+<li>Works at machine speed to thwart attacks</li>
+<li>Does not rely on signatures</li>
+<li>Can stop known and unknown malware</li>
+<li>Stops malware pre-execution</li>
+<li>Higher detection retes, lower false positives</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/对抗攻击/" rel="tag"><i class="fa fa-tag"></i> 对抗攻击</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/20/ResNet and DenseNet网络模型/" rel="prev" title="ResNet and DenseNet网络模型">
+                ResNet and DenseNet网络模型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+    <!--MOB SHARE BEGIN-->
+                                <div class="-mob-share-ui-button -mob-share-open">分享</div>
+                                <div class="-mob-share-ui -mob-share-ui-theme -mob-share-ui-theme-slide-left" style="display: none">
+                                    <ul class="-mob-share-list">
+                                        <li class="-mob-share-weibo"><p>新浪微博</p></li>
+                                       
+                                        <li class="-mob-share-qzone"><p>QQ空间</p></li>
+                                        <li class="-mob-share-qq"><p>QQ好友</p></li>
+                                        <li class="-mob-share-weixin"><p>微信</p></li>
+                                        <li class="-mob-share-douban"><p>豆瓣</p></li>
+                                   
+                                        <li class="-mob-share-facebook"><p>Facebook</p></li>
+                                        <li class="-mob-share-twitter"><p>Twitter</p></li>
+                                       
+                                    </ul>
+                                    <div class="-mob-share-close">取消</div>
+                                </div>
+                                <div class="-mob-share-ui-bg"></div>
+                                <script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=2aeca9171540c"></script>
+                                <!--MOB SHARE END-->
+
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="jiangxj">
+            
+              <p class="site-author-name" itemprop="name">jiangxj</p>
+              <p class="site-description motion-element" itemprop="description">岁月对坐，落子无悔</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jiangxjun" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:jiangxj0530@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.linkedin.com/in/xuejun-j-8b04a0180/" target="_blank" title="LinkedIn">
+                      
+                        <i class="fa fa-fw fa-linkedin"></i>LinkedIn</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/wan-si-qing-qian/activities" target="_blank" title="Zhihu">
+                      
+                        <i class="fa fa-fw fa-heart-o"></i>Zhihu</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                link
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.biglong.top/" title="yanglong" target="_blank">yanglong</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://redstonewill.com/" title="RedStone" target="_blank">RedStone</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+		  
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="360" height="86" src="//music.163.com/outchain/player?type=2&id=419877515&auto=0&height=66"></iframe>
+		  
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Paper1-The-Limitations-of-Deep-Learning-in-Adversarial-Settings"><span class="nav-number">1.</span> <span class="nav-text">Paper1_The Limitations of Deep Learning in Adversarial Settings</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-number">1.1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.2.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深度学习攻击模型的分类"><span class="nav-number">1.3.</span> <span class="nav-text">深度学习攻击模型的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#攻击目标"><span class="nav-number">1.3.1.</span> <span class="nav-text">攻击目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#攻击能力"><span class="nav-number">1.3.2.</span> <span class="nav-text">攻击能力</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSMA攻击方法"><span class="nav-number">1.4.</span> <span class="nav-text">JSMA攻击方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#直观理解"><span class="nav-number">1.4.1.</span> <span class="nav-text">直观理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推广到一般的神经网络"><span class="nav-number">1.4.2.</span> <span class="nav-text">推广到一般的神经网络</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MNIST数据集上的实验结果"><span class="nav-number">1.5.</span> <span class="nav-text">MNIST数据集上的实验结果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Paper2-Explaining-and-harnessing-adversarial-examples"><span class="nav-number">2.</span> <span class="nav-text">Paper2_Explaining and harnessing adversarial examples</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要-1"><span class="nav-number">2.1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">2.2.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对抗样本的线性解释"><span class="nav-number">2.3.</span> <span class="nav-text">对抗样本的线性解释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非线性模型的线性扰动"><span class="nav-number">2.4.</span> <span class="nav-text">非线性模型的线性扰动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线性模型的对抗训练"><span class="nav-number">2.5.</span> <span class="nav-text">线性模型的对抗训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深度网络的对抗训练"><span class="nav-number">2.6.</span> <span class="nav-text">深度网络的对抗训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对抗样本泛化原因"><span class="nav-number">2.7.</span> <span class="nav-text">对抗样本泛化原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对抗样本存在性的其他假设"><span class="nav-number">2.8.</span> <span class="nav-text">对抗样本存在性的其他假设</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Paper3-Practical-Black-Box-Attacks-Against-Machine-Learning"><span class="nav-number">3.</span> <span class="nav-text">Paper3_Practical Black-Box Attacks Against Machine Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要-2"><span class="nav-number">3.1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#攻击限制"><span class="nav-number">3.2.</span> <span class="nav-text">攻击限制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本思路"><span class="nav-number">3.3.</span> <span class="nav-text">基本思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#替代模型训练"><span class="nav-number">3.3.1.</span> <span class="nav-text">替代模型训练</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样本合成"><span class="nav-number">3.3.2.</span> <span class="nav-text">样本合成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对抗样本生成"><span class="nav-number">3.4.</span> <span class="nav-text">对抗样本生成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#黑盒攻击MetaMind"><span class="nav-number">3.5.</span> <span class="nav-text">黑盒攻击MetaMind</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Paper4-A-Two-Pronged-Defense-against-Adversarial-Examples"><span class="nav-number">4.</span> <span class="nav-text">Paper4_A Two-Pronged Defense against Adversarial Examples</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#深度学习中的“对抗样本”"><span class="nav-number">4.1.</span> <span class="nav-text">深度学习中的“对抗样本”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深度学习的攻击与防御"><span class="nav-number">4.2.</span> <span class="nav-text">深度学习的攻击与防御</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MagNet防御方案"><span class="nav-number">4.3.</span> <span class="nav-text">MagNet防御方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Detector"><span class="nav-number">4.3.1.</span> <span class="nav-text">Detector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reformer"><span class="nav-number">4.3.2.</span> <span class="nav-text">Reformer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MagNet的实验评估"><span class="nav-number">4.4.</span> <span class="nav-text">MagNet的实验评估</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.5.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对抗攻击论文总结"><span class="nav-number">5.</span> <span class="nav-text">对抗攻击论文总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#综述"><span class="nav-number">5.1.</span> <span class="nav-text">综述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Attack"><span class="nav-number">5.2.</span> <span class="nav-text">Attack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Defence"><span class="nav-number">5.3.</span> <span class="nav-text">Defence</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#研究点："><span class="nav-number">5.4.</span> <span class="nav-text">研究点：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#意义-citing-from"><span class="nav-number">5.5.</span> <span class="nav-text">意义  (citing from )</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jiangxj</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">211.7k</span>
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/meting@1.1.0/dist/Meting.min.js"></script>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

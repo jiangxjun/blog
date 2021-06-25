@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Ataraxia" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="RBM &amp; DBN原理简介">
+<meta property="og:type" content="article">
+<meta property="og:title" content="受限玻尔兹曼机和深度置信网络">
+<meta property="og:url" content="https://jiangxjun.github.io/blog/2020/04/20/RBM&DBN/index.html">
+<meta property="og:site_name" content="Ataraxia">
+<meta property="og:description" content="RBM &amp; DBN原理简介">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/04/20/RBM&DBN/1.jpg">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/04/20/RBM&DBN/2.jpg">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/04/20/RBM&DBN/3.jpg">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/04/20/RBM&DBN/4.jpg">
+<meta property="og:updated_time" content="2020-06-18T02:15:30.838Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="受限玻尔兹曼机和深度置信网络">
+<meta name="twitter:description" content="RBM &amp; DBN原理简介">
+<meta name="twitter:image" content="https://jiangxjun.github.io/2020/04/20/RBM&DBN/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiangxjun.github.io/blog/2020/04/20/RBM&DBN/">
+
+
+
+
+
+  <title>受限玻尔兹曼机和深度置信网络 | Ataraxia</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ataraxia</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Hi, I'm Jiang.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.js"></script> </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jiangxjun.github.io/blog/2020/04/20/RBM&DBN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jiangxj">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ataraxia">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">受限玻尔兹曼机和深度置信网络</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-20T00:00:00+08:00">
+                2020-04-20
+              </time>
+            
+			
+			
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  3.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  13
+                </span>
+              
+            </div>
+          
+
+          
+              <div class="post-description">
+                  RBM & DBN原理简介
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="受限玻尔兹曼机"><a href="#受限玻尔兹曼机" class="headerlink" title="受限玻尔兹曼机"></a>受限玻尔兹曼机</h2><p>梯度下降法（相关的L-BFGS(拟牛顿法)等）在使用初始化权重的深度网络上效果不好的原因：</p>
+<p>在使用BP算法计算导数时，随着网络的深度增加，反向传播的梯度（从输出层到网络的最初几层）的幅度值急剧减小，造成整体的损失函数相对于最初的几层的权重的导数非常小，使得最初几层的权重变化非常缓慢，以至于不能从样本中进行有效的学习。称为“梯度弥散”。</p>
+<p>与此相关，当神经网络的最后几层含有足够的神经元后，可能单独这几层就可以对有标签数据进行建模，而不用最初几层的帮助。因此，对所有层都使用随机初始化方法训练得到的整个网络的性能将会与训练得到的浅层网络（仅有最后几层构成的浅层网络）的性能类似。</p>
+<p>Hinton提出了的RBM，是一类具有两层结构的、对称链接无自反馈的随机神经网络模型(一种特殊的马尔科夫随机场)。</p>
+<img src="/2020/04/20/RBM&DBN/1.jpg" title="RBM结构图">
+<p>一个RBM中，v表示所有可见单元，h表示所有隐藏单元，确定模型，需要模型的三个参数$\theta = \{W,A,B\}$即可。分别是权重矩阵$W$，可见层单元偏置$A$，隐藏单元偏置$B$。</p>
+<p>一个RBM包含一个由随机隐单元构成的<strong>隐藏层</strong>（一般是伯努利分布）和一个随机的观测单元构成的<strong>可见层</strong>（一般是伯努利分布或高斯分布）。RBM可以表示成一个二分图模型，所有的可见单元和隐单元之间存在连接，隐单元两两之间和可见单元两两之间不存在连接，即<strong>层间全连接，层内无连接</strong>（区别：<strong>BM模型层间、层内全连接</strong>）。</p>
+<p>每一个可见层节点和隐藏层节点都有两种状态，激活和未激活。节点激活的概率由可见层和隐藏层节点的分布函数计算。</p>
+<p>假设一个RBM有n个可见单元和m个隐藏单元，$v_i$表示第i个可见单元，$h_j$表示第j个隐单元，参数形式为：</p>
+<p>$W = \{w_{i,j} \in R^{n \times m}\}，w_{i,j}$表示第i个可见单元和第j个隐单元之间的权值</p>
+<p>$A = \{a_i\} \in R^m,a_i$表示第i个可见单元的偏置阈值</p>
+<p>$B = \{b_j\} \in R^n,b_j$表示第i个隐单元的偏置阈值</p>
+<p>给定一组状态下的$(v,h)$的值，假设可见单元和隐藏单元均服从伯努利分布，RBM的能力公式为：<br>$$<br>E(v,h|\theta) = - \sum\limits_{i=1}^n a_i v_i - \sum\limits_{j=1}^m b_jh_j - \sum\limits_{i=1}^n \sum\limits_{j=1}^mv_i W_{ij}h_j<br>$$<br>其中，令$\theta = \{W_{ij},a_i,b_j\}$是RBM模型的参数，能量函数表示在每一个可见节点的取值和每一个隐藏层节点的取值之间都存在一个能量值。</p>
+<p>对<strong>能量函数的指数化和正则化</strong>后可以得到可见层节点集合和隐藏节点集合分别处于某一种状态下$(v,h)$联合概率分布公式：<br>$$<br>P(v,h|\theta) = \frac{e^{-E(v,h|\theta)}}{Z(\theta)}<br>$$</p>
+<p>$$<br>Z(\theta) = \sum\limits_{v,h} e^{-E(v,h|\theta)}<br>$$</p>
+<p>$Z(\theta)$为归一化因子或<strong>配分函数(partition function)</strong>，表示对可见层和隐藏层节点集合的所有可能状态的(能量指数)的求和。</p>
+<p>对于参数的求解使用似然函数求导的方法，已知联合概率分布$P(v,h|\theta)$，通过对隐藏层节点集合的所有状态求和，可以得到可见层节点集合的边缘分布$P(v|\theta)$：<br>$$<br>P(v|\theta) = \frac{1}{Z(\theta)} \sum\limits_h e^{-E(v,h|\theta)}<br>$$<br><strong>边缘分布</strong>表示的是可见层节点集合处于某一种状态分布下的概率，也被称为<strong>似然函数</strong>。</p>
+<p>RBM模型性质：</p>
+<p>（1）在给定可见单元的状态时，各个隐含层单元的激活状态之间是条件独立的，此时，第j个隐单元的激活概率为：<br>$$<br>P(h_j = 1|v) = \sigma(b_j + \sum\limits_iv_i W_{ij})<br>$$<br>（2）当给定隐单元的状态时，可见单元的激活概率同样是条件独立的：<br>$$<br>P(v_i = 1|h) = \sigma(a_i + \sum\limits_j W_{ij}h_j)<br>$$<br>其中，$\sigma(x) = \frac{1}{1+\exp(-x)}$，sigmoid函数可以使得无论模型的可见层输入节点数据处于一个多大的范围内，都可以通过sigmoid函数求得它相应的函数值，即节点的激活概率值。</p>
+<h3 id="模型参数求解"><a href="#模型参数求解" class="headerlink" title="模型参数求解"></a>模型参数求解</h3><p>训练一个RBM主要任务是调参，以拟合给定的训练样本，使得在该参数下RBM表示的可见层节点概率分布尽可能与训练数据相符合。</p>
+<p>首先，确定可见层和隐含层节点个数，可见层节点数等于输入数据的维数，隐藏层节点个数一般需要根据使用而定，或者参数一定的情况下，使得模型的能量最小时的隐藏层节点个数。</p>
+<p>其次，求解模型的三个参数，$\theta = \{W_{ij},a_i,b_j\}$，参数求解使用到似然函数的对数对参数求导。</p>
+<p>具体求解过程：<br>$$<br>P(v|\theta) = \frac{1}{Z(\theta)} \sum\limits_h e^{-E(v,h|\theta)}<br>$$<br>能力E与概率P是成反比的关系，最大化P，使得能量E最小，最大化似然函数方法是 <strong>梯度上升法</strong>。<br>$$<br>\theta = \theta + \mu \frac{\partial \ln P(v^t)}{\partial \theta}<br>$$<br>其中$v^t$表示输入数据，对原来$\theta$进行修改，迭代使得似然函数$P$最大。<br>$$<br>\frac{\partial \ln P(v^t)}{\partial w_{i,j}} = P(h_j =1|v^t)v_i^t - \sum\limits_v P(v)P(h_j = 1|v)v_i<br>$$</p>
+<p>$$<br>\frac{\partial \ln P(v^t)}{\partial a_i} = v_i^t - \sum\limits_v P(v)v_i<br>$$</p>
+<p>$$<br>\frac{\partial \ln P(v^t)}{\partial b_j} =P(h_j = 1|v^t) - \sum\limits_v P(v)P(h_j = 1|v)<br>$$</p>
+<p>式中第二项$P(v)$仍然含有参数，$P(v)$表示可见层节点的联合概率，很多提出通过<strong>采样逼近</strong>的方法来求。</p>
+<h3 id="模型训练算法"><a href="#模型训练算法" class="headerlink" title="模型训练算法"></a>模型训练算法</h3><h4 id="1、Gibbs采样算法"><a href="#1、Gibbs采样算法" class="headerlink" title="1、Gibbs采样算法"></a>1、Gibbs采样算法</h4><p>求解可见层节点的联合概率$P(v)$，逼近其近似值。</p>
+<p>Gibbs采样思想：</p>
+<p>不知道一个样本数据$\pmb x = (x_1,x_2,\dots,x_N)$的联合概率$P(x)$，但是知道样本中的每一个数据的条件概率$p(x_i|\pmb x)$（假设每一个变量都服从一种概率分布），可以先求出每一个数据的条件概率值，得到$x$的任一状态$[x_1(0),\dots,x_i(0),\dots,x_N(0)]$，然后用条件概率公式迭代对每一个数据求条件概率，最终，迭代$k$次，$x$的某一个状态$[x_1(k),\dots,x_i(k),\dots,x_{N}(k)]$将收敛于$x$的联合概率分布$P(x)$。</p>
+<p>假设一个训练样本$v_0$，根据公式$P(h_j=1 |v)$求$h_0$中每个节点的条件概率，再由$P(v_i = 1|h)$，求$v_1$中每个节点的条件概率，依次迭代，直到执行$K$步（足够大），此时$P(v|h)$的概率将收敛于$P(v)$的概率：<br>$$<br>h_0 \sim P(h|v_0) \ v_1 \sim P(v|h_0) \ h_1 \sim P(h|v_1) \ v_2 \sim P(v|h_1) \ \dots \ v_{k+1} \sim P(v|h_k)<br>$$</p>
+<p>对于RBM执行过程如下：</p>
+<img src="/2020/04/20/RBM&DBN/2.jpg" title="RBM执行过程">
+<h4 id="2、CD-K算法"><a href="#2、CD-K算法" class="headerlink" title="2、CD-K算法"></a>2、CD-K算法</h4><p>CD算法是需要K次Gibbs采样对可见层节点进行重构得到可见层节点的概率分布。</p>
+<p>算法思想：假设给模型一个样本$v_0$，通过$P(h_j =1| v) = \sigma (b_j + \sum\limits_i v_i W_{ij} )$，求出所有隐藏层节点的概率值，然后每一个概率值和随机数进行比较得到每一个隐藏层节点的状态，然后通过:<br>$$<br>P(v_i=1 | h) =  \sigma (a_i + \sum\limits_j W_{ijh_j})<br>$$<br>求出每一个可见层节点的概率值，再由：<br>$$<br>P(h_j =1|v) = \sigma(b_j + \sum\limits_i v_iW_{ij})<br>$$<br>求出每一个隐含层节点的概率值，最后参梯度的计算公式变为：<br>$$<br>\Delta W_{ij} = \mu(&lt;v_ih_j&gt;_{data} - &lt;v_ih_j&gt;_{recon}) \ \Delta a_i = \mu (&lt;v_i&gt; _{data} - &lt;v_i&gt; _{recon}) \ \Delta b_j =\mu(&lt;h_j&gt;_{data} - &lt;h_j&gt;_{recon})<br>$$<br>其中，$\mu$是学习率，data和recon分别表示训练数据的概率分布和重构后的概率分布。</p>
+<p>依此求出参数的梯度，由每一个参数的梯度对原参数进行修改来使得模型的能量减小。</p>
+<h4 id="3、模型的评估"><a href="#3、模型的评估" class="headerlink" title="3、模型的评估"></a>3、模型的评估</h4><p>一般采用近似的方法对模型进行评估，常用的近似方法是<strong>重构误差</strong>，即以训练样本作为初始状态，经过RBM模型的分布进行一次Gibbs采样后与原数据的差异值。</p>
+<img src="/2020/04/20/RBM&DBN/3.jpg" title="模型评估伪代码">
+<p>对于一个给定样本$P(h_j =1 |v) = \sigma (b_j + \sum\limits_i v_i W_{ij})$，通过$P(v_i = 1|h) = \sigma(a_i + \sum\limits_j W_{ij}h_j)$对所有隐含层节点的条件概率进行采样，再通过对所有可见层节点的条件概率进行采样，最后由样本值和采样出的可见层概率值做差取绝对值，作为该模型的评估。</p>
+<h4 id="4、节点状态确定"><a href="#4、节点状态确定" class="headerlink" title="4、节点状态确定"></a>4、节点状态确定</h4><p>对于每一层节点状态(0 or 1)的确定采用与随机数（0-1之间）进行比较的方法，如果节点被激活的概率值大于一个随机产生的数，则认为该节点被激活。</p>
+<p>原理：给定可见层节点$v$，隐含层第$j$个节点状态为1的激活概率为$p_j^v$，此时，在区间$[0,1]$上产生一个随机数$r_j$落在子区间$[0,p_j^v)$的概率也是$p_j^v$，两个事件的概率是相等的，若随机数$r_j$落在子区间$[0,p_j^v)$，认为第$j$个节点的状态为1，否则为0。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>RBM网络模型的最大的目的是最大可能的拟合输入数据，最大化$P(v)$，Hinton提出一种快速训练算法contrastive divergence（CD）算法，需要迭代K次，一般K=1。</p>
+<p>CD算法开始用训练数据去初始化可见层，然后用条件分布计算隐藏层，再根据隐藏层状态，同样，用条件分布计算可见层，这样产生的结果就是对训练数据的一个重构。</p>
+<p>根据CD算法可得模型对网络权值的梯度：<br>$$<br>\Delta W_{ij} = \mu (&lt;v_ih_j&gt;_{data} - &lt;v_ih_j&gt;_{recon})<br>$$<br>其中，$\mu$为学习率，$&lt;v_ih_j&gt;_{data}$是样本数据的期望，$&lt;v_ih_j&gt;_{recon}$是重构后可见层数据的期望。</p>
+<h2 id="深度置信网络"><a href="#深度置信网络" class="headerlink" title="深度置信网络"></a>深度置信网络</h2><p>深度置信网络(Deep Belief Network,DBN)是由RBM堆叠而成的，从而作为DBN预训练的基础模型。</p>
+<p>不是只有RBM可以堆叠为一个深度生成式（或判别式）网络，其他类型的网络也可以使用相同的方法来生成网络，比如自动编码器(autoencoder)的变形。</p>
+<img src="/2020/04/20/RBM&DBN/4.jpg" title="深度置信网络结构">
+<p>将一定的数量的RBM堆叠成一个DBN，然后从底向上逐层预训练，堆叠过程如下：</p>
+<p>训练一个高斯-伯努利RBM（对于语音应用使用连续的特征）或伯努利-伯努利RBM（对于正态分布或二项式分布特征应用，如黑白图像或者编码后的文本）</p>
+<p>将隐单元的激活概率（activation probabilities）作为下一层伯努利-伯努利RBM的输入数据。</p>
+<p>第二层伯努利-伯努利RBM的激活概率作为第三层伯努利-伯努利RBM的可见层输入数居，以后各层以此类推。</p>
+<p>关于这种有效的<strong>逐层贪婪学习</strong>策略达到了近似的最大似然学习。这个学习过程是无监督的，所以不需要标签信息。</p>
+<p>当应用到分类任务时，生成式预训练可以和其他算法结合使用，典型的是判别式方法，他通过有效地调整所有权值来改善网络的性能。</p>
+<p>判别式精调（fine-tune）通常是在现有网络的最后一层上在增加一层节点，用来表示想要的输出或者训练数据提供的标签，它与标准的前馈神经网络（feed-forward neural network）一样，可以使用反向传播算法（back-propagation algorithm）来调整或精调网络的权值。DBN最后一层即标签层的内容，根据不同的任务和应用来确定。</p>
+<p>研究已经表明其他种类的预训练策略的有效性。比如，在执行逐层贪婪训练时，可以在每一层的生成损失函数中增加一项判别项。</p>
+<p>如果不适用生成式预训练，只使用随机梯度下降方法来对随机初始化DBN进行判别式训练，研究结果表明，当非常仔细的选取初始权值并且谨慎的选取适合于随机梯度下降的“迷你批量”（mini-batch）的大小（例如，随着训练轮数增加大小），也将会获得很好的效果。</p>
+<p>“迷你批量”用于在收敛速度和噪声梯度之间进行折中。同时，在建立“迷你批量”时，对数据进行充分的随机化也是至关重要的。</p>
+<p>另外，从一个只含有一层的浅层神经网络开始学习一个DBN是非常有效的。当折中方法用于训练区分式模型时（使用提前结束训练的策略以防止过拟合的出现），在第一个隐藏层和标签的softmax输出层之间插入第二个隐藏层，然后对整个网络应用反向传播来微调网络的权值。这种判别式预训练在实践中取得了比较好的效果，特别是在有大量的训练数据的情况下效果较好。当训练数据不断增多时，即使不使用上述预训练，一些特别设计的随机初始化方法也能够取得很好的效果。</p>
+<p>将隐单元的激活概率（activation probabilities）作为下一层伯努利-伯努利RBM的输入数据。</p>
+<p>第二层伯努利-伯努利RBM的激活概率作为第三层伯努利-伯努利RBM的可见层输入数据</p>
+<p><a href="https://www.cnblogs.com/jhding/p/5687696.html" target="_blank" rel="noopener">RBM和深度置信网络原理</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/20/python3_教程/" rel="next" title="python3教程">
+                <i class="fa fa-chevron-left"></i> python3教程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/10/ubuntu环境配置/" rel="prev" title="ubuntu使用教程">
+                ubuntu使用教程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+    <!--MOB SHARE BEGIN-->
+                                <div class="-mob-share-ui-button -mob-share-open">分享</div>
+                                <div class="-mob-share-ui -mob-share-ui-theme -mob-share-ui-theme-slide-left" style="display: none">
+                                    <ul class="-mob-share-list">
+                                        <li class="-mob-share-weibo"><p>新浪微博</p></li>
+                                       
+                                        <li class="-mob-share-qzone"><p>QQ空间</p></li>
+                                        <li class="-mob-share-qq"><p>QQ好友</p></li>
+                                        <li class="-mob-share-weixin"><p>微信</p></li>
+                                        <li class="-mob-share-douban"><p>豆瓣</p></li>
+                                   
+                                        <li class="-mob-share-facebook"><p>Facebook</p></li>
+                                        <li class="-mob-share-twitter"><p>Twitter</p></li>
+                                       
+                                    </ul>
+                                    <div class="-mob-share-close">取消</div>
+                                </div>
+                                <div class="-mob-share-ui-bg"></div>
+                                <script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=2aeca9171540c"></script>
+                                <!--MOB SHARE END-->
+
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="jiangxj">
+            
+              <p class="site-author-name" itemprop="name">jiangxj</p>
+              <p class="site-description motion-element" itemprop="description">岁月对坐，落子无悔</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jiangxjun" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:jiangxj0530@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.linkedin.com/in/xuejun-j-8b04a0180/" target="_blank" title="LinkedIn">
+                      
+                        <i class="fa fa-fw fa-linkedin"></i>LinkedIn</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/wan-si-qing-qian/activities" target="_blank" title="Zhihu">
+                      
+                        <i class="fa fa-fw fa-heart-o"></i>Zhihu</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                link
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.biglong.top/" title="yanglong" target="_blank">yanglong</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://redstonewill.com/" title="RedStone" target="_blank">RedStone</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+		  
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="360" height="86" src="//music.163.com/outchain/player?type=2&id=419877515&auto=0&height=66"></iframe>
+		  
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#受限玻尔兹曼机"><span class="nav-number">1.</span> <span class="nav-text">受限玻尔兹曼机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模型参数求解"><span class="nav-number">1.1.</span> <span class="nav-text">模型参数求解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型训练算法"><span class="nav-number">1.2.</span> <span class="nav-text">模型训练算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、Gibbs采样算法"><span class="nav-number">1.2.1.</span> <span class="nav-text">1、Gibbs采样算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、CD-K算法"><span class="nav-number">1.2.2.</span> <span class="nav-text">2、CD-K算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、模型的评估"><span class="nav-number">1.2.3.</span> <span class="nav-text">3、模型的评估</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、节点状态确定"><span class="nav-number">1.2.4.</span> <span class="nav-text">4、节点状态确定</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.3.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深度置信网络"><span class="nav-number">2.</span> <span class="nav-text">深度置信网络</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jiangxj</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">211.7k</span>
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/meting@1.1.0/dist/Meting.min.js"></script>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

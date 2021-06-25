@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Ataraxia" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="小波变换&amp;傅里叶变换&amp;S变换等">
+<meta property="og:type" content="article">
+<meta property="og:title" content="信号处理涉及的几种变换">
+<meta property="og:url" content="https://jiangxjun.github.io/blog/2020/05/14/信号处理涉及到的几种变换/index.html">
+<meta property="og:site_name" content="Ataraxia">
+<meta property="og:description" content="小波变换&amp;傅里叶变换&amp;S变换等">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/14/信号处理涉及到的几种变换/20160705113512598.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/14/信号处理涉及到的几种变换/20160705113633849.png">
+<meta property="og:updated_time" content="2020-06-18T02:42:24.492Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="信号处理涉及的几种变换">
+<meta name="twitter:description" content="小波变换&amp;傅里叶变换&amp;S变换等">
+<meta name="twitter:image" content="https://jiangxjun.github.io/2020/05/14/信号处理涉及到的几种变换/20160705113512598.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiangxjun.github.io/blog/2020/05/14/信号处理涉及到的几种变换/">
+
+
+
+
+
+  <title>信号处理涉及的几种变换 | Ataraxia</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ataraxia</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Hi, I'm Jiang.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.js"></script> </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jiangxjun.github.io/blog/2020/05/14/信号处理涉及到的几种变换/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jiangxj">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ataraxia">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">信号处理涉及的几种变换</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-14T00:00:00+08:00">
+                2020-05-14
+              </time>
+            
+			
+			
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  4.7k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  17
+                </span>
+              
+            </div>
+          
+
+          
+              <div class="post-description">
+                  小波变换&傅里叶变换&S变换等
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>小波可以进行伸缩平移，源自傅里叶变换，都是频率变换的方法。</p>
+<blockquote>
+<p>傅里叶变换、短时傅里叶变换、小波变换</p>
+<p>内积，基，归一化正交，投影，Hilbert空间，多分辨率，父小波，母小波</p>
+</blockquote>
+<p>==1、基==</p>
+<p>傅里叶变换的基是不同频率的正弦曲线，把信号波分解成不同频率的正弦波的叠加和。</p>
+<p>小波变换把信号分解成一系列的小波，小波种类多，同一种小波可以进行尺度变换，<strong>小波的特性是在整个时间范围内幅度的平均值是0，具有有限的持续时间和突变的频率和振幅，可以是不规则，不对称的</strong>。正弦波不是小波。</p>
+<p><strong>基的特性是</strong>：</p>
+<ul>
+<li><p>非冗余性</p>
+</li>
+<li><p>完备性：即使基不是正交的，有相关性，若去掉其中一个，不成为基，</p>
+</li>
+<li><p>唯一性：给定一族基对一个函数的表达是唯一的</p>
+</li>
+<li><p>非正交性：一般情况下是非正交的，称为exact frame（resize basis），此时要表示信号可以将基正交化成唯一的正交基（对偶为其自身）；也可以求其对偶框架（dual frame），其对应了小波变换的双正交情形，信号可以依框架进行分解，然后用对偶框架重构。</p>
+</li>
+</ul>
+<p><strong>框架</strong>：</p>
+<p>在基集中添加一些新的向量，并随意调整空间位置，可能成为框架。把函数与基或框架作内积（函数空间到系数空间的变换），若变换后的能量（内积的平方和度量）仍然有一个大于0的上下界，才可以成为框架。</p>
+<p>框架具有冗余性，系数的表达不具有唯一性。</p>
+<p>若上下界相等，则为紧框架，且界表示冗余度；</p>
+<p>若上下界相等且为1，成为pasval identity frame，此时不一定为正交基（相当于把一组正交基中的某一个拆成两个同方向的基之和，pasval identity 仍然成立），此时若再加上基的长度均为1的条件，则框架退化为正交基。</p>
+<p>很多信号表示方法不能构成基，但能构成框架，如短时傅里叶变换中如要求窗函数满足基条件，则可推出函数具有很差的时频局部化性质（退化为傅里叶变换）。</p>
+<p>==2、内积==</p>
+<p>在Hilbert空间中，用来刻画两个向量的夹角，当内积为0时，两个向量正交。</p>
+<p>若$g$为Hilbert空间里的正交基，内积为$f$向基上的正交投影，有如下推导：<br>$$<br>f·g = f^Tg= = \int f(t) \bar{g(t)}dt = f_1g_1 +f_2g_2 = |f||g|cos \theta<br>$$<br>如果两个向量内积为0，即正交；如果一个向量序列相互对偶正交，并且长度为1，是正交归一化。</p>
+<p>对于$f(t) \in L^2(R)$（平方可积），存在$L^2(R)$上的一组标准正交基$g_i(t),i=1,2,\dots,$，使得：<br>$$<br>f(t) = \sum\limits_{i=1}^{\infty}f_ig_i(t)<br>$$<br>$L^2(R)$上任意一个函数$f(t)$都可以由$L^2(R)$的一个规范正交基$g_i(t)$进行线性组合表示出来。</p>
+<p>==3、傅里叶变换==</p>
+<p><strong>Fourier分析不能刻画时间域上信号的局部特性</strong></p>
+<p><strong>Fourier分析对突变和非平稳信号的效果不好，没有时频分析</strong></p>
+<p>傅里叶变换将函数投影到三角波上，将函数分解为不同频率的三角波，对于平稳信号的表示，近似最优表示。但是日常信号不是一直光滑的，而且奇异是非凡的，傅里叶在奇异点的表现不是很好，用大量的不同频率的三角波去逼近其系数衰减程度相当缓慢，而且会产生<strong>Gibbs效应</strong>。（内在原因是其基为全局性基，没有局部化能力，以致于局部一个小小的摆动会影响全局的系数，实际应用中很需要时频局部化，傅里叶缺乏此能力）。</p>
+<p>对于非平稳信号，只知道包含哪些频率成分不够，还需要知道各个成分出现的时间。知道信号频率随时间变化的情况，各个时刻的<strong>瞬时频率</strong>及其值——<strong>时频分析</strong>。</p>
+<blockquote>
+<p><strong>瞬时频率</strong>：绝对意义上的瞬时频率是不存在的，单看一个时刻点的一个信号值，得不到它的频率，可以用很短的一段信号的频率作为该时刻的频率，得到的是时间分辨率有限的近似分析结果（SIFT）。小波等时频分析方法，用如衰减的基函数去测定信号的瞬时频率，思想类似。</p>
+</blockquote>
+<p>==4、短时傅里叶变换(SIFT)==</p>
+<p>SIFT针对于傅里叶变换的时域太长而改进，也称为加窗傅里叶变换，这样有了局部化能力。</p>
+<p><strong>SIFT定义</strong>：把整个时域过程分解为无数个等长的小过程，每个小过程近似平稳，再傅里叶变换，这样可以知道在哪个时间点上出现了什么频率了。即在时域上分成一段一段做FFT。</p>
+<p><strong>窗的大小的影响</strong>：窗太窄，窗内信号太短，会导致频率分析不够精准，频率分辨率差；窗太宽，时域上不够精细，时间分辨率低。</p>
+<blockquote>
+<p>用<strong>海森堡不确定性原理</strong>解释：类似不能同时获取一个粒子的动量和位置，依次，也不能同时获取信号绝对精准的时刻和频率，是一对不可兼得的矛盾体。不知道在某个瞬间哪个频率分量存在，只知道在一个时间段内某个频带的分量存在，所以绝对意义的瞬时频率是不存在的。</p>
+<p>很多物理量有这样的特征，比如能量和时间、角动量和角度。信号领域就是时域和频域，更为准确的描述是：一个信号不能在时空域和频域上同时过于集中，一个函数时域越“窄”，经傅里叶变换后的频域就越“宽”。</p>
+</blockquote>
+<p>对于时变的非稳态信号，高频适合小窗口，低频适合大窗口，SIFT的窗是固定的，在一次的SIFT中宽度不会变化，所以<strong>SIFT无法满足非稳态信号变化的频率的需求</strong>。</p>
+<p>==5、小波变换==</p>
+<p>小波是基于加窗傅里叶变换的窗口大小改变的思想，但是，SIFT是给信号加窗，分段做FFT；小波变换并没有采用的窗的思想，也没有做傅里叶变换，小波直接将傅里叶变换的基更换——<strong>将无限长的三角函数基换成了有限长的会衰减的小波基，这样获得频率，也可以定位到时间</strong>。</p>
+<blockquote>
+<p><strong>基函数</strong>：会伸缩、会平移（是两个正交基的分解）。缩得窄，对应高频；伸得宽，对应低频。基函数不断和信号做相乘。某一个尺度（宽窄）下乘得结果，可以看成信号所包含得当前尺度对应频率成分有多少。</p>
+<p>基函数会在某些尺度下，与信号相乘得到一个很大的值，这样就知道信号包含该频率的成分的多少。小波的改变将无限长的三角函数基换成了有限长的会衰减的小波基。</p>
+</blockquote>
+<p><strong>小波公式</strong>：<br>$$<br>WT(a,\tau)= \frac{1}{\sqrt{a}}\int_{-\infty}^{\infty}f(t)*\psi(\frac{t-\tau}{a})dt<br>$$</p>
+<img src="/2020/05/14/信号处理涉及到的几种变换/20160705113512598.png" title="小波变换">
+<p>变量只有频率$w$，小波变换只有两个变量：尺度$a$（scale）和平移量$\tau$（translation）。尺度$a$控制小波函数的伸缩，平移量$\tau$控制小波函数的平移。尺度对应于频率（反比），平移量$\tau$对应于时间。</p>
+<img src="/2020/05/14/信号处理涉及到的几种变换/20160705113633849.png" title="平移-伸缩">
+<p>当伸缩、平移到上面这一种重合情况时，也会相乘得到一个大的值，与傅里叶不同的是，这不仅知道信号有这样频率的成分，而且知道在时域上存在的具体的位置。【解决局部性问题】当在每个尺度下都平移着和信号都乘过一遍后，能够知道在每个位置都包含哪些频率成分，这样可以做时频分析。【解决时频分析问题】</p>
+<p>具体的还有<strong>子空间、多分辨率、母小波的变换，如何构造想要的小波函数，离散小波变换、正交小波变换、二维小波变换、小波包的应用</strong>。</p>
+<p>每一个小波有一个mother wavelet，同时还有一个father wavelet，即scaling function。而小波的basis函数是对这个母小波和父小波的缩放和平移形成的，缩放倍数都是2的级数，平移大小与当前缩放的程度有关。</p>
+<p>不同的母小波，衍生的小波基完全不同，<strong>小波展开的近似形式</strong>为：<br>$$<br>f(t) = \sum\limits_k \sum\limits_{j}a_{j,k}\psi_{j,k}(t)<br>$$<br>即小波级数，这些级数组合形成了小波变换中的基basis。与傅里叶级数不同的是，小波级数通常是orthonormal basis（规范化正交基），即不仅两两正交，还归一化的。</p>
+<p>小波变换的<strong>三个特点</strong>：小波级数是二维的，能定位时域和频域，计算很快。</p>
+<p><strong>小波的完整形式</strong>：</p>
+<p>小波basis的形成，是基于基本的小波函数，即母小波来做缩放和平移的，母小波并非唯一的原始基，在构建小波基函数的集合时，通常用到一个尺度函数scaling function 。即成为父小波，两者都是归一化的，并且满足一个性质，它和对自己本身周期平移函数两两正交：<br>$$<br>f(t) = \sum\limits_k \sum\limits_{j}a_{j,k}\psi_{j,k}(t)<br>$$</p>
+<p>$$<br>&lt;\varphi(t),\varphi(t-kT)&gt; = 0 ,\forall k<br>$$</p>
+<p>完整的小波展开由父小波和母小波共同定义的：<br>$$<br>f(t) = \sum\limits_{k=-\infty}^{\infty}c_k\varphi(t-k)+\sum\limits_{k=-\infty}^{\infty}\sum\limits_{j=0}^{\infty}d_{j,k}\psi(2^jt-k)<br>$$<br>其中$\psi(t)$是母小波，$\varphi(t)$是父小波。</p>
+<p><strong>小波的一些优势：</strong></p>
+<p>对于突变信号，傅里叶变换存在吉布斯效应，用无限长的三角函数拟合不好突变信号，使用衰减的小波，只有小波函数和信号突变处重叠时，系数不为0.</p>
+<p>小波可以实现<strong>正交化</strong>，短时傅里叶变换不能。采用正交基，变换域的系数会没有冗余信息，等于是用最少的数据表达最大的信息量，有利于数值压缩等领域。但是比如在图像增强领域，有时候反而希望能有一些冗余信息，更有利于对噪声的抑制和对某些特征的增强。</p>
+<p><strong>小波变换的缺点</strong>：</p>
+<p>作为图像处理方法，【和多尺度几何分析方法（超小波）比较】：对于图像这种二维信号，二维小波只能沿着2个方向进行，对图像中点的信息表达还可以，但是对线的信息表达比较差。此时ridgelet(脊波)、curvelet(曲波)等多尺度几何分析方法更有优势。</p>
+<p>作为时频分析方法，【和HHT比】：小波变换没能脱离海森堡测不准原理的束缚，某种尺度下，不能在时间和频率上同时具有很高的精度，此外小波是非适应性的，基函数选定后不再修改。</p>
+<p>==5、S变换==</p>
+<p>S-transform可以看成是小波变换和SIFT的继承和法阵，傅里叶变换只能作用于收敛信号，SIFT的窗函数不可变，小波变换虽然窗函数可变，能进行多分辨率分析，但是其基函数选取困难。ST介于两者之间，<strong>可以自适应调节分辨率且其逆变换无损可逆</strong>。</p>
+<p>ST是由地球物理学家Stockwell在1996年提出的一种时频分析方法，定义为：<br>$$<br>S(\tau,f)= \int_{-\infty}^{\infty}h(t)\frac{|f|}{\sqrt{2\pi}}e^{-\frac{(\tau-t)^2f^2}{2}}e^{-i2\pi ft}dt<br>$$<br>其中：$\tau$为时间，控制窗口函数在时间轴上的位置；$h(t)$为分析信号；$f$为频率；$S(\tau,f)$为变换得到的时频谱矩阵。</p>
+<p>ST可以写成傅里叶频谱$H(f)$的形式：<br>$$<br>S(\tau,f) = \int_{-\infty}^{\infty}H(\alpha+f)e^{-\frac{2\pi^2 \alpha^2}{f^2}}e^{i2\pi \alpha \tau}d\alpha,(f \ne 0)<br>$$</p>
+<p>对于离散信号，有：<br>$$<br>H\left[\frac{n}{NT}\right] = \frac{1}{N}\sum\limits_{K=0}^{N-1}h[KT]e^{-\frac{i2\pi nk}{N}}<br>$$<br>其中：$K$为离散的时间点，$k=0,1,\dots,N-1;N$为离散时间信号长度；$T$为采样时间间隔。</p>
+<p>对于离散信号，令$f = \frac{n}{NT}$,$\tau = jT$，最终的离散信号的S变换可以表示为：<br>$$<br>S\left(jT,\frac{n}{NT}\right)= \sum\limits_{m=0}^{N-1}H\left[\frac{m+n}{NT}\right]e^{-\frac{2\pi^2m^2}{n^2}}e^{\frac{i2\pi mj}{N}},(n\ne 0)<br>$$<br><strong>ST克服了SIFT窗口的时宽不变的缺陷，能根据频率的变化和自适应调整分析时宽和提供直观的时间频率特征，且无须选择窗口函数域分析尺度</strong>。</p>
+<p><strong>广义S变换公式推导</strong>：</p>
+<p>对于傅里叶变换，其正变换为：<br>$$<br>H(f) = \int_{-\infty}^{\infty}h(t)\exp(-i2\pi ft)dt<br>$$<br>其中：$h(t)$为待分析的时间信号序列；$f$为频率；$t$表示时间；$H(f)$时是信号$h(t)$的傅里叶变换。</p>
+<p>加入对时间序列$h(t)$加上一个窗函数$g(t)$，则其谱变为：<br>$$<br>H(f) = \int_{-\infty}^{\infty}h(t)g(t)\exp(-i2\pi ft)dt<br>$$<br>对于ST，首先定义一个<strong>高斯窗函数</strong>：<br>$$<br>g(t) = \frac{1}{\sigma \sqrt{2\pi}}\exp\left(\frac{t^2}{2\sigma^2}\right)<br>$$<br>其中：$\sigma$为高斯函数的方差，对上述高斯窗函数进行伸缩与平移，得到$S$变换的公式为：<br>$$<br>S(\tau,f,\sigma) = \int_{-\infty}^{\infty} h(t) \frac{1}{\sigma \sqrt{2\pi}}\exp \left[-\frac{(t-\tau)^2}{2\sigma^2}\right]·\exp(-i2\pi ft)dt<br>$$<br>其中：$\tau$表示高斯窗函数在时间上的平移量。</p>
+<p>实际上：S变换就是<strong>把小波基函数用高斯窗来代</strong>替，也被定义为“相位正交”的连续小波变换。</p>
+<p>信号$x(t)$的ST定义如下：<br>$$<br>\cases{S(\tau,f) = \int_{-\infty}^{\infty}x(t)w(t-\tau,f)e^{-i2\pi ft}dt  \ w(t-\tau,f) = \frac{|f|}{\sqrt{2\pi}}e^{\frac{-f^2(t-\tau)^2}{2}}}<br>$$<br>其中：$w(t-\tau,f)$为高斯窗函数；$\tau$为时移因子，控制高斯窗在时间轴的位置；$f$为频率。</p>
+<p>由上式可知：</p>
+<p>高斯窗口克服了短时傅里叶变换窗口高度和宽度固定的缺陷，其随频率而变化。因此，ST既可以获得某一时刻的频率信息，也可获得在某一频率上信号的幅值信息。</p>
+<p><strong>S变换的应用</strong>：</p>
+<p>将ST应用在PQD检测和分类的研究成果最多。PQD（Power Quality Disturbances）<strong>电能质量扰动</strong>会导致设备过热、电机停转、保护失灵以及计量不准等严重后果。</p>
+<p><strong>基于S变换的PQD检测：</strong>PQD 检测包括扰动起止时刻的定位、 扰动持续时间和扰动幅值的测量等方面的内容。文献首次提出采用 S 变换模矩阵的等值线检测扰动的发生，并发现时频曲线的标准差与扰动幅值存在一一对应关系，可以用来测量扰动幅值，但该文对 S 变换应用于 PQD 检测仅是探索性的，并未形成一套完整可行的方法。</p>
+<p>目前 S 变换应用于 PQD 检测主要集中于扰动频率与幅值、扰动起止时刻与持续时间这些常规参数的检测，而且只是考虑了稳态或存在稳定段的扰动幅值检测，对不存在稳定段的暂态扰动如振荡暂态、脉冲暂态等幅值的检测并没有提出有效的方法，同时对于 S 变换应用于振荡暂态衰减因子、电压切口深度及宽度等参数的检测尚未见文献报道。</p>
+<p><strong>基于S变换的PQD分类</strong>：PQD的识别实际是一个模式分类问题，关键思想是针对PQD特征选定一个较优的分类器进行模式识别。目前基于S变换的PQD识别方法一般是从待分析的PQD信号的S变换模矩阵中提取特征，然后借助人工智能分类器实现分类。</p>
+<ol>
+<li>基于S变换和ANN的PQD分类。</li>
+<li>基于S变换和SVM的PQD分类。</li>
+<li>基于S变换和规则判别的PQD分类。</li>
+</ol>
+<p>S变换在PQD应用方面有待进一步研究的方面有：</p>
+<ul>
+<li>S变换的结果是二维复矩阵，能够提供丰富的时频信息，其相位和原始信号保持直接的联系，目前对相位信息的利用很少，对于PQD的某些应用如扰动源的定位利用相位信息比幅值信息应该更有效。</li>
+<li>由于 S 变换的运算量很大，在实际应用时对计算环境会有很高的要求，因此，对 S 变换算法或计算过程进行改进，在保证 PQD 分析精度的基础上提高其运算实时性，是其现实广泛应用的前提。</li>
+<li>对 PQD 最精确和全面的检测应该是将描述其数学模型的所有参量进行准确的估计，而目前S 变换应用于 PQD 检测主要集中于稳态扰动的参数检测，对暂态扰动如振荡暂态的最大幅值和衰减因子等参量的检测并没有提出有效的方法。</li>
+<li>S 变换作为 PQD 信号的特征提取工具，如何针对具体应用情况从 S 变换提取最有效的特征量尚缺乏全面和系统的研究。</li>
+<li>除检测和分类之外， S 变换在 PQD 其他方面的应用如信号去噪、扰动源定位尚不多见，同时，开发新形式的 S 变换为PQD 分析提供更适宜的时频分辨率，研究确定最优时频分辨率的理论依据也值得进一步研究。</li>
+<li>S 变换在 PQD 分析的应用尚处于算法仿真阶段，其在具体硬件环境中的实现及实际应用效果的评价鲜见报道。</li>
+</ul>
+<p><strong>参考文献：</strong></p>
+<blockquote>
+<p>易吉良； 彭建春； 谭会生．S变换在电能质量扰动分析中的应用综述：电力系统保护与控制，2011</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/12/概率图模型/" rel="next" title="概率图模型">
+                <i class="fa fa-chevron-left"></i> 概率图模型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/15/计算机控制系统/" rel="prev" title="计算机控制系统">
+                计算机控制系统 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+    <!--MOB SHARE BEGIN-->
+                                <div class="-mob-share-ui-button -mob-share-open">分享</div>
+                                <div class="-mob-share-ui -mob-share-ui-theme -mob-share-ui-theme-slide-left" style="display: none">
+                                    <ul class="-mob-share-list">
+                                        <li class="-mob-share-weibo"><p>新浪微博</p></li>
+                                       
+                                        <li class="-mob-share-qzone"><p>QQ空间</p></li>
+                                        <li class="-mob-share-qq"><p>QQ好友</p></li>
+                                        <li class="-mob-share-weixin"><p>微信</p></li>
+                                        <li class="-mob-share-douban"><p>豆瓣</p></li>
+                                   
+                                        <li class="-mob-share-facebook"><p>Facebook</p></li>
+                                        <li class="-mob-share-twitter"><p>Twitter</p></li>
+                                       
+                                    </ul>
+                                    <div class="-mob-share-close">取消</div>
+                                </div>
+                                <div class="-mob-share-ui-bg"></div>
+                                <script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=2aeca9171540c"></script>
+                                <!--MOB SHARE END-->
+
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="jiangxj">
+            
+              <p class="site-author-name" itemprop="name">jiangxj</p>
+              <p class="site-description motion-element" itemprop="description">岁月对坐，落子无悔</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jiangxjun" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:jiangxj0530@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.linkedin.com/in/xuejun-j-8b04a0180/" target="_blank" title="LinkedIn">
+                      
+                        <i class="fa fa-fw fa-linkedin"></i>LinkedIn</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/wan-si-qing-qian/activities" target="_blank" title="Zhihu">
+                      
+                        <i class="fa fa-fw fa-heart-o"></i>Zhihu</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                link
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.biglong.top/" title="yanglong" target="_blank">yanglong</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://redstonewill.com/" title="RedStone" target="_blank">RedStone</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+		  
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="360" height="86" src="//music.163.com/outchain/player?type=2&id=419877515&auto=0&height=66"></iframe>
+		  
+
+        </div>
+      </section>
+
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jiangxj</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">211.7k</span>
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/meting@1.1.0/dist/Meting.min.js"></script>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

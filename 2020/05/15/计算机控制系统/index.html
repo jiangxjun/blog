@@ -1,0 +1,1911 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Ataraxia" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="计算机控制系统原理简介，包括PID，DCS等">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机控制系统">
+<meta property="og:url" content="https://jiangxjun.github.io/blog/2020/05/15/计算机控制系统/index.html">
+<meta property="og:site_name" content="Ataraxia">
+<meta property="og:description" content="计算机控制系统原理简介，包括PID，DCS等">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563412053509.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563413431889.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563413702713.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563417797391.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563418364558.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563418454418.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563418835443.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563427170177.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563427343113.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563427517053.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563427717723.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563427946159.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563430889330.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563431168766.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563431405728.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563431537001.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563433414794.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563434410526.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563435974531.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563436285801.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563498246228.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563499824430.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563504258372.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563507093264.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563507337946.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563507373962.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563508036395.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563513446098.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563514491951.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563867748410.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563938622094.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563951796173.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563952613926.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563953080889.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563953558247.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563954451180.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1564017899902.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1564018591539.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1564022478527.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1564023588944.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1564025332252.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1564040994361.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1564043367055.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1564043379505.png">
+<meta property="og:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1564043445173.png">
+<meta property="og:updated_time" content="2020-06-18T01:42:12.971Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机控制系统">
+<meta name="twitter:description" content="计算机控制系统原理简介，包括PID，DCS等">
+<meta name="twitter:image" content="https://jiangxjun.github.io/2020/05/15/计算机控制系统/1563412053509.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiangxjun.github.io/blog/2020/05/15/计算机控制系统/">
+
+
+
+
+
+  <title>计算机控制系统 | Ataraxia</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ataraxia</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Hi, I'm Jiang.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.js"></script> </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jiangxjun.github.io/blog/2020/05/15/计算机控制系统/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jiangxj">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ataraxia">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">计算机控制系统</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-15T00:00:00+08:00">
+                2020-05-15
+              </time>
+            
+			
+			
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  26.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  98
+                </span>
+              
+            </div>
+          
+
+          
+              <div class="post-description">
+                  计算机控制系统原理简介，包括PID，DCS等
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>参考书籍 《计算机控制系统》刘建昌等著</p>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><h2 id="一个典型的计算机控制系统的架构"><a href="#一个典型的计算机控制系统的架构" class="headerlink" title="一个典型的计算机控制系统的架构"></a>一个典型的计算机控制系统的架构</h2><img src="/2020/05/15/计算机控制系统/1563412053509.png" title="典型的计算机控制系统架构">
+<p>数字信号：</p>
+<p>$r(kT)$——给定输入，$y(kT)$——经A/D转换后的系统输出，$u(kT)$——由数字控制器计算的控制的控制信号，$e(kT)=r(kT)-y(kT)$——偏差信号。</p>
+<p>离散模拟信号：</p>
+<p>$y^*(t)$——经过采样开关的被控量信号【时间上离散，幅值上连续】</p>
+<p>模拟信号：</p>
+<p>$y(t)$——系统输出（被控量）</p>
+<p>量化模拟信号：</p>
+<p>$u^*(t)$——经D/A转换后的模拟控制信号【时间上连续，幅值上量化】</p>
+<p>典型的计算机控制系统是：连续-离散混合系统。</p>
+<p><strong>特点</strong>是：模拟、数字和离散模拟信号同在，输入输出均为模拟量的连续环节（被控对象、传感器）、输入和输出均为数字量环节（数字控制器、偏差计算）、输入输出为两类不同量的离散模拟环节（A/D，D/A）共存。</p>
+<h2 id="计算机控制系统的应用要求"><a href="#计算机控制系统的应用要求" class="headerlink" title="计算机控制系统的应用要求"></a>计算机控制系统的应用要求</h2><ul>
+<li>可靠性高</li>
+<li>实时性好。对过程进行实时控制和监测</li>
+<li>环境适应性强</li>
+<li>过程输入和输出配套较好</li>
+<li>系统扩展性好</li>
+<li>系统开放性。在主系统接口、网络通信、软件兼容及升级等方面遵守开放性原则，便于系统扩展，异机种链接、软件的可移植和互换。</li>
+<li>控制软件包功能强。具备丰富的控制算法，同时具备方便的人机交互，实时性好等性能</li>
+</ul>
+<h2 id="计算机控制系统的性能指标"><a href="#计算机控制系统的性能指标" class="headerlink" title="计算机控制系统的性能指标"></a>计算机控制系统的性能指标</h2><p>1、稳定性</p>
+<p>2、稳态指标。</p>
+<p>​       衡量控制系统精度的指标，用稳态误差来表征。稳态误差是输出量$y(t)$的稳态值$y(\infty)$与给定值$y_0$的差值，定义为：<br>$$<br>e(\infty) = y_0-y(\infty)<br>$$<br>其中$e(\infty)$表示控制精度，越小越好。稳态误差$e(\infty)$与控制系统本身的特性（如系统的开环传递函数）、系统的输入信号（如阶跃、速度或加速度输入信号）、反馈通道的干扰（测量干扰或监测回路的干扰）有关。</p>
+<p>3、动态指标</p>
+<p>​       能较为直观的反映控制系统的过渡过程特性。包括<strong>超调量$\sigma \%$、调节时间$t$、</strong>峰值时间$t_p$、<strong>衰减比</strong>$\eta$和振荡次数$N$。</p>
+<p>4、综合指标</p>
+<p>​      设计最优控制系统，常用的综合性能指标是<strong>积分型指标</strong>。如：<br>$$<br>J=\int_0^t e^2(t)dt<br>$$<br>这种“先误差平方后积分”形式的性能指标用于权衡系统总体误差的大小。数学上容易处理，可以得到解析解。</p>
+<h2 id="一个计算机控制系统的典型硬件组成"><a href="#一个计算机控制系统的典型硬件组成" class="headerlink" title="一个计算机控制系统的典型硬件组成"></a>一个计算机控制系统的典型硬件组成</h2><img src="/2020/05/15/计算机控制系统/1563413431889.png" title="计算机系统典型的硬件组成">
+<p>包括三部分：</p>
+<ol>
+<li>过程装置。包括被控对象、执行机构和测量变送装置</li>
+<li>输入输出通道。包括过程通道和总线接口</li>
+<li>计算机系统。计算机【计算机软件系统=系统软件+应用软件+数据库】和外部设备</li>
+</ol>
+<h3 id="模拟量输入通道"><a href="#模拟量输入通道" class="headerlink" title="模拟量输入通道"></a>模拟量输入通道</h3><p>通常由信号变换器、滤波器、多路模拟开关、前置放大器、采样保持器、A/D转换器、接口和控制电路等部分组成。</p>
+<img src="/2020/05/15/计算机控制系统/1563413702713.png" title="模拟量输入通道">
+<h3 id="模拟量输出通道"><a href="#模拟量输出通道" class="headerlink" title="模拟量输出通道"></a>模拟量输出通道</h3><p>通常由接口控制电路、D/A转换器（零阶保持期）、滤波器等部分组成。模拟量输出通道有两种结构形式：一是每个通道配置一个D/A转换器，二是通过多路模拟开关共用一个D/A转换器。</p>
+<img src="/2020/05/15/计算机控制系统/1563417797391.png" title="模拟量输出通道">
+<h3 id="数字量输入通道"><a href="#数字量输入通道" class="headerlink" title="数字量输入通道"></a>数字量输入通道</h3><p>基本功能就是把来自现场的数字信号或开关信号、脉冲信号，按照一定的时序要求送入数字控制器。</p>
+<h3 id="数字量输出通道"><a href="#数字量输出通道" class="headerlink" title="数字量输出通道"></a>数字量输出通道</h3><p>基本功能是把控制器输出的数字控制信号，按照一定的时序要求，送入输出通道中部的<strong>数字执行机构</strong>，如继电器、可编程器件、步进电机等，通过数字执行机的动作实现被控对象的控制作用。</p>
+<h3 id="总线接口"><a href="#总线接口" class="headerlink" title="总线接口"></a>总线接口</h3><h4 id="内部总线"><a href="#内部总线" class="headerlink" title="内部总线"></a>内部总线</h4><p>即计算机内部各外围芯片与处理器之间的总线，用于芯片一级的互连，是<strong>微处理器与外部硬件接口的通路</strong>。</p>
+<p>内部并行总线包括：地址、数据和控制总线</p>
+<img src="/2020/05/15/计算机控制系统/1563418364558.png" title="内部并行总线">
+<p>内部串行总线SPI的典型结构图如下：</p>
+<img src="/2020/05/15/计算机控制系统/1563418454418.png" title="内部串行总线典型结构">
+<p>SPI系统使用4条线：串行时钟线（SCK）、主机输入/从机输出数据线MISO、主机输出、从机输入数据线MOSI和低电平有效的从机选择线SS。SCK、MOSI、MISO为共享数据线。</p>
+<h4 id="系统总线"><a href="#系统总线" class="headerlink" title="系统总线"></a>系统总线</h4><p>计算机和各个插件板与系统板之间的总线（多总线multibus，STD bus，PC bus等）。</p>
+<img src="/2020/05/15/计算机控制系统/1563418835443.png" title="计算机各插件板与系统板之间总线">
+<p>CPU的总线驱动能力有限，大量的接口芯片不能直接挂在微处理器芯片上；存储器、I/O接口芯片太多，电路板安排不下，采用模块化设计会增加总线负载。此时需要在微处理器芯片和总线之间必须加上<strong>驱动器</strong>。</p>
+<p>系统总线可分为5个主要类型：</p>
+<ul>
+<li>数据线。决定数据宽度</li>
+<li>地址线。决定直接选址范围</li>
+<li>控制线。具有控制、时序和中断功能，决定总线功能和适应性的好坏</li>
+<li>电源线和地线</li>
+<li>备用线</li>
+</ul>
+<h4 id="外部总线"><a href="#外部总线" class="headerlink" title="外部总线"></a>外部总线</h4><p>计算机和计算机之间、计算机和外部其它仪表或设备之间连接通信的总线。</p>
+<h2 id="模数之间转换"><a href="#模数之间转换" class="headerlink" title="模数之间转换"></a>模数之间转换</h2><h3 id="D-A转换"><a href="#D-A转换" class="headerlink" title="D/A转换"></a>D/A转换</h3><p>按照规定的时间间隔T对控制器输出的数字量进行D/A转换。基本原则“按权展开求和”，对数字量中的每一位，按权值分别转换为模拟量，然后通过运放求和，得到相应的模拟量的输出。</p>
+<p>$n$位D/A转换器件（DAC）的输出电压$V_{out}$为：<br>$$<br>V_{out} = V_{FSR}\left(\frac{B_1}{2}+\dots+\frac{B_n}{2^n}\right)<br>$$<br>其中，$V_{FSR}$为输出的满幅值电压；$B_1$是二进制最高有效位，$B_n$为最低有效位。</p>
+<p>D/A转换器包括解码和信号恢复两个变换。<strong>解码</strong>用于把数字量转换为幅值等于该数字量的模拟脉冲信号（离散模拟信号，时间离散，幅值是模拟脉冲信号（电压、电流））。</p>
+<p><strong>信号恢复器（保持器）</strong>将离散的模拟脉冲信号按一定的规则保持规定的时间间隔T，把时间离散变成时间上连续。</p>
+<p><strong>D/A转换的误差</strong>：主要由D/A转换器转换精度（转换器字长）和保持器（采样点之间的插值）的形式以及时间间隔T来决定。</p>
+<h3 id="A-D转换"><a href="#A-D转换" class="headerlink" title="A/D转换"></a>A/D转换</h3><p>四种类型：</p>
+<ol>
+<li>计数器式。速度慢，便宜</li>
+<li>并行比较式。用在高速采样 ，当位数多成本高</li>
+<li>双积分式。精度高，有较强抗干扰能力，速度慢，用在高精度低速度场合</li>
+<li>逐次逼近式。兼顾精度和速度，在16位以下广泛使用</li>
+</ol>
+<p>A/D转换要完成采样、量化和编码3个变换。</p>
+<p><strong>采用保持器</strong>对连续的模拟输入信号按一定时间间隔T进行采样，变成时间离散、幅值等于采样时刻输入信号值的序列信号。</p>
+<p><strong>量化</strong>是将采样时刻的信号幅值按最小量化单位取整过程。量化单位越小，采样时刻信号的幅值与变换成的有限维数的二进制数码的差异越小。精度越高。</p>
+<p><strong>编码</strong>将量化的分层信号变换成二进制数码（只是信号形式的改变），是一个无差的等效变换过程。</p>
+<p><strong>A/D转换误差</strong>主要由A/D转换器转换速率（孔径时间）和转换精度（量化误差）来决定。</p>
+<h2 id="计算机控制系统的理论问题"><a href="#计算机控制系统的理论问题" class="headerlink" title="计算机控制系统的理论问题"></a>计算机控制系统的理论问题</h2><p>1、信号转换问题</p>
+<p>​       计算机控制系统在结构上 通常是模拟和数字部件组成的混合系统。</p>
+<p>2、对象建模与性能分析</p>
+<p>​       计算机控制系统是由纯离散系统的计算机和纯连续系统的被控对象构成的混合系统。为了便于分析和设计，都等效地看成<strong>离散系统</strong>处理。对离散系统通常采用<strong>时域的差分方程、复数域的z变换和脉冲传递函数、频域的频率特性以及离散状态空间方程</strong>作为系统数学描述的基本工具。</p>
+<p>3、控制算法设计</p>
+<p>​       研究对象的日趋复杂化，常规控制理论常常难以解决复杂控制系统的控制问题。</p>
+<p>4、控制系统实现技术</p>
+<p>​       采用数字控制器因而会产生数值误差。</p>
+<h2 id="计算机控制系统的基本类型"><a href="#计算机控制系统的基本类型" class="headerlink" title="计算机控制系统的基本类型"></a>计算机控制系统的基本类型</h2><p>按照功能和结构划分，有：</p>
+<p>1、操作指导控制系统。</p>
+<p>​       提供现场情况和进行异常报警，还按照预先建立的数学模型和控制算法进行运算和处理，得出最优设定值打印显示，操作人员根据计算机给出的操作指导，并根据实际经验，经过分析判断，由人直接改变调节器的给定值或操作执行机构。</p>
+<p>2、直接数字控制系统。</p>
+<p>​       DDC系统是计算机把运算结果直接输出去控制生产过程。属于闭环系统，计算机系统对生产过程各参量进行检测，根据规定的数学模型，如PID算法进行运算，发出控制信号，直接控制生产过程。</p>
+<p>​       不仅能完全取代模拟调节器，而且只要改变程序就可以实现其他的复杂控制规律，如前馈控制、非线性控制等。</p>
+<img src="/2020/05/15/计算机控制系统/1563427170177.png" title="直接数字控制系统">
+<p>3、计算机监督控制系统。</p>
+<p>​       SCC（supervisory computer control）也称为计算机设定值控制系统。计算机的输出用来直接改变模拟调节器或DDC的设定值。</p>
+<p>​       由两种形式：</p>
+<p>​       <strong>SCC+模拟调节器的系统</strong></p>
+<img src="/2020/05/15/计算机控制系统/1563427343113.png" title="SCC+模拟调节器系统">
+<p>​      优点：能始终使得生产过程处于最优运行状态，与操作指导控制系统相比，不会因手调设定值的方式不同而引起控制质量的差异。灵活安全，出现故障仍可由模拟调节器单独完成操作。</p>
+<p>​       缺点：需要采用模拟调节器。</p>
+<p>​       <strong>SCC+DCC系统</strong></p>
+<img src="/2020/05/15/计算机控制系统/1563427517053.png" title="SCC+DCC系统">
+<p>​       SCC的输出直接改变DDC的设定值，两者之间通过数据传输直接实现。通常一台SCC可以控制数个DDC计算机，一旦DDC发生故障，可用SCC计算机代替DDC，确保生产的正常进行。</p>
+<p>4、分级控制系统。</p>
+<p>​       由管理信息系统（MIS）、计算机监督控制（SCC）和直接数字控制（DDC）三级控制组成。</p>
+<img src="/2020/05/15/计算机控制系统/1563427717723.png" title="分级控制系统">
+<p>SCC级为分级控制的中间级，功能是集中生产过程信息，对生产过程进行优化、实现自适应或最控制等，指挥DCC，接收MIS级命令并向MIS级汇报。</p>
+<p>DDC用于直接控制生产过程，多采用微型机。</p>
+<p>5、集散控制系统</p>
+<p>​       DCS（distributed control system）是由微型机为核心的过程控制单元（PCU）、高速数据通道（DHW）、操作人员接口单元（OIU）和监控计算机等部分组成。</p>
+<img src="/2020/05/15/计算机控制系统/1563427946159.png" title="集散控制系统">
+<p>由于生产过程的大型化、复杂化和分散化，若采用一台计算机控制和管理，一旦计算机发生故障，整个系统停顿，“危险集中”。</p>
+<p>集散控制的<strong>设计思想</strong>：“危险分散”，将控制功能分散，将监控和操作功能高度集中。</p>
+<ul>
+<li>PCU：由很多模板组成，每个控制模板是以微处理器为核心组成的功能板，可以对几个回路进行PID、前馈等多种控制。一个控件发生故障，只影响与之相关的几个回路，达到“危险分散”目的。PCU可以安装在离变送器和执行机构近的地方，缩短控制回路长度，减少噪声，提高可靠性，达到“地理上”分散。</li>
+<li>DHW：将各个PCU、OIU、监控计算机等有机连接【相互协调不可分】起来以实现高级控制和集中控制。挂在DHW上任一单元发生故障，都不会影响其他单元之间的通信联系和正常工作。</li>
+<li>OIU：实现集中监视和集中操作</li>
+<li>监控计算机：实现最优控制和管理。监控机的功能是存取工厂所有的信息和控制参数，打印综合报告，能进行长期趋势分析以及进行最优化计算机控制，控制各个现场过程控制单元（PCU）工作。</li>
+</ul>
+<p>6、总线控制系统。</p>
+<p>​       现场总线控制系统（field  control system，FCS）的体系结构主要表现在：现场通信网络、现场设备互连、控制功能分散、通信线供电、开放式互联网络等方面。</p>
+<p>​        FCS底层产品都带有<strong>CPU的智能单元</strong>【包括智能传感器、智能执行器等】，突破传统DCS的底层产品4-20mA模拟信号的传输。智能单元靠近现场设备，可以独立地完成测量、校正、调整、诊断和控制功能。现场总线协议将它们连接在仪器，任何一个单元出现故障都不会影响到其他单元，更不会影响全局，实现彻底的分散控制，更安全、可靠。</p>
+<p>7、以太控制网络。</p>
+<p>​       以太控制网络<strong>最典型的应用形式</strong>为：顶层采用Ethernet（以太网，局域网技术，包括<a href="https://baike.baidu.com/item/物理层" target="_blank" rel="noopener">物理层</a>的连线、电子信号和介质访问层<a href="https://baike.baidu.com/item/协议" target="_blank" rel="noopener">协议</a>的内容），网络层和传输层采用TCP/IP协议。嵌入式控制器、智能现场测控仪表和传感器可以很方便的接入以太控制网。</p>
+<p>​       以太控制网容易与信息网络集成，组建统一的企业风格。以太控制避免了现场总线技术游离于计算机网络技术之外，使得现场总线技术和网络技术融合，实现网络控制系统的彻底开放。</p>
+<h1 id="信号转换"><a href="#信号转换" class="headerlink" title="信号转换"></a>信号转换</h1><h2 id="信号变换原理"><a href="#信号变换原理" class="headerlink" title="信号变换原理"></a>信号变换原理</h2><h3 id="计算机控制系统信号转换分析"><a href="#计算机控制系统信号转换分析" class="headerlink" title="计算机控制系统信号转换分析"></a>计算机控制系统信号转换分析</h3><img src="/2020/05/15/计算机控制系统/1563430889330.png" title="计算机控制系统信号">
+<p>（1）模拟信号。时间上连续，幅值上连续。即连续信号。</p>
+<p>（2）离散模拟信号。时间上离散，幅值上连续的信号。即采样信号</p>
+<p>（3）数字信号。时间上离散，幅值上离散（已经量化）的信号，可用一个序列数字表示</p>
+<p>（4）量化。采用一组数码（多用二进制数码）来逼近 离散模拟信号的幅值，将其转换为数字信号</p>
+<p>（5）采样。将模拟信号按一定的时间间隔抽样成离散模拟信号的过程。</p>
+<img src="/2020/05/15/计算机控制系统/1563431168766.png" title="采样过程">
+<p>采样函数可以用$x^<em>(t)$、$y^</em>(t)$及$e^<em>(t)$表示，`</em>`表示离散化。</p>
+<p>采样分为：</p>
+<ul>
+<li>均匀采样：采样周期不变</li>
+<li>非均匀采样：采样周期变化</li>
+<li>随机采样：采样间隔大小随机变化</li>
+</ul>
+<h3 id="采样过程及采样函数的数学表示"><a href="#采样过程及采样函数的数学表示" class="headerlink" title="采样过程及采样函数的数学表示"></a>采样过程及采样函数的数学表示</h3><img src="/2020/05/15/计算机控制系统/1563431405728.png" title="采样函数">
+<p>得到时间上离散的数值序列：<br>$$<br>f^*(t) = \{f(0T),f(1T),f(2T),\dots,f(kT),\dots\}<br>$$<br>其中$T$为采样周期。</p>
+<p>==脉冲采样==：</p>
+<img src="/2020/05/15/计算机控制系统/1563431537001.png" title="脉冲采样">
+<p>采样周期$T$比采样开关闭合时间$\tau$大很多，即$\tau \ll T$，$\tau$比起被控对象的时间常数也非常小，认为$\tau \rightarrow 0$。</p>
+<p>连续函数$f(t)$，经脉冲采样器调制后输出的一个采样函数$f^*(t)$。其中$\delta_T(t)=\sum\limits_{k=0}^{\infty} \delta(t-kT)$为单位理想脉冲序列。</p>
+<p>采样函数：<br>$$<br>f^<em>(t) = f(t)\delta_T(t)=f(t)\sum\limits_{k=0}^{\infty} \delta(t-kT)<br>$$<br>其中$ \delta(t-kT)$为$t=kT$时刻的理想单位脉冲，定义为：<br>$$<br>\delta(t-kT) =\begin{equation}<br>\left\{<br>\begin{array}{lr}<br> \infty , t=kT\\<br> 0, t \ne kT<br> \end{array}<br> \right.<br>\end{equation}<br>$$<br>且冲量为1，即：<br>$$<br>\int_{0}^{\infty} \delta(t-kT)dt = 1<br>$$<br>得到理想脉冲采样函数数学表达式：<br>$$<br>f^</em>(t) =\sum\limits_{k=0}^{\infty} f(kT)\delta(t-kT)<br>$$<br>其中，$\delta(t-kT)$仅表示脉冲存在的时刻，冲量为1；脉冲的大小由采样时刻的函数值$f(kT)$决定，称为<strong>脉冲强度</strong>。</p>
+<h3 id="采样函数的频谱分析及采样定理"><a href="#采样函数的频谱分析及采样定理" class="headerlink" title="采样函数的频谱分析及采样定理"></a>采样函数的频谱分析及采样定理</h3><p>$$<br>f^*(t) =f(t)\sum\limits_{k=0}^{\infty} \delta(t-kT)<br>$$</p>
+<p>$$<br>\delta_T(t) =  \sum\limits_{k=-\infty}^{\infty}\delta(t-kT)= \sum\limits_{k=-\infty}^{\infty}C_ke^{jkw_st}<br>$$</p>
+<p>其中，$w_s = \frac{2\pi}{T}$为采样角频率；$C_k$为傅里叶系数，表示为：<br>$$<br>C_k = \frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}} \delta_T(t)e^{-jkw_st}dt<br>$$<br>$\delta_T(t)$在$\left[-\frac{T}{2},\frac{T}{2}\right]$时间内，仅在$t=0$时有脉冲，脉冲函数的筛选性，即：<br>$$<br>\int_{-\infty}^{\infty}\delta(t)f(t)dt = f(t) |_{t=0}<br>$$</p>
+<p>$$<br>C_k = \frac{1}{T}e^{-jkw_s t}|_{t=0} = \frac{1}{T}<br>$$</p>
+<p>$$<br>\delta_T(t) = \frac{1}{T}\sum\limits_{k=-\infty}^{\infty}e^{jkw_st}<br>$$</p>
+<p>所以，采样函数可以写成：<br>$$<br>f^<em>(t) = \frac{1}{T}\sum\limits_{k=-\infty}^{\infty}f(t)e^{jkw_st}<br>$$<br>由拉氏变换$F(s) = \int_{0}^{\infty} f(t)e^{-st}dt$可得：<br>$$<br>F^</em>(s) = \int_{0}^{\infty}f^<em>(t)e^{-st}dt=\int_{0}^{\infty}\frac{1}{T}\sum\limits_{k=-\infty}^{\infty}f(t)e^{jkw_et}e^{-st}dt<br>$$<br>根据拉氏变换复位移定理得：<br>$$<br>F^</em>(s) = \frac{1}{T} \sum\limits_{k=-\infty}^{\infty}F(s-jkw_s)<br>$$<br>令$s=jw，n=-k$，直接求得采样函数得傅里叶变换式：<br>$$<br>F^<em>(jw) = \frac{1}{T}\sum\limits_{n=-\infty}^{\infty}F(jw+jnw_s)<br>$$<br>$F^</em>(jw)$为采样函数$f^*(t)$得频谱函数。</p>
+<img src="/2020/05/15/计算机控制系统/1563433414794.png">
+<p>采样周期$T$的选择会影响$f^<em>(t)$的频谱，<em>*采样定理要解决的问题是</em></em>：采样周期选多大，才能将采样信号较少失真地恢复为原连续信号。</p>
+<p>==shannon采样定理==：<br>$$<br>w_s \ge 2w_{max}<br>$$<br>$$<br>T \le \frac{\pi}{w_{max}}<br>$$</p>
+<p>如果一个连续信号不包含高于频率$w_{max}$的频率分量，完全可以用周期$T&lt; \frac{\pi}{w_{max}}$的均匀采样值来描述，即当采样频率$w_s &gt; 2w_{max}$，可以从采样信号中不失真地恢复原连续信号。</p>
+<h2 id="采样恢复与保持器"><a href="#采样恢复与保持器" class="headerlink" title="采样恢复与保持器"></a>采样恢复与保持器</h2><p>计算机作为信息处理装置，其输出一般有两种形式：一是直接数字量输出，如开关形式、步进电机控制等；一种是需要将数字信号$u(kT)$转换为连续信号$u(t)$。</p>
+<p>数字信号无失真的恢复成连续信号，有Shannon采样定理，采样频率$w_s \ge 2w_{max}$，则在被控对象前加一个理想滤波器：</p>
+<img src="/2020/05/15/计算机控制系统/1563434410526.png" title="采样恢复与保持器">
+<p>实际所采用的是<strong>保持器</strong>，与理想滤波器特性相近的物理可实现。</p>
+<p>从脉冲序列$u^<em>(t)$的全部信息种恢复原来的连续信号$u(t)$，通过保持器来完成这个恢复过程。实际是一个多项式外推装置。一<strong>个方法是利用$u(t)$的幂级数展开公式</strong>，即：<br>$$<br>u(t)=u(kT) +u’(kT)(t-kT)+\frac{u’’(kT)}{2}(t-kT)^2+\dots,kT\le t&lt;(k+1)T<br>$$<br>若按第一项组成外推器，所用$u(t)$的多项式是零阶的，称为<strong>零阶保持器</strong>，若按前两项组成外推装置，所用的多项式是一阶的，称为<em>*一阶保持器</em></em>。</p>
+<p>导数值可以用各个采样时刻的各阶差商来表示，即：<br>$$<br>u’(kT) = \frac{1}{T}\{u(kT)-u[(k-1)T]\}<br>$$</p>
+<p>$$<br>u’’(kT) = \frac{1}{T}\{u’(kT)-u’[(k-1)T]\}<br>$$</p>
+<p>同理可得$u’[(k-1)T]$，以此类推得：<br>$$<br>u’’(kT) = \frac{1}{T^2}\{u(kT) - 2u[(k-1)T]+u[(k-2)T]\}<br>$$</p>
+<h3 id="零阶保持器"><a href="#零阶保持器" class="headerlink" title="零阶保持器"></a>零阶保持器</h3><p>$$<br>u_h(t) =u(t)= u(kT),kT \le t\le(k+1)T<br>$$</p>
+<p>特点是：零阶保持器把$kT$时刻的采样值，简单的、不增不减地保持到下一个采样时刻$(k+1)T$到来之前。</p>
+<img src="/2020/05/15/计算机控制系统/1563435974531.png" title="零阶保持器">
+<p>零阶保持器的传递函数：</p>
+<img src="/2020/05/15/计算机控制系统/1563436285801.png" title="零阶保持器传递函数">
+<p>脉冲响应函数$g_0(t)$分解后线性叠加：<br>$$<br>g_0(t) = l(t)-l(t-T)<br>$$<br>阶跃函数$l(t) = \cases{1,t\ge0 \ 0,t&lt;0}$</p>
+<p>拉氏变换为：<br>$$<br>G_0(s) = L[g_0(t)] = \frac{1}{s}-\frac{1}{s}e^{-st} = \frac{1-e^{-st}}{s}<br>$$<br>输入单位脉冲$\delta(t)$的拉氏变换：<br>$$<br>X(s) = L[\delta(t)]=1<br>$$<br>零阶保持器的传递函数为：<br>$$<br>W_{h0}(s) = \frac{G_0(s)}{X(s)} = \frac{1-e^{-sT}}{s}<br>$$<br>零$s=jw$，得到零阶保持器的频率特性。</p>
+<h3 id="一阶保持器"><a href="#一阶保持器" class="headerlink" title="一阶保持器"></a>一阶保持器</h3><p>$$<br>\begin{equation}<br>\begin{aligned}<br>u_h(t) &amp;= u(kT)+u’(kT)(t-kT),kT  \le t &lt;(k+1)T \ &amp;= u(kT) +\frac{u(kT)-u[(k-1)T]}{T}(t-kT)<br>\end{aligned}<br>\end{equation}<br>$$</p>
+<h2 id="z变换及反变换"><a href="#z变换及反变换" class="headerlink" title="z变换及反变换"></a>z变换及反变换</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>是拉氏变换的特殊形式，在离散系统的分析及设计中发挥重要作用。<br>$$<br>F(s)= L[f(t)] = \int_{-\infty}^{\infty}f(t)e^{-st}dt<br>$$</p>
+<p>$$<br>f^*(t) =\sum\limits_{k=0}^{\infty} f(kT)\delta(t-kT)<br>$$</p>
+<p>其拉氏变换为：<br>$$<br>F^<em>(s) = L[f^</em>(T)] =\sum\limits_{k=0}^{\infty}f(kT)\left[\int_{-\infty}^{\infty}\delta(t-kT)e^{-st}dt\right]<br>$$<br>根据广义脉冲函数$\delta(t)$的性质：<br>$$<br>\int_{-\infty}^{\infty}\delta(t-kT)e^{-st}dt = e^{-skT}=L[\delta(t-kT)]<br>$$<br>令$z= e^{sT}$，得采样函数$f^<em>(t)$的$z$变换为：<br>$$<br>F^</em>(s) = \sum\limits_{k=0}^{\infty}f(kT)e^{-skT}<br>$$<br>$$<br>F(z) = \sum\limits_{k=0}^{\infty}f(kT)z^{-k}<br>$$</p>
+<p>其中$f(kT)$表示时间序列的强度，$z^{-k}$表示时间序列出现的时刻，相对时间的起点，延迟了$k$个采样周期。$F(z)$既包含了信号幅值的信息，又包含了时间信息。</p>
+<p><strong>注意到</strong>：在z变换中，仅仅考虑到采样时刻的采样值，所以$F(z)$只能表征采样函数$f^*(t)$的z变换，只能表征连续时间函数$f(t)$在采样时刻上的特性，不能表征采样点之间的特性。</p>
+<h3 id="z变换方法"><a href="#z变换方法" class="headerlink" title="z变换方法"></a>z变换方法</h3><h3 id="z变换的基本定理"><a href="#z变换的基本定理" class="headerlink" title="z变换的基本定理"></a>z变换的基本定理</h3><h3 id="z反变换"><a href="#z反变换" class="headerlink" title="z反变换"></a>z反变换</h3><p>从$z$变换$F(z)$求出采样函数$f^<em>(t)$，称为$z$反变换，表示为：<br>$$<br>Z^{-1}[F(z)] = f^</em>(t)<br>$$<br>$z$变换得到的是各采样时刻上连续函数$f(t)$的数值序列值$f(kT)$，得不到两个采样时刻之间的连续函数的信息，因此无法用$z$反变换方法求出原连续函数$f(t)$，即$Z^{-1}[F(z)] \ne  f(t)$。</p>
+<h3 id="扩展z变换"><a href="#扩展z变换" class="headerlink" title="扩展z变换"></a>扩展z变换</h3><p>因为$F(z)$只能反映连续信号$f(t)$在各个采样时刻的变换情况 ，而不能反映$f(t)$在采样时刻之间的任何变换信息。$z$变换的分析方法及所得结论只针对一些离散时刻有效，而在这些离散时刻之间的时刻是无效的。</p>
+<p>在计算机控制系统的分析和设计时，不仅需要知道在采样点上的输入、输出关系，还要知道采样点之间的输入、输出关系，需要扩展$z$变换。</p>
+<h1 id="计算机控制系统数学描述与性能分析"><a href="#计算机控制系统数学描述与性能分析" class="headerlink" title="计算机控制系统数学描述与性能分析"></a>计算机控制系统数学描述与性能分析</h1><h2 id="离散系统"><a href="#离散系统" class="headerlink" title="离散系统"></a>离散系统</h2><p>离散时间系统的输入和输出均为离散信号，离散系统可以抽象为一种系统的离散输入信号和系统的离散输出信号之间的数学变换和映射。</p>
+<p>设单输入单输出的离散系统$D$的输入为$e(k)$，输出为$u(k)=u(kT)$。两者都是离散的数值序列。</p>
+<img src="/2020/05/15/计算机控制系统/1563498246228.png" title="离散系统">
+<p>有：<br>$$<br>u(k) = D[e(k)]<br>$$<br>$$<br>e(k)=ae_1(k) +be_2(k)<br>$$</p>
+<p>$$<br>u(k) = aD[e_1(k)]+bD[e_2(k)]<br>$$</p>
+<p>该系统的变换函数$D$是线性的，$u(k)$与$e(k)$之间是线性关系。</p>
+<p>系统$D$的参数不随时间变化，即系统$D$的响应不取决于输入作用的时刻，系统是常系数的，即<strong>定常系统</strong>。</p>
+<p>线性常系数离散系统一般采用<strong>差分方程</strong>来描述。系统在某一时刻$k$的输出$u(k)$，不仅取决于本时刻的输入$e(k)$，与过去的时刻的输入数值序列$e(k-1),e(k-2),\dots$有关，还与该时刻以前的输出值有关，即：<br>$$<br>\begin{equation}<br>\begin{aligned}<br>&amp; u(k)+a_1u(k-1)+a_2u(k-2)+\dots+a_nu(k-n) \ &amp;=b_0e(k) +b_1e(k-1)+b_2e(k-2)+\dots+b_me(k-m)<br>\end{aligned}<br>\end{equation}<br>$$<br>即：<br>$$<br>u(k) = -\sum\limits_{i=1}^na_iu(k-i) +\sum\limits_{j=0}^mb_je(k-j)<br>$$<br>当系数均为常数时，是一个$n$阶线性常系数差分方程。上式是后向非齐次差分方程。</p>
+<p><strong>前向差分方程和后向差分方程区别</strong>：前向多用于描述非零初始值的离散系统，后向多用于描述全零初始值的离散系统。</p>
+<h2 id="差分方程"><a href="#差分方程" class="headerlink" title="差分方程"></a>差分方程</h2><p>描述离散控制系统，通过差分方程的求解，来分析和设计离散控制系统。</p>
+<p>差分方程的解法有迭代法、经典解法和$z$变换解法。</p>
+<h4 id="差分方程解法"><a href="#差分方程解法" class="headerlink" title="差分方程解法"></a>差分方程解法</h4><h2 id="脉冲传递函数"><a href="#脉冲传递函数" class="headerlink" title="脉冲传递函数"></a>脉冲传递函数</h2><p>线性连续系统的动态特性主要用传递函数来描述 ，线性离散控制系统则主要用<strong>脉冲传递函数</strong>来描述，脉冲传递函数也简称为$z$传递函数。</p>
+<p><strong>脉冲传递函数定义：</strong></p>
+<p>在线性离散控制系统中，在零初始条件下，一个 系统（或环节）输出脉冲序列的$z$变换与输入脉冲序列的$z$变换之比，即：<br>$$<br>W(z)= \frac{Y(z)}{X(z)}=\frac{输出脉冲序列的z变换 }{输入脉冲序列的z变换}<br>$$<br>脉冲传递函数<strong>仅取决于系统本身的特性</strong>，与输入量无关。</p>
+<p>脉冲传递函数的推导：</p>
+<h3 id="计算机控制系统的脉冲传递函数"><a href="#计算机控制系统的脉冲传递函数" class="headerlink" title="计算机控制系统的脉冲传递函数"></a>计算机控制系统的脉冲传递函数</h3><img src="/2020/05/15/计算机控制系统/1563499824430.png" title="计算机控制系统的脉冲传递函数">
+<p>计算机控制系统由数字部分和连续对象部分构成的闭环控制系统，数字部分表示控制算法，它的输入和输出皆为离散信号序列。</p>
+<p>可用脉冲传递函数$D(z)$来表示输出输入关系。再求出连续系统的等效脉冲传递函数$W_d(z)$，得到控制系统的各种脉冲传递函数。</p>
+<h2 id="计算机控制系统的稳定性分析"><a href="#计算机控制系统的稳定性分析" class="headerlink" title="计算机控制系统的稳定性分析"></a>计算机控制系统的稳定性分析</h2><p>稳定性分析的基础是$z$变换，$z$变换与连续系统$s$变换在数学上的内在联系，可经过一定的变换把分析连续系统稳定性的方法引入到离散控制系统中。</p>
+<p>由$s$平面上稳定性条件来分析$z$平面的稳定条件，然后由$s$平面到$z$平面的映射，分析采样周期对系统稳定性的影响。</p>
+<h3 id="离散系统的稳定性条件"><a href="#离散系统的稳定性条件" class="headerlink" title="离散系统的稳定性条件"></a>离散系统的稳定性条件</h3><p>在连续系统中，闭环传递函数可以写成两个多项式之比：<br>$$<br>\frac{Y(s)}{R(s)} = \frac{b_0s^m +\dots+b_{m-1}s+b_m}{s^n +a_1s^{n-1}+\dots +a_{n-1}s +a_n}<br>$$<br><strong>连续系统稳定条件</strong>：闭环传递函数的全部极点位于$s$平面的做半平面内，或传递函数的极点具有负实部。</p>
+<p>在离散系统中，若输入序列有限，其输出序列也是有限的。</p>
+<p><strong>离散系统稳定性条件</strong>：闭环脉冲传递函数的全部极点位于$z$平面上以原点为圆心的单位圆内。</p>
+<h3 id="采样周期与系统稳定性关系"><a href="#采样周期与系统稳定性关系" class="headerlink" title="采样周期与系统稳定性关系"></a>采样周期与系统稳定性关系</h3><p>计算机控制系统的控制对象是连续系统，等效离散化后的闭环系统的$z$传递函数模型与采样周期选取有关，极点分布也与采样周期的选取有关。</p>
+<p><strong>一般来说，采样周期越小，系统稳定性越高</strong>，采样周期对系统稳定性的影响主要是由计算机控制系统中采样保持器引起的。</p>
+<h2 id="离散系统稳定性的代数判据"><a href="#离散系统稳定性的代数判据" class="headerlink" title="离散系统稳定性的代数判据"></a>离散系统稳定性的代数判据</h2><h3 id="劳斯稳定性判据"><a href="#劳斯稳定性判据" class="headerlink" title="劳斯稳定性判据"></a>劳斯稳定性判据</h3><p>连续系统通过判断系统特征方程的根是否都在$s$平面虚轴左边来确定系统是否稳定。离散系统的稳定边界是$z$平面的单位圆，而不是虚轴，连续系统的Routh判据不能直接应用于离散系统的稳定性判别，需要引入$\omega$<strong>变换（双线性变换）</strong>。</p>
+<p>通过$\omega$变换，把离散系统在$z$平面的稳定边界单位圆映射为新的$\omega$平面的虚轴；把离散系统$z$平面的稳定域——单位圆内部区域映射为新的$\omega$平面的左半平面，并且将离散系统原来以$z$为变量的特征多项式化为以$\omega$为变量的特征多项式。</p>
+<p>$\omega$变换的定义为：<br>$$<br>z= \frac{1+(T/2)\omega}{1-(T/2)\omega}<br>$$<br>其中$T$为采样周期，得到$\omega$的解为：<br>$$<br>\omega = \frac{2}{T}·\frac{z-1}{z+1}<br>$$</p>
+<h3 id="朱利稳定性判据"><a href="#朱利稳定性判据" class="headerlink" title="朱利稳定性判据"></a>朱利稳定性判据</h3><p>Jury稳定性判据是根据系统特征方程的系数判断系统的稳定性，不用求特征方程的根。</p>
+<p>Jury一个重要优点是可以在$z$域直接进行，不需要进行$z-\omega$变换。</p>
+<p>Routh判据不仅可以判断系统的稳定性，还可以判断出不稳定极点的个数，Jury判据只能判断出系统是否稳定。</p>
+<h2 id="计算机控制系统稳态过程分析"><a href="#计算机控制系统稳态过程分析" class="headerlink" title="计算机控制系统稳态过程分析"></a>计算机控制系统稳态过程分析</h2><p>稳态指标是用<strong>稳态误差</strong>来表示，稳态误差是系统过渡过程结束到达到稳态以后，系统参数输入与系统输出之间的偏差。</p>
+<p>稳态误差越小，系统控制稳态精度越高。</p>
+<h2 id="计算机控制系统暂态分析"><a href="#计算机控制系统暂态分析" class="headerlink" title="计算机控制系统暂态分析"></a>计算机控制系统暂态分析</h2><p>暂态分析主要用系统在单位阶跃输入信号作用下的相应特性来描述，反映控制系统的动态过程。</p>
+<p>主要性能指标用超调量$\sigma \%$、上升时间$t_r$、峰值时间$t_p$和调节时间$t_s$表示。</p>
+<h2 id="计算机控制系统的频域特性分析"><a href="#计算机控制系统的频域特性分析" class="headerlink" title="计算机控制系统的频域特性分析"></a>计算机控制系统的频域特性分析</h2><h3 id="离散系统的频域描述"><a href="#离散系统的频域描述" class="headerlink" title="离散系统的频域描述"></a>离散系统的频域描述</h3><p>在连续系统中，一个系统（或环节）的频域特性是指，在正弦信号作用下，系统（或环节）的稳态输出与输入的复数比随输入信号频率变换的特性。</p>
+<p>连续系统的频率特性公式：<br>$$<br>W(jw)= W(s)|_{s=jw}<br>$$<br>可得到离散系统的频率特性公式：<br>$$<br>W(e^{jwT})=W(z)|_{z=e^{jwT}}<br>$$<br>连续系统的频率特性$W(jw)$随着$w$变化，相当于$W(s)$当$s$沿虚轴变化时$s=jw$的特性；</p>
+<p>离散系统的频率特性$W(e^{jwT})$相当于考察传递函数$W(z)$当$z$沿单位圆变化时$z=e^{jwT}$的特性。</p>
+<h3 id="离散系统频域稳定性分析"><a href="#离散系统频域稳定性分析" class="headerlink" title="离散系统频域稳定性分析"></a>离散系统频域稳定性分析</h3><p>在离散系统中，奈奎斯特稳定判据（<strong>奈氏判据</strong>）根据<strong>复变函数的幅角原理，利用开环频率特性来判别闭环系统的稳定性。</strong></p>
+<p>设离散系统的开环脉冲传递函数为$W_K(z) = \frac{M(z)}{N(z)}$，阶次低于$N(z)$的阶次，相应的单位反馈系统的闭环脉冲传递函数为：<br>$$<br>W_B(z) = \frac{W_K(z)}{1+W_K(z)} = \frac{M(z)}{M(z)+N(z)} = \frac{M(z)}{F(z)}<br>$$<br>系统闭环特征方程为：<br>$$<br>P(z) = 1+W_K(z) =\frac{M(z)+N(z)}{N(z)}=\frac{F(z)}{N(z)} =0<br>$$<br>其中$N(z)$是系统开环特征多项式，零点为开环系统极点；$F(z)$为系统闭环特征多项式，零点为闭环系统极点。</p>
+<p>闭环系统稳定的充要条件：$F(z)$(或P(z))在单位圆外无零点。</p>
+<h3 id="离散系统伯德图分析"><a href="#离散系统伯德图分析" class="headerlink" title="离散系统伯德图分析"></a>离散系统伯德图分析</h3><p>伯德图广泛应用于单输入单输出连续系统的设计，原理是利用开环系统的对数频率特性，对系统稳定性、稳态性能和暂态性能及逆行分析，是常用的系统频率特性的性能分析和校正环节的设计方法。</p>
+<h1 id="数字控制器模拟化设计方法"><a href="#数字控制器模拟化设计方法" class="headerlink" title="数字控制器模拟化设计方法"></a>数字控制器模拟化设计方法</h1><img src="/2020/05/15/计算机控制系统/1563504258372.png" title="数字控制器模拟化设计">
+<p>对于混合计算机控制系统，包括数字信号、模拟信号、离散模拟信号和量化模拟信号。</p>
+<p><strong>模拟化设计方法有两种</strong>：一是利用熟悉的各种模拟系统设计方法（连续域设计方法）设计满意的模拟控制器，然后将其离散化为数字控制器。【<strong>数字控制器的模拟化设计方法</strong>】；二是首先把模拟被控对象连续部分离散化，然后直接在离散域设计数字控制器。【<strong>离散化设计（直接设计）方法</strong>】</p>
+<p>对于数字化控制器模拟化设计方法：关心点在于把混合系统当作模拟系统来设计需要什么约束条件以及模拟控制器的离散化会给系统的性能带来什么影响。</p>
+<h2 id="连续控制器的离散化方法"><a href="#连续控制器的离散化方法" class="headerlink" title="连续控制器的离散化方法"></a>连续控制器的离散化方法</h2><p>连续控制器的离散化是求连续控制器的传递函数$D(s)$的等效离散传递函数$D(z)$。</p>
+<p>离散化的方法包括：$z$变换、差分变换、双线性变换、零极点匹配法等</p>
+<h2 id="数字PID控制器"><a href="#数字PID控制器" class="headerlink" title="数字PID控制器"></a>数字PID控制器</h2><p>PID控制器表示比例（proportional）-积分（integral）-微分（differential）控制规律。控制器的输出和输入是比例-积分-微分关系。</p>
+<p>基本的数字PID控制算法包括<strong>位置式PID控制算法</strong>和<strong>增量式PID控制算法</strong>。</p>
+<p><strong>模拟PID控制器算法</strong>为：<br>$$<br>u(t) = K_p\left[e(t)+\frac{1}{T_i}\int_{0}^{t}e(t)dt+T_d\frac{de(t)}{dt}\right]<br>$$<br>其中，$u(t)$为输出；$e(t)$为输入；$K_p$为比例系数；$T_i$为积分时间常数；$T_d$为微分时间常数。</p>
+<p><strong>模拟PID的传递函数形式</strong>：<br>$$<br>D(s)= \frac{U(s)}{E(s)} = K_p\left(1+\frac{1}{T_is} +T_d s\right)<br>$$<br><strong>模拟PID控制器离散化处理</strong>：用后向差分近似代替微分<br>$$<br>\begin{equation}<br>\left\{</p>
+<p>\begin{array}{lr}<br>u(t)\approx u(kT)\\e(t) \approx e(kT) \ \int_{0}^{t}e(t)dt \approx T\sum\limits_{i=1}^{k}e(iT) \ \frac{de(t)}{dt}\approx \frac{e(kT)-e(kT-T)}{T}<br>\end{array}<br>\right.<br>\end{equation}<br>$$<br>省略采样周期$T$，即$kT=T$，有：<br>$$<br>\begin{equation}<br>\begin{aligned}<br>u(k)&amp;= K_p \left\{ e(k) +\frac{T}{T_i}\sum\limits_{j=1}^{k}e(j) + \frac{T_d}{T}[e(k)-e(k-1)]          \right\} \ &amp;= K_pe(k) +K_i\sum\limits_{j=1}^{k}e(j) +K_d[e(k)-e(k-1)]<br>\end{aligned}<br>\end{equation}<br>$$<br>其中$K_i = K_p\frac{T}{T_i}$为积分系数；$K_d$为微分系数，上式为<strong>位置式数字PID控制算法</strong>。</p>
+<p><strong>增量式数字PID算法</strong>：</p>
+<p>由位置式PID控制算法得：<br>$$<br>u(k-1) = K_pe(k-1) +K_i\sum\limits_{j=1}^{k-1}e(j) +K_d[e(k-1)-e(k-2)]<br>$$</p>
+<p>$$<br>\begin{equation}<br>\begin{aligned}<br>\Delta u(k) &amp;= u(k) - u(k-1)\ &amp; = K_p[e(k)-e(k-1)]+K_ie(k) +K_d[e(k) -2e(k-1)+e(k-2)]<br>\end{aligned}<br>\end{equation}<br>$$</p>
+<p>增量式PID算法表示执行机构（如阀门、步进电机等）得调节增量，即$k$时刻相对于$k-1$时刻的调节增量。</p>
+<p><strong>位置式数字PID控制算法一般形式</strong>：</p>
+<p>由增量式PID算法得：<br>$$<br>\begin{equation}<br>\begin{aligned}<br>u(k) &amp;= u(k-1) +\Delta u(k) \ &amp;= u(k-1) +K_p[e(k)-e(k-1)]+K_ie(k) +K_d[e(k)-2e(k-1)+e(k-2)]</p>
+<p>\end{aligned}<br>\end{equation}<br>$$</p>
+<h2 id="数字PID控制器算法工程化改进"><a href="#数字PID控制器算法工程化改进" class="headerlink" title="数字PID控制器算法工程化改进"></a>数字PID控制器算法工程化改进</h2><h3 id="积分分离数字PID算法（PD算法）"><a href="#积分分离数字PID算法（PD算法）" class="headerlink" title="积分分离数字PID算法（PD算法）"></a>积分分离数字PID算法（PD算法）</h3><p>很多控制系统在开始启动、停止或较大幅度改变给定信号时，控制器输入端都会产生较大的偏差（系统给定和输出信号之间的偏差），PID算法中的积分项经过短时间积累就会使得控制量$u(k)$变得很大甚至达到饱和（执行机构的机械极限），此时控制系统会处于一种非线性状态，不能根据控制器输入偏差的变化按预期控制规律来正确地改变控制量。</p>
+<p>积分项很大，需要经过很长时间误差才能被减下来，系统会产生严重超调。</p>
+<p><strong>直接改进方法</strong>是把积分项分离出来，当偏差绝对值超出分离阈值A时，积分不起作用，构成PD控制器。当偏差绝对值在阈值范围内，积分起作用。<br>$$<br>u(k) = K_pe(k)+K_1K_i\sum\limits_{j=1}^{k} e(j) K_d[e(k) - e(k-1)]<br>$$</p>
+<p>$$<br>K_1 = \cases{1, |e(j| \le A \ 0,|e(j)| &gt; A}<br>$$</p>
+<p>其中，$K_1$为逻辑系数；$A$为积分分离阈值。</p>
+<img src="/2020/05/15/计算机控制系统/1563507093264.png" title="PD算法">
+<p>算法流程：</p>
+<img src="/2020/05/15/计算机控制系统/1563507337946.png" title="算法流程">
+<h3 id="带死区的数字PID控制算法"><a href="#带死区的数字PID控制算法" class="headerlink" title="带死区的数字PID控制算法"></a>带死区的数字PID控制算法</h3><p>被控变量达到工艺要求的精度，即系统的输出与输入之间的偏差达到要求的控制进度，偏差无限小，代价大；复杂的控制过程中有多个控制系统并存，各个被控变量之间可能存在一定的关联，过分追求一个指标，可能会影响其他指标，只需要达到设定指标即可。</p>
+<img src="/2020/05/15/计算机控制系统/1563507373962.png" title="带死区的数字PID控制算法">
+<p>死区算法为：<br>$$<br>e’(k) = \cases{e(k), |e(k| &gt;B \ 0,|e(k| \le B}<br>$$<br>有：<br>$$<br>\Delta u(k) =K_p[e’(k) - e’(k-1)] +K_ie’(k) +K_d[e’(k)-2e’(k-1)+e’(k-2)]<br>$$<br>带死区的位置式PID算法为：<br>$$<br>u(k) =u(k-1) +\Delta u(k)<br>$$<br>注意：由于PID控制器积分的<strong>保持作用</strong>，当$e’(k) = 0$时，PID控制器的输出保持$k-1$时刻的值的输出，而非零。</p>
+<h3 id="不完全微分PID算法"><a href="#不完全微分PID算法" class="headerlink" title="不完全微分PID算法"></a>不完全微分PID算法</h3><p>PID控制算法中<strong>微分环节对改善系统超调量等动态性能具有重要作用，但是它对高频干扰信号比较敏感</strong>。</p>
+<p>当控制器输入偏差信号突然变化时，PID控制器中的微分项将很大，持续时间又很短，产生<strong>微分失控</strong>现象。</p>
+<img src="/2020/05/15/计算机控制系统/1563508036395.png" title="不完全微分PID算法">
+<p>不完全微分PID控制算法中的微分作用持续很长时间，具有更好的抗干扰作用。</p>
+<p>不完全微分PID控制算法增量形式为：<br>$$<br>\Delta u(k) = \alpha \Delta u(k-1) +(1-\alpha)\Delta u’(k)<br>$$<br>其中：<br>$$<br>\Delta u’(k) = K_p[e(k)-e(k-1)] +K_i e(k) +K_d [e(k) -2e(k-1)+e(k-2)]<br>$$</p>
+<h3 id="微分先行PID控制算法"><a href="#微分先行PID控制算法" class="headerlink" title="微分先行PID控制算法"></a>微分先行PID控制算法</h3><p>在给定值频繁升降变换的场合，为了避免系统超调量过大甚至发生振荡，导致执行机构剧烈动作，需要对模拟PID控制器进行改进。</p>
+<img src="/2020/05/15/计算机控制系统/1563513446098.png" title="微分先行PID控制算法">
+<p>输出微分先行：只对输出微分，不对输入微分。适合给定值频繁升降的场合，可以避免给定值引起的超调量过大。</p>
+<p>偏差微分先行：对给定值和输出量都有微分作用。适合串级控制的副控制回路。</p>
+<h1 id="数字控制器离散化（直接）设计方法"><a href="#数字控制器离散化（直接）设计方法" class="headerlink" title="数字控制器离散化（直接）设计方法"></a>数字控制器离散化（直接）设计方法</h1><h2 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h2><p><strong>设计思路</strong>：将连续的控制对象及其零阶保持器用适当的方法离散化后，系统完全变成离散系统，因而可以用离散系统的设计方法直接在$z$域进行控制器的设计。</p>
+<p>这种离散化的设计方法，稳定性好、精度高，一般用于可以精确建立对象的数学模型的情况。是在给定的采样周期下进行设计的，因此采样周期的选择取决于被控对象的特性，不受分析设计方法的限制。</p>
+<img src="/2020/05/15/计算机控制系统/1563514491951.png" title="数字控制器离散化设计方法">
+<p>闭环系统的脉冲传递函数为：<br>$$<br>W_B(z) = \frac{Y(z)}{R(z)} = \frac{D(z)W_d(z)}{1+D(z)W_d(z)} = \frac{W_K(z)}{1+W_K(z)}<br>$$<br>系统闭环的误差的脉冲传递函数为：<br>$$<br>W_e(z)=\frac{E(z)}{R(z)} = \frac{1}{1+D(z)W_d(z)}<br>$$</p>
+<p>$$<br>W_B(z) = 1-W_e(z)<br>$$</p>
+<p>得到控制器的脉冲传递函数为：<br>$$<br>D(z) = \frac{W_B(z)}{W_d(z)[1-W_B(z)]} = \frac{1-W_e(z)}{W_d(z)W_e(z)} = \frac{W_B(z)}{W_d(z)W_e(z)}<br>$$<br>若已知被控对象的脉冲传递函数$W_d(z)$，并根据性能指标要求确定出整个系统的闭环脉冲传递函数$W_B(z)$或闭环误差脉冲传递函数$W_e(z)$，则数字控制器$D(z)$可以唯一确定。</p>
+<p><strong>数字控制器直接设计法的解析设计过程如下：</strong></p>
+<ol>
+<li>确定被控对象的传递函数模型，是算法设计的基础。直接设计法假定得到了被控对象的精确模型$W(s)$，将其连同前面的零阶保持器一起离散化后，得到被控对象的广义被控模型$W_d(z)$。</li>
+<li>根据控制系统的性能指标要求及其它约束条件，确定出闭环系统的传递函数$W_B(z)$或$W_e(z)$，或者两者同时确定，满足约束条件$W_B(z) = 1-W_e(z)$。</li>
+<li>根据上述$D(z)$计算公式确定控制器传递函数模型$D(z)$。</li>
+<li>根据$D(z)$编制控制算法。</li>
+</ol>
+<p>直接设计方法的<strong>关键</strong>在于：闭环系统的脉冲传递函数$W_B(z)$（或者$W_e(z)$ ）的选择。要满足数字控制器物理可实现性、稳定性、准确性和快速性等方面的要求。</p>
+<h2 id="最小拍控制器的设计方法"><a href="#最小拍控制器的设计方法" class="headerlink" title="最小拍控制器的设计方法"></a>最小拍控制器的设计方法</h2><p><strong>最小拍系统</strong>：最少调整时间系统或最快响应系统，是指系统对单位阶跃输入、单位速度输入或单位加速度输入等典型输入信号，具有最快的响应速度，经过最少个采样周期，使得输出的稳态误差为零，达到输出完全跟踪输入的目的。</p>
+<p>根据以上原则来确定控制器$D(z)$的脉冲传递函数，即计算机控制算法 。</p>
+<h2 id="最小拍控制器工程化改进"><a href="#最小拍控制器工程化改进" class="headerlink" title="最小拍控制器工程化改进"></a>最小拍控制器工程化改进</h2><p>最小拍控制系统存在不足之处：</p>
+<ul>
+<li>输出在采样点之间可能存在波纹</li>
+<li>对各种典型输入函数的适应性差</li>
+<li>对被控对象的模型参数变化敏感</li>
+</ul>
+<h2 id="大林算法"><a href="#大林算法" class="headerlink" title="大林算法"></a>大林算法</h2><p>最小拍控制设计方法，只适合一些计算机控制系统，对于<strong>系统输出的超调量有严格限制</strong>的系统并不理想。</p>
+<p>对于一些纯滞后调节系统，滞后时间比较长，要求没有超调量或很少超调量，而调节时间允许在较多的采样周期内结束，<strong>超调</strong>是主要的设计指标。此时PID算法效果也欠佳。</p>
+<p>大林（Dahlin）算法针对纯滞后的一阶和二阶惯性环节所提出的一种直接综合设计方法，具有良好的控制效果。</p>
+<h3 id="算法设计原理"><a href="#算法设计原理" class="headerlink" title="算法设计原理"></a>算法设计原理</h3><p>设被控对象为带有纯滞后的一阶或二阶环节，即：<br>$$<br>W(s) = \frac{K}{T_1s+1}e^{-\tau s}, \tau = NT<br>$$</p>
+<p>$$<br>W(s) = \frac{K}{(T_1s +1)(T_2s +1)}e^{-\tau s}，\tau = NT<br>$$</p>
+<p>其中，$T_1,T_2$为对象时间常数；$\tau$为对象纯滞后时间，一般是采样周期的整数倍$NT$；$T$为采样周期。</p>
+<p>大林算法的控制目标是：设计合适的数字控制器，使得整个闭环系统的传递函数为带有纯滞后的一阶惯性环节，且要求闭环系统的纯滞后时间等于对象的纯滞后时间，即：<br>$$<br>W_B(s) = \frac{e^{-\tau s}}{T_0s +1},\tau = NT<br>$$<br>其中，$T_0$为等效的闭环系统的时间常数。</p>
+<h2 id="数字控制器程序实现"><a href="#数字控制器程序实现" class="headerlink" title="数字控制器程序实现"></a>数字控制器程序实现</h2><p>从$D(z)$算式的复杂性和控制系统的灵活性出发，采用计算机软件的方法实现更适宜。</p>
+<p>包括直接程序设计、串联程序设计和并行程序设计。</p>
+<h1 id="状态空间模型"><a href="#状态空间模型" class="headerlink" title="状态空间模型"></a>状态空间模型</h1><p>古典控制理论中，常采用线性微分方程和传递函数这两种输入输出的数学模型来描述线性定常动态系统。把系统看成一个“黑箱”来处理，不表征系统内部结构和内部变量，只反映外部变量即输入输出变量间的因果关系，称为<strong>外部描述</strong>。外部描述不能反映系统内部的某些特性。</p>
+<p>现代控制理论中，采用<strong>状态空间</strong>描述，是一种<strong>内部描述</strong>的数学模型。用到外部变量和内部变量，由两个数学表达式组成，一个是反映系统内部状态的变量组$x_1,x_2,\dots,x_n$和输入变量组$u_1,u_2,\dots,u_p$之间因果关系的数学表达式。称为<strong>状态方程</strong>（微分方程或差分方程形式）。</p>
+<p>另一个是表征系统内部状态的变量组$x_1,x_2,\dots,x_n$与输入变量组$u_1,u_2,\dots,u_p$和输出变量组$y_1,y_2,\dots,y_q$之间关系的数学表达式，称为<strong>输出方程</strong>。</p>
+<h2 id="状态空间描述的基本定义"><a href="#状态空间描述的基本定义" class="headerlink" title="状态空间描述的基本定义"></a>状态空间描述的基本定义</h2><p><strong>状态</strong>：</p>
+<p>控制系统的状态是指系统过去、现在和将来的状况。</p>
+<p><strong>状态变量</strong>：</p>
+<p>指能完全表征系统运动状态的最小一组变量。完全表征是指：</p>
+<ol>
+<li>任何时刻$t=t_0$，这组状态变量的值$x_1(t_0),\dots,x_n(t_0)$就表示系统在该时刻的状态。</li>
+<li>当$t \ge t_0$时的输入$u(t)$给定，且上述初始状态确定时，状态变量能完全确定系统在$t \ge t_0$的行为。</li>
+</ol>
+<p>状态变量的最小性体现在：状态变量$x_1(t),\dots,x_n(t)$是为完全表征系统行为所必需最少个数的系统状态变量，减少状态变量个数会破坏表征的完整性，增加变量的个数是不需要的。</p>
+<p><strong>状态向量</strong>：</p>
+<p>若一个系统有$n$个彼此独立的状态变量$x_1(t),\dots,x_n(t)$，构成状态向量$\pmb X(t)$：<br>$$<br>\pmb X(t)=\begin{bmatrix}<br>x_1(t) \ x_2(t)\ \vdots \ x_n(t)<br>\end{bmatrix}<br>$$<br><strong>状态空间</strong>：</p>
+<p>以状态变量$x_1(t),\dots,x_n(t)$为坐标轴构成的$n$维空间为状态空间。系统在任意时刻的状态，都可以用状态空间中的一个点来表示。</p>
+<p>给定初始时刻$t_0$的状态$\pmb X(t_0)$，得到状态空间中的一个初始点，随着时间的推移，$\pmb X(t)$在状态空间中描绘出一条轨迹，称为<strong>状态轨迹</strong>。</p>
+<p><strong>状态方程</strong>：</p>
+<p>系统的状态变量与输入变量之间的关系用一组<strong>一阶微分方程来描述</strong>的数学模型称为状态方程。</p>
+<p><strong>输出方程</strong>：</p>
+<p>输出变量与状态变量、输入变量之间的关系的数学表达式</p>
+<p><strong>状态空间表达式</strong>：</p>
+<p>状态方程和输出方程组合，构成对一个系统动态行为的完整描述，称为状态空间表达式（或状态空间模型）。</p>
+<h2 id="离散系统的状态空间模型"><a href="#离散系统的状态空间模型" class="headerlink" title="离散系统的状态空间模型"></a>离散系统的状态空间模型</h2><p>可以表示成：<br>$$<br>\cases{\pmb X(k+1) = F \pmb X(k) + G\pmb u(k) \ \pmb y(k) = C\pmb X(k) +D\pmb u(k)}<br>$$<br>其中，$\pmb X$为$n$维状态向量；$\pmb u$为$m$维控制向量；$\pmb y$为$p$维输出向量；$F(n\times n)$为离散系统状态转移矩阵；$G(n \times m)$为离散系统的输入矩阵或控制转移矩阵；$C(p \times n)$为状态输出矩阵；$D(p\times m)$为直接传输矩阵。</p>
+<h2 id="系统的能控性和能观性"><a href="#系统的能控性和能观性" class="headerlink" title="系统的能控性和能观性"></a>系统的能控性和能观性</h2><p>对于一个控制系统，特别是多变量控制系统，有如下两个问题：</p>
+<ol>
+<li>在有限时间内，控制作用能否使系统从初始状态转移到要求的状态 【能控性问题】</li>
+<li>在有限时间内，能否通过对系统输出的测定来估计系统的初始状态 【能观性问题】</li>
+</ol>
+<p>对于一个线性离散系统状态空间表示：<br>$$<br>\begin{equation}<br>\left\{<br>\begin{array}{lr}<br>       \pmb X(k+1) = F \pmb X(k) + G\pmb u(k) \ \pmb y(k) = C\pmb X(k)<br>\end{array}<br>\right.<br>\end{equation}<br>$$<br><strong>能控性定义</strong>：如果存在控制向量序列$\pmb u(k),\pmb u(k+1),\dots,\pmb u(N-1)$,使得系统从第$k$步的状态向量$\pmb X(k)$开始，在第$N$步达到零状态，即$\pmb X(N) =0$，其中$N$是大于$k$的有限数，称此系统在第$k$步上是能空的。</p>
+<p>如果对于每个$k$值，系统的所有状态都是能控的，称系统状态是完全能控的，简称<strong>能控</strong>。</p>
+<p><strong>能控性判据</strong>：完全能控的充要条件是矩阵$\pmatrix{G &amp; FG &amp; F^2G &amp; \dots &amp; F^{n-1}G}$的秩为$n$，该矩阵也称为系统的能控性矩阵，以$Q_c$表示，能控性判据为：<br>$$<br>rank Q_c = rank \begin{bmatrix}G &amp;FG &amp;F^2G &amp;\dots &amp; F^{n-1}G\end{bmatrix} = n<br>$$<br><strong>能观性定义</strong>：在已知输入变量$\pmb u(k)$的情况下，若能根据第$i$步及$n-1$步的输出观察值$\pmb y(i),\pmb y(i+1),\dots,\pmb y(i+n-1)$唯一能确定出第$i$步上的状态$\pmb X(i)$，称系统在第$i$步上是能观测的。</p>
+<p>如果系统在任何$i$步上都是能观测的，称系统状态是完全能观测的，简称<strong>能观测</strong>。</p>
+<p><strong>能观性判据</strong>：完全能观性的充要条件是矩阵$\pmatrix{G &amp; FG &amp; F^2G &amp; \dots &amp; F^{n-1}G}^T$的秩为$n$，该矩阵称为系统的能观性矩阵，以$Q_o$表示，能观性判据为：<br>$$<br>rankQ_o = rank<br>\left[<br>\begin{matrix}<br>C \ CF \ \vdots \ CF^{n-1}<br>\end{matrix}<br>\right]<br>=n<br>$$</p>
+<h2 id="状态可测时按极点配置设计控制规律"><a href="#状态可测时按极点配置设计控制规律" class="headerlink" title="状态可测时按极点配置设计控制规律"></a>状态可测时按极点配置设计控制规律</h2><img src="/2020/05/15/计算机控制系统/1563867748410.png" title="极点配置法">
+<p>系统的动态性能：完全取决于系统闭环传递函数的极点。</p>
+<p><strong>极点配置法的基本思想</strong>：由系统性能要求确定闭环系统期望的极点位置，然后依据期望极点位置确定反馈增益矩阵。</p>
+<p>极点配置设计的控制器包括两部分：一部分是<strong>状态观测器</strong>，根据所测量到的输出量$y(k)$重构出全部状态$\hat{x}(k)$；另一部分是<strong>控制规律</strong>，直接反馈重构的全部状态。</p>
+<p>设控制对象的状态方程为：<br>$$<br>\mathbf x(k+1) = F\mathbf x(k) +G \mathbf u(k)<br>$$</p>
+<p>其中$\pmb x \in R^n,\pmb u\in R^m$，控制规律为线性状态反馈，即：<br>$$<br>\pmb u(k) =-L \pmb x(k)<br>$$<br><strong>如何设计反馈控制规律$L$，使得闭环系统具有所需要的极点配置</strong>。</p>
+<p>闭环系统的状态方程为：<br>$$<br>\pmb x(k+1) = (F-GL)\pmb x(k)<br>$$<br>闭环系统的特征方程为：<br>$$<br>|z I-F+GL|=0<br>$$<br>设所需要的闭环系统的极点为$\beta_i(i=1,2,\dots,n)$，得到闭环系统的特征方程为：<br>$$<br>\alpha_c(z) = (z-\beta_1)(z-\beta_2)\dots(z-\beta_n)= z^n +\alpha_1z^{n-1}+\dots + \alpha_n =0<br>$$<br>结合上面两个式子，可得到反馈控制$L$应满足的方程：<br>$$<br>|zI - F+GL| = \alpha_c(z)<br>$$<br>对于任意的极点配置，$L$具有唯一解的充要条件是控制对象完全能控，即：<br>$$<br>rank\begin{bmatrix}G &amp;FG&amp; \dots &amp; F^{n-1}G\end{bmatrix}=n<br>$$<br><strong>物理意义</strong>：只有当系统的所有状态都是能控的，才能通过适当的状态反馈控制使得闭环系统的极点配置到任意指定的位置上。</p>
+<p><strong>关于解反馈控制$L$的方程方法有：</strong></p>
+<p>1、首先根据相应连续的系统性能指标的要求来给定$s$平面中的极点，然后再根据$z_i = e^{s_i T}(i=1,2,\dots,n)$的关系来求得$z$平面的极点分布，其中$T$为采样周期。</p>
+<p>2、如果将闭环系统的极点均配置在原点，即$\alpha_c(z) = z^n$，最后会得到最小拍控制。所有的状态在经过最多的$n$拍后变能回到零（平衡状态）。采用最小拍控制避免了给定闭环系统极点的困难。有一个缺点：当选取较小的采样周期时，要求很大的控制量。</p>
+<p>3、直接方法，展开反馈控制$L$的方程的左边行列式，通过与已知的$\alpha_c(z)$比较系数得到$L$各个元素，此法对于低阶系统合适，对于高阶系统十分困难。</p>
+<p>4、对控制对象的离散状态方程$\pmb x(k+1) = F\pmb x(k) + G \pmb u(k)$实行非奇异变换$\bar{\pmb x}(k) = P \pmb x(k)$，使得控制对象的状态方程变为能控标准型。具体如下：<br>$$<br>\bar{\pmb x}(k+1) = \bar{F}\bar{\pmb x}(k) + \bar{G}\pmb u(k)<br>$$<br>其中：<br>$$<br>\bar{F} = PFP^{-1} = \pmatrix{0 &amp; \dots &amp; \ \vdots &amp; I_{n-1}&amp; \ 0 &amp; &amp; \-a_n &amp;\dots &amp; -a_1},\bar{G} = PG = \pmatrix{0 \ \vdots \\0\\1}<br>$$<br>对于新的状态$\bar{\pmb x}(k)$，控制规律变为：<br>$$<br>\pmb u(k) = - \bar{L}\bar{\pmb x}(k)<br>$$<br>其中：<br>$$<br>\bar{L} = L P^{-1}<br>$$<br>这样有：<br>$$<br>\bar{\pmb x}(k+1) =(\bar{F} - \bar{G}\bar{L})\bar{\pmb x}(k) = H\bar{\pmb x}(k)<br>$$</p>
+<p>$$<br>H= \pmatrix{0 &amp; \dots &amp; \ \vdots &amp; I_{n-1}&amp; \ 0 &amp; &amp; \-a_n &amp;\dots &amp; -a_1}-\pmatrix{0 \ \vdots \\0\\1}\pmatrix{\bar{L}_1 &amp; \dots &amp; \bar{L}_n } = \pmatrix{0 &amp; \dots &amp; \ \vdots &amp; I_{n-1}&amp; \ 0 &amp; &amp; \-(a_n+\bar{L}_1) &amp;\dots &amp; -(a_1+\bar{L}_n)}<br>$$</p>
+<p>$H$为特征多项式的伴随矩阵形式，得到闭环系统的特征方程为：<br>$$<br>z^n + (a_1 + \bar{L}_n) z^{n-1} + \dots + (a_n+ \bar{L}_1)=0<br>$$<br>又因为：$\alpha_c(z) =  z^n +\alpha_1z^{n-1}+\dots + \alpha_n =0$，可得到：<br>$$<br>\bar{L}_1 = a_n-a_n,\dots,\bar{L}_n = a_1-a_1<br>$$<br>向量形式：<br>$$<br>\bar{L} = \pmatrix{a_n &amp;a_{n-1} &amp; \dots &amp; a_1} - \pmatrix{a_n &amp;a_{n-1} &amp; \dots &amp; a_1}<br>$$<br>可得到所需要的反馈系数矩阵为：<br>$$<br>L = \bar{L} P<br>$$<br>关键在于非奇异矩阵$P$的计算。</p>
+<p>最后可得到：<br>$$<br>L = \pmatrix{0&amp; \dots 0 &amp;1} \pmatrix{G&amp;FG &amp; \dots &amp; F^{n-1}G}^{-1}\alpha_c(F)<br>$$<br>上式是利用极点胚子设计控制规律的实用算法，称为<strong>Ackermann公式</strong>。</p>
+<h2 id="按极点配置设计观测器"><a href="#按极点配置设计观测器" class="headerlink" title="按极点配置设计观测器"></a>按极点配置设计观测器</h2><p>实际上，按极点配置设计控制规律时，所有的状态不能直接用于反馈。</p>
+<p>常用的方法是：找到一个算法，能够根据所测量到的输出量重构出全部状态，记$\hat{\pmb x}(k)$为实际状态$\pmb x(k)$的重构或称为$\pmb x(k)$的估计。用$\pmb u(k) = -L\hat{\pmb x}(k)$代替实际状态的反馈。</p>
+<p>这种能够根据输出量来重构系统状态的算法称为<strong>观测器</strong>。</p>
+<h2 id="状态不可测时控制器的设计"><a href="#状态不可测时控制器的设计" class="headerlink" title="状态不可测时控制器的设计"></a>状态不可测时控制器的设计</h2><h3 id="分离性原理"><a href="#分离性原理" class="headerlink" title="分离性原理"></a>分离性原理</h3><p>闭环系统的$2n$个极点由两部分组成：一部分是按极点配置设计控制规律所给定的$n$个极点即<strong>控制极点</strong>。另一部分是按极点配置设计观测器给定的$n$个极点即<strong>观测极点</strong>。</p>
+<p>根据分离性原理可以使得控制规律和观测器的设计分开设计，简化。</p>
+<p>控制极点是根据系统的性能要求设计的，因此，闭环系统的性能应主要取决于控制极点，即<strong>控制极点应是整个闭环系统的主导极点</strong>。</p>
+<p>观测器的引入，通常会使得系统的性能变差，为减少观测器极点的影响，观测器的极点所决定的状态重构的跟随速度应远远大于控制极点所决定的系统响应速度，极限状态下，观测器极点放置在原点，此时，状态重构具有最快的跟随速度。</p>
+<h3 id="按极点配置控制器设计步骤"><a href="#按极点配置控制器设计步骤" class="headerlink" title="按极点配置控制器设计步骤"></a>按极点配置控制器设计步骤</h3><p>1、按对系统的性能要求给定$n$个控制极点</p>
+<p>2、按极点配置设计出控制规律$L$</p>
+<p>3、合适给定观测器的极点，对全阶观测器给定$n$个极点，对于降阶观测器给定$n-1$个极点。若测量不存在较大的误差或噪声，可考虑将所有的观测器极点放置在原点；反之，考虑按状态重构的跟随速度比控制极点所对应的系统响应速度快4-5倍的要求给定观测器的极点。</p>
+<p>4、选择所采用的观测器类型。</p>
+<p>​      若测量较准确，而且测量量便是其中一个状态，考虑选用降阶观测器，否则选用全阶观测器。若控制器的计算延时和采样周期的大小处于同一量级，可考虑采用预报观测器，否则考虑采用现时观测器。</p>
+<p>5、根据给定的观测器极点及所选定的观测器类型计算增益矩阵$K$</p>
+<p>6、根据所设计的控制规律及观测器由计算机加以实现。</p>
+<h1 id="先进控制规律的设计方法"><a href="#先进控制规律的设计方法" class="headerlink" title="先进控制规律的设计方法"></a>先进控制规律的设计方法</h1><p>先进控制的任务是用来处理常规控制效果不好，甚至无法控制的复杂工业过程控制的问题。</p>
+<p><strong>先进控制的主要特点</strong>是：</p>
+<p>1、是一种基于模型的控制策略，可以是一种精确的数学模型，如最优控制。可以是一种不精确的模型，如自校正控制、模型预测控制，或者是基于知识的控制，如模糊控制。</p>
+<p>2、通常用于处理复杂的多变量过程控制问题，如大时滞、多变量耦合、被控变量与控制变量存在各种约束等。</p>
+<p>3、实现需要足够的计算能力作为支撑平台。</p>
+<h2 id="线性二次型最优控制器设计"><a href="#线性二次型最优控制器设计" class="headerlink" title="线性二次型最优控制器设计"></a>线性二次型最优控制器设计</h2><p>极点配置法主要设计参数是闭环极点得位置，仅限于说明单输入单输出系统。</p>
+<p>最优控制寻求一种最优控制策略，使某一性能指标最佳，这一性能指标常以对状态及控制作用得二次型积分<strong>（称为代价函数）</strong>表示。称为<strong>线性二次型LQ（linear quadratic）控制问题</strong>。</p>
+<p>LQ控制是状态反馈，不仅能用于单输入单输出系统，同时也能用于多输入多输出及时变系统。</p>
+<p>设线性时不变系统得离散状态方程为：<br>$$<br>\pmb x(k+1) = F\pmb x(k) + G\pmb u(k)<br>$$<br>初始条件是：$\pmb x(0) = \pmb x_0$；$\pmb x(k)$是$n$维状态向量；$\pmb u(k)$是$m$维控制向量；$F,G$分别是$n \times n,n\times m$系数矩阵。</p>
+<p>给定二次型性能指标函数：<br>$$<br>J= \pmb x^T(N) Q_0 \pmb x(N)+ \sum\limits_{k=0}^{N-1}[\pmb x^T(k)Q_1\pmb x(k) + \pmb u^T(k) Q_2\pmb u(k)]<br>$$<br>其中，$Q_0,Q_1$是非负定对称阵，$Q_2$是正定对称阵。</p>
+<p>要求确定控制序列$\pmb u(k)(k=0,1,\dots,N)$，使得$J$所示的性能指标函数极小，这样的控制序列$\pmb u(k)$为线性二次型控制问题的<strong>最优控制</strong>。$\pmb x(k)$为相应的<strong>最优轨迹</strong>，$J$为<strong>最优性能值</strong>。</p>
+<p><strong>线性最优控制问题</strong>有：</p>
+<p>1、有限时间最优问题，此时末时刻$N$固定且有限</p>
+<p>2、无线时间最优问题，$N=\infty$</p>
+<p><strong>线性二次型最优控制问题</strong>可分为：</p>
+<p>1、调解问题。综合$\pmb u(k)$，使得系统由初始状态$\pmb x(0)$转移到平衡状态$\pmb x_e =0$，同时使得性能指标$J$极小，称为<strong>LQR(linear quadratic regular)问题</strong>。</p>
+<p>2、跟踪问题。综合$\pmb u(k)$，使得系统输出$\pmb y(k)$跟踪某参考信号$\pmb y_r(k)$，同时使相应的二次型性能指标$J$极小。</p>
+<h2 id="自校正控制器设计"><a href="#自校正控制器设计" class="headerlink" title="自校正控制器设计"></a>自校正控制器设计</h2><p>自适应控制器本身具有逐步减小系统不确定的能力，本身能不断地检测系统参数或运行指标，根据参数的变化或运行指标的变化，改变控制参数或改变控制作用，使得系统运行于最优或接近最优工作状态。</p>
+<img src="/2020/05/15/计算机控制系统/1563938622094.png" title="自校正控制器设计">
+<p>自校正<strong>基本思想</strong>：</p>
+<p>将参数递推估计算法与对系统运行指标的要求结合起来，形成一个能自动校正控制器参数的实时计算机控制系统。</p>
+<p>自校正<strong>组成部分</strong>：</p>
+<p>1、参数估计器。根据对象的输入$u$和输出$y$的实测数据，用在线递推辨识方法，辨识被控对象的参数向量$\theta$和随机干扰的数学模型</p>
+<p>2、控制器参数计算。按照辨识求得的参数向量估计值$\hat{\theta}$，计算控制器的参数</p>
+<p>3、控制器。按照辨识求得的参数向量估计值$\hat{\theta}$和对系统运行指标的要求，随时调整调节器或控制器参数，给出最优控制$u$，使得系统适应于本身参数的变化和环境干扰的变化，处于最优工作状态。</p>
+<p>设计自校正控制器<strong>主要问题</strong>：</p>
+<p>用递推辨识算法辨识系统的参数，然后根据系统运行指标来确定控制器的参数。</p>
+<p>在实际应用中，常以递推<strong>最小二乘法为参数估计方法</strong>，以<strong>最小方差为控制目标函数</strong>。</p>
+<h3 id="最小二乘法参数辨识算法"><a href="#最小二乘法参数辨识算法" class="headerlink" title="最小二乘法参数辨识算法"></a>最小二乘法参数辨识算法</h3><p>==一次完成最小二乘法==</p>
+<p>设被辨识的系统模型为：<br>$$<br>A(z^{-1})y(k) = B(z^{-1})u(k) + \xi(k)<br>$$<br>其中：<br>$$<br>A(z^{-1}) = 1+a_1 z^{-1} + \dots + a_n z^{-n}<br>$$</p>
+<p>$$<br>B(z^{-1}) = b_0 + b_1 z^{-1} + \dots + b_m z^{-m}<br>$$</p>
+<p>$z^{-1}$为时间向后平移算子，$y(k),u(k)$为系统的输出和输入，$\xi(k)$为不可测随机干扰，$n,m$为模型阶次。</p>
+<p>上述模型是<strong>受控自回归积分滑动平均(CARIMA)模型中$C(z^{-1}) = 1$形式</strong>。</p>
+<p>把待估计的模型参数和$k$时刻以前的观测数据记为向量形式，有：<br>$$<br>\pmb \theta = \begin{bmatrix} a_1,a_2, \dots ,a_n,b_0,b_1,\dots,b_m \end{bmatrix}^T<br>$$</p>
+<p>$$<br>\varphi^T(k) = \begin{bmatrix} -y(k-1),\dots,-y(k-n),u(k),\dots,u(k-m)\end{bmatrix}<br>$$</p>
+<p>辨识系统模型可写为：<br>$$<br>y(k) = \varphi^T(k) \pmb \theta + \xi(k)<br>$$<br>把$k=1,2,\dots,n,\dots,n+N$的全部数据代入可得到$N$个方程，矩阵形式表示为：<br>$$<br>\pmb Y_N = \pmb \Phi_N \pmb \theta +\pmb \xi_N<br>$$<br>其中：<br>$$<br>\pmb Y_N = \begin{bmatrix}y(n+1) \ y(n+2) \ \vdots \ y(n+N)\end{bmatrix}_{N\times 1} , \pmb \xi_N = \begin{bmatrix} \xi(n+1) \\\xi(n+2) \ \vdots \ \xi(n+N)\end{bmatrix}_{N\times 1}<br>$$<br>最小二乘法估计<strong>原理</strong>：从模型参数向量$\pmb \theta$中找到估计量$\hat{\pmb {\theta}}$，使得模型的输出与实际输出之间的<strong>误差的平方和最小</strong>。估计准则为：<br>$$<br>J= \sum\limits_{k=n+1}^{n+N}[y(k)- \varphi^T(k) \hat{\pmb{\theta}}]^2 =\pmb (Y_N - \pmb \Phi_N \pmb{\hat{ \theta}})^T (Y_N - \pmb \Phi_N \pmb{\hat{ \theta}})<br>$$<br>两边对$\pmb {\hat{\theta}}$求导，得到使得$J$最小的$\pmb {\hat{\theta}}$。可得：<br>$$<br>\pmb {\hat{\theta}} = (\pmb{\Phi_N^T} \pmb{\Phi_N})^{-1}\pmb{\Phi_N^T}\pmb Y_N<br>$$<br>若获得$k=1,2,\dots,n,\dots,n+N$的全部观测数据后，估计量$\pmb {\hat{\theta}}$一次计算出来，称为<strong>一次完成最小二乘算法</strong>。</p>
+<p>==递推最小二乘算法==</p>
+<p>一次完成最小二乘法需要存储全部观测数据，随着$N$增大，相应的计算量和存储空间将迅速增加。解决最小二乘法的在线辨识问题。</p>
+<p>在进行$n+N$次观测后，又获得了一组新的观测数据$\{u(m+N+1),y(n+N+1)\}$,可构成$\pmb Y_{N+1},\pmb \Phi_{N+1}$，并计算出$\pmb {\hat{\theta}}_{N+1}$。</p>
+<p>递推最小二乘法公式为：<br>$$<br>\cases{\pmb {\hat{\theta}}(k) = \pmb {\hat{\theta}}(k-1)+\pmb K(k)[y(k)- \varphi^T(k) \hat{\pmb{\theta}}(k-1)]\ \ \pmb K(k) = \pmb P(k-1)\varphi(k)[1+\varphi^T(k)\pmb P(k-1)\varphi(k)]^{-1}\ \ \pmb P(k) = [I-\pmb K(k)\varphi^T(k)]\pmb P(k-1)      }<br>$$<br>公式<strong>物理意义</strong>：</p>
+<p>新的参数估计值$\pmb {\hat{\theta}}(k)$是由前一步的估计值$\pmb {\hat{\theta}}(k-1)$和修正项组成，修正项正比于新的观测数据$y(k)$与前一步模型预测量$\varphi^T(k)\pmb {\hat{\theta}}(k-1)$的偏差，$\pmb K(k)$为修正系数矩阵，$\pmb P(k)$正比于参数估计误差的方差，$\pmb P(k)$越大表示参数估计值越不准确，越小表示参数估计值越接近真值。</p>
+<p>==带遗忘因子的递推最小二乘法==</p>
+<p>当系统参数随时间变化时，新数据比老数据更能反映参数变化的状况，因此要使<strong>参数估计能够适应系统参数的时变特性</strong>，需要用指数加权的方法来逐渐削弱或“遗忘”老数据的影响。</p>
+<p>带遗忘因子的最小二乘法公式为：<br>$$<br>\cases{\pmb {\hat{\theta}}(k) = \pmb {\hat{\theta}}(k-1)+\pmb K(k)[y(k)- \varphi^T(k) \hat{\pmb{\theta}}(k-1)]\ \ \pmb K(k) = \pmb P(k-1)\varphi(k)[\lambda+\varphi^T(k)\pmb P(k-1)\varphi(k)]^{-1}\ \ \pmb P(k) = \frac{1}{\lambda}[I-\pmb K(k)\varphi^T(k)]\pmb P(k-1)      }<br>$$<br>遗忘因子$\lambda$越小，表示遗忘越快，越重视当前数据，越能反映当前系统的变化，适用于参数变化速度相对于辨识速度较快的时变系统。</p>
+<p>$\lambda$越大，重视更多的历史数据，得到更多的系统信息，辨识精度越高，适用于参数变化速度远低于辨识速度的慢时变系统。</p>
+<p>==增广最小二乘递推算法==</p>
+<p>被辨识的系统的模型为CARMA形式，且其$C(z^{-1} ) \ne 1$，即：<br>$$<br>A(z^{-1})y(k) = B(z^{-1})u(k) +C(z^{-1})\xi(k)<br>$$<br>其中：$C(z^{-1}) = 1+ c_1 z^{-1} + \dots + c_n z^{-n}$</p>
+<p>$\xi{(k)}$是零均值白噪声序列，多项式$C(z^{-1})$各项系数未知，需要辨识。这类模型参数的辨识可采用增广最小二乘法来获得模型未知参数的估计。</p>
+<p>增广最小二乘法递推算法公式为：<br>$$<br>\cases{\pmb {\hat{\theta}}(k) = \pmb {\hat{\theta}}(k-1)+\pmb K(k)[y(k)- \hat{\varphi}^T(k) \hat{\pmb{\theta}}(k-1)]\ \ \pmb K(k) = \pmb P(k-1)\hat{\varphi}(k)[1+\hat{\varphi}^T(k)\pmb P(k-1)\hat{\varphi}(k)]^{-1}\ \ \pmb P(k) = [I-\pmb K(k)\hat{\varphi}^T(k)]\pmb P(k-1)      }<br>$$<br>增广最小二乘法不仅能获得系统控制通道模型参数估计，还能获得噪声通道模型的参数估计，算法与最小二乘法基本相同，不同的只是参数向量$\pmb {\theta}$和数据向量$\varphi^T(k)$的维数扩充了，每次估计都需要计算一次噪声估计值$\hat{\xi}(k)$。</p>
+<h3 id="自校正控制器设计-1"><a href="#自校正控制器设计-1" class="headerlink" title="自校正控制器设计"></a>自校正控制器设计</h3><p><strong>基本思想</strong>：</p>
+<p>将参数估计递推算法与各种不同类型的控制算法相结合，以形成能自动校正控制器参数的实时计算机控制系统。</p>
+<h2 id="模型预测控制器设计"><a href="#模型预测控制器设计" class="headerlink" title="模型预测控制器设计"></a>模型预测控制器设计</h2><p>模型预测控制（MPC）<strong>主要特征</strong>：</p>
+<p>以预测模型为基础，采用二次在线滚动优化性能指标和反馈校正的策略，克服受控对象建模误差和结构、参数与环境等不确定因素的影响。</p>
+<p><strong>研究现状</strong>：</p>
+<p>预测控制开始与极点配置、自适应控制、鲁棒控制、精确线性化、解耦控制和非线性控制结合；</p>
+<p>并且随着智能控制技术的发展，预测控制向着智能预测控制方向发展，如：模糊预测控制、神经网络预测控制、遗传算法预测控制以及自学习预测控制等；</p>
+<p>将人工智能、大系统递阶原理等引入预测控制，构成多层智能预测控制的模式。</p>
+<p><strong>核心</strong>：</p>
+<p><strong>基于滚动时域原理，算法中包含了预测模型、滚动优化和反馈校正</strong>三个基本原理，即</p>
+<p>1、在当前时刻，基于过程的动态模型，对未来某段时域内的过程输出序列做出预测，预测值是当前和未来控制作用的函数。</p>
+<p>2、按照某个目标函数确定当前和未来控制作用大小，控制作用将使未来输出预测序列沿着某个参考轨迹“最优地”达到期望的输出设定值，但只实施当前控制量。</p>
+<p>3、在下一时刻，根据最新实测数据对前一时刻的过程输出预测序列做出校正，并重复1，2。</p>
+<img src="/2020/05/15/计算机控制系统/1563951796173.png" title="模型预测控制器">
+<h3 id="预测模型"><a href="#预测模型" class="headerlink" title="预测模型"></a>预测模型</h3><p>是以对象的内部模型，即对象在脉冲或阶跃信号作用下的时间响应为基础，用以估计系统在输入序列作用下的输出。</p>
+<h3 id="预测控制算法"><a href="#预测控制算法" class="headerlink" title="预测控制算法"></a>预测控制算法</h3><p>常用的主要是<strong>模型算法控制</strong>和<strong>动态矩阵控制</strong>两种。</p>
+<p>==模型算法控制==（MAC）基本上包括四个部分：预测模型、反馈校正、参考轨迹和滚动优化。</p>
+<p>==动态矩阵控制==（DMC）是一种基于对象阶跃响应的预测控制算法，适用于有时滞、开环渐近稳定的非最小相位系统。算法包括：预测模型、反馈校正和滚动优化。</p>
+<h2 id="模糊控制器设计"><a href="#模糊控制器设计" class="headerlink" title="模糊控制器设计"></a>模糊控制器设计</h2><p>模糊控制器不要求掌握被控对象的精确数学模型，根据人的经验规则组织控制决策表，由该决策表决定控制量的大小。</p>
+<h3 id="模糊数学"><a href="#模糊数学" class="headerlink" title="模糊数学"></a>模糊数学</h3><h3 id="模糊控制原理"><a href="#模糊控制原理" class="headerlink" title="模糊控制原理"></a>模糊控制原理</h3><p>核心部分是采用模糊控制器。</p>
+<p>模糊控制器主要包括：输入量的模糊化接口、知识库、推理机和输出清晰化接口四个部分。</p>
+<img src="/2020/05/15/计算机控制系统/1563952613926.png" title="模糊控制器">
+<p>==模糊化==</p>
+<p>仿照人的思维进行模糊控制，必须把输入通道采样得到的精确量变成模糊推理需要的模糊量，通过模糊化接口完成。</p>
+<p>==知识库==</p>
+<p>由数据库和规则库两部分组成。</p>
+<p>数据库：模糊控制器而得输入变量、输出变量经模糊化处理后，其全部模糊子集的隶属度或隶属函数存放在模糊控制器的数据库中。</p>
+<p>规则库：用来存放全部模糊控制规则，在推理时为“推理机”提供控制规则。</p>
+<p>==推理机==</p>
+<p>模糊控制器中，根据输入模糊量和知识库（数据库、规则库）完成模糊推理并求解模糊关系方程，从而获得模糊控制量的功能部分。</p>
+<p>模糊控制规则是模糊决策，是人们在控制生产过程中的经验总结。</p>
+<p>==清晰化接口==</p>
+<p>被控对象每次只能接收一个精确的控制量，需要将模糊控制量转换成精确量，称为去模糊。方法有：最大隶属度方法、加权平均法和中位数判决法等。</p>
+<h3 id="模糊PID控制器设计"><a href="#模糊PID控制器设计" class="headerlink" title="模糊PID控制器设计"></a>模糊PID控制器设计</h3><img src="/2020/05/15/计算机控制系统/1563953080889.png" title="模糊PID控制器设计">
+<p>采用的是双模糊控制器（FC1、FC2）结构，$r,y$分别为系统的设定值和输出，$d$为外部扰动输入，$e$为设定值和输出的偏差，$\Delta e$为系统输出$y$的增量。</p>
+<h1 id="网络控制系统-NCS"><a href="#网络控制系统-NCS" class="headerlink" title="网络控制系统(NCS)"></a>网络控制系统(NCS)</h1><p>网络控制在计算机控制系统的基础上，在控制器和被控对象之间加入通信网络（有线或无线网络），使得传感器到控制器的反馈通道信息传输和控制器到执行器的前向通道信息传输通过通信网络进行，实现对被控对象的计算机远程控制。</p>
+<img src="/2020/05/15/计算机控制系统/1563953558247.png" title="网络控制系统">
+<p>通信网络的不确定性和复杂性，相当于在控制器和控制对象之间增加了一个<strong>不确定的动态环节</strong>，$p_k^{sc}(·)$表示反馈通道的动态特性，$p_k^{ca}(·)$表示前向通道的动态特性。</p>
+<p>反馈通道的信息$y(k)$经过网络传输到控制器变成$\bar{y}(k) = p_k^{sc}[y(k)]$；</p>
+<p>前向通道的信息$u(k)$经过网络传输到执行器变成$\bar{u}(k) = p_k^{ca}[u(k)]$</p>
+<p>网络的加入使得控制对象结构发生了变化，增加了通信接收器和通信发送器。</p>
+<p><strong>通信接收器</strong>：包括通信网络接口和D/A转换器，作用于执行器</p>
+<p><strong>通信发送器</strong>：包括A/D转换器和通信网络接口，变成数字信号，通过网络接口将数字信号打包发送到网络上。</p>
+<p><strong>通信网络引入控制系统优劣</strong>：</p>
+<p>连接智能现场设备和自动化系统，实现现场设备控制的分布化和网络化，具有信息资源共享、连接线数大大较少、易于扩展、易于维护、高效、可靠和灵活；</p>
+<p>增加控制系统的复杂性，由于网络通信带宽、承载能力和服务能力的限制，使数据的传输不可避免存在时延、丢包、多包传输及抖动等诸多问题，导致系统性能下降甚至不稳定，给系统分析、设计带来很大的困难。</p>
+<h2 id="网络控制系统概述"><a href="#网络控制系统概述" class="headerlink" title="网络控制系统概述"></a>网络控制系统概述</h2><p>传感器、控制器和执行器机构通过通信网络形成闭环控制系统。NCS中控制部件间通过共享通信网络进行信息（对象输出、参考输入和控制器输出等）交换。</p>
+<img src="/2020/05/15/计算机控制系统/1563954451180.png" title="网络控制系统结构 网络控制系统存在两种结构：直接结构和分层结构。 {% asset_img 1563954505257.png 网络控制系统结构分类">
+<p><strong>直接结构</strong>：控制信号封装在帧或报文中，通过网络发送到被控对象，被控对象传感器的测量数据同样以帧或数据包的形式通过网络发送到控制器。</p>
+<p>典型应用包括远程学习实验室和直接电动机的速度控制等。</p>
+<p><strong>分层结构</strong>：主控制器通过网络将计算好的参考信号发送到远程系统，远程系统根据参考信号来执行本地的闭环控制，并将传感器测量数据返回主控制器。</p>
+<p>网络控制回路具有比本地控制回路更长的采样周期，典型应用包括移动机器人、遥控操作系统、汽车控制以及航天器等。</p>
+<p><strong>对NCS评价的标准</strong>：网络服务质量（QoS）和系统控制性能（QoP）.</p>
+<p>QoS：包括网络吞吐量、传输效率、误码率、时延可预测性和任务的可调度性</p>
+<p>QoP：与常规控制系统一样，包括稳定性、快速性、准确性、超调和振荡等。</p>
+<h2 id="网络控制系统的研究内容"><a href="#网络控制系统的研究内容" class="headerlink" title="网络控制系统的研究内容"></a>网络控制系统的研究内容</h2><p>包括对网络的控制(control of network)、通过网络的控制(control through network)和着眼于网络控制系统总体性能指标的综合控制(integrated control and network)。</p>
+<p><strong>1、对网络的控制</strong></p>
+<p>围绕网络的服务质量、从拓扑结构、任务调度算法和介质访问控制层协议等不同角度提出解决方案，满足系统对实时性的要求，减小网络时延、时序错乱、数据包丢失等一系列问题。</p>
+<p>可以通过<strong>运筹学</strong>和<strong>控制理论</strong>的方法来实现。</p>
+<p>包括：NCS体系结构和通信协议的研究、NCS时延分析和网络调度、NCS数据包的传送问题、NCS中带通信约束的控制问题、NCS的系统与信息的集成。</p>
+<p><strong>2、通过网络的控制</strong></p>
+<p>在现有的网络条件下，设计相适应的NCS控制器，保证NCS良好的控制性能和稳定性。</p>
+<p>可以通过建立NCS数学模型并运用控制理论方法进行研究。</p>
+<p><strong>NCS数学模型</strong>：</p>
+<p>NCS中被控对象的连续工作状态方程为：<br>$$<br>\cases{\dot{\pmb x}(t) = A\pmb x(t) +B\pmb u(t-\tau) \ \ \pmb y(t) = C\pmb x(t)  }<br>$$<br>其中$\tau$为网络时延。</p>
+<p>节点工作方式分为时间驱动和事件驱动两种，根据节点不同的工作方式，可以得到不同的系统离散事件模型。</p>
+<p><strong>NCS的常规控制规律设计方法</strong>：</p>
+<p>将NCS看成一个参数或时延时变系统，将常规的PID控制、Smith预估控制等，进行相应的改进，使之适应NCS控制性能的要求。</p>
+<p><strong>NCS先进控制规律设计方法</strong>：</p>
+<p>包括极点配置设计方法、最优化控制设计方法、鲁棒控制设计方法、智能控制设计方法等。<strong>基本思想</strong>：利用先进的控制律设计方法，设计网络控制系统的控制器，适应网络控制系统复杂特性的情况，进一步提高网络的控制性能。</p>
+<p><strong>3、综合控制</strong></p>
+<p><strong>协同考虑控制与调度</strong>：NCS闭环性能不仅依赖于控制算法的设计，还依赖于网络资源的调度，需要同时考虑网络协议和控制器的设计。</p>
+<p><strong>NCS并行计算</strong>：存在大量费时的计算密集问题，并行计算需要多处理器协同工作和相互通信，NCS为并行计算提供必要的硬件环境。<strong>需要设计适合控制系统的并行算法</strong>。</p>
+<h2 id="实时控制网络"><a href="#实时控制网络" class="headerlink" title="实时控制网络"></a>实时控制网络</h2><p>控制网络的实时性一般采用两种技术来实现：</p>
+<p>1、<strong>简化技术</strong>。将网络形式简化成线型，将通信模型简化为只有物理层、数据链路层和应用层，将节点信息简化到只有几比特。</p>
+<p>2、<strong>采用网络管理和数据链路调度技术</strong>。分时式实时系统的响应具有可预知性，但资源利用率低；抢先式实时系统资源利用率高，但响应具有不可预知性。很多控制网络将两者结合，达到某种平衡。</p>
+<h3 id="控制网络的拓扑结构"><a href="#控制网络的拓扑结构" class="headerlink" title="控制网络的拓扑结构"></a>控制网络的拓扑结构</h3><p>网络拓扑指网络形状，物理上的连通性。以星型拓扑、总线拓扑、环型拓扑三种结构为基础。</p>
+<blockquote>
+<p><strong>拓扑</strong>：</p>
+<p>把实体抽象为与其大小、形状无关的“点”，把连接实体的线路抽象为“线”，进而以图的形式来表示点与线之间的关系的方法。目的是在于研究这些点、线之间相连的关系。</p>
+<p>表示点和线之间的关系的图称为<strong>拓扑结构</strong>图。</p>
+<p><strong>几何结构</strong>：考察的是点、线之间的位置关系，强调的是点和线所构成的形状及大小。不同的几何结构可能具有相同的拓扑结构。</p>
+<p><strong>网络拓扑结构</strong>：在计算机网络中，把计算机、终端、通信处理机等设备抽象成点，把连接这些设备的通信线路抽象成线，并将由这些点和线所构成的拓扑称为网络拓扑结构。</p>
+<p>网络拓扑反映网络的结构关系。常见有总线型、星型、环型、树型和网状型等。</p>
+<p><a href="https://blog.csdn.net/starshinning975/article/details/53511343" target="_blank" rel="noopener">参考博客</a></p>
+</blockquote>
+<img src="/2020/05/15/计算机控制系统/1564017899902.png" title="控制网络的拓扑结构"> 
+<p><strong>星型网络</strong>：各站点通过点到点的链路与中心站相连，数据的安全性和优先级容易控制，易实现网络监控，但中心节点的故障会引起整个网络瘫痪。</p>
+<p><strong>总线型网络</strong>：所有站点共享一条数据通道，安装方便，成本低，但介质的故障会导致网络瘫痪，安全性低，监控困难。</p>
+<p><strong>环型网络</strong>：各站点通过通信介质连成一个封闭的环型，容易安装和监控，但容量有限，网络建成以后，难以增加新的站点。</p>
+<p><strong>树型拓扑</strong>：从总线拓扑演化而来，树根接收各站点发送的数据，然后广播发送到全网。</p>
+<p><strong>网型拓扑</strong>：通信站点的互连结构</p>
+<p><strong>混合拓扑</strong>：将两种或两种以上的单一拓扑结构混合起来，取两者的优点构成的拓扑。</p>
+<h3 id="控制网络的协议模型"><a href="#控制网络的协议模型" class="headerlink" title="控制网络的协议模型"></a>控制网络的协议模型</h3><p>开放系统互连(OSI)参考模型共分为七层：物理层、数据链路层、网络层、传送层、会话层、表示层和应用层。</p>
+<p>控制网络一般由OSI参考模型的物理层、数据链路层、应用层三层体系结构和通信媒质构成。</p>
+<img src="/2020/05/15/计算机控制系统/1564018591539.png" title="控制网络协议模型">
+<p>1、物理层。采用EIA-RS-232、EIA-RS-422/RS-485等协议。</p>
+<p>2、数据链路层。考虑现场设备故障较多，更换频繁，数据链路层媒体访问控制多采用<strong>受控访问协议</strong>（包括轮询和令牌）协议，通常各PC、PLC作为主站，传感器、变送器等作为从站。需要支持点对点、点对多和广播通信方式。</p>
+<p>3、应用层。解决应用怎样的高级语言（或过程控制语言）来作为面向用户的编程（或组态）语言，包括设备名称、网络变量与配置（捆绑）关系，参数与功能调用及相关说明，一般应具有符合IEC1131-3标准的图形用户界面（GUI）。</p>
+<h3 id="控制网络的媒体访问技术"><a href="#控制网络的媒体访问技术" class="headerlink" title="控制网络的媒体访问技术"></a>控制网络的媒体访问技术</h3><p>媒体访问技术是挂在通信子网上的站点向通信介质存信息或者从通信介质上取信息的控制规则。</p>
+<p>是对媒体的使用进行管理，将传输介质的频带有效地分配到网络上各个站点的方法，位于数据链路层中。</p>
+<p>媒体访问控制是通信子网的核心内容，各个网络的性能在很大程度上取决于所采用的媒体访问控制方式，受其直接影响的性能有：网络的实时性、网络的吞吐量和有效利用等。</p>
+<p><strong>媒体访问控制技术</strong>：</p>
+<p>有冲突的媒体访问控制：在站点访问媒体时，可能会由于多个站点同时访问媒体而产生冲突，应用较多的协议：带有冲突检测的载波监听多路访问的CSMA/CD控制。   </p>
+<p>无冲突的媒体访问控制：在网络上的站点访问传输媒体时，不会发生多个站点同时访问媒体的情况。应用较多的控制协议：<strong>令牌控制和主从控制</strong>。</p>
+<h3 id="控制网络的类型"><a href="#控制网络的类型" class="headerlink" title="控制网络的类型"></a>控制网络的类型</h3><p>按<strong>通信方式</strong>分为：主从型、客户与服务器型、环型和通信型四种类型。</p>
+<p><strong>主从型</strong>：通信由一个主站控制，主站轮询方式对子站“逐个”通信，简单，但危险集中，主站出问题，整个系统瘫痪。</p>
+<p><strong>客户与服务器型</strong>：面向“事件”方式构建，无主站，有需要通信的“事件”发生，优先通信，即时响应好，是发展的主流方向。</p>
+<p><strong>环型</strong>：所有的通信子站连成“一个环”，以数据移位的方式通信，简单有效，传输效率是目前控制网络最高的，但一个站出问题，通信中断。</p>
+<p><strong>通信型</strong>：带有完整的OSI网络通信模型，是通信功能最强的控制网络。</p>
+<p>按<strong>通信协议</strong>的特点分为：CSMA方式、TokenBus方式和主从Polling方式。</p>
+<p><strong>CSMA方式</strong>：Ethernet、CAN、DeviceNet和LONWorks等</p>
+<p><strong>TokenBus方式</strong>：Profibus、P-Net及ControlNet等</p>
+<p><strong>主从Polling方式</strong>：FIP、CC-link以及某些专用的主从RS-422/RS-485网络</p>
+<h3 id="EtherNet网络"><a href="#EtherNet网络" class="headerlink" title="EtherNet网络"></a>EtherNet网络</h3><p>采用的是有冲突的媒体访问控制方式的协议，工作过程是完全随机的，既不预先规定时间，也不预先建立每个节点传送信息的先后顺序，而是根据各个节点和传输线路的具体情况来确定。</p>
+<p><strong>网络监听算法（CSMA）</strong>是CSMA/CD的核心，是一种“先听后讲”的算法，一个准备发送报文的站首先监听网络，以确定网络上是否有其他的站点在发送信号，即确定网络是否空闲。</p>
+<p>1、非坚持的CSMA：网络空闲，则可以发送数据。如果网络忙，则等待由概率分布决定的、一定量的随机延迟时间，再监听网络的情况，即在这段随机延迟的时间内不监听网络。网络利用率低。</p>
+<p>2、1-坚持CSMA：网络忙就一直监听，直到网络空闲，便立即发送数据。若有冲突，则等待一个随机时间间隔，重新监听。不可避免地有冲突发生，不利于网络吞吐量的提高。</p>
+<p>3、P-坚持CSMA：网络忙，站点继续监听直到网络空闲，但发现网络空闲时，不立即发送数据，为减少冲突，以概率P发送数据，以概率（1-P）延迟一个时间单位，再监听网络。这个时间单位通常为网络上最大传播延迟的两倍，P值选择过大，增加冲突，P值过小，媒体利用率大大降低。</p>
+<p>EtherNet网络作为最为广泛应用的网络协议，将成为过程级和控制级的主要传输技术。EtherNet能够与工厂信息管理系统进行直接地、无缝地连接，而不需要任何专用设备。</p>
+<h3 id="CAN网络"><a href="#CAN网络" class="headerlink" title="CAN网络"></a>CAN网络</h3><p>CAN(controller area network)是串行总线控制器局域网络，与一般的通信网络相比，CAN的数据通信具有突出的可靠性、实时性和灵活性的特点。</p>
+<img src="/2020/05/15/计算机控制系统/1564022478527.png" title="CAN网络">
+<p>通过相应的CAN接口连接工业设备，构成低成本的网络。直接连接不仅<strong>提供了设备级故障诊断通通道</strong>，而且提高了通信效率和设备互换性。</p>
+<p>CAN应用一种面向无损伤仲裁方法来解决媒体多路访问带来的冲突问题。<strong>仲裁过程</strong>是：</p>
+<p>当网络空闲时，线路表现为“隐性”电平（recessive level），此时任何节点均可发送报文。发送节点发出的帧起始字段产生一个“显性”电平（dominant level），标志着发送开始。所有节点以首先开始发送节点的帧起始前沿来同步，若多个节点同时发送，在发送的仲裁场进行逐位比较。</p>
+<blockquote>
+<p><strong>网络仲裁</strong>：当网络多个节点同时发送 网络请求时，网络应如何做出选择，以保证网络最多只能被一个节点传送数据占据。</p>
+</blockquote>
+<p><strong>CAN仲裁原则</strong>：</p>
+<p>（1）每个节点只能使用唯一的标识符发送数据</p>
+<p>（2）对于任一标识符，只有具有相应标识符的节点发送带有此标识符的数据帧，而其他节点只能发送带有此标识符的远程帧</p>
+<p>（3）不同的节点发送相同的标识符的远程帧时，必须由唯一确定的请求节点发送，或者不同的节点配以不同的<strong>DLC（数据帧长度）</strong>。</p>
+<h3 id="ControlNet网络"><a href="#ControlNet网络" class="headerlink" title="ControlNet网络"></a>ControlNet网络</h3><p>是基于改型的CAN技术的一种高速确定性网络。作为一种高速串行通信系统和一种确定加预测的模式进行运作，适用于<strong>需要实时应用信息交换的设备之间的通信</strong>。</p>
+<p>ControlNet网络是一种用于对信息传送有时间苛刻要求的、高速确定性网络，同时，它允许传送无时间苛求的报文数据。</p>
+<p>ControlNet采用的令牌总线（TokenBus）控制方式。是最为普遍的无冲突介质访问控制协议。是将CSMA/CD和令牌环两种协议相结合，取其优点。</p>
+<p>TokenBus只有取得<strong>令牌</strong>（一组具有特定格式的位）的站点才能发送数据帧，其他节点只能接收信息，或者被动地传送信息（在拥有令牌的节点的要求下发送信息）。发送完后，站点将令牌传递给下一个站点。</p>
+<img src="/2020/05/15/计算机控制系统/1564023588944.png" title="ControlNet网络">
+<p>在分布式主站系统中，ControlNet应用时间触发方式采取一个特殊的<strong>令牌传递机制</strong>：</p>
+<p>网络上每个节点分配一个唯一的物理地址，持有令牌的节点可以发送数据，但是，网络上并没有真正的令牌在传输，而是每个节点监视收到的其数据帧的源节点地址，在该数据帧结束之后，每个节点设置一个隐性的令牌寄存器，其值为收到的物理地址+1，如果隐性令牌寄存器的值等于某个节点的物理地址，该节点发送数据。</p>
+<p>网络中存在唯一的隐性令牌，在由主站构成的逻辑环中循环传递，主站之间通过一定的逻辑调度算法获得令牌的调度权，然后由它发起对其他主站或所属的从站的通信。</p>
+<p><strong>令牌轮询技术</strong>：<br>通过任务调度来满足周期数据的不同实时性要求，既有静态的事先约定，也可以动态调整。优点是周期任务的实时性好且具有确定的或可预测的最大网络时延。<strong>主要缺点</strong>：无法处理突发事件。</p>
+<p>ControlNet应用了<strong>数据分类</strong>技术解决这个问题：</p>
+<p>（1）周期性数据：对应周期数据，按时传输，如数据采样</p>
+<p>（2）事件性通信：对应突发数据，在事件发生时传输，如报警</p>
+<p>（3）报文通信：对应非实时数据，被请求时传输，如程序下载</p>
+<p>网络的媒体存储通过限制时间存储算法来控制，即：采用<strong>并行时间域多路存取（CTDMA）</strong>，控制各个节点在<strong>网络刷新时间（NUT）</strong>内传送信息的机会。</p>
+<p>NUT包括三个部分：预先信息传送时间、非预定信息传送时间和网络维护时间。</p>
+<p><strong>通信技术</strong>：<br>ControlNet采用的是多信道广播技术，如生产者/客户模式。这种通信模式是基于多信道广播的，允许网络上的所有节点，同时从单个数据源存储相同的数据。</p>
+<p>在控制网链路上，由生产者发送的每个报文都包含一个连接标识符，已经组态的节点在收听广播时，可以识别其应收报文的连接标识符，变成一个客户以接收数据。</p>
+<p>若该节点要发送信息，变成生产者，提高了网络的效率，特别是对组态信息等公共数据，多信道广播技术是一种有效的通信方式。</p>
+<h3 id="CC-Link网络"><a href="#CC-Link网络" class="headerlink" title="CC-Link网络"></a>CC-Link网络</h3><p>是高速现场总线，不但处理信息数据，也处理控制数据。通过简单的总线，可以将工业设备连接成为分布式控制系统或设备层的网络，同时这个总线可以方便地连接到其他网络。</p>
+<p>CC-Link采用<strong>单主从轮询工作模式</strong>，控制方式：网络的各节点间明显具有上下级特征，上级为主导节点，并由主导节点分配通信媒体的使用权，适用于自动化中的分布式系统，是一种集中控制，主要用于星型网络。</p>
+<p>CC-Link<strong>数据链路层通信协议</strong>：EIA485协议</p>
+<img src="/2020/05/15/计算机控制系统/1564025332252.png" title="CC-Link网络">
+<h2 id="网络控制系统控制器的设计"><a href="#网络控制系统控制器的设计" class="headerlink" title="网络控制系统控制器的设计"></a>网络控制系统控制器的设计</h2><h3 id="PID网络控制器设计"><a href="#PID网络控制器设计" class="headerlink" title="PID网络控制器设计"></a>PID网络控制器设计</h3><p>理想的模拟PID控制器的传递函数为：<br>$$<br>D(s) = \frac{U(s)}{E(s)} = K_P +\frac{K_I}{s} + K_ds<br>$$<br>其中，$K_P$为比例系数，通过加大$K_P$的值来增加系统动态响应速度；$K_I$为积分系数，消除 系统稳态误差；$K_D$为微分系数，改变系统的动态性能。</p>
+<p>采用双线性变换法，将上式离散化，得到：<br>$$<br>D(z) = D(s)|_{s=\frac{2}{h} ·\frac{1-z^{-1}}{1+z^{-1}}} = \frac{U(z)}{E(z)} = K_P +\frac{K_Ih}{2}·\frac{1-z^{-1}}{1+z^{-1}} +\frac{2K_D}{h}·\frac{1-z^{-1}}{1+z^{-1}}<br>$$<br>其中，$h$为采样周期。</p>
+<p>常规PID控制器应用于网络控制系统的环境，由于网络特性的影响，PID控制器所控制的广义对象（包括网络和控制对象）实际上是一个<strong>时变系统</strong>，因此需要对PID参数$K_P,K_I,K_D$进行<strong>在线修正</strong>，以适应于网络控制系统的要求。</p>
+<h3 id="极点配置网络控制器设计"><a href="#极点配置网络控制器设计" class="headerlink" title="极点配置网络控制器设计"></a>极点配置网络控制器设计</h3><p>在NCS中，首先建立系统的随机时变模型，然后对模型进行一系列的处理后设计控制器。控制器设计分为 <strong>控制规律的设计和状态观测器的设计</strong>。</p>
+<p>根据给定的<strong>闭环系统的极点</strong>和<strong>观测器极点</strong>分别设计控制规律和观测器。</p>
+<p>控制规律作用：根据系统的状态产生控制量。</p>
+<p>观测器作用：利用带延迟的部分状态信息估计系统的全部状态。</p>
+<p><strong>1、网络控制系统的模型分析</strong></p>
+<p>通信网络的存在使得数据传输变得不确定，相当于在闭环中增加了时变的不确定的控制对象。闭环引入网络后，被控对象有了扩展，是包含<strong>直接控制对象和通信网络</strong>的广义被控对象。</p>
+<p><strong>2、控制规律的设计</strong></p>
+<p>假设控制器反馈的是系统的全部增广状态，控制规律为线性状态反馈，即：<br>$$<br>\pmb u(k) = -L^k \pmb z(k)<br>$$<br>目的是设计$L^k$使得闭环系统具有所需要的极点配置。</p>
+<p><strong>3、状态观测器的设计</strong></p>
+<p>实际控制中，控制器不能得到所有对象的状态，只能得到被控对象的输出，因此，在控制器中，要用被控对象的输出来重构出系统的所有的状态，这需要设计状态观测器。</p>
+<p><strong>4、控制器的设计</strong></p>
+<p>控制器包含观测器和控制规律，目的是设计$L^k$使得闭环系统取得好的性能指标。基于广义的被控对象的控制器的设计依然遵循<strong>分离性原理</strong>。</p>
+<p>即闭环系统的极点由两部分组成，一部分是按照真实状态反馈设计控制规律的控制极点；另一部分是状态观测器的极点。</p>
+<h1 id="计算机控制系统设计实现"><a href="#计算机控制系统设计实现" class="headerlink" title="计算机控制系统设计实现"></a>计算机控制系统设计实现</h1><h2 id="设计原则与设计方法"><a href="#设计原则与设计方法" class="headerlink" title="设计原则与设计方法"></a>设计原则与设计方法</h2><h2 id="硬件设计"><a href="#硬件设计" class="headerlink" title="硬件设计"></a>硬件设计</h2><p>总体上包括三个方面内容：计算机部分、执行机构与驱动技术、检测机构与传感器技术。</p>
+<p><strong>常见的驱动技术</strong>：</p>
+<p>采用电动机及其驱动器构成的电气传动系统直接驱动机械设备，在精度不高的情况下，一般采用通用型的传动系统，主要有：直流电气传动系统、交流电气传动系统、同步电动机传动系统等。</p>
+<p>在高精度要求下，通常采用伺服驱动系统、直线电动机驱动系统等高精度传动系统。</p>
+<p><strong>检测机构与传感器技术</strong>：</p>
+<p>传感器：能够感受规定的被测量并按照一定规律转换成可用输出信号的器件和装置，通常由<strong>敏感元件和转换元件</strong>组成。</p>
+<p>在计算机控制系统中，对检测机构与传感器基本要求：检测精度，检测机构的量程以及适用的环境等。</p>
+<h2 id="软件设计"><a href="#软件设计" class="headerlink" title="软件设计"></a>软件设计</h2><p>包括监控软件、控制软件和信息管理软件三部分组成。</p>
+<h3 id="数字控制器的实现问题"><a href="#数字控制器的实现问题" class="headerlink" title="数字控制器的实现问题"></a>数字控制器的实现问题</h3><p>数字控制器的设计是计算机控制系统设计的关键所在，包括数字控制器的理论设计与程序实现两部分。</p>
+<p>数字控制器的理论设计：是根据被控对象和所确定的计算机控制系统的指标，设计出数字控制器的输入和输出函数的差分方程数学表达式。</p>
+<h3 id="信号的数字滤波技术"><a href="#信号的数字滤波技术" class="headerlink" title="信号的数字滤波技术"></a>信号的数字滤波技术</h3><p>在模拟系统中，信号的处理是采用不同形式的有源或无源滤波器，如低通、高通、带通和带阻滤波器等。</p>
+<p>在计算机控制系统中，采用数字滤波器，由软件编程实现。</p>
+<p><strong>1、均值滤波</strong></p>
+<p>在一个采样周期内，连续采样几个值，取其平均值为实际测量值。数学表达式为：<br>$$<br>Y = \frac{1}{N} \sum\limits_{i=1}^N X_i<br>$$<br>其中，$Y$是数字滤波器输出；$X_i$为第$i$次采样值；$N$为采样次数。</p>
+<p>均值滤波实质是对信号的平滑处理，其平滑程度取决于采样次数$N$。$N$越大，计算结果越准确，但灵敏度降低，应折中处理。</p>
+<p><strong>2、中值滤波</strong></p>
+<p>连续采样三次$X_1,X_2,X_3$，去掉最大值和最小值，取中间值为本次采样值。数学表达式为：<br>如果$X_1 \le X_2 \le X_3$，则中值滤波器的输出为$Y = X_2$。</p>
+<p>中值滤波对去掉脉动性的干扰比较有效，但不宜用于快速变化的变量的处理。</p>
+<p><strong>3、抗干扰中值滤波</strong></p>
+<p>消除脉冲型干扰信号。</p>
+<p>连续采样$N$次，得到$X_1,X_2,\dots,X_N$，按数值由小到大额排列$X_1 \le X_2 \le \dots \le X_N$，去掉最小值$X_1$和最大值$X_N$，然后对剩余的采样值进行均值运算，结果作为滤波器的输出$Y$，计算公式为：<br>$$<br>Y = \frac{1}{N-2}\sum\limits_{i=2}^{N-1}X_i<br>$$<br><strong>4、限幅滤波</strong></p>
+<p>大的随机干扰或者采样电路的不稳定，使得采样数据明显偏离实际值，或者两次采样之间的变化很大。</p>
+<p>基本思路：根据被滤波信号的实际变化范围及变化的频率，确定滤波器的参数，即上下极限幅度$Y_h ,Y_l$及变化极限$\Delta Y_0$，对于一个采样值$x(k)$，滤波器的输出$y(k)$输出为：<br>$$<br>y(k) = \cases{x(k), \qquad Y_1 \le x(k) \le Y_h,|x(k)-y(k-1)|\le \Delta Y_0 \ \ y(k-1) + \Delta Y_0 ,\qquad  x(k) - y(k-1) &gt; \Delta Y_0 \ \ y(k-1) - \Delta Y_0 , \qquad x(k)-y(k-1) &lt; -\Delta Y_0 \ \ Y_h ,\qquad x(k) &gt; Y_h \ \ Y_1 , \qquad x(k) &lt; Y_1      }<br>$$<br>其中，滤波器参数$Y_h$和$Y_l$为被滤波信号的最大允许值和最小允许值，与被测信号的变换范围有关；$\Delta Y_0$与采样周期及被测信号的正常变化率有关。</p>
+<p>限幅滤波器是针对特定的被测信号而设计的，加入了较多的人工干预成分，对参数选择有一定要求。</p>
+<p><strong>5、惯性滤波</strong></p>
+<p>是由连续域中的一阶惯性滤波器，经离散化处理后得到的。数学表达式为：<br>$$<br>y(k) = \alpha y(k-1) +(1-\alpha)y(k), \qquad 0&lt; \alpha &lt; 1<br>$$<br>滤波器当前时刻的输出值$y(k)$，是上次采样时刻的输出值$y(k-1)$与本次输入采样值$x(k)$的加权平均值，参数$\alpha$是$y(k-1)$的权，成为<strong>滤波系数</strong>。</p>
+<p>$\alpha$越大，则表示上次滤波器的输出值在本次滤波器输出值中所占比重越大，即惯性越大。</p>
+<h2 id="数字控制器程序实现性能分析"><a href="#数字控制器程序实现性能分析" class="headerlink" title="数字控制器程序实现性能分析"></a>数字控制器程序实现性能分析</h2><p>计算机控制系统数值误差的来源：</p>
+<p>1、建立控制器离散数学模型时，需对其参数进行量化，因而会产生参数量化误差。</p>
+<p>2、在信号转换过程中，由于A/D转换器的数字量字长有限，同时，受A/D转换时间和采样周期的影响，因此会在检测的反馈信号中产生采样量化误差。</p>
+<p>3、因计算机控制系统的实时性要求，在计算机编程中所采用的数字量的字长也是有限的，会产生计算误差。</p>
+<h2 id="量化效应与采样周期误差分析"><a href="#量化效应与采样周期误差分析" class="headerlink" title="量化效应与采样周期误差分析"></a>量化效应与采样周期误差分析</h2><h3 id="A-D转换的量化误差"><a href="#A-D转换的量化误差" class="headerlink" title="A/D转换的量化误差"></a>A/D转换的量化误差</h3><p>是在一定范围内变化的随机变量，通常所称的量化误差是相应变化范围的最大值，假定A/D转换器对输入模拟信号的转换量程为$0-X_m$，转换字长为$n$，量化误差为：<br>$$<br>q = \frac{X_m}{2^n}<br>$$</p>
+<h3 id="孔径误差"><a href="#孔径误差" class="headerlink" title="孔径误差"></a>孔径误差</h3><p>设$T$为采样周期，$T_c$为A/D转换器的转换时间，假定$T\ge T_c$。只在$T_c$时间内观察到输入信号$x(t)$的变化，相当于一个时间窗口，$T_c$称为$A/D$转换器的孔径时间。</p>
+<img src="/2020/05/15/计算机控制系统/1564040994361.png" title="孔径误差">
+<p>A/D转换器的孔径时间对于变化的信号在转换过程中会形成一定的误差，若被转换的模拟信号不是一个恒定常量，而是随时间变化形成了连续时间函数$y(t)$，则在有一定的孔径时间$T_c$的情况下，A/D转换器将产生孔径误差。</p>
+<p>最终的A/D转换的采样值为：<br>$$<br>y(t_2) = y(t_1) + \Delta y<br>$$<br>其中$\Delta y$为孔径误差，可以表示为：<br>$$<br>\Delta y = T_c \frac{dy}{dt}<br>$$<br>其中$T_c = t_2-t_1$。</p>
+<p>若孔径误差过大，可通过选用转换速度更高的A/D转换器或者A/D之前加<strong>采样保持器</strong>来解决。</p>
+<h3 id="采样周期造成的误差"><a href="#采样周期造成的误差" class="headerlink" title="采样周期造成的误差"></a>采样周期造成的误差</h3><p>一般采样周期$T$远大于A/D转换器的孔径时间$T_c$，对变换的模拟信号的影响远超A/D转换器的孔径时间的影响。</p>
+<p>设被转换的模拟信号为正弦函数$x(t) = X_{max} \sin(\omega t + \theta_0)$，信号周期为$T_0 = \frac{2\pi}{\omega}$，采样周期为$T$时，$x(t)$的实际采样函数为：<br>$$<br>x^<em>(t) = X_{max} \sin (\omega kT + \theta_0), \quad kT \le t &lt; kT +T<br>$$<br>设$\frac{T_0}{T} =m$，$m$为自然数，$x^</em>(t)$是周期为$T_0$的周期函数，可表示为如下三角函数形式的傅里叶级数表达式：<br>$$<br>\cases{x^<em>(t) = a_0 \sum\limits_{n=1}^{\infty} [a_n \cos(n\omega t) + b_n \sin(n\omega t)]\ \ a_0 = \frac{1}{T_0} \int_{t-T_0}^{t}x^</em>(t) dt \ \ a_n = \frac{2}{T_0}\int_{t-T_0}^t x^<em>(t) \cos (n\omega t) dt \ \ b_n = \frac{2}{T_0} \int_{t-T_0}^t x^</em>(t) \sin (n\omega t)dt    }<br>$$<br>采样前的模拟信号只有基波分量，分析采样前后的误差情况，实际上就是将实际采样函数$x^*(t)$的基波信号的幅值相位与模拟信号相比较，只需要求出基波的系数$a_1$和$b_1$。<br>$$<br>a_1 = \frac{2X_{max}}{T_0} \sum\limits_{i=k-m}^{k-1} \int_{iT}^{(i+1)T} \sin (\omega iT+ \theta_0) \cos(\omega t)dt \ = -\frac{mX_{max}}{\pi} \sin(\frac{\pi}{m}) \sin (\frac{\pi}{m} -\theta_0) +A<br>$$<br>其中，$A = \frac{X_{max}}{\pi} \sin (\frac{\pi}{m}) \sum\limits_{i=k-m}^{k-1} \sin \left(\frac{4\pi}{m} i + \theta_0 + \frac{\pi}{m}\right)$。<br>$$<br>b_1 = \frac{2X_{max}}{T_0} \sum\limits_{i=k-m}^{k-1} \int_{iT}^{(i+1)T} \sin (\omega iT+ \theta_0) \sin(\omega t)dt \ = \frac{mX_{max}}{\pi} \sin(\frac{\pi}{m}) \cos (\frac{\pi}{m} -\theta_0) +B<br>$$<br>其中，$B = -\frac{X_{max}}{\pi} \sin (\frac{\pi}{m}) \sum\limits_{i=k-m}^{k-1} \cos \left(\frac{4\pi}{m} i + \theta_0 + \frac{\pi}{m}\right)$。</p>
+<p>可得到实际采样函数的基波$x^<em>_1(t)$的幅值和相位，表达式为：<br>$$<br>x^</em>_1(t) = \sqrt{a_1^2 + b_1^2} \sin (\omega t + \theta_1)<br>$$<br>其中，$\theta_1 = \arctan(a_1/b_1)$。</p>
+<p>与原函数相比，幅值误差为：<br>$$<br>\Delta X = X_{max} - \sqrt{a^2 + b^2}<br>$$<br>相位误差为：<br>$$<br>\Delta \theta = \theta_0 - \theta_1<br>$$</p>
+<h2 id="计算机控制系统可靠性"><a href="#计算机控制系统可靠性" class="headerlink" title="计算机控制系统可靠性"></a>计算机控制系统可靠性</h2><p>提高可靠性的<strong>设计原则</strong>：</p>
+<p>1、保证系统的硬件和软件自身质量，降低自身损坏和冲突的概率</p>
+<p>2、提高硬件和软件对外部信号的抗干扰、扛冲击能力</p>
+<p>3、系统的硬件和软件要有<strong>冗余设计和备份</strong></p>
+<p>4、硬件和软件设计要使系统有<strong>故障诊断能力</strong>，将事故危害范围降到最低限度。</p>
+<p><strong>软件部分的措施</strong>：</p>
+<p>1、采用模块化设计。对系统及软件功能的分析和研究，合理地进行软件的模块划分，并明确每个模块所要完成的功能及与其他模块的调用和被调用关系。</p>
+<p>2、充分测试，避免软件的自身冲突。</p>
+<p>3、对输入信号的抗干扰设计。软件中设计滤波器，抑制和消除干扰的影响</p>
+<p>4、系统的软件应具有一定的<strong>故障诊断能力和自修复能力</strong>。</p>
+<p>5、看门狗技术。是一种CPU监控定时器，看门狗的运行靠硬件和相应软件的配合实现。<strong>工作机理</strong>：</p>
+<p>​       在一个预先设定的时间内，若没有得到来自CPU的清零脉冲信号，则看门狗定时器将向CPU的复位端输出一个复位脉冲信号，这样可以使得因故障而导致程序陷入死循环的计算机系统重新从头开始工作。</p>
+<h2 id="消除或抑制干扰影响的方法"><a href="#消除或抑制干扰影响的方法" class="headerlink" title="消除或抑制干扰影响的方法"></a>消除或抑制干扰影响的方法</h2><h1 id="伺服运动控制系统"><a href="#伺服运动控制系统" class="headerlink" title="伺服运动控制系统"></a>伺服运动控制系统</h1><h2 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h2><p>伺服系统是可以<strong>按照一定的指令控制电动机执行规定的运行动作</strong>，一般由伺服电动机、传感器和控制器三部分构成闭环，完成精密控制。</p>
+<p>伺服系统的<strong>基本要求</strong>：稳定性好、精度高，一般在0.001-0.01mm之间、快速响应性好，一般在200ms以内，甚至小于几十毫秒。</p>
+<p>伺服系统对控制系统要求可分为如下几种形式：</p>
+<p>1、点位运动控制。仅对终点位置有要求，与运动的中间过程（运动轨迹无关）。</p>
+<p>2、连续轨迹（轮廓控制）运动控制。主要应用在数控系统、切割系统的运动轮廓控制中。</p>
+<p>3、同步运动控制。多个轴之间的运动协调控制，可以是多个轴在运动全程中进行同步，也可以是在运动过程中的局部速度同步。</p>
+<p>伺服系统<strong>主要特点</strong>：精确的检测装置、多种反馈比较原理和方法、高性能伺服电机、宽调速范围的速度调节系统、靠偏差工作。</p>
+<img src="/2020/05/15/计算机控制系统/1564043367055.png">
+<img src="/2020/05/15/计算机控制系统/1564043379505.png">
+<p>伺服系统一般由电流环、速度环和位置环组成，其中电流环采用矢量控制，速度环和位置环采用PID控制。</p>
+<img src="/2020/05/15/计算机控制系统/1564043445173.png" title="伺服控制系统">
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/14/信号处理涉及到的几种变换/" rel="next" title="信号处理涉及的几种变换">
+                <i class="fa fa-chevron-left"></i> 信号处理涉及的几种变换
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/16/马尔科夫链-蒙特卡罗方法/" rel="prev" title="马尔科夫链-蒙特卡罗方法">
+                马尔科夫链-蒙特卡罗方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+    <!--MOB SHARE BEGIN-->
+                                <div class="-mob-share-ui-button -mob-share-open">分享</div>
+                                <div class="-mob-share-ui -mob-share-ui-theme -mob-share-ui-theme-slide-left" style="display: none">
+                                    <ul class="-mob-share-list">
+                                        <li class="-mob-share-weibo"><p>新浪微博</p></li>
+                                       
+                                        <li class="-mob-share-qzone"><p>QQ空间</p></li>
+                                        <li class="-mob-share-qq"><p>QQ好友</p></li>
+                                        <li class="-mob-share-weixin"><p>微信</p></li>
+                                        <li class="-mob-share-douban"><p>豆瓣</p></li>
+                                   
+                                        <li class="-mob-share-facebook"><p>Facebook</p></li>
+                                        <li class="-mob-share-twitter"><p>Twitter</p></li>
+                                       
+                                    </ul>
+                                    <div class="-mob-share-close">取消</div>
+                                </div>
+                                <div class="-mob-share-ui-bg"></div>
+                                <script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=2aeca9171540c"></script>
+                                <!--MOB SHARE END-->
+
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="jiangxj">
+            
+              <p class="site-author-name" itemprop="name">jiangxj</p>
+              <p class="site-description motion-element" itemprop="description">岁月对坐，落子无悔</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jiangxjun" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:jiangxj0530@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.linkedin.com/in/xuejun-j-8b04a0180/" target="_blank" title="LinkedIn">
+                      
+                        <i class="fa fa-fw fa-linkedin"></i>LinkedIn</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/wan-si-qing-qian/activities" target="_blank" title="Zhihu">
+                      
+                        <i class="fa fa-fw fa-heart-o"></i>Zhihu</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                link
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.biglong.top/" title="yanglong" target="_blank">yanglong</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://redstonewill.com/" title="RedStone" target="_blank">RedStone</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+		  
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="360" height="86" src="//music.163.com/outchain/player?type=2&id=419877515&auto=0&height=66"></iframe>
+		  
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一个典型的计算机控制系统的架构"><span class="nav-number">1.1.</span> <span class="nav-text">一个典型的计算机控制系统的架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机控制系统的应用要求"><span class="nav-number">1.2.</span> <span class="nav-text">计算机控制系统的应用要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机控制系统的性能指标"><span class="nav-number">1.3.</span> <span class="nav-text">计算机控制系统的性能指标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一个计算机控制系统的典型硬件组成"><span class="nav-number">1.4.</span> <span class="nav-text">一个计算机控制系统的典型硬件组成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模拟量输入通道"><span class="nav-number">1.4.1.</span> <span class="nav-text">模拟量输入通道</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模拟量输出通道"><span class="nav-number">1.4.2.</span> <span class="nav-text">模拟量输出通道</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数字量输入通道"><span class="nav-number">1.4.3.</span> <span class="nav-text">数字量输入通道</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数字量输出通道"><span class="nav-number">1.4.4.</span> <span class="nav-text">数字量输出通道</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总线接口"><span class="nav-number">1.4.5.</span> <span class="nav-text">总线接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#内部总线"><span class="nav-number">1.4.5.1.</span> <span class="nav-text">内部总线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统总线"><span class="nav-number">1.4.5.2.</span> <span class="nav-text">系统总线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#外部总线"><span class="nav-number">1.4.5.3.</span> <span class="nav-text">外部总线</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模数之间转换"><span class="nav-number">1.5.</span> <span class="nav-text">模数之间转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#D-A转换"><span class="nav-number">1.5.1.</span> <span class="nav-text">D/A转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#A-D转换"><span class="nav-number">1.5.2.</span> <span class="nav-text">A/D转换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机控制系统的理论问题"><span class="nav-number">1.6.</span> <span class="nav-text">计算机控制系统的理论问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机控制系统的基本类型"><span class="nav-number">1.7.</span> <span class="nav-text">计算机控制系统的基本类型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#信号转换"><span class="nav-number">2.</span> <span class="nav-text">信号转换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#信号变换原理"><span class="nav-number">2.1.</span> <span class="nav-text">信号变换原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机控制系统信号转换分析"><span class="nav-number">2.1.1.</span> <span class="nav-text">计算机控制系统信号转换分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#采样过程及采样函数的数学表示"><span class="nav-number">2.1.2.</span> <span class="nav-text">采样过程及采样函数的数学表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#采样函数的频谱分析及采样定理"><span class="nav-number">2.1.3.</span> <span class="nav-text">采样函数的频谱分析及采样定理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#采样恢复与保持器"><span class="nav-number">2.2.</span> <span class="nav-text">采样恢复与保持器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#零阶保持器"><span class="nav-number">2.2.1.</span> <span class="nav-text">零阶保持器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一阶保持器"><span class="nav-number">2.2.2.</span> <span class="nav-text">一阶保持器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#z变换及反变换"><span class="nav-number">2.3.</span> <span class="nav-text">z变换及反变换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-number">2.3.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#z变换方法"><span class="nav-number">2.3.2.</span> <span class="nav-text">z变换方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#z变换的基本定理"><span class="nav-number">2.3.3.</span> <span class="nav-text">z变换的基本定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#z反变换"><span class="nav-number">2.3.4.</span> <span class="nav-text">z反变换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展z变换"><span class="nav-number">2.3.5.</span> <span class="nav-text">扩展z变换</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机控制系统数学描述与性能分析"><span class="nav-number">3.</span> <span class="nav-text">计算机控制系统数学描述与性能分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#离散系统"><span class="nav-number">3.1.</span> <span class="nav-text">离散系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#差分方程"><span class="nav-number">3.2.</span> <span class="nav-text">差分方程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#差分方程解法"><span class="nav-number">3.2.0.1.</span> <span class="nav-text">差分方程解法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#脉冲传递函数"><span class="nav-number">3.3.</span> <span class="nav-text">脉冲传递函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机控制系统的脉冲传递函数"><span class="nav-number">3.3.1.</span> <span class="nav-text">计算机控制系统的脉冲传递函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机控制系统的稳定性分析"><span class="nav-number">3.4.</span> <span class="nav-text">计算机控制系统的稳定性分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#离散系统的稳定性条件"><span class="nav-number">3.4.1.</span> <span class="nav-text">离散系统的稳定性条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#采样周期与系统稳定性关系"><span class="nav-number">3.4.2.</span> <span class="nav-text">采样周期与系统稳定性关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#离散系统稳定性的代数判据"><span class="nav-number">3.5.</span> <span class="nav-text">离散系统稳定性的代数判据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#劳斯稳定性判据"><span class="nav-number">3.5.1.</span> <span class="nav-text">劳斯稳定性判据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#朱利稳定性判据"><span class="nav-number">3.5.2.</span> <span class="nav-text">朱利稳定性判据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机控制系统稳态过程分析"><span class="nav-number">3.6.</span> <span class="nav-text">计算机控制系统稳态过程分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机控制系统暂态分析"><span class="nav-number">3.7.</span> <span class="nav-text">计算机控制系统暂态分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机控制系统的频域特性分析"><span class="nav-number">3.8.</span> <span class="nav-text">计算机控制系统的频域特性分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#离散系统的频域描述"><span class="nav-number">3.8.1.</span> <span class="nav-text">离散系统的频域描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#离散系统频域稳定性分析"><span class="nav-number">3.8.2.</span> <span class="nav-text">离散系统频域稳定性分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#离散系统伯德图分析"><span class="nav-number">3.8.3.</span> <span class="nav-text">离散系统伯德图分析</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#数字控制器模拟化设计方法"><span class="nav-number">4.</span> <span class="nav-text">数字控制器模拟化设计方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#连续控制器的离散化方法"><span class="nav-number">4.1.</span> <span class="nav-text">连续控制器的离散化方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数字PID控制器"><span class="nav-number">4.2.</span> <span class="nav-text">数字PID控制器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数字PID控制器算法工程化改进"><span class="nav-number">4.3.</span> <span class="nav-text">数字PID控制器算法工程化改进</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#积分分离数字PID算法（PD算法）"><span class="nav-number">4.3.1.</span> <span class="nav-text">积分分离数字PID算法（PD算法）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#带死区的数字PID控制算法"><span class="nav-number">4.3.2.</span> <span class="nav-text">带死区的数字PID控制算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不完全微分PID算法"><span class="nav-number">4.3.3.</span> <span class="nav-text">不完全微分PID算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微分先行PID控制算法"><span class="nav-number">4.3.4.</span> <span class="nav-text">微分先行PID控制算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数字控制器离散化（直接）设计方法"><span class="nav-number">5.</span> <span class="nav-text">数字控制器离散化（直接）设计方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本原理"><span class="nav-number">5.1.</span> <span class="nav-text">基本原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最小拍控制器的设计方法"><span class="nav-number">5.2.</span> <span class="nav-text">最小拍控制器的设计方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最小拍控制器工程化改进"><span class="nav-number">5.3.</span> <span class="nav-text">最小拍控制器工程化改进</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#大林算法"><span class="nav-number">5.4.</span> <span class="nav-text">大林算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法设计原理"><span class="nav-number">5.4.1.</span> <span class="nav-text">算法设计原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数字控制器程序实现"><span class="nav-number">5.5.</span> <span class="nav-text">数字控制器程序实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#状态空间模型"><span class="nav-number">6.</span> <span class="nav-text">状态空间模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#状态空间描述的基本定义"><span class="nav-number">6.1.</span> <span class="nav-text">状态空间描述的基本定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#离散系统的状态空间模型"><span class="nav-number">6.2.</span> <span class="nav-text">离散系统的状态空间模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统的能控性和能观性"><span class="nav-number">6.3.</span> <span class="nav-text">系统的能控性和能观性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态可测时按极点配置设计控制规律"><span class="nav-number">6.4.</span> <span class="nav-text">状态可测时按极点配置设计控制规律</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#按极点配置设计观测器"><span class="nav-number">6.5.</span> <span class="nav-text">按极点配置设计观测器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态不可测时控制器的设计"><span class="nav-number">6.6.</span> <span class="nav-text">状态不可测时控制器的设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分离性原理"><span class="nav-number">6.6.1.</span> <span class="nav-text">分离性原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按极点配置控制器设计步骤"><span class="nav-number">6.6.2.</span> <span class="nav-text">按极点配置控制器设计步骤</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#先进控制规律的设计方法"><span class="nav-number">7.</span> <span class="nav-text">先进控制规律的设计方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#线性二次型最优控制器设计"><span class="nav-number">7.1.</span> <span class="nav-text">线性二次型最优控制器设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自校正控制器设计"><span class="nav-number">7.2.</span> <span class="nav-text">自校正控制器设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最小二乘法参数辨识算法"><span class="nav-number">7.2.1.</span> <span class="nav-text">最小二乘法参数辨识算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自校正控制器设计-1"><span class="nav-number">7.2.2.</span> <span class="nav-text">自校正控制器设计</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型预测控制器设计"><span class="nav-number">7.3.</span> <span class="nav-text">模型预测控制器设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#预测模型"><span class="nav-number">7.3.1.</span> <span class="nav-text">预测模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#预测控制算法"><span class="nav-number">7.3.2.</span> <span class="nav-text">预测控制算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模糊控制器设计"><span class="nav-number">7.4.</span> <span class="nav-text">模糊控制器设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模糊数学"><span class="nav-number">7.4.1.</span> <span class="nav-text">模糊数学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模糊控制原理"><span class="nav-number">7.4.2.</span> <span class="nav-text">模糊控制原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模糊PID控制器设计"><span class="nav-number">7.4.3.</span> <span class="nav-text">模糊PID控制器设计</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络控制系统-NCS"><span class="nav-number">8.</span> <span class="nav-text">网络控制系统(NCS)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#网络控制系统概述"><span class="nav-number">8.1.</span> <span class="nav-text">网络控制系统概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络控制系统的研究内容"><span class="nav-number">8.2.</span> <span class="nav-text">网络控制系统的研究内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实时控制网络"><span class="nav-number">8.3.</span> <span class="nav-text">实时控制网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#控制网络的拓扑结构"><span class="nav-number">8.3.1.</span> <span class="nav-text">控制网络的拓扑结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制网络的协议模型"><span class="nav-number">8.3.2.</span> <span class="nav-text">控制网络的协议模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制网络的媒体访问技术"><span class="nav-number">8.3.3.</span> <span class="nav-text">控制网络的媒体访问技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制网络的类型"><span class="nav-number">8.3.4.</span> <span class="nav-text">控制网络的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EtherNet网络"><span class="nav-number">8.3.5.</span> <span class="nav-text">EtherNet网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CAN网络"><span class="nav-number">8.3.6.</span> <span class="nav-text">CAN网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ControlNet网络"><span class="nav-number">8.3.7.</span> <span class="nav-text">ControlNet网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CC-Link网络"><span class="nav-number">8.3.8.</span> <span class="nav-text">CC-Link网络</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络控制系统控制器的设计"><span class="nav-number">8.4.</span> <span class="nav-text">网络控制系统控制器的设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PID网络控制器设计"><span class="nav-number">8.4.1.</span> <span class="nav-text">PID网络控制器设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#极点配置网络控制器设计"><span class="nav-number">8.4.2.</span> <span class="nav-text">极点配置网络控制器设计</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机控制系统设计实现"><span class="nav-number">9.</span> <span class="nav-text">计算机控制系统设计实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#设计原则与设计方法"><span class="nav-number">9.1.</span> <span class="nav-text">设计原则与设计方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#硬件设计"><span class="nav-number">9.2.</span> <span class="nav-text">硬件设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软件设计"><span class="nav-number">9.3.</span> <span class="nav-text">软件设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数字控制器的实现问题"><span class="nav-number">9.3.1.</span> <span class="nav-text">数字控制器的实现问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信号的数字滤波技术"><span class="nav-number">9.3.2.</span> <span class="nav-text">信号的数字滤波技术</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数字控制器程序实现性能分析"><span class="nav-number">9.4.</span> <span class="nav-text">数字控制器程序实现性能分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#量化效应与采样周期误差分析"><span class="nav-number">9.5.</span> <span class="nav-text">量化效应与采样周期误差分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-D转换的量化误差"><span class="nav-number">9.5.1.</span> <span class="nav-text">A/D转换的量化误差</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#孔径误差"><span class="nav-number">9.5.2.</span> <span class="nav-text">孔径误差</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#采样周期造成的误差"><span class="nav-number">9.5.3.</span> <span class="nav-text">采样周期造成的误差</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机控制系统可靠性"><span class="nav-number">9.6.</span> <span class="nav-text">计算机控制系统可靠性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消除或抑制干扰影响的方法"><span class="nav-number">9.7.</span> <span class="nav-text">消除或抑制干扰影响的方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#伺服运动控制系统"><span class="nav-number">10.</span> <span class="nav-text">伺服运动控制系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述-1"><span class="nav-number">10.1.</span> <span class="nav-text">概述</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jiangxj</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">211.7k</span>
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/meting@1.1.0/dist/Meting.min.js"></script>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

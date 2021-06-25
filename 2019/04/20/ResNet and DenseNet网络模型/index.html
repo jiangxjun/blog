@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="深度学习,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Ataraxia" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="ResNet and DenseNet网络模型原理">
+<meta name="keywords" content="深度学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ResNet and DenseNet网络模型">
+<meta property="og:url" content="https://jiangxjun.github.io/blog/2019/04/20/ResNet and DenseNet网络模型/index.html">
+<meta property="og:site_name" content="Ataraxia">
+<meta property="og:description" content="ResNet and DenseNet网络模型原理">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://jiangxjun.github.io/2019/04/20/ResNet%20and%20DenseNet网络模型/v2-252e6d9979a2a91c2d3033b9b73eb69f_hd.jpg">
+<meta property="og:image" content="https://jiangxjun.github.io/2019/04/20/ResNet%20and%20DenseNet网络模型/v2-7cb9c03871ab1faa7ca23199ac403bd9_hd.jpg">
+<meta property="og:image" content="https://jiangxjun.github.io/2019/04/20/ResNet%20and%20DenseNet网络模型/v2-1dfd4022d4be28392ff44c49d6b4ed94_hd.jpg">
+<meta property="og:image" content="https://jiangxjun.github.io/2019/04/20/ResNet%20and%20DenseNet网络模型/v2-0892e5423616c30f69ded61111b111c0_r.jpg">
+<meta property="og:image" content="https://jiangxjun.github.io/2019/04/20/ResNet%20and%20DenseNet网络模型/v2-0a2c8a209a221817f91c1f1728327beb_hd.jpg">
+<meta property="og:image" content="https://jiangxjun.github.io/2019/04/20/ResNet%20and%20DenseNet网络模型/v2-4e0bf37ecad2f306fe09d32a2d37d908_hd.jpg">
+<meta property="og:image" content="https://jiangxjun.github.io/2019/04/20/ResNet%20and%20DenseNet网络模型/v2-c81da515c8fa9796601fde82e4d36f61_hd.jpg">
+<meta property="og:image" content="https://jiangxjun.github.io/2019/04/20/ResNet%20and%20DenseNet网络模型/v2-862e1c2dcb24f10d264544190ad38142_hd.jpg">
+<meta property="og:image" content="https://jiangxjun.github.io/2019/04/20/ResNet%20and%20DenseNet网络模型/v2-2cb01c1c9a217e56c72f4c24096fe3fe_hd.jpg">
+<meta property="og:image" content="https://jiangxjun.github.io/2019/04/20/ResNet%20and%20DenseNet网络模型/v2-0a9db078f505b469973974aee9c27605_r.jpg">
+<meta property="og:image" content="https://jiangxjun.github.io/2019/04/20/ResNet%20and%20DenseNet网络模型/v2-ed66515594a04be849a8cee707cb83bf_r.jpg">
+<meta property="og:updated_time" content="2020-06-18T02:13:23.838Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ResNet and DenseNet网络模型">
+<meta name="twitter:description" content="ResNet and DenseNet网络模型原理">
+<meta name="twitter:image" content="https://jiangxjun.github.io/2019/04/20/ResNet%20and%20DenseNet网络模型/v2-252e6d9979a2a91c2d3033b9b73eb69f_hd.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiangxjun.github.io/blog/2019/04/20/ResNet and DenseNet网络模型/">
+
+
+
+
+
+  <title>ResNet and DenseNet网络模型 | Ataraxia</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ataraxia</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Hi, I'm Jiang.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.js"></script> </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jiangxjun.github.io/blog/2019/04/20/ResNet and DenseNet网络模型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jiangxj">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ataraxia">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ResNet and DenseNet网络模型</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-20T00:00:00+08:00">
+                2019-04-20
+              </time>
+            
+			
+			
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  2.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+              <div class="post-description">
+                  ResNet and DenseNet网络模型原理
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="ResNet深度残差网络（Deep-residual-network）"><a href="#ResNet深度残差网络（Deep-residual-network）" class="headerlink" title="ResNet深度残差网络（Deep residual network）"></a>ResNet深度残差网络（Deep residual network）</h2><blockquote>
+<p>参考文献1：<a href="https://arxiv.org/abs/1512.03385" target="_blank" rel="noopener">deep residual learning for image recognition</a></p>
+</blockquote>
+<p>网络深度增加，可以进行更加复杂的特征模式的提取，但会出现深度网络的<strong>退化问题</strong>（Degradation problem）：网络深度增加时，网络准确度出现饱和，甚至下降。56层网络比20层网络效果要差，这不是过拟合问题，56层网络训练误差同样高。</p>
+<p>深层网络存在着梯度消失或者爆炸问题，使得深度学习模型很难训练。</p>
+<h3 id="残差学习"><a href="#残差学习" class="headerlink" title="残差学习"></a><strong>残差学习</strong></h3><p>现在有一个浅层的网络，想通过向上堆积新层来建立深层网络，一个极端情况是这些新加的层什么都不学习，仅仅复制浅层网络的特征，即这样的新层是恒等映射（identity mapping）。这样，深层网络至少和浅层网络一样，不应该出现退化现象。</p>
+<p>Kaiming He提出用残差学习来解决退化问题。对于一个堆积层结构（几层堆积而成），当输入为$x$时其学习到的特征记作$H(x)$。学习残差$F(x) = H(x) -x$，即原始的学习特征为$F(x) +x$。</p>
+<p>残差的学习相比原始特征直接学习更加容易，当残差为0时，此时堆积层仅仅做了恒等映射，至少网络的性能不会下降，实际上残差不会为0，这会使得堆积层在输入特征基础上学习新的特征，而拥有 更好的性能。</p>
+<p>残差学习的结构如图所示：（类似电路短路，是一种短路连接 （shortcut connection））</p>
+<img src="/2019/04/20/ResNet%20and%20DenseNet网络模型/v2-252e6d9979a2a91c2d3033b9b73eb69f_hd.jpg" title="残差学习的结构图">
+<p>残差学习相对更容易，直观上是残差学习需要学习的内容少，残差一般较小，学习难度小。残差单元可以表示为：<br>$$<br>y_l = h(x_l) + F(x_l,W_l)<br>$$</p>
+<p>$$<br>x_{l+1} = f(y_l)<br>$$</p>
+<p>其中，$x_l$和$x_{l+1}$分别表示的是第$l$个残差单元的输入和输出，每一个残差单元一般包含多层结构。</p>
+<p>$F$是残差函数，表示学习到的残差</p>
+<p>$h(x_l) = x_l$表示恒等映射</p>
+<p>$f$表示ReLU激活函数。</p>
+<p>简要推导：</p>
+<p>$x_L = x_l + \sum\limits_{i=l}^{L-1} F(x_i,W_i)$，表示从浅层$l$到深层$L$的学习特征。</p>
+<p>利用链式规则，可以求得反向过程的梯度：<br>$$<br>\frac{\partial Loss}{\partial x_l} = \frac{\partial Loss}{\partial x_L}·\frac{\partial Loss}{\partial x_l}= \frac{\partial Loss}{\partial x_L}·\left( 1+ \frac{\partial}{\partial x_L}\sum\limits_{i=l}^{L-1}F(x_i,W_i)    \right)<br>$$<br>式中，$\frac{\partial Loss}{\partial x_L}$表示损失函数到达$L$的梯度，小括号中的1表明短路机制可以无损地传播梯度，另外一项残差梯度则需要经过带有weights的层，梯度不是直接传递过来的。</p>
+<p>残差梯度不会那么巧全为-1，而且比较小，有1的存在不会导致梯度消失，残差学习更容易。</p>
+<h3 id="ResNet网络结构"><a href="#ResNet网络结构" class="headerlink" title="ResNet网络结构"></a>ResNet网络结构</h3><p>参考的VGG19网络，在其基础上修改，并通过短路机制加入残差单元。</p>
+<p>主要变化是在 ResNet直接采用stride=2的卷积做下采样，并用global average pool层替换全连接层。</p>
+<p>ResNet的一个重要设计原则：当feature map大小降低一半时，feature map的数量增加一倍，这保持了网络层的复杂度。</p>
+<img src="/2019/04/20/ResNet%20and%20DenseNet网络模型/v2-7cb9c03871ab1faa7ca23199ac403bd9_hd.jpg" title="ResNet网络结构">
+<p>ResNet相比普通网络每两层间增加了短路机制，形成了残差学习，其中虚线表示feature map数量发生了改变。</p>
+<img src="/2019/04/20/ResNet%20and%20DenseNet网络模型/v2-1dfd4022d4be28392ff44c49d6b4ed94_hd.jpg" title="对比分析">
+<p>从表中可见，18-layer-ResNet和34-layer-ResNet，其进行的是两层间的残差学习，当网络更深时，其进行的三层间的残差学习，三层的卷积核分别是1×1，3×3和1×1。</p>
+<p>其中，隐含层的feature map的数量是比较小的，并且是输出feature map数量的1/4。</p>
+<h3 id="残差单元"><a href="#残差单元" class="headerlink" title="残差单元"></a>残差单元</h3><p>ResNet使用的是两种残差单元。</p>
+<img src="/2019/04/20/ResNet%20and%20DenseNet网络模型/v2-0892e5423616c30f69ded61111b111c0_r.jpg" title="残差单元">
+<p>分别对应浅层网络（左图）和深层网络（右图）。</p>
+<p>对于短路连接，当输入和输出维度不一致时，可以直接将输入加到输出上，但是当维度不一致时（对应维度增加一倍），不能直接相加。</p>
+<p>有两种策略：<br>1、采用zero-padding增加维度，此时一般要先做一个downsamp，可以采用stride=2的pooling，这样不会增加参数；</p>
+<p>2、采用新的映射（projection shortcut），一般采用1×1的卷积，这样会增加参数，也会增加计算量。</p>
+<p>短路连接除了可以直接使用恒等映射，也可以采用projection shortcut。</p>
+<img src="/2019/04/20/ResNet%20and%20DenseNet网络模型/v2-0a2c8a209a221817f91c1f1728327beb_hd.jpg">
+<h3 id="改进后的残差单元及效果"><a href="#改进后的残差单元及效果" class="headerlink" title="改进后的残差单元及效果"></a>改进后的残差单元及效果</h3><img src="/2019/04/20/ResNet%20and%20DenseNet网络模型/v2-4e0bf37ecad2f306fe09d32a2d37d908_hd.jpg" title="改进后的残差单元及效果">
+<p>改进的前后一个明显变化是采用pre-activation，BN和ReLU都提前了，推荐短路连接采用恒等变换，保证短路连接不会有阻碍。[^参考文献2]</p>
+<p>[^参考文献2]:<a href="https://arxiv.org/abs/1603.05027" target="_blank" rel="noopener">identity mappings in deep residual networks</a></p>
+<h3 id="ResNet的Tensorflow实现"><a href="#ResNet的Tensorflow实现" class="headerlink" title="ResNet的Tensorflow实现"></a>ResNet的Tensorflow实现</h3><p><a href="https://github.com/xiaohu2015/DeepLearning_tutorials/" target="_blank" rel="noopener">Github地址</a></p>
+<h2 id="DenseNet模型"><a href="#DenseNet模型" class="headerlink" title="DenseNet模型"></a>DenseNet模型</h2><p>ResNet可以训练出更深的CNN模型，从而实现更高的准确度，其核心是通过建立前面层与后面层之间的“短路连接”（shortcuts,skip connection），有助于训练过程中梯度的反向传播，从而能训练出更深的CNN网络。</p>
+<p>DenseNet的基本思路与ResNet一致，但是建立的是前面所有层与后面层的<strong>密集连接</strong>（dense connection）。</p>
+<p>DenseNet的另一特点是：通过特征在channel上的连接来实现<strong>特征重用</strong>（feature reuse）。使得DenseNet在参数和计算成本更少的情形下实现比ResNet更优的性能。</p>
+<img src="/2019/04/20/ResNet%20and%20DenseNet网络模型/v2-c81da515c8fa9796601fde82e4d36f61_hd.jpg" title="DenseNet模型">
+<p>DenseNet提出的密集连接机制：互相连接所有的层。每个层都会接受其前面的所有层作为其额外的输入。</p>
+<img src="/2019/04/20/ResNet%20and%20DenseNet网络模型/v2-862e1c2dcb24f10d264544190ad38142_hd.jpg" title="ResNet网络的短路连接机制">
+<p>ResNet的短路连接方式是通过元素级相加。每个层与前面的某层（一般2-3层）短路连接在一起。</p>
+<img src="/2019/04/20/ResNet%20and%20DenseNet网络模型/v2-2cb01c1c9a217e56c72f4c24096fe3fe_hd.jpg" title="DenseNet网络的密集连接机制">
+<p>DenseNet的每个层都会与前面所有层在channel维度上连接（concat）在一起，<strong>各个层的特征图大小是相同的</strong>，并且作为下一层的输入。</p>
+<p>对于一个L层的网络，DenseNet共包含$\frac{L(L+1)}{2}$个连接，是一种密集连接。此外，DenseNet是直接concat来自不同的层的特征图，实现特征重用。</p>
+<p>传统的网络在$l$层的输出为：<br>$$<br>x_l = H_l(x_l-1)<br>$$<br>对于ResNet，增加了来自上一层输入的identity函数：<br>$$<br>x_l = H_l(x_l-1) +x_{l-1}<br>$$<br>在DesNet中，会连接前面所有层作为输入：<br>$$<br>x_l = H_l([x_0,x_1,\dots,x_{l-1}])<br>$$<br>其中$H_l(·)$代表非线性转化函数（non-linear transformation），是一个组合操作，可能包括一系列的BN（Batch Normalization），ReLU，Pooling及Conv操作，$l$和$l-1$层之间可能包括多个卷积层。</p>
+<img src="/2019/04/20/ResNet%20and%20DenseNet网络模型/v2-0a9db078f505b469973974aee9c27605_r.jpg">
+<p>上图可见，$h_3$的输入不仅包括来自$h_2$的$x_2$，还包括前面两层的$x_1$和$x_0$，它们是在channel维度上连接在一起的。</p>
+<hr>
+<p>CNN网络一般要经过Pooling或者stride&gt;1的Conv来降低特征图的大小，DenseNet的密集连接方式<strong>需要特征图大小保持一致。</strong></p>
+<p>解决方法是：使用DenseNet +Transition结构，其中DenseBlock是包含很多层的模块，每个层的特征图大小相同，层与层之间采用密集连接方式。而Transition模块是连接两个相邻的DenseBlock，并且通过Pooling使特征图大小降低。</p>
+<img src="/2019/04/20/ResNet%20and%20DenseNet网络模型/v2-ed66515594a04be849a8cee707cb83bf_r.jpg" title="CNN模型结构">
+<hr>
+<p><strong>使用Pytorch实现DenseNet</strong></p>
+<p>DenseNet的优势主要体现在以下几个方面：</p>
+<ul>
+<li>由于密集连接方式，DenseNet提升了梯度的反向传播，使得网络更容易训练。由于每层可以直达最后的误差信号，实现了隐式的<a href="https://link.zhihu.com/?target=https%3A//arxiv.org/abs/1409.5185" target="_blank" rel="noopener">“deep supervision”</a>；</li>
+<li>参数更小且计算更高效，这有点违反直觉，由于DenseNet是通过concat特征来实现短路连接，实现了特征重用，并且采用较小的growth rate，每个层所独有的特征图是比较小的；</li>
+<li>由于特征复用，最后的分类器使用了低级特征。</li>
+</ul>
+<p>要注意的一点是，如果实现方式不当的话，DenseNet可能耗费很多GPU显存，一种高效的实现如图10所示，更多细节可以见这篇论文<a href="https://link.zhihu.com/?target=https%3A//arxiv.org/abs/1707.06990" target="_blank" rel="noopener">Memory-Efficient Implementation of DenseNets</a>。不过我们下面使用Pytorch框架可以自动实现这种优化。</p>
+<p><a href="https://zhuanlan.zhihu.com/p/37189203" target="_blank" rel="noopener">参考资料</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/深度学习/" rel="tag"><i class="fa fa-tag"></i> 深度学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/20/对抗攻击_论文笔记/" rel="next" title="对抗攻击论文笔记整理">
+                <i class="fa fa-chevron-left"></i> 对抗攻击论文笔记整理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/20/web前端学习/" rel="prev" title="web前端简介">
+                web前端简介 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+    <!--MOB SHARE BEGIN-->
+                                <div class="-mob-share-ui-button -mob-share-open">分享</div>
+                                <div class="-mob-share-ui -mob-share-ui-theme -mob-share-ui-theme-slide-left" style="display: none">
+                                    <ul class="-mob-share-list">
+                                        <li class="-mob-share-weibo"><p>新浪微博</p></li>
+                                       
+                                        <li class="-mob-share-qzone"><p>QQ空间</p></li>
+                                        <li class="-mob-share-qq"><p>QQ好友</p></li>
+                                        <li class="-mob-share-weixin"><p>微信</p></li>
+                                        <li class="-mob-share-douban"><p>豆瓣</p></li>
+                                   
+                                        <li class="-mob-share-facebook"><p>Facebook</p></li>
+                                        <li class="-mob-share-twitter"><p>Twitter</p></li>
+                                       
+                                    </ul>
+                                    <div class="-mob-share-close">取消</div>
+                                </div>
+                                <div class="-mob-share-ui-bg"></div>
+                                <script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=2aeca9171540c"></script>
+                                <!--MOB SHARE END-->
+
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="jiangxj">
+            
+              <p class="site-author-name" itemprop="name">jiangxj</p>
+              <p class="site-description motion-element" itemprop="description">岁月对坐，落子无悔</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jiangxjun" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:jiangxj0530@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.linkedin.com/in/xuejun-j-8b04a0180/" target="_blank" title="LinkedIn">
+                      
+                        <i class="fa fa-fw fa-linkedin"></i>LinkedIn</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/wan-si-qing-qian/activities" target="_blank" title="Zhihu">
+                      
+                        <i class="fa fa-fw fa-heart-o"></i>Zhihu</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                link
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.biglong.top/" title="yanglong" target="_blank">yanglong</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://redstonewill.com/" title="RedStone" target="_blank">RedStone</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+		  
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="360" height="86" src="//music.163.com/outchain/player?type=2&id=419877515&auto=0&height=66"></iframe>
+		  
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ResNet深度残差网络（Deep-residual-network）"><span class="nav-number">1.</span> <span class="nav-text">ResNet深度残差网络（Deep residual network）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#残差学习"><span class="nav-number">1.1.</span> <span class="nav-text">残差学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ResNet网络结构"><span class="nav-number">1.2.</span> <span class="nav-text">ResNet网络结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#残差单元"><span class="nav-number">1.3.</span> <span class="nav-text">残差单元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改进后的残差单元及效果"><span class="nav-number">1.4.</span> <span class="nav-text">改进后的残差单元及效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ResNet的Tensorflow实现"><span class="nav-number">1.5.</span> <span class="nav-text">ResNet的Tensorflow实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DenseNet模型"><span class="nav-number">2.</span> <span class="nav-text">DenseNet模型</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jiangxj</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">211.7k</span>
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/meting@1.1.0/dist/Meting.min.js"></script>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
