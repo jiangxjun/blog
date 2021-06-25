@@ -97,7 +97,7 @@
 <meta property="og:description" content="hexo博客搭建过程记录">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://jiangxj.top/blog//jiangxj.top/blog/2019/04/25/hexo博客搭建过程/sidebar_music.PNG">
-<meta property="og:updated_time" content="2021-01-13T10:21:36.407Z">
+<meta property="og:updated_time" content="2021-06-25T08:41:56.112Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo博客搭建过程">
 <meta name="twitter:description" content="hexo博客搭建过程记录">
@@ -382,7 +382,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  2.8k
+                  3k
                 </span>
               
 
@@ -398,7 +398,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  11
+                  12
                 </span>
               
             </div>
@@ -430,6 +430,10 @@
 <p>注意在部署前安装：<code>npm install hexo-deployer-git --save</code></p>
 </blockquote>
 <hr>
+<h2 id="Hexo博客内容部署到Github-pages"><a href="#Hexo博客内容部署到Github-pages" class="headerlink" title="Hexo博客内容部署到Github pages"></a>Hexo博客内容部署到Github pages</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">                                 </span><br><span class="line">C:\<span class="built_in">..</span>\blog\hexo </span><br><span class="line">$ hexo clean                     </span><br><span class="line"><span class="builtin-name">INFO</span>  Deleted database.          </span><br><span class="line"><span class="builtin-name">INFO</span>  Deleted public folder.     </span><br><span class="line">                                 </span><br><span class="line">C:\<span class="built_in">..</span>\blog\hexo </span><br><span class="line">$ hexo g -d                      </span><br><span class="line"><span class="builtin-name">INFO</span>  Start processing</span><br></pre></td></tr></table></figure>
+<h2 id="Hexo博客域名更换"><a href="#Hexo博客域名更换" class="headerlink" title="Hexo博客域名更换"></a>Hexo博客域名更换</h2><p><code>xxx.github.io</code>的免费域名较长，更换到自己的私人域名，购买解析私人域名之后，在Github pages的custom domain添加解析的域名并保存。</p>
+<p>注意：只有将repo名称设置为<code>xxx.github.io</code>之后，更换私人域名，其他的新建的repo会自动更换到私人域名。</p>
+<p>为防止每次部署之后，域名变化，可以在博客根目录的hexo文件下<code>\blog\hexo\source\CNAME</code>，添加个人域名。</p>
 <h2 id="备份本地博客的文件"><a href="#备份本地博客的文件" class="headerlink" title="备份本地博客的文件"></a>备份本地博客的文件</h2><p>由于 Github 上保存的只是生成的网页静态文件，因此需要新建一个分支保存本地原始文件，方便在不同的电脑上写博客。需要解决备份问题。</p>
 <p>机制是这样的，<code>hexo d</code>上传部署到GitHub的是hexo编译后的文件，用来生成网页的，不包含源文件。即上传的是在本地目录里自动生成的<code>.deploy_git</code>里面。其它文件，包括写在<code>source</code>里面的，和配置文件，主题文件，都没有上传到GitHub上。</p>
 <p>所以可以利用git的分支管理，将源文件上传到GitHub的同一仓库的另一个分支即可。</p>
@@ -622,8 +626,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2019/04/20/ResNet and DenseNet网络模型/" rel="next" title="ResNet and DenseNet网络模型">
-                <i class="fa fa-chevron-left"></i> ResNet and DenseNet网络模型
+              <a href="/blog/2019/04/20/对抗攻击_论文笔记/" rel="next" title="对抗攻击论文笔记整理">
+                <i class="fa fa-chevron-left"></i> 对抗攻击论文笔记整理
               </a>
             
           </div>
@@ -846,7 +850,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo博客搭建的一些教程"><span class="nav-number">1.</span> <span class="nav-text">Hexo博客搭建的一些教程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-Next添加菜单分类界面"><span class="nav-number">1.1.</span> <span class="nav-text">Hexo+Next添加菜单分类界面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo的命令"><span class="nav-number">1.2.</span> <span class="nav-text">Hexo的命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#备份本地博客的文件"><span class="nav-number">1.3.</span> <span class="nav-text">备份本地博客的文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo博客添加RSS订阅功能"><span class="nav-number">1.4.</span> <span class="nav-text">Hexo博客添加RSS订阅功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RSS使用"><span class="nav-number">1.4.1.</span> <span class="nav-text">RSS使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo博文置顶"><span class="nav-number">1.5.</span> <span class="nav-text">hexo博文置顶</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo博客插入图片"><span class="nav-number">1.6.</span> <span class="nav-text">hexo博客插入图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo更改背景及更改字体颜色"><span class="nav-number">1.7.</span> <span class="nav-text">hexo更改背景及更改字体颜色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo插入音频-视频"><span class="nav-number">1.8.</span> <span class="nav-text">hexo插入音频/视频</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#侧边栏嵌入网易云音乐"><span class="nav-number">1.9.</span> <span class="nav-text">侧边栏嵌入网易云音乐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo博客插入天气插件"><span class="nav-number">1.10.</span> <span class="nav-text">hexo博客插入天气插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo主页文章添加阴影"><span class="nav-number">1.11.</span> <span class="nav-text">hexo主页文章添加阴影</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#blog居中调整-基于Next主题"><span class="nav-number">1.12.</span> <span class="nav-text">blog居中调整(基于Next主题)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改代码区主题"><span class="nav-number">1.13.</span> <span class="nav-text">修改代码区主题</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo博客搭建的一些教程"><span class="nav-number">1.</span> <span class="nav-text">Hexo博客搭建的一些教程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-Next添加菜单分类界面"><span class="nav-number">1.1.</span> <span class="nav-text">Hexo+Next添加菜单分类界面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo的命令"><span class="nav-number">1.2.</span> <span class="nav-text">Hexo的命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo博客内容部署到Github-pages"><span class="nav-number">1.3.</span> <span class="nav-text">Hexo博客内容部署到Github pages</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo博客域名更换"><span class="nav-number">1.4.</span> <span class="nav-text">Hexo博客域名更换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#备份本地博客的文件"><span class="nav-number">1.5.</span> <span class="nav-text">备份本地博客的文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo博客添加RSS订阅功能"><span class="nav-number">1.6.</span> <span class="nav-text">Hexo博客添加RSS订阅功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RSS使用"><span class="nav-number">1.6.1.</span> <span class="nav-text">RSS使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo博文置顶"><span class="nav-number">1.7.</span> <span class="nav-text">hexo博文置顶</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo博客插入图片"><span class="nav-number">1.8.</span> <span class="nav-text">hexo博客插入图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo更改背景及更改字体颜色"><span class="nav-number">1.9.</span> <span class="nav-text">hexo更改背景及更改字体颜色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo插入音频-视频"><span class="nav-number">1.10.</span> <span class="nav-text">hexo插入音频/视频</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#侧边栏嵌入网易云音乐"><span class="nav-number">1.11.</span> <span class="nav-text">侧边栏嵌入网易云音乐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo博客插入天气插件"><span class="nav-number">1.12.</span> <span class="nav-text">hexo博客插入天气插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo主页文章添加阴影"><span class="nav-number">1.13.</span> <span class="nav-text">hexo主页文章添加阴影</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#blog居中调整-基于Next主题"><span class="nav-number">1.14.</span> <span class="nav-text">blog居中调整(基于Next主题)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改代码区主题"><span class="nav-number">1.15.</span> <span class="nav-text">修改代码区主题</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -885,7 +889,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">211.7k</span>
+    <span title="Site words total count">211.8k</span>
   
 </div>
 
