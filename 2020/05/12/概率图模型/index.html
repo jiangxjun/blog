@@ -91,19 +91,19 @@
 <meta name="description" content="概率图模型原理简介">
 <meta property="og:type" content="article">
 <meta property="og:title" content="概率图模型">
-<meta property="og:url" content="https://jiangxjun.github.io/blog/2020/05/12/概率图模型/index.html">
+<meta property="og:url" content="https://jiangxj.top/blog/2020/05/12/概率图模型/index.html">
 <meta property="og:site_name" content="Ataraxia">
 <meta property="og:description" content="概率图模型原理简介">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://jiangxjun.github.io/blog/2020/05/12/概率图模型/1.jfif">
-<meta property="og:image" content="https://jiangxjun.github.io/2020/05/12/概率图模型/1.jfif">
-<meta property="og:image" content="https://jiangxjun.github.io/2020/05/12/概率图模型/2.jfif">
-<meta property="og:image" content="https://jiangxjun.github.io/2020/05/12/概率图模型/3.gif">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/05/12/概率图模型/1.jfif">
+<meta property="og:image" content="https://jiangxj.top/2020/05/12/概率图模型/1.jfif">
+<meta property="og:image" content="https://jiangxj.top/2020/05/12/概率图模型/2.jfif">
+<meta property="og:image" content="https://jiangxj.top/2020/05/12/概率图模型/3.gif">
 <meta property="og:updated_time" content="2020-06-18T01:52:03.377Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="概率图模型">
 <meta name="twitter:description" content="概率图模型原理简介">
-<meta name="twitter:image" content="https://jiangxjun.github.io/blog/2020/05/12/概率图模型/1.jfif">
+<meta name="twitter:image" content="https://jiangxj.top/blog/2020/05/12/概率图模型/1.jfif">
 
 
 
@@ -133,7 +133,7 @@
 
 
 
-  <link rel="canonical" href="https://jiangxjun.github.io/blog/2020/05/12/概率图模型/">
+  <link rel="canonical" href="https://jiangxj.top/blog/2020/05/12/概率图模型/">
 
 
 
@@ -299,7 +299,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://jiangxjun.github.io/blog/2020/05/12/概率图模型/">
+    <link itemprop="mainEntityOfPage" href="https://jiangxj.top/blog/2020/05/12/概率图模型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="jiangxj">
@@ -462,7 +462,7 @@
 <h3 id="PGM模型分类简介"><a href="#PGM模型分类简介" class="headerlink" title="PGM模型分类简介"></a>PGM模型分类简介</h3><h4 id="概率模型"><a href="#概率模型" class="headerlink" title="概率模型"></a>概率模型</h4><p>Probabilistic models常用来描述不同的随机变量之间的关系，主要针对变量或变量间的相互不确定性的概率关系建模。</p>
 <p>1、参数模型：由一堆有限维参数构成的分布集合$\mathcal{P} = \{\mathbb{P} _{\theta} : \theta \in \Theta\}$。$\theta$是参数，$\Theta \subseteq \mathbb{R}^d$是其可行欧几里得子空间。</p>
 <p>2、非参数模型：由一组无限维参数构成的概率分布函数集合，可表示为$\mathcal{P} = \{所有的分布\}$。</p>
-<p>PGM是概率模型的一种，通过利用有向图或者无向图来表示变量之间的概率关系，可以将复杂的概率模型转换为纯粹的代数运算。常见的PGM的分类有：<img src="//jiangxjun.github.io/blog/2020/05/12/概率图模型/1.jfif" alt="1"></p>
+<p>PGM是概率模型的一种，通过利用有向图或者无向图来表示变量之间的概率关系，可以将复杂的概率模型转换为纯粹的代数运算。常见的PGM的分类有：<img src="//jiangxj.top/blog/2020/05/12/概率图模型/1.jfif" alt="1"></p>
 <h4 id="PGM中的factor"><a href="#PGM中的factor" class="headerlink" title="PGM中的factor"></a>PGM中的factor</h4><p>factors影响因子，在PGM模型中，一个factor可以看成是graph中的一个节点，两个factor之间的联系用图的边来表示。</p>
 <p>一个PGM模型最终可以建模为所有factor的联合概率分布，然后根据factor之间的运算规则，可以将联合概率分布转化为可运算的概率分布的乘积。</p>
 <img src="/2020/05/12/概率图模型/1.jfif" title="PGM分类衍生">
