@@ -96,27 +96,27 @@
 <meta property="og:site_name" content="Ataraxia">
 <meta property="og:description" content="LSTM网络原理理解">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://jiangxj.top/blog//jiangxj.top/blog/2020/07/07/LSTM网络理解/RNN-rolled.png">
-<meta property="og:image" content="https://jiangxj.top/blog//jiangxj.top/blog/2020/07/07/LSTM网络理解/RNN-unrolled.png">
-<meta property="og:image" content="https://jiangxj.top/blog//jiangxj.top/blog/2020/07/07/LSTM网络理解/RNN-shorttermdepdencies.png">
-<meta property="og:image" content="https://jiangxj.top/blog//jiangxj.top/blog/2020/07/07/LSTM网络理解/RNN-longtermdependencies.png">
-<meta property="og:image" content="https://jiangxj.top/blog//jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM3-SimpleRNN.png">
-<meta property="og:image" content="https://jiangxj.top/blog//jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM3-chain.png">
-<meta property="og:image" content="https://jiangxj.top/blog//jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM2-notation.png">
-<meta property="og:image" content="https://jiangxj.top/blog//jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM3-C-line.png">
-<meta property="og:image" content="https://jiangxj.top/blog//jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM3-gate.png">
-<meta property="og:image" content="https://jiangxj.top/blog//jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM3-focus-f.png">
-<meta property="og:image" content="https://jiangxj.top/blog//jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM3-focus-i.png">
-<meta property="og:image" content="https://jiangxj.top/blog//jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM3-focus-C.png">
-<meta property="og:image" content="https://jiangxj.top/blog//jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM3-focus-o.png">
-<meta property="og:image" content="https://jiangxj.top/blog//jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM3-var-peepholes.png">
-<meta property="og:image" content="https://jiangxj.top/blog//jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM3-var-tied.png">
-<meta property="og:image" content="https://jiangxj.top/blog//jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM3-var-GRU.png">
-<meta property="og:updated_time" content="2021-06-10T08:22:18.422Z">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/07/07/LSTM网络理解/RNN-unrolled.png">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/07/07/LSTM网络理解/RNN-unrolled.png">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/07/07/LSTM网络理解/RNN-shorttermdepdencies.png">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/07/07/LSTM网络理解/RNN-longtermdependencies.png">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM3-SimpleRNN.png">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM3-chain.png">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM2-notation.png">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM3-C-line.png">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM3-gate.png">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM3-focus-f.png">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM3-focus-i.png">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM3-focus-C.png">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM3-focus-o.png">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM3-var-peepholes.png">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM3-var-tied.png">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM3-var-GRU.png">
+<meta property="og:updated_time" content="2021-06-28T14:11:21.332Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LSTM网络理解">
 <meta name="twitter:description" content="LSTM网络原理理解">
-<meta name="twitter:image" content="https://jiangxj.top/blog//jiangxj.top/blog/2020/07/07/LSTM网络理解/RNN-rolled.png">
+<meta name="twitter:image" content="https://jiangxj.top/blog/2020/07/07/LSTM网络理解/RNN-unrolled.png">
 
 
 
@@ -449,64 +449,77 @@
 
       
         <h2 id="Recurrent-Neural-Network"><a href="#Recurrent-Neural-Network" class="headerlink" title="Recurrent Neural Network"></a>Recurrent Neural Network</h2><p>传统的神经网络很难处理一件事——使用先前事件推断后续的事件。RNN解决了这个问题，是包含循环的网络，允许信息的持久化。</p>
-<p><img src="/blog//jiangxj.top/blog/2020/07/07/LSTM网络理解/RNN-rolled.png" alt="RNN-rolled" style="zoom: 33%;"></p>
+<img src="/blog/2020/07/07/LSTM网络理解/RNN-unrolled.png" title="RNN-unrolled">
 <p>$A$正在读取输入$x_t$，并输出$h_t$。循环可以使得信息可以从当前步传递到下一步。</p>
 <p>RNN can be thought of as multiple copies of the same network, each passing a message to a successor(接替者). Consider what happens if we unroll the loop:</p>
-<p><img src="/blog//jiangxj.top/blog/2020/07/07/LSTM网络理解/RNN-unrolled.png" alt="RNN-unrolled" style="zoom:33%;"></p>
+<img src="/blog/2020/07/07/LSTM网络理解/RNN-unrolled.png" title="RNN-unrolled">
 <p>This chain-like nature reveals that RNN are intimately related to sequences and lists(和序列和列表相关). </p>
 <p>There have been incredible success applying RNNs to a variety of problems: <strong>Speech recognition, Language modeling, Translation, Image captioning…</strong></p>
 <p>Essential to these successes is the use of “LSTMs”, a very special kind of RNN which works, for many tasks, much much better than standard version.</p>
 <h2 id="The-problem-of-Long-Term-Dependencies"><a href="#The-problem-of-Long-Term-Dependencies" class="headerlink" title="The problem of Long-Term Dependencies"></a>The problem of Long-Term Dependencies</h2><p>One of the appeals of RNNs is the idea that they might be able to connect previous information to the present task.</p>
 <p>In theory, RNNs are absolutely capable of handling  long-term dependencies. It’s entirely possible for the gap between the relevant information and the point where it is needed to become very large. While, as the gap grows, RNNs become unable to learn to connect the information.</p>
-<p>例如：有一个语言模型用来基于先前的的词来预测下一个词，如果试着预测”the clouds are in the sky”最后的一个词，并不需要任何其他的上下文，显然最后的一个词就是sky。在这样的场景中，相关的信息和预测的词位置之间的间隔非常小，RNN可以学会使用先前的信息。<img src="/blog//jiangxj.top/blog/2020/07/07/LSTM网络理解/RNN-shorttermdepdencies.png" alt="RNN-shorttermdepdencies" style="zoom:33%;"></p>
+<p>例如：有一个语言模型用来基于先前的的词来预测下一个词，如果试着预测”the clouds are in the sky”最后的一个词，并不需要任何其他的上下文，显然最后的一个词就是sky。在这样的场景中，相关的信息和预测的词位置之间的间隔非常小，RNN可以学会使用先前的信息。</p>
+<img src="/blog/2020/07/07/LSTM网络理解/RNN-shorttermdepdencies.png" title="RNN-shorttermdepdencies">
 <p>然而，对于一些更加复杂的场景，如预测”I grew up in France… I speak fluent French”最后的词，当前的信息建议下一个词可能是一种语言的名字，这需要先前提到的离当前位置很远的France的上下文。此时，相关信息和当前预测位置之间的间隔变得很大，在这个间隔不断变大时，RNN会丧失学习到连接如此远的信息的能力。虽然可以仔细挑选参数来解决这类toy problems。但在实践中，RNN肯定不能够成功学习到这些知识，Bengio,et al.(1994)等人对该问题进行了深入研究，发现一些使得RNN训练变得非常困难的根本原因。</p>
-<p><img src="/blog//jiangxj.top/blog/2020/07/07/LSTM网络理解/RNN-longtermdependencies.png" alt="RNN-longtermdependencies" style="zoom:33%;"></p>
+<img src="/blog/2020/07/07/LSTM网络理解/RNN-longtermdependencies.png" title="RNN-shorttermdepdencies">
 <p>LSTM don’t have this problem!</p>
 <h2 id="LSTM-Networks"><a href="#LSTM-Networks" class="headerlink" title="LSTM Networks"></a>LSTM Networks</h2><p>Long Short Term Memory networks(LSTMs)是一种RNN特殊的类型，可以学习长期依赖信息。LSTM由<a href="http://deeplearning.cs.cmu.edu/pdfs/Hochreiter97_lstm.pdf" target="_blank" rel="noopener">Hochreiter &amp; Schmidhuber(1997)</a>提出，并被<a href="https://scholar.google.com/citations?user=DaFHynwAAAAJ&amp;hl=en" target="_blank" rel="noopener">Alex Graves</a>进行了改良和推广。</p>
 <p>LSTMs are <strong>explicitly designed</strong> to avoid the long-term dependency problem. Remembering info for long periods of time is practically their <strong>default behavior</strong>, not something they struggle to learn.</p>
 <p>All RNNs have the form of a chain of repeating modules of neural networks(重复神经网络模块的链式结构). </p>
 <p><strong>标准的RNN</strong></p>
 <p>标准的RNN中，重复的模块只有一个简单的结构，如一个tanh层：</p>
-<p><img src="/blog//jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM3-SimpleRNN.png" alt="LSTM3-SimpleRNN" style="zoom:33%;"></p>
+<div style="width:70%;margin:auto"><img src="/blog/2020/07/07/LSTM网络理解/LSTM3-SimpleRNN.png" title="LSTM3-SimpleRNN"></div>
+
 <p><strong>LSTM</strong></p>
 <p>LSTM重复模块不同于单一神经网络层，这里是有四个，以一种非常特殊的方式进行交互：</p>
-<p><img src="/blog//jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM3-chain.png" alt="LSTM3-chain" style="zoom:33%;"></p>
+<div style="width:70%;margin:auto"><img src="/blog/2020/07/07/LSTM网络理解/LSTM3-chain.png" title="LSTM3-chain"></div>
+
 <p><strong>LSTM解析图元素</strong></p>
-<p><img src="/blog//jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM2-notation.png" alt="LSTM2-notation" style="zoom: 50%;"></p>
+<div style="width:70%;margin:auto"><img src="/blog/2020/07/07/LSTM网络理解/LSTM2-notation.png" title="LSTM2-notation"></div>
+
 <p>Neural Network Layer: 学习到的网络层</p>
 <p>Pointwise Operation: pointwise操作，如向量的和</p>
 <p>Vector Transfer: 传输一整个向量，从一个节点输出到其他节点的输入</p>
 <p>Concatenate: 向量的连接</p>
 <p>Copy: 内容被复制，然后分发到不同的位置</p>
 <h2 id="The-Core-Idea-Behinds-LSTMs"><a href="#The-Core-Idea-Behinds-LSTMs" class="headerlink" title="The Core Idea Behinds LSTMs"></a>The Core Idea Behinds LSTMs</h2><p>LSTM的关键是细胞状态，水平线在图上方贯穿运行。</p>
-<p><img src="/blog//jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM3-C-line.png" div align="center" alt="LSTM3-C-line" style="zoom: 50%;"></p>
+<div style="width:70%;margin:auto"><img src="/blog/2020/07/07/LSTM网络理解/LSTM3-C-line.png" title="LSTM3-C-line"></div>
+
 <p>细胞状态类似于传送带，直接在整个链上运行，只有一些少量的线性交互，信息在上面流传保持不变会变得很容易。</p>
 <p>LSTM通过精心设计的“<strong>门(gates)</strong>”结构来去除或者增加信息到细胞状态的能力。</p>
 <p>门是一种让信息选择式的通过的方法，包含一个sigmoid神经网络层和一个pointwise乘法操作。</p>
-<p><img src="/blog//jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM3-gate.png" alt="LSTM3-gate" style="zoom: 50%;"></p>
+<div style="width:70%;margin:auto"><img src="/blog/2020/07/07/LSTM网络理解/LSTM3-gate.png" title="LSTM3-gate"></div>
+
 <p>Sigmoid层输出0-1之间的数值，描述每个部分有多少量可以通过。0表示“不允许任何量通过”，1表示“允许任意量通过”。</p>
 <p>LSTM有三个门，来保护和控制细胞状态。</p>
 <h2 id="Step-by-Step-LSTM-Walk-Through"><a href="#Step-by-Step-LSTM-Walk-Through" class="headerlink" title="Step-by-Step LSTM Walk Through"></a>Step-by-Step LSTM Walk Through</h2><p>第一步<strong>决定从细胞状态中丢弃什么信息</strong>。通过<strong>忘记门层(forget gate layer)</strong>完成。该门读取$h_{t-1}$和$x_t$，输出一个0-1之间的数值给每个在细胞状态$C_{t-1}$中的数字。1表示完全保留，0表示完全舍弃。</p>
-<p><img src="/blog//jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM3-focus-f.png" alt="LSTM3-focus-f" style="zoom: 50%;"></p>
+<div style="width:70%;margin:auto"><img src="/blog/2020/07/07/LSTM网络理解/LSTM3-focus-f.png" title="LSTM3-focus-f"></div>
+
 <p>第二步<strong>决定什么样的新信息被存放到细胞状态中</strong>。包含两个部分，一是sigmoid层（输入门层）决定什么值将要更新，还有一个是tanh层将创建一个新的候选值向量$\tilde{C}_t$，会被加入到状态中。</p>
-<p><img src="/blog//jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM3-focus-i.png" alt="LSTM3-focus-i" style="zoom:50%;"></p>
+<div style="width:70%;margin:auto"><img src="/blog/2020/07/07/LSTM网络理解/LSTM3-focus-i.png" title="LSTM3-focus-i"></div>
+
 <p>第三步<strong>确定更新信息</strong>。$C_{t-1}$更新为$C_t$。把旧状态与$f_t$相乘，丢弃掉确定需要丢弃的信息。接着加上$i_t \times \tilde{C}_t$，即是新的候选值，根据我们决定更新每个状态的程度进行变化。</p>
-<p><img src="/blog//jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM3-focus-C.png" alt="LSTM3-focus-C" style="zoom:50%;"></p>
+<div style="width:70%;margin:auto"><img src="/blog/2020/07/07/LSTM网络理解/LSTM3-focus-C.png" title="LSTM3-focus-C"></div>
+
 <p>第四步<strong>更新细胞状态</strong>。最终，确定输出什么值，这个输出将会基于我们的细胞状态，但也是一个过滤后的版本。</p>
 <p>首先，运行一个sigmoid层来确定细胞状态的哪一部分将输出出去。接着，把细胞状态通过tanh进行处理，得到一个在-1到1之间的值，并将其与sigmoid门的输出相乘。最终，仅输出我们确定输出的那部分。</p>
-<p><img src="/blog//jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM3-focus-o.png" alt="LSTM3-focus-o" style="zoom:50%;"></p>
+<div style="width:70%;margin:auto"><img src="/blog/2020/07/07/LSTM网络理解/LSTM3-focus-o.png" title="LSTM3-focus-o"></div>
+
 <h2 id="Variants-on-LSTMs"><a href="#Variants-on-LSTMs" class="headerlink" title="Variants on LSTMs"></a>Variants on LSTMs</h2><p>以上介绍的是正常的LSTM结构，实际使用上，都会采用微小的变体。</p>
 <p>1、流形的LSTM变体。</p>
 <p>是由<a href="ftp://ftp.idsia.ch/pub/juergen/TimeCount-IJCNN2000.pdf" target="_blank" rel="noopener">Gers &amp; Schmidhuber(2000)</a>提出的，增加了”peephole connection”。让 门层 也会接受细胞状态的输入。</p>
-<p><img src="/blog//jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM3-var-peepholes.png" alt="LSTM3-var-peepholes" style="zoom:50%;"></p>
+<div style="width:70%;margin:auto"><img src="/blog/2020/07/07/LSTM网络理解/LSTM3-var-peepholes.png" title="LSTM3-var-peepholes"></div>
+
 <p>图例中是所有部分都加入了peephole到每个门上，也有加入部分的peephole。</p>
 <p>2、使用coupled忘记和输入门。</p>
 <p>不同于之前是分开确定什么忘记和需要添加什么新的信息，这里是一同做出决定。We only forget when we’re going to input something in its place. We only input new values to the state when we forget something older.</p>
-<p><img src="/blog//jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM3-var-tied.png" alt="LSTM3-var-tied" style="zoom:50%;"></p>
+<div style="width:50%;margin:auto"><img src="/blog/2020/07/07/LSTM网络理解/LSTM3-var-tied.png" title="LSTM3-var-tied"></div>
+
 <p>仅仅在输入的当前位置进行忘记，仅仅输入新的值到已经忘记的旧的信息状态里。</p>
 <p>3、Gated Recurrent Unit (GRU)</p>
 <p>是由<a href="http://arxiv.org/pdf/1406.1078v3.pdf" target="_blank" rel="noopener">Cho,et al.(2014)</a>提出的。将忘记门和输入门合成一个单一的 <strong>更新门</strong>。同样还混合了细胞状态和隐藏状态以及其他一些改动。最终的模型比标准的LSTM模型更加简单。</p>
-<p><img src="/blog//jiangxj.top/blog/2020/07/07/LSTM网络理解/LSTM3-var-GRU.png" alt="LSTM3-var-GRU" style="zoom:50%;"></p>
+<div style="width:50%;margin:auto"><img src="/blog/2020/07/07/LSTM网络理解/LSTM3-var-GRU.png" title="LSTM3-var-GRU"></div>
+
 <p>还有很多其他类型变体形式，如<a href="http://arxiv.org/pdf/1508.03790v2.pdf" target="_blank" rel="noopener">Yao,et al.(2015)</a>提出的Depth Gated RNN。<a href="http://arxiv.org/pdf/1402.3511v1.pdf" target="_blank" rel="noopener">Koutnik, et al.(2014)</a>提出的Clockwork RNN。<a href="http://arxiv.org/pdf/1503.04069.pdf" target="_blank" rel="noopener">Greff, et al.(2015)</a>给出了流行的LSTM变体的比较，结论是基本一样。<a href="http://jmlr.org/proceedings/papers/v37/jozefowicz15.pdf" target="_blank" rel="noopener">Jozefowicz,et al.(2015)</a>在超过10000种RNN架构上进行了测试，发现一些架构在某些任务上也取得了比LSTM更好的结果。</p>
 <p><a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="noopener">参考资料——colah’s blog</a></p>
 
@@ -654,7 +667,7 @@
               
                 <a href="/blog/archives/">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -665,7 +678,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/blog/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -676,7 +689,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/blog/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
