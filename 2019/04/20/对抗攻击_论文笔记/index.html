@@ -113,7 +113,7 @@
 <meta property="og:image" content="https://jiangxj.top/blog/2019/04/20/对抗攻击_论文笔记/15.jpg">
 <meta property="og:image" content="https://jiangxj.top/blog/2019/04/20/对抗攻击_论文笔记/16.jpg">
 <meta property="og:image" content="https://jiangxj.top/blog/2019/04/20/对抗攻击_论文笔记/17.jpg">
-<meta property="og:updated_time" content="2020-06-18T02:02:10.882Z">
+<meta property="og:updated_time" content="2021-06-29T02:59:53.621Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="对抗攻击论文笔记整理">
 <meta name="twitter:description" content="对抗攻击经典论文笔记整理">
@@ -516,7 +516,7 @@
 <p>作者定义了Hardness measure $H(source,target)$来度量原类别source被扰动成target类的难易程度；定义Adversarial distance $A(X,target)$表示样本X到类别 target之间的距离，A距离越大表示越难将X误分类成target类。</p>
 <p>问题三：</p>
 <p>作者利用Mechanical Turk在线众包系统，分析人类判断JSMA对抗样本的结果。试验发现，人类不能发现无法发现JSMA对抗样本中添加的扰动，也就是满足了对抗样本“被DNN误分类，但是能被人类正确分类”的第二个条件。</p>
-<p><a href="/download/The Limitations of Deep Learning_in Adversarial Settings.pdf">原文链接</a></p>
+<p><a href="/blog/download/The Limitations of Deep Learning_in Adversarial Settings.pdf">原文链接</a></p>
 <hr>
 <h1 id="Paper2-Explaining-and-harnessing-adversarial-examples"><a href="#Paper2-Explaining-and-harnessing-adversarial-examples" class="headerlink" title="Paper2_Explaining and harnessing adversarial examples"></a>Paper2_Explaining and harnessing adversarial examples</h1><p>这篇文章主要提出与之前论文不同的线性假设来解释对抗样本的存在性。同时，论文提出了一种简单的对抗样本生成方法-FGSM，并且再利用该攻击方法产生的对抗样本进行对抗训练。这篇文章主要说明的对抗样本的三个方面：1.存在性、2.攻击方法、3.防御方法。</p>
 <h2 id="摘要-1"><a href="#摘要-1" class="headerlink" title="摘要"></a>摘要</h2><p>一些机器学习模型，包括神经网络，总是对来自数据集的反例输入进行错误的分类，这些反例输入是通过对数据集中的示例应用小的但有意为之的最坏情况的扰动而形成的，这样，扰动的输入导致模型以很高的可信度输出错误的答案。早期对这一现象的解释主要集中在非线性和过拟合上。相反，我们认为神经网络易受对抗性扰动的主要原因是它们的<strong>线性特性</strong>。</p>
@@ -564,7 +564,7 @@
 <p>文章表明，某些生成训练并不能达到假设的效果，但是不否认可能有其他形式的生成模型可以抵御攻击，但是确定的是生成训练的本身并不足够。</p>
 <p>假设2：对抗样本存在于单个奇怪的模型(models with strange quirks)，因此多个模型的平均可以使得模型防御性更好。</p>
 <p>文章通过实验说明，模型融合对于对抗样本的防御能力非常有限。</p>
-<p><a href="/download/Explaining and Harnessing Adversarial Examples.pdf">原文链接</a></p>
+<p><a href="/blog/download/Explaining and Harnessing Adversarial Examples.pdf">原文链接</a></p>
 <hr>
 <h1 id="Paper3-Practical-Black-Box-Attacks-Against-Machine-Learning"><a href="#Paper3-Practical-Black-Box-Attacks-Against-Machine-Learning" class="headerlink" title="Paper3_Practical Black-Box Attacks Against Machine Learning"></a>Paper3_Practical Black-Box Attacks Against Machine Learning</h1><p>本文提供了一个生成对抗样本的黑箱攻击方式，以前的对抗样本的生成是基于白盒的，即攻击必须要知道受攻击的模型的详细信息（包括模型结构参数，训练样本集等），但在实际应用中，这种理想的条件是几乎不存在的，攻击者几乎不可能的到模型的详细信息。本文不需要知道这些信息，只需要可以接触到受攻击模型的判别label即可完成对抗攻击。论文的作者提出了一种基于黑盒攻击的方式，训练一个跟想要攻击的目标模型完成同样任务的替代模型，基于当前的模型去生成对抗样本，这些对抗样本最终被用于攻击原目标模型。</p>
 <h2 id="摘要-2"><a href="#摘要-2" class="headerlink" title="摘要"></a>摘要</h2><p>机器学习模型，如DNNs，很容易受到反面例子的攻击：恶意的输入被修改以产生错误的输出，而在人类观察者看来没有被修改。潜在的攻击包括恶意软件等恶意内容识别为合法或控制车辆的问题。</p>
@@ -620,7 +620,7 @@
 <p>经过6轮训练，两个模型分别在MNIST数据集和Handcraft数据集上使得原始模型错误分类的成功率达到了81.2%和67%。</p>
 <p>在不同的$\epsilon$参数【FSGM方法，扰动量为：$ \eta = \epsilon· \rm sgn(\nabla_xJ(\theta,x,y))$】下，基于两个替代模型生成的对抗样本让原始模型错误分类的成功率和对抗样本的可移植性如下图所示：</p>
 <img src="/blog/2019/04/20/对抗攻击_论文笔记/11.jpg">
-<p><a href="/download/Practical Black-Box Attacks against Machine Learning.pdf">原文链接</a></p>
+<p><a href="/blog/download/Practical Black-Box Attacks against Machine Learning.pdf">原文链接</a></p>
 <hr>
 <h1 id="Paper4-A-Two-Pronged-Defense-against-Adversarial-Examples"><a href="#Paper4-A-Two-Pronged-Defense-against-Adversarial-Examples" class="headerlink" title="Paper4_A Two-Pronged Defense against Adversarial Examples"></a>Paper4_A Two-Pronged Defense against Adversarial Examples</h1><p>人工智能逐渐成为攻击者的目标。其中非常重要的一类攻击称为“<strong>对抗型攻击”</strong>，即攻击者通过精心地轻微扰动正常样本产生<strong>对抗样本</strong>，该攻击样本并不影响人眼识别，但是却可以导致学习系统的误分类，从而达到攻击深度学习系统的目的。在本文中，作者总结了当前针对神经网络分类的攻击与防御方法，发现当前防御方法都依赖对抗样本或者对抗样本的生成过程，泛化能力非常差。针对这一问题，文章提出了一种与攻击无关的（attack-independent）的防御框架，不依赖于对抗样本及其生成过程，而仅仅利用数据本身的特征。</p>
 <h2 id="深度学习中的“对抗样本”"><a href="#深度学习中的“对抗样本”" class="headerlink" title="深度学习中的“对抗样本”"></a>深度学习中的“对抗样本”</h2><p>深度学习是当前最热的一个研究方向，在很多领域都表现出非常好的效果，比如图像识别、自然语言处理，自动驾驶，人机交互等。但是，当前很多研究研究表明，通过向深度学习系统中输入精心构造的数据，很容易达到攻击的目的。具体来说，攻击者通过精心地轻微扰动正常样本产生<strong>对抗样本</strong>，该攻击样本并不影响人眼识别，但是却可以导致学习系统的误分类，从而达到攻击深度学习系统的目的。</p>
@@ -791,14 +791,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/blog/2019/04/20/ResNet and DenseNet网络模型/" rel="next" title="ResNet and DenseNet网络模型">
+                <i class="fa fa-chevron-left"></i> ResNet and DenseNet网络模型
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/2019/04/20/web前端学习/" rel="prev" title="web前端简介">
-                web前端简介 <i class="fa fa-chevron-right"></i>
+              <a href="/blog/2019/04/25/hexo博客搭建过程/" rel="prev" title="hexo博客搭建过程">
+                hexo博客搭建过程 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1050,7 +1054,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">211.8k</span>
+    <span title="Site words total count">211.9k</span>
   
 </div>
 
