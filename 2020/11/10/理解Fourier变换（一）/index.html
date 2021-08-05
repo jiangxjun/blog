@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/blog/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/blog/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon32.jpg?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="信号处理,">
+
+
+
+
+
+  <link rel="alternate" href="/blog/atom.xml" title="Ataraxia" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="傅里叶变换理解">
+<meta name="keywords" content="信号处理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="理解Fourier变换（一）">
+<meta property="og:url" content="https://jiangxj.top/blog/2020/11/10/理解Fourier变换（一）/index.html">
+<meta property="og:site_name" content="Ataraxia">
+<meta property="og:description" content="傅里叶变换理解">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/11/10/理解Fourier变换（一）/ei.svg">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/11/10/理解Fourier变换（一）/A2T.gif">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/11/10/理解Fourier变换（一）/A2Tall.gif">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/11/10/理解Fourier变换（一）/e.gif">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/11/10/理解Fourier变换（一）/soundAdd.gif">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/11/10/理解Fourier变换（一）/soundD.gif">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/11/10/理解Fourier变换（一）/keyIdea.gif">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/11/10/理解Fourier变换（一）/change.gif">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/11/10/理解Fourier变换（一）/质心.gif">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/11/10/理解Fourier变换（一）/mass0.gif">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/11/10/理解Fourier变换（一）/2mix.gif">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/11/10/理解Fourier变换（一）/fe.gif">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/11/10/理解Fourier变换（一）/circle.gif">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/11/10/理解Fourier变换（一）/sample2.gif">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/11/10/理解Fourier变换（一）/newpic.gif">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/11/10/理解Fourier变换（一）/limit.gif">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/11/10/理解Fourier变换（一）/Phase.gif">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/11/10/理解Fourier变换（一）/relation.gif">
+<meta property="og:image" content="https://jiangxj.top/blog/2020/11/10/理解Fourier变换（一）/seeF.gif">
+<meta property="og:updated_time" content="2021-08-05T08:08:35.852Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="理解Fourier变换（一）">
+<meta name="twitter:description" content="傅里叶变换理解">
+<meta name="twitter:image" content="https://jiangxj.top/blog/2020/11/10/理解Fourier变换（一）/ei.svg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jiangxj.top/blog/2020/11/10/理解Fourier变换（一）/">
+
+
+
+
+
+  <title>理解Fourier变换（一） | Ataraxia</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ataraxia</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Hi, I'm Jiang.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/blog/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.js"></script> </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jiangxj.top/blog/blog/2020/11/10/理解Fourier变换（一）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jiangxj">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/blog/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ataraxia">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">理解Fourier变换（一）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-11-10T11:58:49+08:00">
+                2020-11-10
+              </time>
+            
+			
+			
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/blog/categories/笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  2.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+              <div class="post-description">
+                  傅里叶变换理解
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="欧拉公式与旋转"><a href="#欧拉公式与旋转" class="headerlink" title="欧拉公式与旋转"></a>欧拉公式与旋转</h2><p>欧拉公式：<br>$$<br>e^{\pi i} +1 =0 \tag 1<br>$$</p>
+<blockquote>
+<p>$e^{\pi i}$表示在单位圆上逆时针旋转180°的变换。</p>
+</blockquote>
+<blockquote>
+<p>公式里面涉及到<strong>指数函数（Exponentiation）</strong>。指数函数是加法和乘法运算的桥梁，在自变量包含复数时表示旋转。</p>
+</blockquote>
+<p>结合泰勒公式，欧拉公式会有一个十分优雅的变形：<br>$$<br>e^{x}=1+x+\frac{1}{2!}x^2 +\frac{1}{3!}x^3 +\dots \tag 2 \\<br>sin(x) = x-\frac{1}{3!} x^3 +\frac{1}{5!} x^5 +\dots \ <br>cos(x) = x-\frac{1}{2!} x^2 +\frac{1}{4!} x^4 +\dots<br>$$<br>令$x=i\theta$，$\theta$为自变量，则(2)式变为：<br>$$<br>\begin{align}<br>e^{i\theta}<br>&amp;= 1+i\theta +\frac{1}{2!}(i\theta)^2 +\dots \ <br>&amp;=(1-\frac{\theta^2}{2!}+\frac{\theta^4}{4!}+\dots) + i(\theta-\frac{\theta^3}{3!}+\frac{\theta^5}{5!}+\dots) \\<br>&amp;= cos(\theta)+isin(\theta)\tag{3}<br>\end{align}<br>$$</p>
+<div style="width:70%;margin:auto"><img src="/blog/2020/11/10/理解Fourier变换（一）/ei.svg" title="欧拉公式可视化"></div>
+
+<blockquote>
+<p>纵坐标自带虚数单位$i$（复平面），$sin(\theta)$为纵坐标（自带虚数单位），$cos(\theta)$为横坐标。</p>
+<p>$e^{i\theta}$表示一个圆心在原点，半径为1的单位圆，图中$\alpha$即为（3）式中的$\theta$。</p>
+</blockquote>
+<p>$e^{i\theta}$等价于一种<strong>旋转</strong>，$\theta$为旋转角的度数（弧度制），$\theta = 2\pi$即是单位圆。</p>
+<p>数字本身有两种表达方式（操作），加法和乘法。加法对应数轴的平移变换（一个操作），乘法对应数轴的伸缩变换（一个变换）。</p>
+<p>还有一个旋转操作，旋转是沿着一个圆弧运动的过程，一个单位$i$表示旋转$90°$。如果$y$轴自带虚数单位，如$i,2i,3i,\dots,$就有了旋转操作，$y轴$的平移就可以表示旋转。</p>
+<h2 id="指数函数（Exponentiation）"><a href="#指数函数（Exponentiation）" class="headerlink" title="指数函数（Exponentiation）"></a>指数函数（Exponentiation）</h2><p>指数函数的一个重要特性：加法变乘法，即$a^{x+y} = a^x \times a^y$。</p>
+<p>可以通过指数函数，做到使用平移变换来描述伸缩变换。</p>
+<div style="width:70%;margin:auto"><img src="/blog/2020/11/10/理解Fourier变换（一）/A2T.gif" title="指数函数平移变换实现伸缩变换"></div>
+
+<p>图中上面数轴，表示的是平移变换-1（右移一个单位）和+2（左移两个单位），图中下面数轴将上面这两个数作为输入，代入指数函数$f(x) = 2^x$，函数输出值就是两次伸缩变换（乘法），一次是收缩为原来的$\frac{1}{2}$，另一次是拉伸到原来的$2^2=4$倍。</p>
+<h2 id="复平面（Complex-Plane）"><a href="#复平面（Complex-Plane）" class="headerlink" title="复平面（Complex Plane）"></a>复平面（Complex Plane）</h2><p>构造复平面，把虚数单位$i$加到纵轴上，同时拥有了伸缩和旋转。</p>
+<div style="width:70%;margin:auto"><img src="/blog/2020/11/10/理解Fourier变换（一）/A2Tall.gif" title="复平面"></div>
+
+<p>横坐标红线表示，横向平移映射到伸缩操作的可视化</p>
+<p>纵坐标虚数单位，纵向平移映射到旋转操作的可视化，正为逆时针旋转。</p>
+<p>把底数换成$e$，更加方便表示圆的概念。</p>
+<div style="width:70%;margin:auto"><img src="/blog/2020/11/10/理解Fourier变换（一）/e.gif" title="复平面表示圆的概念"></div>
+
+<p>每走一个单位的纵向位移，在圆周上旋转的圆弧长度为1，$e^{\pi i}$正好代表逆时针旋转180°，并且落在位置为（-1，0），这也就是欧拉公式的几何直观可视化。</p>
+<blockquote>
+<p>$e^x$在复平面，或者说$x=ai$（$a$为某个常数，即弧度制的圆周长度）表示：旋转</p>
+</blockquote>
+<h2 id="傅里叶变换"><a href="#傅里叶变换" class="headerlink" title="傅里叶变换"></a>傅里叶变换</h2><blockquote>
+<p>傅里叶变换（不加限定，表示连续傅里叶变换）</p>
+<p>傅里叶级数</p>
+</blockquote>
+<p>傅里叶变换还包括：离散时间傅里叶变换、离散傅里叶变换、傅里叶逆变换、快速傅里叶变换等。还有进一步演化的拉普拉斯变换、小波变换、$z$变换等。</p>
+<h3 id="公式表示"><a href="#公式表示" class="headerlink" title="公式表示"></a>公式表示</h3><p>$$<br>\hat{f}(\xi) = \int_{-\infty}^{+\infty} f(x) e^{-2\pi i x \xi}dx \quad \xi 为任意实数  \tag{4}<br>$$</p>
+<p>一般，$\hat{f}(\xi)$写成$F(w)$或$F(f)$表示角速度或者频率，后面量纲对应修改；自变量$x$一般写成$t$表示时间。</p>
+<h3 id="声音表示"><a href="#声音表示" class="headerlink" title="声音表示"></a>声音表示</h3><p>一个标准音A（下图黄色表示），频率为440 Hz，下图紫红色表示信号频率为294 Hz，两个信号所有时间点振幅叠加得到两个音同时发出的信号时域图。</p>
+<div style="width:70%;margin:auto"><img src="/blog/2020/11/10/理解Fourier变换（一）/soundAdd.gif" title="不同频率信号振幅叠加"></div>
+
+<p>给一段任意时间的气压曲线，找到其中原有的组成音符。</p>
+<div style="width:70%;margin:auto"><img src="/blog/2020/11/10/理解Fourier变换（一）/soundD.gif" title="一段任意气压曲线组成音符"></div>
+
+
+
+<h3 id="可视化方法"><a href="#可视化方法" class="headerlink" title="可视化方法"></a>可视化方法</h3><div style="width:70%;margin:auto"><img src="/blog/2020/11/10/理解Fourier变换（一）/keyIdea.gif" title="绕圈记录法"></div>
+
+<p>假设有一个每秒3拍子的声音信号，Intensity为强度，只取前面4.5秒（图像中画出来部分）。将黄色曲线缠绕到一个圆上，大小是原本信号的强度（可以理解为振幅）。</p>
+<p>圆周围的图像由白色箭头绘制而成，速度可变，0.50 cycles/second表示白色箭头每秒钟转过半圆。</p>
+<p>此时有两个频率在起作用，一个是<strong>信号频率</strong>：3拍/秒，固定值。另一个是白色箭头绘制缠绕中心圆图像的频率，图中是0.5圈/秒，是一个变量，不同缠绕频率变化时，中心圆周边绘制的曲线可视化表现为：</p>
+<div style="width:70%;margin:auto"><img src="/blog/2020/11/10/理解Fourier变换（一）/change.gif" title="不同缠绕速度变化时可视化"></div>
+
+<p>注意到：当绕单位圆的白色箭头滑动速度为3拍/秒（和原始声音信号3拍/秒相同时），会出现一个稳定图像，该图像记录了原始信号幅值变化并且每一圈都相同（周期性）。</p>
+<h3 id="质心记录法"><a href="#质心记录法" class="headerlink" title="质心记录法"></a>质心记录法</h3><p>上面绕单位圆以不同速度绘制周边曲线的可视化图中，自变量输入是可变化的转圈速度，可以看成$f(x)$中的$x$。</p>
+<p>输出的圆圈图像基本关于原点对称，当稳定时，是“头重脚轻”的，描述“头重脚轻”的最好方法是用【质心】（质心描述了物体的空间分布特征）。取质心的横坐标来表示质心的特征。</p>
+<div style="width:70%;margin:auto"><img src="/blog/2020/11/10/理解Fourier变换（一）/质心.gif" title="每个缠绕频率（速度）对应的质心位置"></div>
+
+<p>注意到一点：在横坐标等于0处有一个很大的值，原因是原来的图像没有关于横轴对称，有一个偏移量。</p>
+<div style="width:70%;margin:auto"><img src="/blog/2020/11/10/理解Fourier变换（一）/mass0.gif" title="零点处偏移"></div>
+
+<p>得到的新图像的横坐标是【频率（Frequency）】，即缠绕圆圈的记录速度。频率可以抽象理解为围着圆圈跑的速度。</p>
+<p>该工具应用到两个声音的组合图像中：</p>
+<div style="width:70%;margin:auto"><img src="/blog/2020/11/10/理解Fourier变换（一）/2mix.gif" title="2Hz+3Hz组合"></div>
+
+
+
+<h3 id="公式推导"><a href="#公式推导" class="headerlink" title="公式推导"></a>公式推导</h3><p><strong>第一步：旋转表示</strong></p>
+<p>旋转的桥梁是复平面，背后原理是指数函数结合泰勒公式：</p>
+<div style="width:70%;margin:auto"><img src="/blog/2020/11/10/理解Fourier变换（一）/fe.gif" title="旋转表示"></div>
+
+<p>$\pi$单位的$e^{6.28i}$表示一个单位圆旋转一圈，$e^{2\pi i t}$表示一秒钟一圈的旋转方程，引入$f$频率，控制旋转的速度，$f=\frac{1}{10}$，合起来表示一秒钟十分之一圈。</p>
+<p><strong>第二步：缠绕的表示</strong></p>
+<p>依据下面动图，我们规定旋转是顺时针的（为了统一标准，也考虑到简洁和便于计算），所以先加一个符号。假设原来函数是$g(t)$，两者相乘就能得到缠绕图像，$g(t)e^{-2\pi i f t}$。</p>
+<div style="width:70%;margin:auto"><img src="/blog/2020/11/10/理解Fourier变换（一）/circle.gif" title="缠绕表示"></div>
+
+
+
+<p><strong>第三步：质心表示</strong></p>
+<p>以正方形的质心为例，在四周边框取$N$个等距离分布的点，计算这几个点的位置的平均值，推广到一般情况下：</p>
+<div style="width:70%;margin:auto"><img src="/blog/2020/11/10/理解Fourier变换（一）/sample2.gif" title="质心积分表示"></div>
+
+<p>图中，紫红色的点为采样点，得到：$\frac{1}{N}\sum\limits_{k=1}^{N}g(t_k)e^{-2\pi i f t_k}$</p>
+<p>随着采样点的增加，使用积分表示，可以得到：<br>$$<br>\frac{1}{t_2-t_1} \int_{t_1}^{t_2} g(t)e^{-2\pi i ft_k}dt \tag{5}<br>$$<br>常数项$\frac{1}{t_2-t_1}$值越大，表示质心位置偏移越大，去掉该常数项系数，几何直观动图（红色箭头为去掉系数后的常数表示）绘制的图像更集中在对应频率的附近，也就是说在对应的频率位置的值更大。</p>
+<div style="width:70%;margin:auto"><img src="/blog/2020/11/10/理解Fourier变换（一）/newpic.gif" title="去掉系数后公式可视化图"></div>
+
+<p>一般傅里叶变换公式的上下限是正负无穷，其几何直观表示：</p>
+<div style="width:70%;margin:auto"><img src="/blog/2020/11/10/理解Fourier变换（一）/limit.gif" title="积分上下限为正负无穷"></div>
+
+<p>其实，信号从开始到结束做傅里叶变换，对应于傅里叶变换积分上下限从负无穷到正无穷。</p>
+<h3 id="相位"><a href="#相位" class="headerlink" title="相位"></a>相位</h3><div style="width:70%;margin:auto"><img src="/blog/2020/11/10/理解Fourier变换（一）/Phase.gif" title="相位表示"></div>
+
+<p>其中红色部分为质心，长度为振幅大小，对应的角度$\theta$表示相位</p>
+<h3 id="原信号长度"><a href="#原信号长度" class="headerlink" title="原信号长度"></a>原信号长度</h3><p>假设信号时长很长，那么缠绕圆上的线更多，每次接近稳定图像质心的变化速度更快（即频率图像更加密集）</p>
+<div style="width:70%;margin:auto"><img src="/blog/2020/11/10/理解Fourier变换（一）/relation.gif" title="信号时长长短对频率图像影响"></div>
+
+<p>同理，当信号时长较短时候，频率图像会更加稀疏，缠绕圆上的线更少，质心变化的速度相应变慢。</p>
+<div style="width:70%;margin:auto"></div>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><div style="width:70%;margin:auto"><img src="/blog/2020/11/10/理解Fourier变换（一）/seeF.gif" title="质心积分表示"></div>
+
+<ul>
+<li>$e^{2\pi i}$表示单位圆，添加自变量即表示旋转，乘以原函数$g(t)$即缠绕到单元圆上。</li>
+<li>利用积分计算来求取质心的特征</li>
+<li>一个逆时针旋转360°画成的圆→$e^{2\pi i}$</li>
+<li>表示运动，需要原函数的自变量，时间$t\rightarrow e^{2\pi it}$</li>
+<li>表示旋转速度，需要自变量，频率$f\rightarrow e^{2\pi ift}$</li>
+<li>规定变换的采样方向为顺时针，加负号$\rightarrow e^{-2\pi ift}$</li>
+<li>乘以原函数缠绕到单位圆并记录$\rightarrow g(t)e^{-2\pi ift}$（$g$标识原函数，与$f$区分）</li>
+<li>计算质心特征，积分$\rightarrow \int_{-\infty}^{+\infty}g(t)e^{-2\pi ift}dt$</li>
+<li>自变量为频率$f$，得到函数表达式$\rightarrow \hat{g}(f) = \int_{-\infty}^{+\infty}g(t)e^{-2\pi ift}dt$</li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://charlesliuyx.github.io/2018/02/18/%E3%80%90%E7%9B%B4%E8%A7%82%E8%AF%A6%E8%A7%A3%E3%80%91%E8%AE%A9%E4%BD%A0%E6%B0%B8%E8%BF%9C%E5%BF%98%E4%B8%8D%E4%BA%86%E7%9A%84%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E8%A7%A3%E6%9E%90/" target="_blank" rel="noopener">直观详解傅里叶变换</a></p>
+<p><a href="https://www.bilibili.com/video/av19141078?from=search&amp;seid=9405358806566342039" target="_blank" rel="noopener">3Blue1Brown形象展示傅里叶变换-bilibili.com</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/信号处理/" rel="tag"><i class="fa fa-tag"></i> 信号处理</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2020/07/15/计算机科学/" rel="next" title="计算机科学和人工智能专业课程整理">
+                <i class="fa fa-chevron-left"></i> 计算机科学和人工智能专业课程整理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2021/03/24/（一）人工智能与专家系统概述/" rel="prev" title="（一）人工智能与专家系统概述">
+                （一）人工智能与专家系统概述 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+    <!--MOB SHARE BEGIN-->
+                                <div class="-mob-share-ui-button -mob-share-open">分享</div>
+                                <div class="-mob-share-ui -mob-share-ui-theme -mob-share-ui-theme-slide-left" style="display: none">
+                                    <ul class="-mob-share-list">
+                                        <li class="-mob-share-weibo"><p>新浪微博</p></li>
+                                       
+                                        <li class="-mob-share-qzone"><p>QQ空间</p></li>
+                                        <li class="-mob-share-qq"><p>QQ好友</p></li>
+                                        <li class="-mob-share-weixin"><p>微信</p></li>
+                                        <li class="-mob-share-douban"><p>豆瓣</p></li>
+                                   
+                                        <li class="-mob-share-facebook"><p>Facebook</p></li>
+                                        <li class="-mob-share-twitter"><p>Twitter</p></li>
+                                       
+                                    </ul>
+                                    <div class="-mob-share-close">取消</div>
+                                </div>
+                                <div class="-mob-share-ui-bg"></div>
+                                <script id="-mob-share" src="http://f1.webshare.mob.com/code/mob-share.js?appkey=2aeca9171540c"></script>
+                                <!--MOB SHARE END-->
+
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/blog/images/avatar.png" alt="jiangxj">
+            
+              <p class="site-author-name" itemprop="name">jiangxj</p>
+              <p class="site-description motion-element" itemprop="description">岁月对坐，落子无悔</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/blog/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/blog/tags/index.html">
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/blog/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jiangxjun" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:jiangxj0530@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.linkedin.com/in/xuejun-j-8b04a0180/" target="_blank" title="LinkedIn">
+                      
+                        <i class="fa fa-fw fa-linkedin"></i>LinkedIn</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/wan-si-qing-qian/activities" target="_blank" title="Zhihu">
+                      
+                        <i class="fa fa-fw fa-heart-o"></i>Zhihu</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                link
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.biglong.top/" title="yanglong" target="_blank">yanglong</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://redstonewill.com/" title="RedStone" target="_blank">RedStone</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+		  
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="360" height="86" src="//music.163.com/outchain/player?type=2&id=419877515&auto=0&height=66"></iframe>
+		  
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#欧拉公式与旋转"><span class="nav-number">1.</span> <span class="nav-text">欧拉公式与旋转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指数函数（Exponentiation）"><span class="nav-number">2.</span> <span class="nav-text">指数函数（Exponentiation）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复平面（Complex-Plane）"><span class="nav-number">3.</span> <span class="nav-text">复平面（Complex Plane）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#傅里叶变换"><span class="nav-number">4.</span> <span class="nav-text">傅里叶变换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#公式表示"><span class="nav-number">4.1.</span> <span class="nav-text">公式表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#声音表示"><span class="nav-number">4.2.</span> <span class="nav-text">声音表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可视化方法"><span class="nav-number">4.3.</span> <span class="nav-text">可视化方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#质心记录法"><span class="nav-number">4.4.</span> <span class="nav-text">质心记录法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#公式推导"><span class="nav-number">4.5.</span> <span class="nav-text">公式推导</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相位"><span class="nav-number">4.6.</span> <span class="nav-text">相位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原信号长度"><span class="nav-number">4.7.</span> <span class="nav-text">原信号长度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">4.8.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jiangxj</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">216.3k</span>
+  
+</div>
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/meting@1.1.0/dist/Meting.min.js"></script>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/blog/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
