@@ -95,7 +95,7 @@
 <meta property="og:site_name" content="Ataraxia">
 <meta property="og:description" content="基于Vuepress搭建个人文档">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2021-12-14T08:12:53.377Z">
+<meta property="og:updated_time" content="2022-03-02T14:47:07.724Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="VuePress使用教程">
 <meta name="twitter:description" content="基于Vuepress搭建个人文档">
@@ -389,7 +389,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  818
+                  1.2k
                 </span>
               
 
@@ -405,7 +405,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  3
+                  5
                 </span>
               
             </div>
@@ -462,23 +462,29 @@
 <p>Vuepress具体的介绍参见：<a href="https://vuepress.vuejs.org/zh/guide/#%E5%AE%83%E6%98%AF%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%E7%9A%84" target="_blank" rel="noopener">https://vuepress.vuejs.org/zh/guide/#%E5%AE%83%E6%98%AF%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C%E7%9A%84</a></p>
 <h1 id="快速搭建"><a href="#快速搭建" class="headerlink" title="快速搭建"></a>快速搭建</h1><p><strong>安装node.js，版本≥8</strong></p>
 <p><strong>安装vuepress</strong></p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> -g vuepress</span><br><span class="line"></span><br><span class="line"><span class="comment">#注意，npm的源在国外，可能会出现网络连接不上问题，可更改npm源或翻墙</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta"># npm install -g vuepress #全局安装，不建议用该方法</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#注意，npm的源在国外，可能会出现网络连接不上问题，可更改npm源或翻墙</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#推荐使用yarn安装</span></span><br><span class="line"></span><br><span class="line">npm install yarn</span><br><span class="line">yarn <span class="keyword">add</span> -D vuepress<span class="subst">@1</span><span class="number">.8</span><span class="number">.2</span> <span class="meta">#将vuepress作为一个本地依赖安装，指定安装版本</span></span><br></pre></td></tr></table></figure>
 <p><strong>初始化项目</strong></p>
 <p>在创建的vuepress文件夹内：</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> init 或 <span class="built_in">npm</span> init -y</span><br></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">yarn init</span></span><br></pre></td></tr></table></figure>
 <p>创建的工程文件内容</p>
-<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">vuepress       <span class="meta">#根目录</span></span><br><span class="line">├─── src       <span class="meta">#源文件   </span></span><br><span class="line">│   ├── README.md <span class="meta">#首页内容</span></span><br><span class="line">|   ├── wpme <span class="meta">#存放markdown文件</span></span><br><span class="line">│   └── .vuepress  <span class="meta">#存放全局的配置、组件、静态资源等</span></span><br><span class="line">│       └── config.js  <span class="meta">#配置文件入口文件，网站标题、描述、主题等信息</span></span><br><span class="line">├─── docs   <span class="meta">#静态资源目录</span></span><br><span class="line">├─── node_modules </span><br><span class="line">└── <span class="keyword">package</span>.json</span><br></pre></td></tr></table></figure>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">vuepress       <span class="meta">#根目录</span></span><br><span class="line">├─── src       <span class="meta">#源文件   </span></span><br><span class="line">│   ├── README.md <span class="meta">#首页内容</span></span><br><span class="line">|   ├── wpme <span class="meta">#存放markdown文件</span></span><br><span class="line">│   └── .vuepress  <span class="meta">#存放全局的配置、组件、静态资源等</span></span><br><span class="line">│       └── config.js  <span class="meta">#配置文件入口文件，网站标题、描述、主题等信息</span></span><br><span class="line">├─── docs   <span class="meta">#静态资源目录</span></span><br><span class="line">├─── node_modules </span><br><span class="line">└── <span class="keyword">package</span>.json <span class="meta">#存放配置文件</span></span><br></pre></td></tr></table></figure>
 <p>具体目录结构参考：<a href="https://vuepress.vuejs.org/zh/guide/directory-structure.html#%E9%BB%98%E8%AE%A4%E7%9A%84%E9%A1%B5%E9%9D%A2%E8%B7%AF%E7%94%B1" target="_blank" rel="noopener">https://vuepress.vuejs.org/zh/guide/directory-structure.html#%E9%BB%98%E8%AE%A4%E7%9A%84%E9%A1%B5%E9%9D%A2%E8%B7%AF%E7%94%B1</a></p>
+<p><strong>latex渲染</strong></p>
+<p>vuepress自身并不带LATEX数学公式渲染，</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn <span class="keyword">add</span> -D markdown-it-mathjax3<span class="subst">@3</span><span class="number">.1</span><span class="number">.1</span>   <span class="meta">#指定安装版本</span></span><br></pre></td></tr></table></figure>
+<p>然后在<code>config.js</code>中添加如下配置：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.export =&#123;</span><br><span class="line"></span><br><span class="line">    markdown: &#123;</span><br><span class="line">        lineNumbers: <span class="literal">true</span>,  <span class="comment">//代码行号</span></span><br><span class="line">        extendMarkdown: <span class="function"><span class="params">md</span> =&gt;</span> &#123;</span><br><span class="line">          md.set(&#123;<span class="attr">html</span>: <span class="literal">true</span>&#125;);</span><br><span class="line">          md.use(<span class="built_in">require</span>(<span class="string">"markdown-it-footnote"</span>));<span class="comment">//markdown脚注</span></span><br><span class="line">          md.use(<span class="built_in">require</span>(<span class="string">"markdown-it-mathjax3"</span>));</span><br><span class="line">        &#125;,</span><br><span class="line">        </span><br><span class="line">      &#125;,</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>在package.json添加如下启动命令</strong></p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"src:dev"</span>: <span class="string">"vuepress dev src"</span>,</span><br><span class="line">    <span class="attr">"src:build"</span>: <span class="string">"vuepress build src"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"vuepress"</span>: <span class="string">"^1.0.0"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"src:dev"</span>: <span class="string">"vuepress dev src"</span>,   </span><br><span class="line">    <span class="attr">"src:build"</span>: <span class="string">"vuepress build src"</span>   #添加的启动脚本</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"markdown-it-footnote"</span>: <span class="string">"^3.0.3"</span>,</span><br><span class="line">    <span class="attr">"markdown-it-mathjax3"</span>: <span class="string">"3.1.1"</span>,</span><br><span class="line">    <span class="attr">"vuepress"</span>: <span class="string">"1.8.2"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"vuepress_src"</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"1.8.2"</span>,</span><br><span class="line">  <span class="attr">"main"</span>: <span class="string">"index.js"</span>,</span><br><span class="line">  <span class="attr">"license"</span>: <span class="string">"MIT"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>README.md文件内容（该部分是网站首页）</strong></p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">home: true</span><br><span class="line">heroImage: </span><br><span class="line">actionText: 开始学习 →</span><br><span class="line">actionLink: /wpme/</span><br><span class="line">features:</span><br><span class="line"><span class="bullet">- </span>title: 文字笔记</span><br><span class="line">  details: 文字笔记包含了书中重点单词构成的单词表</span><br><span class="line"><span class="bullet">- </span>title: 思维导图</span><br><span class="line">  details: 提供了在线交互式思维导图，方便进行探索和复习</span><br><span class="line"><span class="bullet">- </span>title: 音频资源</span><br><span class="line">  details: 点击顶部导航栏中的资源按钮</span><br><span class="line">footer: MIT Licensed | Copyright © 2018-present Jiangxj</span><br></pre></td></tr></table></figure>
 <p><strong>默认主题config.js配置</strong></p>
 <p>参考：<a href="https://v2.vuepress.vuejs.org/zh/reference/default-theme/config.html#%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE" target="_blank" rel="noopener">https://v2.vuepress.vuejs.org/zh/reference/default-theme/config.html#%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE</a></p>
 <p><strong>运行本地开发环境</strong></p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">run</span><span class="bash"> src:dev</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">yarn</span> <span class="selector-tag">src</span><span class="selector-pseudo">:dev</span></span><br></pre></td></tr></table></figure>
 <p><strong>构建线上静态文件</strong></p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">run</span><span class="bash"> src:build</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">yarn</span> <span class="selector-tag">src</span><span class="selector-pseudo">:build</span></span><br></pre></td></tr></table></figure>
 <p>该命令会生成名为docs文件夹（静态文件），具体来自config.js设置</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#config</span>.js</span><br><span class="line"></span><br><span class="line">module<span class="selector-class">.exports</span> = &#123;</span><br><span class="line">    title: <span class="string">'Hello VuePress'</span>,</span><br><span class="line">    description: <span class="string">'Just playing around'</span>,</span><br><span class="line">    dest: <span class="string">'docs'</span>, <span class="comment">//build后生成的文件地址</span></span><br></pre></td></tr></table></figure>
 <p><strong>部署到Github Pages</strong></p>
@@ -486,6 +492,15 @@
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git clone http<span class="variable">s:</span>//<span class="symbol">&lt;TOKEN&gt;</span>@github.<span class="keyword">com</span>/<span class="symbol">&lt;user_name&gt;</span>/<span class="symbol">&lt;repo_name&gt;</span>.git </span><br><span class="line"></span><br><span class="line">//token指令在github设置中生成</span><br></pre></td></tr></table></figure>
 <p>将生成的docs文件夹内容放到clone下的文件，并新建了package文件，存放markdown源文件用于在github在线编辑。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git add .</span><br><span class="line">git <span class="keyword">commit</span> -m <span class="string">"deploy"</span></span><br><span class="line">git pull  //Already up <span class="keyword">to</span> <span class="built_in">date</span>保持远程与本地更新</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+<h1 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h1><h2 id="图片插入问题"><a href="#图片插入问题" class="headerlink" title="图片插入问题"></a>图片插入问题</h2><p>推荐插入方式：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">center</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"图片的相对地址"</span> <span class="attr">title</span>=<span class="string">"图标题"</span> <span class="attr">width</span>=<span class="string">50%</span>&gt;</span><span class="tag">&lt;/<span class="name">center</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>注意<code>.webp</code>格式图片无法通过编译，建议改为<code>.png</code>等格式。</p>
+<h2 id="latex数学公式渲染问题"><a href="#latex数学公式渲染问题" class="headerlink" title="latex数学公式渲染问题"></a>latex数学公式渲染问题</h2><p>本配置使用的是<a href="mailto:`vuepress@1.8.2" target="_blank" rel="noopener">`vuepress@1.8.2</a><code>搭配</code><a href="mailto:markdown-it-mathjax3@3.1.1" target="_blank" rel="noopener">markdown-it-mathjax3@3.1.1</a>`，具体安装见上。</p>
+<p>可以实现<code>$xxx$</code>  inline行内  和  <code>$$xxx$$</code>    block形式插入。</p>
+<p>多行公式通过<code>\begin{}</code>形式渲染。</p>
+<p>该插件V3版本将公式解析后转换为<code>SVG</code>图片，然后在外层添加一个标准的<code>HTML</code>标签<code>&lt;mjx-container&gt;</code>实现公式块的居中显示，在<code>vuepress v2.x</code>中无法识别该标签，需要安装<code>vuepress v1.x</code>版本。</p>
+<p>该插件建议通过<code>yarn</code>进行安装，并在<code>config.js</code>做配置。</p>
+<h2 id="侧边栏问题"><a href="#侧边栏问题" class="headerlink" title="侧边栏问题"></a>侧边栏问题</h2><p>目前只能显示<strong>二级标题</strong>，，多级别标题也只能显示二级标题，具体问题还在摸索</p>
 
       
     </div>
@@ -730,7 +745,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vuepress"><span class="nav-number">1.</span> <span class="nav-text">Vuepress</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用途"><span class="nav-number">2.</span> <span class="nav-text">用途</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#特性"><span class="nav-number">3.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#快速搭建"><span class="nav-number">4.</span> <span class="nav-text">快速搭建</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vuepress"><span class="nav-number">1.</span> <span class="nav-text">Vuepress</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用途"><span class="nav-number">2.</span> <span class="nav-text">用途</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#特性"><span class="nav-number">3.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#快速搭建"><span class="nav-number">4.</span> <span class="nav-text">快速搭建</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#遇到的问题"><span class="nav-number">5.</span> <span class="nav-text">遇到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#图片插入问题"><span class="nav-number">5.1.</span> <span class="nav-text">图片插入问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#latex数学公式渲染问题"><span class="nav-number">5.2.</span> <span class="nav-text">latex数学公式渲染问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#侧边栏问题"><span class="nav-number">5.3.</span> <span class="nav-text">侧边栏问题</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -755,7 +770,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -769,7 +784,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">197.1k</span>
+    <span title="Site words total count">197.5k</span>
   
 </div>
 
